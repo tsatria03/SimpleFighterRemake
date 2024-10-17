@@ -60,7 +60,8 @@ Letter, C: Check your current location and the tile being walked on, if pressed.
 Letter, X: toggles auto walking, if pressed.
 Letter, T: Sit/stand at your current location, if pressed.
 Letter, A: Decreases your overall movement speed, if pressed.
-Letter, S: Increases your overall movement speed, if pressed.
+Letter, D: Increases your overall movement speed, if pressed.
+Letter, F: Resets your overall movement speed back to default, if pressed.
 Letter, Q: Anounces the zone you're on, if pressed.
 Letter, P: Pauses or resumes the currently active game, if pressed.
 Letter, R: Reloads ammo into a particular weapon category, if pressed/held down.
@@ -93,6 +94,5 @@ Menu keys.
 Letter, W: Opens the weapons menu, if pressed.
 Letter, S: Opens the shields menu, if pressed.
 Letter, E: Opens the object viewer menu, if pressed.
-Letter, U: Opens the characters menu, if pressed.
 Letter, O: Opens the Builder menu in the builder mode, if pressed.
 Letter, V: Opens the points menu, if pressed.
