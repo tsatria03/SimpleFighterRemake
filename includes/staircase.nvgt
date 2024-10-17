@@ -1,0 +1,64 @@
+bool onstaircase;
+staircase@[] staircases(0);
+class staircase
+{
+bool abletojump;
+int staircsound;
+double minx, maxx, miny, maxy;
+string tile;
+staircase(double cx, double cx2, double fminy,double fmaxy,string platile)
+{
+minx=cx;
+maxx=cx2;
+miny=fminy;
+maxy=fmaxy;
+tile=platile;
+spawn_platform(minx, maxx, miny, maxy, tile, 0, 100);
+}
+}
+void stairscheck()
+{
+for (uint i=0; i<staircases.length(); i++)
+{
+if (me.x>=staircases[i].minx&&me.x<=staircases[i].maxx&&me.y>=staircases[i].miny&&me.y<=staircases[i].maxy)
+{
+onstaircase=true;
+if (me.y==staircases[i].maxy) staircases[i].abletojump=true;
+else staircases[i].abletojump=false;
+}
+else
+{
+onstaircase=false;
+staircases[i].abletojump=true;
+}
+if (key_down(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT))
+{
+if (onstaircase==true&&movetimer.elapsed>=movetime&&me.y<staircases[i].maxy)
+{
+string[] tilers=find_files("sounds/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
+if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+movetimer.restart();
+me.y++;
+}
+}
+if (key_down(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT))
+{
+if (onstaircase==true&&movetimer.elapsed>=movetime&&me.y>staircases[i].miny)
+{
+string[] tilers=find_files("sounds/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
+if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+movetimer.restart();
+me.y--;
+}
+}
+}
+}
+void spawn_staircase(double fminx, double fmaxx, double fminy, double fmaxy,string stile)
+{
+staircase sc1(fminx,fmaxx,fminy, fmaxy,stile);
+staircases.insert_last(sc1);
+}
+void destroy_all_staircases()
+{
+staircases.resize(0);
+}

@@ -1,0 +1,119 @@
+zombie@[]zombies(0);
+class zombie
+{
+bool fireable, moveable, moveable2;
+int defsound, hurtsound, tilesound, wepsound, zombsound;
+double zomblevel;
+double zoxp;
+int zombiecard;
+int zombhealth;
+double zombiehealth;
+double zombiemaxhealth;
+int zombx;
+int zomby;
+int damage;
+int zombietime;
+int firetime;
+string zombtype;
+timer zombietimer, firetimer;
+zombie(int zx,int zy,double hp,double maxhp,int zc,int dm,int ft,int sp,double zlv,double zxp,string zt,bool zombf,bool zombt,bool zombt2)
+{
+this.zombhealth=hp;
+zombx=zx;
+zomby=zy;
+zombiehealth=hp;
+zombiemaxhealth=maxhp;
+zombiecard=zc;
+damage=dm;
+firetime=ft;
+zombietime=sp;
+zomblevel=zlv;
+zoxp=zxp;
+zombtype=zt;
+fireable=zombf;
+moveable=zombt;
+moveable2=zombt2;
+string[] zombsfx=find_files("sounds/npc/zombies/"+zombtype+"/*taunt*");
+if(zombsfx.length()!=0) zombsound=p.play_extended_2d("sounds/npc/zombies/"+zombtype+"/"+zombsfx[random(0,zombsfx.length()-1)],me.x,me.y,zombx,zomby,0,0,0,0,true,0,0,painvolume,painpitch,false);
+}
+}
+void zombloop()
+{
+for(uint i=0; i<zombies.length(); i++)
+{
+if(zombies[i].zombietimer.elapsed>=zombies[i].zombietime)
+{
+string[] zombsteps=find_files("sounds/npc/zombies/"+zombies[i].zombtype+"/*step*");
+if(zombies[i].moveable==true and paused==0 and zombsteps.length()!=0) tilesound=p.play_extended_2d("sounds/npc/zombies/"+zombies[i].zombtype+"/"+zombsteps[random(0,zombsteps.length()-1)],me.x,me.y,zombies[i].zombx,zombies[i].zomby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+p.update_sound_2d(zombies[i].zombsound,zombies[i].zombx,zombies[i].zomby);
+zombies[i].zombietimer.restart();
+if(zombies[i].zombx<me.x and zombies[i].moveable==true and paused==0)
+{
+zombies[i].zombx++;
+}
+if(zombies[i].zombx>me.x and zombies[i].moveable==true and paused==0)
+{
+zombies[i].zombx--;
+}
+if(zombies[i].zomby<me.y and zombies[i].moveable2==true and paused==0)
+{
+zombies[i].zomby++;
+}
+if(zombies[i].zomby>me.y and zombies[i].moveable2==true and paused==0)
+{
+zombies[i].zomby--;
+}
+}
+if(me.x==zombies[i].zombx and me.y==zombies[i].zomby and zombies[i].firetimer.elapsed>=zombies[i].firetime and zombies[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
+{
+string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
+if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
+shieldstrength-=zombies[i].damage*zombies[i].zomblevel-shielddefence;
+zombies[i].firetimer.restart();
+}
+else if(me.x==zombies[i].zombx and me.y==zombies[i].zomby and zombies[i].firetimer.elapsed>=zombies[i].firetime and zombies[i].fireable==true and shieldon==0 and shieldstrength<=maxshieldstrength and paused==0)
+{
+string[] hitsfx=find_files("sounds/npc/zombies/"+zombies[i].zombtype+"/*hit*");
+if(hitsfx.length()!=0) zombies[i].wepsound=p.play_stationary_extended("sounds/npc/zombies/"+zombies[i].zombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] hurtsfx=find_files("sounds/characters/"+chartype+"/*hurt*");
+if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+health-=zombies[i].damage*zombies[i].zomblevel-defence;
+zombies[i].firetimer.restart();
+}
+if(zombies[i].zombiehealth<=0)
+{
+if(zombies[i].zombiecard>=2 and paused==0)
+{
+string[] lifesfx=find_files("sounds/npc/zombies/"+zombies[i].zombtype+"/*life*");
+if(lifesfx.length()!=0) p.play_2d("sounds/npc/zombies/"+zombies[i].zombtype+"/"+lifesfx[random(0,lifesfx.length()-1)],me.x,me.y,zombies[i].zombx,zombies[i].zomby,false);
+zombies[i].zombiehealth=zombies[i].zombhealth;
+zombies[i].zombiecard-=1;
+}
+else if(zombies[i].zombiecard<=1 and paused==0)
+{
+p.destroy_sound(zombies[i].hurtsound);
+p.destroy_sound(zombies[i].zombsound);
+string[] defsfx=find_files("sounds/npc/zombies/"+zombies[i].zombtype+"/*death*");
+if(defsfx.length()!=0) zombies[i].defsound=p.play_extended_2d("sounds/npc/zombies/"+zombies[i].zombtype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,zombies[i].zombx,zombies[i].zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
+if(xpmod>=1) xp+=zombies[i].zoxp*zombies[i].zomblevel*xpmod;
+kills+=1;
+spawn_bodyfall(zombies[i].zombx, zombies[i].zomby, random(500,1000));
+zombies.remove_at(i);
+return;
+}
+}
+}
+}
+void spawn_zombie(int x,int y,double hp,double maxhp,int zc,int dm,int firetime,int zombietime,double zomblevel,double xp,string zombtype,bool fireable,bool moveable,bool moveable2)
+{
+zombie z1(x,y,hp,maxhp,zc,dm,firetime,zombietime,zomblevel,xp,zombtype,fireable,moveable,moveable2);
+zombies.insert_last(z1);
+}
+void destroy_all_zombies()
+{
+for(uint i=0; i<zombies.length(); i++)
+{
+p.destroy_sound(zombies[i].zombsound);
+}
+zombies.resize(0);
+}

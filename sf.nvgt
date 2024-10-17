@@ -1,0 +1,358 @@
+#pragma embed "data/saves/misc.dat"
+#pragma plugin nvgt_curl
+#include"bgt_compat.nvgt"
+#include"includes/includes.nvgt"
+bool hrtf=true;
+bool y_is_elevation=true;
+int quest, mres;
+int dockmode=1, echomode=1, fademode=1, keytime=200, spacehold=1;
+string keyboardtheme="keyboard";
+string menutype="default";
+string soundcard="Default";
+string[] dock, dock2, dock3;
+string changesplit, credsplit, redsplit;
+string mapdata;
+string mapname;
+string mapname2;
+string loc;
+string newloc;
+string newzone;
+string version;
+file docks, docks2, docks3, dockfile, info, logfile, mapper, ver;
+character@ current_char=null;
+shield@ current_shield=null;
+weapon@ current_weapon=null;
+timer keytimer;
+audio_form f, f2, form, form2;
+dynamic_menu_pro m, m2, menu, menu2;
+kh k, k2, keyhook, keyhook2;
+savedata sd("data/saves/game.dat","s7NGuz4iSPGvdCy52bDekJezFp23WcBoeMdlY8Mk9d7Zj51dD8LiDqhYN6bveBODZS1Yt6m1pMOBdRi9e8DLmPBPRPLlW2xFA1rjNdJAugeNL7v6Fcnl1F7rp1hdjSCwYzw34cOtL");
+savedata st("data/saves/options.dat","mBlAGtFL8GUjFZDAaLkG6Zqv1KHKOimA3SGqT6wmdJWc5h6RdSB97916D9SIQfZMjdCZMSJmDByZHYuS2V22QCvHmSGMHIOSwIyHjD46zmjGcm3bgZRyImIAVLivGTgAHub0jpjORA2t3z1GJMcHu0VxMIbJrmSzXjU9wdgeZYdP8z7MVym8SBrGrb2X8r9ryXY03MhwzMgjdD6jo9q");
+slider s, s2, slide, slide2;
+sound dummy, dummy2, mus, mus2;
+sound_pool animalpool, beltpool, bombpool, calpool, campool, clockpool, checkpool, doorpool, enemypool, hazardpool, instpool, itempool, liftpool, muspool, platpool, passagepool, projpool, robpool, signpool, sourcepool, spikepool, telpool, turpool, vehpool, vanpool, zombpool, p, p2, t, t2, mpool, mpool2, pool, pool2, spool, spool2, temp, temp2;
+text_input v, v2, text, text2, input, input2;
+time_elapsed timeelapsed;
+vector cam, cam2, me, me2;
+void main()
+{
+keyhook.install();
+dummy.load("dummy");
+sound_global_hrtf=true;
+timeelapsed.set_timer(gametimer);
+initialize_sound_pools();
+initialize_reverb_pools();
+getver();
+set_sound_storage("*");
+set_sound_decryption_key("yLnhpXN6@VL=DP&o*7O#Uz)tNHR?!tJUaQ4RP9MO%=ZjL9B",true);
+show_game_window("Simple fighter, version "+version);
+create_buffer("alerts");
+create_buffer("misc");
+string[] charlist=find_directories("data/layouts/characters/*");
+for(uint i=0; i<charlist.length(); i++)
+{
+charparse(charlist[i]);
+}
+string[] arclist=find_directories("data/layouts/equipments/weapons/archery/*");
+for(uint i=0; i<arclist.length(); i++)
+{
+arcparse(arclist[i]);
+}
+string[] artlist=find_directories("data/layouts/equipments/weapons/artillery/*");
+for(uint i=0; i<artlist.length(); i++)
+{
+artparse(artlist[i]);
+}
+string[] exolist=find_directories("data/layouts/equipments/weapons/explosive/*");
+for(uint i=0; i<exolist.length(); i++)
+{
+exoparse(exolist[i]);
+}
+string[] melelist=find_directories("data/layouts/equipments/weapons/melee/*");
+for(uint i=0; i<melelist.length(); i++)
+{
+meleparse(melelist[i]);
+}
+string[] shieldlist=find_directories("data/layouts/equipments/shields/*");
+for(uint i=0; i<shieldlist.length(); i++)
+{
+shieldparse(shieldlist[i]);
+}
+@current_char=get_default_char();
+shieldtype=current_char.shieldtype;
+attack=current_char.attack;
+defence=current_char.defence;
+points=current_char.points;
+health=current_char.health;
+maxhealth=current_char.maxhealth;
+lifecard=current_char.lifecard;
+level=current_char.level;
+levmod=current_char.levmod;
+xp=current_char.xp;
+xpmod=current_char.xpmod;
+xprequiered=current_char.xprequiered;
+chardeathsound=current_char.chardeathsound;
+charfallsound=current_char.charfallsound;
+charfallsound2=current_char.charfallsound2;
+charhurtsound=current_char.charhurtsound;
+charhealsound=current_char.charhealsound;
+charhealsound2=current_char.charhealsound2;
+charhealsound3=current_char.charhealsound3;
+charinvsound=current_char.charinvsound;
+charjumpsound=current_char.charjumpsound;
+charlevsound=current_char.charlevsound;
+charlifesound=current_char.charlifesound;
+charrocksound=current_char.charrocksound;
+charsitsound=current_char.charsitsound;
+charstandsound=current_char.charstandsound;
+charturnsound=current_char.charturnsound;
+@current_shield=get_default_shield();
+shielddefence=current_shield.shielddefence;
+shieldweight=current_shield.shieldweight;
+shieldstrength=current_shield.shieldstrength;
+maxshieldstrength=current_shield.maxshieldstrength;
+shieldlevel=current_shield.shieldlevel;
+shieldbreaksound=current_shield.shieldbreaksound;
+shielddrawsound=current_shield.shielddrawsound;
+shieldhitsound=current_shield.shieldhitsound;
+shieldloopsound=current_shield.shieldloopsound;
+shieldremovesound=current_shield.shieldremovesound;
+shieldwearsound=current_shield.shieldwearsound;
+@current_weapon=get_default_weapon();
+wepdamage=current_weapon.wepdamage;
+wephold=current_weapon.wephold;
+weprange=current_weapon.weprange;
+weprange2=current_weapon.weprange2;
+wepspeed=current_weapon.wepspeed;
+weapontime=current_weapon.weapontime;
+weapontime2=current_weapon.weapontime2;
+wepweight=current_weapon.wepweight;
+ammo=current_weapon.ammo;
+loadedammo=current_weapon.loadedammo;
+maxammo=current_weapon.maxammo;
+weplevel=current_weapon.weplevel;
+wepdrawsound=current_weapon.wepdrawsound;
+wepemptysound=current_weapon.wepemptysound;
+wepfiresound=current_weapon.wepfiresound;
+wephitsound=current_weapon.wephitsound;
+weploopsound=current_weapon.weploopsound;
+weprecsound=current_weapon.weprecsound;
+wepreloadsound=current_weapon.wepreloadsound;
+wepshellsound=current_weapon.wepshellsound;
+readdata();
+readpreffs();
+if(directory_exists("sounds") and !directory_empty("sounds")) mainmenu();
+else downloadsounds();
+}
+void destroygame()
+{
+destroy_all_animals();
+destroy_all_enemies();
+destroy_all_projectiles();
+destroy_all_turrets();
+destroy_all_robots();
+destroy_all_zombies();
+}
+void getver()
+{
+ver.open("docks/version.txt","rb");
+version=ver.read();
+ver.close();
+}
+void initialize_sound_pools()
+{
+@p.mixer=mixer();
+p.max_distance=0;
+p.pan_step=2.5;
+p.volume_step=2.5;
+@animalpool.mixer=mixer();
+animalpool.max_distance=0;
+animalpool.pan_step=2.5;
+animalpool.volume_step=2.5;
+@bombpool.mixer=mixer();
+bombpool.max_distance=0;
+bombpool.pan_step=2.5;
+bombpool.volume_step=2.5;
+@enemypool.mixer=mixer();
+enemypool.max_distance=0;
+enemypool.pan_step=2.5;
+enemypool.volume_step=2.5;
+@liftpool.mixer=mixer();
+liftpool.max_distance=0;
+liftpool.pan_step=2.5;
+liftpool.volume_step=2.5;
+@passagepool.mixer=mixer();
+passagepool.max_distance=0;
+passagepool.pan_step=2.5;
+passagepool.volume_step=2.5;
+@platpool.mixer=mixer();
+platpool.max_distance=0;
+platpool.pan_step=2.5;
+platpool.volume_step=2.5;
+@projpool.mixer=mixer();
+projpool.max_distance=0;
+projpool.pan_step=2.5;
+projpool.volume_step=2.5;
+@robpool.mixer=mixer();
+robpool.max_distance=0;
+robpool.pan_step=2.5;
+robpool.volume_step=2.5;
+@telpool.mixer=mixer();
+telpool.max_distance=0;
+telpool.pan_step=2.5;
+telpool.volume_step=2.5;
+@turpool.mixer=mixer();
+turpool.max_distance=0;
+turpool.pan_step=2.5;
+turpool.volume_step=2.5;
+@zombpool.mixer=mixer();
+zombpool.max_distance=0;
+zombpool.pan_step=2.5;
+zombpool.volume_step=2.5;
+@campool.mixer=mixer();
+campool.max_distance=0;
+campool.pan_step=2.5;
+campool.volume_step=2.5;
+@calpool.mixer=mixer();
+calpool.max_distance=0;
+calpool.pan_step=2.5;
+calpool.volume_step=2.5;
+@clockpool.mixer=mixer();
+clockpool.max_distance=0;
+clockpool.pan_step=2.5;
+clockpool.volume_step=2.5;
+@checkpool.mixer=mixer();
+checkpool.max_distance=0;
+checkpool.pan_step=2.5;
+checkpool.volume_step=2.5;
+@hazardpool.mixer=mixer();
+hazardpool.max_distance=0;
+hazardpool.pan_step=2.5;
+hazardpool.volume_step=2.5;
+@itempool.mixer=mixer();
+itempool.max_distance=0;
+itempool.pan_step=2.5;
+itempool.volume_step=2.5;
+@beltpool.mixer=mixer();
+beltpool.max_distance=0;
+beltpool.pan_step=2.5;
+beltpool.volume_step=2.5;
+@doorpool.mixer=mixer();
+doorpool.max_distance=0;
+doorpool.pan_step=2.5;
+doorpool.volume_step=2.5;
+@muspool.mixer=mixer();
+muspool.max_distance=0;
+muspool.pan_step=2.5;
+muspool.volume_step=2.5;
+@signpool.mixer=mixer();
+signpool.max_distance=0;
+signpool.pan_step=2.5;
+signpool.volume_step=2.5;
+@sourcepool.mixer=mixer();
+sourcepool.max_distance=0;
+sourcepool.pan_step=2.5;
+sourcepool.volume_step=2.5;
+@spikepool.mixer=mixer();
+spikepool.max_distance=0;
+spikepool.pan_step=2.5;
+spikepool.volume_step=2.5;
+@vehpool.mixer=mixer();
+vehpool.max_distance=0;
+vehpool.pan_step=2.5;
+vehpool.volume_step=2.5;
+@vanpool.mixer=mixer();
+vanpool.max_distance=0;
+vanpool.pan_step=2.5;
+vanpool.volume_step=2.5;
+}
+void update_sound_pools()
+{
+p.update_listener_2d(me.x,me.y);
+animalpool.update_listener_2d(me.x,me.y);
+bombpool.update_listener_2d(me.x,me.y);
+enemypool.update_listener_2d(me.x,me.y);
+liftpool.update_listener_2d(me.x,me.y);
+passagepool.update_listener_2d(me.x,me.y);
+platpool.update_listener_2d(me.x,me.y);
+projpool.update_listener_2d(me.x,me.y);
+robpool.update_listener_2d(me.x,me.y);
+telpool.update_listener_2d(me.x,me.y);
+turpool.update_listener_2d(me.x,me.y);
+zombpool.update_listener_2d(me.x,me.y);
+campool.update_listener_2d(me.x,me.y);
+calpool.update_listener_2d(me.x,me.y);
+clockpool.update_listener_2d(me.x,me.y);
+checkpool.update_listener_2d(me.x,me.y);
+hazardpool.update_listener_2d(me.x,me.y);
+itempool.update_listener_2d(me.x,me.y);
+beltpool.update_listener_2d(me.x,me.y);
+doorpool.update_listener_2d(me.x,me.y);
+muspool.update_listener_2d(me.x,me.y);
+signpool.update_listener_2d(me.x,me.y);
+sourcepool.update_listener_2d(me.x,me.y);
+spikepool.update_listener_2d(me.x,me.y);
+vanpool.update_listener_2d(me.x,me.y);
+vehpool.update_listener_2d(me.x,me.y);
+}
+void resetgame()
+{
+aninum=1;
+eninum=1;
+projnum=1;
+robnum=1;
+zombnum=1;
+weapontype="melee";
+me.x=0;
+me.y=0;
+maxx=100;
+maxy=100;
+kills=0;
+facing="left";
+tiletype="short grass";
+walltype="wallgrass";
+}
+void resetpreffs()
+{
+chartype="default";
+keyboardtheme="keyboard";
+soundcard="Default";
+sound_output_device=1;
+menutype="default";
+autosave=0;
+hidedocks=false;
+hidegames=false;
+hidemaps=false;
+hidesets=false;
+hrtf=false;
+mreset=0;
+mskipnum=1;
+up_down=1;
+left_right=0;
+home_end=0;
+wrap=0;
+repeat_items=0;
+numbers=0;
+first_letter=0;
+position_info=0;
+side_scroll=0;
+}
+void restart()
+{
+if(SCRIPT_COMPILED)
+{
+bool success=run("sf.exe","",false,false);
+if(!success)
+{
+alert("errorr", "Unable to restart sf.exe!");
+}
+}
+else
+{
+bool success=run("c:\\nvgt\\nvgtw.exe","sf.nvgt",false,false);
+if(!success)
+{
+alert("errorr", "Unable to restart sf.nvgt!");
+}
+}
+}

@@ -1,0 +1,118 @@
+robot@[]robots(0);
+class robot
+{
+bool fireable, moveable, moveable2;
+int defsound, hurtsound, robsound, tilesound, wepsound;
+double roblevel;
+double roxp;
+int robotcard;
+int robhealth;
+double robothealth;
+double robotmaxhealth;
+int robx;
+int roby;
+int damage;
+int robottime;
+int firetime;
+string robtype;
+timer robottimer, firetimer;
+robot(int rx,int ry,double hp,double maxhp,int rc,int dm,int ft,int sp,double rvl,double rxp,string rt,bool robf,bool robt,bool robt2)
+{
+this.robhealth=hp;
+robx=rx;
+roby=ry;
+robothealth=hp;
+robotmaxhealth=maxhp;
+robotcard=rc;
+damage=dm;
+firetime=ft;
+robottime=sp;
+roblevel=rvl;
+roxp=rxp;
+robtype=rt;
+fireable=robf;
+moveable=robt;
+moveable2=robt2;
+string[] robsfx=find_files("sounds/npc/robots/"+robtype+"/*taunt*");
+if(robsfx.length()!=0) robsound=robpool.play_extended_2d("sounds/npc/robots/"+robtype+"/"+robsfx[random(0,robsfx.length()-1)],me.x,me.y,robx,roby,0,0,0,0,true,0,0,painvolume,painpitch,false);
+}
+}
+void robotloop()
+{
+for(uint i=0; i<robots.length(); i++)
+{
+if(robots[i].robottimer.elapsed>=robots[i].robottime)
+{
+string[] robsteps=find_files("sounds/npc/robots/"+robots[i].robtype+"/*step*");
+if(robots[i].moveable==true and paused==0 and robsteps.length()!=0) tilesound=robpool.play_extended_2d("sounds/npc/robots/"+robots[i].robtype+"/"+robsteps[random(0,robsteps.length()-1)],me.x,me.y,robots[i].robx,robots[i].roby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+robpool.update_sound_2d(robots[i].robsound,robots[i].robx,robots[i].roby);
+robots[i].robottimer.restart();
+if(robots[i].robx<me.x and robots[i].moveable==true and paused==0)
+{
+robots[i].robx++;
+}
+if(robots[i].robx>me.x and robots[i].moveable==true and paused==0)
+{
+robots[i].robx--;
+}
+if(robots[i].roby<me.y and robots[i].moveable2==true and paused==0)
+{
+robots[i].roby++;
+}
+if(robots[i].roby>me.y and robots[i].moveable2==true and paused==0)
+{
+robots[i].roby--;
+}
+}
+if(me.x==robots[i].robx and me.y==robots[i].roby and robots[i].firetimer.elapsed>=robots[i].firetime and robots[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
+{
+string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
+if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=robpool.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
+shieldstrength-=robots[i].damage*robots[i].roblevel-shielddefence;
+robots[i].firetimer.restart();
+}
+else if(me.x==robots[i].robx and me.y==robots[i].roby and robots[i].firetimer.elapsed>=robots[i].firetime and robots[i].fireable==true and shieldon==0 and paused==0)
+{
+string[] hitsfx=find_files("sounds/npc/robots/"+robots[i].robtype+"/*hit*");
+if(hitsfx.length()!=0) robots[i].wepsound=robpool.play_stationary_extended("sounds/npc/robots/"+robots[i].robtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] hurtsfx=find_files("sounds/characters/"+chartype+"/*hurt*");
+if(hurtsfx.length()!=0 and charhurtsound==1) painslot=robpool.play_stationary_extended("sounds/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+health-=robots[i].damage*robots[i].roblevel-defence;
+robots[i].firetimer.restart();
+}
+if(robots[i].robothealth<=0)
+{
+if(robots[i].robotcard>=2 and paused==0)
+{
+string[] lifesfx=find_files("sounds/npc/robots/"+robots[i].robtype+"/*life*");
+if(lifesfx.length()!=0) robpool.play_2d("sounds/npc/robots/"+robots[i].robtype+"/"+lifesfx[random(0,lifesfx.length()-1)],me.x,me.y,robots[i].robx,robots[i].roby,false);
+robots[i].robothealth=robots[i].robhealth;
+robots[i].robotcard-=1;
+}
+else if(robots[i].robotcard<=1 and paused==0)
+{
+robpool.destroy_sound(robots[i].hurtsound);
+robpool.destroy_sound(robots[i].robsound);
+string[] defsfx=find_files("sounds/npc/robots/"+robots[i].robtype+"/*death*");
+if(defsfx.length()!=0) robots[i].defsound=robpool.play_extended_2d("sounds/npc/robots/"+robots[i].robtype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,robots[i].robx,robots[i].roby,0,0,0,0,false,0,0,painvolume,painpitch,false);
+if(xpmod>=1) xp+=robots[i].roxp*robots[i].roblevel*xpmod;
+kills+=1;
+robots.remove_at(i);
+return;
+}
+}
+}
+}
+void spawn_robot(int x,int y,double hp,double maxhp,int rc,int dm,int firetime,int robottime,double roblevel,double xp,string robtype,bool fireable,bool moveable,bool moveable2)
+{
+robot r1(x,y,hp,maxhp,rc,dm,firetime,robottime,roblevel,xp,robtype,fireable,moveable,moveable2);
+robots.insert_last(r1);
+}
+void destroy_all_robots()
+{
+for(uint i=0; i<robots.length(); i++)
+{
+robpool.destroy_sound(robots[i].robsound);
+}
+robots.resize(0);
+}

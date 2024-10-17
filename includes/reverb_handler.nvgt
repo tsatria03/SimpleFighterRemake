@@ -1,0 +1,90 @@
+reverb_effect@[]reverb_effects(0);
+sound_pool@[]pools;
+class reverb_effect
+{
+double minx,maxx,miny,maxy;
+float dry_mix;
+float wet_mix;
+float room_size;
+float dampping;
+float width;
+string reverb_id;
+reverb_effect(double mx,double mx2,double my,double my2,string rd,float dm,float wm,float rs,float dp,float wt)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+reverb_id=rd;
+dry_mix=dm;
+wet_mix=wm;
+room_size=rs;
+dampping=dp;
+width=wt;
+}
+}
+void initialize_reverb_pools()
+{
+pools={p, animalpool, bombpool, enemypool, liftpool, passagepool, platpool, projpool, robpool, telpool, turpool, zombpool, campool, calpool, clockpool, checkpool, hazardpool, beltpool, doorpool, muspool, signpool, sourcepool, spikepool, vanpool, vehpool};
+}
+void revfxloop()
+{
+bool reverb_applied=false;
+string applied_reverb_id="";
+for(uint i=0; i<reverb_effects.length(); i++)
+{
+if(reverb_effects[i].minx<=me.x && reverb_effects[i].maxx>=me.x && reverb_effects[i].miny<=me.y && reverb_effects[i].maxy>=me.y or reverb_effects[i].minx<=cam.x && reverb_effects[i].maxx>=cam.x && reverb_effects[i].miny<=cam.y && reverb_effects[i].maxy>=cam.y)
+{
+if(!reverb_applied)
+{
+string fxtype="$"+reverb_effects[i].reverb_id+":freeverb:"+reverb_effects[i].dry_mix+":"+reverb_effects[i].wet_mix+":"+reverb_effects[i].room_size+":"+reverb_effects[i].dampping+":"+reverb_effects[i].width;
+for(uint j=0; j<pools.length(); j++)
+{
+pools[j].mixer.set_fx(fxtype);
+}
+reverb_applied=true;
+applied_reverb_id=reverb_effects[i].reverb_id;
+}
+}
+}
+if(!reverb_applied)
+{
+for(uint j=0; j<pools.length(); j++)
+{
+pools[j].mixer.set_fx("$");
+}
+}
+else
+{
+for(uint i=0; i<reverb_effects.length(); i++)
+{
+if(reverb_effects[i].reverb_id!=applied_reverb_id)
+{
+for(uint j=0; j<pools.length(); j++)
+{
+pools[j].mixer.set_fx("$"+reverb_effects[i].reverb_id);
+}
+}
+}
+}
+}void spawn_reverb_effect(double x1,double x2,double y1,double y2,string reverb_id,float dry_mix,float wet_mix,float room_size,float dampping,float width)
+{
+reverb_effect rf1(x1,x2,y1,y2,reverb_id,dry_mix,wet_mix,room_size,dampping,width);
+reverb_effects.insert_last(rf1);
+if(rf1.minx<=me.x && rf1.maxx>=me.x && rf1.miny<=me.y && rf1.maxy>=me.y or rf1.minx<=cam.x && rf1.maxx>=cam.x && rf1.miny<=cam.y && rf1.maxy>=cam.y)
+{
+string fxtype="$"+rf1.reverb_id+":freeverb:"+rf1.dry_mix+":"+rf1.wet_mix+":"+rf1.room_size+":"+rf1.dampping+":"+rf1.width;
+for(uint j=0; j<pools.length(); j++)
+{
+pools[j].mixer.set_fx(fxtype);
+}
+}
+}
+void destroy_all_reverb_effects()
+{
+for(uint j=0; j<pools.length(); j++)
+{
+pools[j].mixer.set_fx("$");
+}
+reverb_effects.resize(0);
+}

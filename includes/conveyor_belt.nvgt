@@ -1,0 +1,69 @@
+belt@[]belts(0);
+class belt
+{
+int beltsound;
+double minx, maxx, miny, maxy;
+int dir;
+int speed;
+string tile;
+string belttype;
+timer speedtimer;
+belt(double mx,double mx2,double my,double my2,int bd,int sp,string ty,string bt)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+dir=bd;
+speed=sp;
+tile=ty;
+belttype=bt;
+string[] beltsfx=find_files("sounds/objects/belts/"+belttype+"/*loop*");
+if(beltsfx.length()!=0) beltsound=beltpool.play_2d("sounds/objects/belts/"+belttype+"/"+beltsfx[random(0,beltsfx.length()-1)],me.x,me.y,minx,miny,true);
+beltpool.update_sound_2d(beltsound,minx,miny);
+beltpool.update_sound_range_2d(beltsound, 0, maxx-minx, 0, maxy-miny);
+spawn_platform(minx, maxx, miny, maxy, tile, 0, 100);
+}
+}
+void beltloop()
+{
+for(uint i=0; i<belts.length(); i++)
+{
+if(belts[i].speedtimer.elapsed>=belts[i].speed)
+{
+belts[i].speedtimer.restart();
+if(me.x>=belts[i].minx and me.x<=belts[i].maxx and me.y>=belts[i].miny and me.y<=belts[i].maxy)
+{
+if(belts[i].dir==1)
+{
+me.x--;
+}
+if(belts[i].dir==2)
+{
+me.x++;
+}
+if(belts[i].dir==3)
+{
+me.y--;
+}
+if(belts[i].dir==4)
+{
+me.y++;
+}
+}
+}
+}
+}
+void spawn_belt(double x1,double x2,double y1,double y2,int direction,int speed,string tile,string belttype)
+{
+belt belt1(x1,x2,y1,y2,direction,speed,tile,belttype);
+belts.insert_last(belt1);
+}
+void destroy_all_belts()
+{
+for(uint i=0; i<belts.length(); i++)
+{
+beltpool.destroy_sound(belts[i].beltsound);
+}
+belts.resize(0);
+}

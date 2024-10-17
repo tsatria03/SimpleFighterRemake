@@ -1,0 +1,568 @@
+character@ get_default_char()
+{
+if(charas.is_empty())
+{
+return null;
+}
+for(uint i=0; i<charas.length(); i++)
+{
+if(charas[i].name == chartype)
+{
+return charas[i];
+}
+}
+return null;
+}
+shield@ get_default_shield()
+{
+if(shields.is_empty())
+{
+return null;
+}
+for(uint i=0; i<shields.length(); i++)
+{
+if(shields[i].name=="large shield")
+{
+return shields[i];
+}
+}
+return null;
+}
+weapon@ get_default_weapon()
+{
+if(weapons.is_empty())
+{
+return null;
+}
+for(uint i=0; i<weapons.length(); i++)
+{
+if(weapons[i].name=="fist")
+{
+return weapons[i];
+}
+}
+return null;
+}
+bool alt_is_up()
+{
+if(key_up(KEY_LMENU) or key_up(KEY_RMENU))
+{
+return true;
+}
+return false;
+}
+bool control_is_up()
+{
+if(key_up(KEY_LCONTROL) or key_up(KEY_RCONTROL))
+{
+return true;
+}
+return false;
+}
+bool shift_is_up()
+{
+if(key_up(KEY_LSHIFT) or key_up(KEY_RSHIFT))
+{
+return true;
+}
+return false;
+}
+bool alt_is_down()
+{
+if(key_down(KEY_LMENU) or key_down(KEY_RMENU))
+{
+return true;
+}
+return false;
+}
+bool control_is_down()
+{
+if(key_down(KEY_LCONTROL) or key_down(KEY_RCONTROL))
+{
+return true;
+}
+return false;
+}
+bool shift_is_down()
+{
+if(key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+return true;
+}
+return false;
+}
+double convert_to_pan(double length, double index, double range1, double range2)
+{
+try
+{
+double range = range2 - range1;
+double percent = index / (length - 1);
+double value = range1 + range * percent;
+return value;
+}
+catch
+{
+return 0;
+}
+}
+double convert_to_volume(double length,double index,double min_volume=-100,double max_volume=0)
+{
+try
+{
+double range=max_volume-min_volume;
+double percent=index/(length-1);
+double value=min_volume+range*percent;
+return value;
+}
+catch
+{
+return 0;
+}
+}
+double convert_to_pitch(double length,double index,double min_pitch=0,double max_pitch=200)
+{
+try
+{
+double range=max_pitch-min_pitch;
+double percent=index/(length-1);
+double value=min_pitch+range*percent;
+return value;
+}
+catch
+{
+return 100;
+}
+}
+double percent(double n1, double n2)
+{
+return (n1/n2)*100;
+}
+double average(double[] vals, int roundval=2)
+{
+double res=0;
+for(uint i=0; i<vals.length(); i++)
+{
+res=res+vals[i];
+}
+res=res/vals.length();
+res=round(res,roundval);
+return res;
+}
+bool directory_empty(const string&in dir)
+{
+if (!directory_exists(dir))
+{
+return false;
+}
+string[] files=find_files(dir+"/*");
+string[] folders=find_directories(dir+"/*");
+return files.length()==0 and folders.length()==0;
+}
+bool string_file_encrypt(string input_file, string output_file, string key)
+{
+bool success;
+file f;
+success=f.open(input_file, "rb");
+if(!success) return false;
+string text=f.read();
+text=string_encrypt(text, key);
+if(text=="") return false;
+success=f.open(output_file, "wb");
+if(!success) return false;
+f.write(text);
+success=f.close();
+return success;
+}
+bool string_file_decrypt(const string& input_file, const string& output_file, const string& encryption_key)
+{
+file input;
+if (!input.open(input_file, "rb"))
+return false;
+string encrypted_content = input.read();
+input.close();
+string decrypted_content = string_decrypt(encrypted_content, encryption_key);
+file output;
+if (!output.open(output_file, "wb"))
+return false;
+output.write(decrypted_content);
+output.close();
+return true;
+}
+bool int_to_bool(int i)
+{
+return i==1? true:false;
+}
+bool string_starts_with(const string& in str, const string& in start)
+{
+if (str.length()>=start.length())
+{
+return (str.substr(0, start.length()) == start);
+}
+return false;
+}
+bool string_ends_with(const string& in str,const string& in ending)
+{
+if (str.length()>=ending.length())
+{
+return (str.substr(str.length()-ending.length())==ending);
+}
+return false;
+}
+bool string_to_bool(string str)
+{
+return str.trim_whitespace().lower()=="true"? true:false;
+}
+float stn(string str)
+{
+if (string_contains(str,"random",1)>-1)
+{
+string a=string_replace(str,"random(","",true);
+a=string_replace(a,")","",true);
+string[] b=string_split(a,",",true);
+double c=0;
+c=random(string_to_number(b[0]),string_to_number(b[1]));
+return c;
+}
+else
+return string_to_number(str);
+}
+int bool_to_int(bool b)
+{
+return b? 1:0;
+}
+int get_distance(int a, int b)
+{
+return absolute(a - b);
+}
+string find_sound(string soundname)
+{
+string[] snd=find_files(soundname);
+if (snd.length()>0)
+{
+string[] a_path=string_split(soundname,"/",true);
+string path=string_replace(soundname,a_path[a_path.length()-1],"",true);
+return path+snd[random(0,snd.length()-1)];
+}
+else
+return "";
+}
+string gmt(double x, double y)
+{
+string mt;
+for(uint i=0; i<platforms.length(); i++)
+{
+if(platforms[i].minx<=x and platforms[i].maxx>=x and platforms[i].miny<=y and platforms[i].maxy>=y)
+{
+mt=platforms[i].tile;
+tilevolume=platforms[i].volume;
+tilepitch=platforms[i].pitch;
+}
+}
+for(uint i=0; i<walls.length(); i++)
+{
+if(walls[i].minx<=x and walls[i].maxx>=x and walls[i].miny<=y and walls[i].maxy>=y)
+{
+wallvolume=walls[i].volume;
+wallpitch=walls[i].pitch;
+}
+}
+return mt;
+}
+string gct(double x, double y)
+{
+string ct;
+for(uint i=0; i<platforms.length(); i++)
+{
+if(platforms[i].minx<=x and platforms[i].maxx>=x and platforms[i].miny<=y and platforms[i].maxy>=y)
+{
+ct=platforms[i].tile;
+tilevolume=platforms[i].volume;
+tilepitch=platforms[i].pitch;
+}
+}
+for(uint i=0; i<walls.length(); i++)
+{
+if(walls[i].minx<=x and walls[i].maxx>=x and walls[i].miny<=y and walls[i].maxy>=y)
+{
+//ct=walls[i].wall;
+wallvolume=walls[i].volume;
+wallpitch=walls[i].pitch;
+}
+}
+return ct;
+}
+string linear(string[] a)
+{
+string final;
+for(uint i=0; i<a.length(); i++)
+{
+final+=(a[i]+"\r\n");
+}
+return final;
+}
+string[] delinear(string a)
+{
+return string_split(a, "\r\n", false);
+}
+string join_string_array(string[] arr, uint start, uint end)
+{
+string result = "";
+for(uint i = start; i < end; i++)
+{
+if(i>start) result+=" ";
+result+=arr[i];
+}
+return result;
+}
+string string_join(const string[]& in arr, const string& in delimiter)
+{
+string result="";
+for (uint i=0; i<arr.length(); i++)
+{
+if(i>0)
+result += delimiter;
+result += arr[i];
+}
+return result;
+}
+string string_trim_sides(const string& in str)
+{
+string result=str;
+while (result.length()>0 && (result[0]==" "||result[0]=="\t"||result[0]=="\r"||result[0]=="\n"))
+{
+result=string_trim_left(result,1);
+}
+while (result.length()>0 && (result[result.length()-1]==" "||result[result.length()-1]=="\t"||result[result.length()-1]=="\r"||result[result.length()-1]=="\n"))
+{
+result=string_trim_right(result,1);
+}
+return result;
+}
+string file_decrypt(const string& encrypted_content, const string& encryption_key)
+{
+return string_decrypt(encrypted_content, encryption_key);
+}
+string measure_file_size(int64 bytes)
+{
+if(bytes < 1024)
+{
+return bytes + " bytes";
+}
+else if(bytes < 1024 * 1024)
+{
+return (bytes / 1024) + " KB";
+}
+else
+{
+return (bytes / (1024 * 1024)) + " MB";
+}
+}
+string measure_time(int64 milliseconds)
+{
+int64 seconds = milliseconds / 1000;
+if(seconds < 1)
+{
+return milliseconds + " ms";
+}
+else if(seconds < 60)
+{
+int whole_seconds = int(seconds);
+int ms = int(milliseconds % 1000);
+return whole_seconds + " seconds, " + ms + " ms";
+}
+else if(seconds < 3600)
+{
+int minutes = int(seconds / 60);
+int remaining_seconds = int(seconds % 60);
+int ms = int(milliseconds % 1000);
+return minutes + " minutes, " + remaining_seconds + " seconds, " + ms + " ms";
+}
+else
+{
+int hours = int(seconds / 3600);
+int minutes = int((seconds % 3600) / 60);
+int remaining_seconds = int(seconds % 60);
+int ms = int(milliseconds % 1000);
+return hours + " hours, " + minutes + " minutes, " + remaining_seconds + " seconds, " + ms + " ms";
+}
+}
+string script_get_path()
+{
+string scriptpath;
+if(SCRIPT_COMPILED==false)
+{
+scriptpath=SCRIPT_CURRENT_FILE;
+}
+else
+{
+scriptpath=SCRIPT_EXECUTABLE;
+}
+return scriptpath;
+}
+string script_get_folder()
+{
+string path=script_get_path();
+string[] spl=string_split(path, "\\", true);
+spl.resize(spl.length()-1);
+string folder;
+for(uint i=0; i<spl.length(); i++)
+{
+folder+=spl[i];
+if(i<spl.length()-1) folder+="\\";
+}
+return folder;
+}
+string string2file(string thing)
+{
+thing=string_replace(thing,"\\","/",true);
+thing=string_replace(thing,"/"," ",true);
+return thing;
+}
+string gmz()
+{
+return get_zone_at(me.x,me.y);
+}
+string get_key_echo_description(int mode)
+{
+if (mode==textflag_none)
+return "echo off";
+else if (mode==textflag_characters)
+return "echo characters";
+else if (mode==textflag_words)
+return "echo words";
+else if (mode==textflag_characters_words)
+return "echo both characters and words";
+return "";
+}
+void beep_percentage(double val)
+{
+if(val<0 && val!=val)
+{
+return;
+}
+val=round(val,0);
+val=clamp(val,0,100);
+uint freq=uint(110*pow(2,val/25));
+float dur=40;
+float amp=0.4;
+uint sr=44100;
+float[]@ samples=triangle_wave(freq,dur,amp,sr);
+samples=adsr_envelope(samples,5,0,1,5,sr);
+@progress_sound=push_audio(samples,sr);
+progress_sound.play();
+}
+void dockread(const string&in filename)
+{
+if(!file_exists(filename))
+{
+alert("Error","Could not fined "+string_replace(filename, "docks/", "", true));
+docksmenu();
+}
+dockfile.open(filename,"rb");
+string docktext=dockfile.read();
+dockfile.close();
+form.reset();
+form.create_window("Viewing "+string_replace(filename, "docks/", "", true),false,false,false);
+int dockbox=form.create_input_box(string_replace(filename, "docks/", "", true), docktext, read_only:true, multiline:true);
+int dockclose=form.create_button("&close",false,true);
+form.focus(dockbox);
+while(true)
+{
+wait(5);
+form.monitor();
+if (form.is_pressed(dockclose))
+{
+docksmenu();
+}
+}
+}
+void downloadsounds()
+{
+quest=question("Error", "There are no sounds detected in the game! Would you like to download them now?");
+if (quest==1)
+{
+if (file_exists("sounds.zip"))
+{
+alert("file found", "This file already exists. The downloader will now skip to the extraction process.");
+}
+else
+{
+string result=dl_file("https://www.dropbox.com/scl/fi/exse692jtre29cak9rfng/sounds.zip?rlkey=ep8rows3g35z0ompmvt6wlxpa&dl=1", "sounds.zip");
+if (result != "finished")
+{
+alert("download error", "Download failed or was canceled.");
+if(file_exists("sounds.zip")) file_delete("sounds.zip");
+mainmenu();
+}
+alert("finished", "Download completed successfully.");
+}
+alert("extracting", "Extracting files.");
+int progslot=temp.play_stationary_extended("pi2.ogg", true, 0, 0, 0, 100);
+if(!directory_exists("sounds")) directory_create("sounds");
+bool result=run("lib/unzip.exe", "-q -o sounds.zip -d sounds", true, true);
+if (result==true)
+{
+temp.destroy_sound(progslot);
+alert("extraction_complete", "Extraction finished successfully.");
+if(file_exists("sounds.zip")) file_delete("sounds.zip");
+restart();
+}
+else
+{
+alert("extraction_error", "Error occurred during extraction.");
+mainmenu();
+}
+}
+else
+{
+mainmenu();
+}
+}
+void drop_item(string direction, string objtype, string objtype2)
+{
+if(direction=="left")
+{
+spawn_obj(me.x-1, me.y, 500, objtype, objtype2, true);
+}
+if(direction=="right")
+{
+spawn_obj(me.x+1, me.y, 500, objtype, objtype2, true);
+}
+}
+void filter_empty_lines(string[] lines, string[]& filtered_lines, uint[]& original_lines)
+{
+filtered_lines.resize(0);
+original_lines.resize(0);
+for (uint i=0; i<lines.length(); i++)
+{
+if (lines[i].length()>0)
+{
+filtered_lines.insert_last(lines[i]);
+original_lines.insert_last(i);
+}
+}
+}
+void gop(int x, int y)
+{
+if(x<0 or x>maxx or y<0 or y>maxy)
+{
+dlg("error! You can't move out of map boundries! Please try again!");
+}
+else
+{
+me.x=x;
+me.y=y;
+speak("Moved to "+me.x+", "+me.y+".");
+}
+}
+void key_echocheck(audio_form@ form)
+{
+if (key_pressed(KEY_F2))
+{
+echomode++;
+if (echomode>3)
+echomode=0;
+form.set_default_keyboard_echo(echomode);
+speak(get_key_echo_description(echomode));
+}
+}

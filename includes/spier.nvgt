@@ -1,0 +1,287 @@
+void spy(string direction, int distance)
+{
+bool found_object = false;
+bool on_lift=false;
+bool in_passage=false;
+bool in_pspassage=false;
+passage@ current_passage = null;
+pspassage@ current_pspassage = null;
+vector spyage(me.x,me.y);
+string materials;
+string current_tile=gmt(me.x,me.y);
+   for(uint i = 0; i < lifts.length(); i++)
+    {
+        if(me.x >= lifts[i].minx && me.x <= lifts[i].maxx && me.y == lifts[i].lifty)
+        {
+            on_lift = true;
+            break;
+        }
+    }
+    for (uint i = 0; i < passages.length(); i++)
+    {
+        if(passages[i].is_within_passage(me.x, me.y))
+        {
+            in_passage = true;
+            @current_passage = passages[i];
+            break;
+        }
+    }
+    for (uint i = 0; i < pspassages.length(); i++)
+    {
+        if(pspassages[i].is_within_pspassage(me.x, me.y))
+        {
+            in_pspassage = true;
+            @current_pspassage = pspassages[i];
+            break;
+        }
+    }
+for (uint i = 1; i <= distance && !found_object; i++)
+{
+if(direction=="left")
+spyage.x--;
+else if(direction=="right")
+spyage.x++;
+else if(direction=="down")
+spyage.y--;
+else if(direction=="up")
+spyage.y++;
+        if(on_lift && (direction == "left" || direction == "right"))
+        {
+            string current_tile = gmt(spyage.x, spyage.y);
+            if(current_tile == "" || current_tile == "air")
+            {
+                materials += "air: " + i + " feet. ";
+                found_object = true;
+            }
+        }
+        if (in_passage)
+        {
+            string endpoint_desc = current_passage.get_endpoint_description(spyage.x, spyage.y);
+            if (endpoint_desc != "")
+            {
+                materials += endpoint_desc + ": " + i + " feet. ";
+                found_object = true;
+            }
+            else if (!current_passage.is_within_passage(spyage.x, spyage.y))
+            {
+                in_passage = false;
+            }
+        }
+        if (!in_passage)
+        {
+            for (uint j1 = 0; j1 < passages.length(); j1++)
+            {
+                string endpoint_desc = passages[j1].get_endpoint_description(spyage.x, spyage.y);
+                if (endpoint_desc != "")
+                {
+                    materials += endpoint_desc + ": " + i + " feet. ";
+                }
+            else if (passages[j1].is_within_passage(spyage.x, spyage.y))
+            {
+                in_passage = true;
+                @current_passage = passages[j1];
+                string passage_dimensions;
+                if (current_passage.direction == 1)
+                {
+                    passage_dimensions = current_passage.passagelength + " x 1";
+                }
+                else if (current_passage.direction == 2)
+                {
+                    passage_dimensions = "1 x " + current_passage.passagelength;
+                }
+                materials += passage_dimensions + " tile " + " passage: " + i + " feet. ";
+            }
+        }
+            if (found_object) break;
+        }
+        if (in_pspassage)
+        {
+            string endpoint_desc = current_pspassage.get_endpoint_description(spyage.x, spyage.y);
+            if (endpoint_desc != "")
+            {
+                materials += endpoint_desc + ": " + i + " feet. ";
+                found_object = true;
+            }
+            else if (!current_pspassage.is_within_pspassage(spyage.x, spyage.y))
+            {
+                in_pspassage = false;
+            }
+        }
+        if (!in_pspassage)
+        {
+            for (uint j2 = 0; j2 < pspassages.length(); j2++)
+            {
+                string endpoint_desc = pspassages[j2].get_endpoint_description(spyage.x, spyage.y);
+                if (endpoint_desc != "")
+                {
+                    materials += endpoint_desc + ": " + i + " feet. ";
+                }
+            else if (pspassages[j2].is_within_pspassage(spyage.x, spyage.y))
+            {
+                in_pspassage = true;
+                @current_pspassage = pspassages[j2];
+                string pspassage_dimensions;
+                if (current_pspassage.direction == 1)
+                {
+                    pspassage_dimensions = current_pspassage.pspassagelength + " x 1";
+                }
+                else if (current_pspassage.direction == 2)
+                {
+                    pspassage_dimensions = "1 x " + current_pspassage.pspassagelength;
+                }
+                materials += pspassage_dimensions + " tile " + " passage: " + i + " feet. ";
+            }
+        }
+            if (found_object) break;
+        }
+                if (!found_object)
+        {
+for (uint i1 = 0; i1 < blockages.length(); i1++)
+{
+if(spyage.x>=blockages[i1].minx && spyage.x<=blockages[i1].maxx && spyage.y>=blockages[i1].miny && spyage.y<=blockages[i1].maxy)
+{
+materials+=(blockages[i1].maxx-blockages[i1].minx+1)+" x "+(blockages[i1].maxy-blockages[i1].miny+1)+" tile blockage: "+i+" feet. ";
+found_object=true;
+}
+}
+for (uint i2 = 0; i2 < checkpoints.length(); i2++)
+{
+if(spyage.x==checkpoints[i2].checkx && spyage.y==checkpoints[i2].checky)
+{
+materials+="checkpoint: "+i+" feet. ";
+}
+}
+for(uint i3=0; i3<belts.length(); i3++)
+{
+if(spyage.x>=belts[i3].minx && spyage.x<=belts[i3].maxx && spyage.y>=belts[i3].miny && spyage.y<=belts[i3].maxy)
+{
+materials+="conveyor belt: "+i+" feet. ";
+found_object=true;
+}
+}
+for (uint i4 = 0; i4 < doors.length(); i4++)
+{
+if(spyage.x==doors[i4].startx && spyage.y==doors[i4].starty)
+{
+materials+="door: "+i+" feet. ";
+}
+}
+for (uint i5 = 0; i5 < hazards.length(); i5++)
+{
+if(spyage.x>=hazards[i5].minx && spyage.x<=hazards[i5].maxx && spyage.y>=hazards[i5].miny && spyage.y<=hazards[i5].maxy)
+{
+materials+=(hazards[i5].maxx-hazards[i5].minx+1)+" x "+(hazards[i5].maxy-hazards[i5].miny+1)+" tile "+hazards[i5].hazardtype+" hazard: "+i+" feet. ";
+found_object=true;
+}
+}
+for (uint i6 = 0; i6 < signs.length(); i6++)
+{
+if(spyage.x==signs[i6].signx && spyage.y==signs[i6].signy)
+{
+materials+="sign: "+i+" feet. ";
+}
+}
+for (uint i7 = 0; i7 < spikes.length(); i7++)
+{
+if(spyage.x>=spikes[i7].minx && spyage.x<=spikes[i7].maxx && spyage.y>=spikes[i7].miny && spyage.y<=spikes[i7].maxy)
+{
+materials+=(spikes[i7].maxx-spikes[i7].minx+1)+" x "+(spikes[i7].maxy-spikes[i7].miny+1)+" tile "+spikes[i7].spiketype+": "+i+" feet. ";
+found_object=true;
+}
+}
+for (uint i8 = 0; i8 < travelpoints.length(); i8++)
+{
+if(spyage.x>=travelpoints[i8].minx && spyage.x<=travelpoints[i8].maxx && spyage.y>=travelpoints[i8].miny && spyage.y<=travelpoints[i8].maxy)
+{
+materials+=(travelpoints[i8].maxx-travelpoints[i8].minx+1)+" x "+(travelpoints[i8].maxy-travelpoints[i8].miny+1)+" tile travelpoint: "+i+" feet.";
+found_object=true;
+}
+}
+for (uint i9 = 0; i9 < clocks.length(); i9++)
+{
+if(spyage.x==clocks[i9].clockx && spyage.y==clocks[i9].clocky)
+{
+materials+="clock: "+i+" feet. ";
+}
+}
+for (uint i10 = 0; i10 < calanders.length(); i10++)
+{
+if(spyage.x==calanders[i10].calanderx && spyage.y==calanders[i10].calandery)
+{
+materials+="calander: "+i+" feet. ";
+}
+}
+for (uint i11 = 0; i11 < animals.length(); i11++)
+{
+if(spyage.x==animals[i11].amx && spyage.y==animals[i11].amy)
+{
+materials+=animals[i11].animaltype+": "+i+" feet. ";
+}
+}
+for (uint i12 = 0; i12 < enemies.length(); i12++)
+{
+if(spyage.x==enemies[i12].emx && spyage.y==enemies[i12].emy)
+{
+materials+=enemies[i12].enemytype+": "+i+" feet. ";
+}
+}
+for (uint i13 = 0; i13 < projectiles.length(); i13++)
+{
+if(spyage.x==projectiles[i13].prox && spyage.y==projectiles[i13].proy)
+{
+materials+=projectiles[i13].projtype+": "+i+" feet. ";
+}
+}
+for (uint i14 = 0; i14 < robots.length(); i14++)
+{
+if(spyage.x==robots[i14].robx && spyage.y==robots[i14].roby)
+{
+materials+=robots[i14].robtype+": "+i+" feet. ";
+}
+}
+for (uint i15 = 0; i15 < turrets.length(); i15++)
+{
+if(spyage.x==turrets[i15].turx && spyage.y==turrets[i15].tury)
+{
+materials+=turrets[i15].turtype+": "+i+" feet. ";
+}
+}
+for (uint i16 = 0; i16 < zombies.length(); i16++)
+{
+if(spyage.x==zombies[i16].zombx && spyage.y==zombies[i16].zomby)
+{
+materials+=zombies[i16].zombtype+": "+i+" feet. ";
+}
+}
+for (uint i17 = 0; i17 < psdoors.length(); i17++)
+{
+if(spyage.x==psdoors[i17].startx && spyage.y==psdoors[i17].starty)
+{
+materials+="locked door: "+i+" feet. ";
+}
+}
+for(uint i18=0; i18<lifts.length(); i18++)
+{
+if(spyage.x>=lifts[i18].minx && spyage.x<=lifts[i18].maxx && spyage.y==lifts[i18].lifty)
+{
+if(!on_lift || (direction == "up" || direction == "down"))
+{
+materials += (lifts[i18].maxx - lifts[i18].minx + 1) + " x " + " tile lift: " + i + " feet. ";
+found_object = true;
+}
+}
+}
+}
+if(current_tile!=gmt(spyage.x,spyage.y))
+{
+current_tile=gmt(spyage.x,spyage.y);
+if(current_tile=="" || current_tile=="air")
+materials+="air: "+i+" feet. ";
+else
+materials+=current_tile+": "+i+" feet. ";
+}
+}
+if(materials=="")
+materials="Nothing in this direction";
+speak(materials);
+}

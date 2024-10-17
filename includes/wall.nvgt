@@ -1,0 +1,71 @@
+wall@[]walls(0);
+class wall
+{
+int defsound,hurtsound;
+int platform_id;
+bool destroyable;
+double minx,maxx,miny,maxy;
+double wallhealth;
+double wallmaxhealth;
+double volume;
+double pitch;
+string wall;
+wall(double mx,double mx2,double my,double my2,double hp,double maxhp,string wy,double vol,double semitone,bool dtb)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+wallhealth=hp;
+wallmaxhealth=maxhp;
+wall=wy;
+volume=vol;
+pitch=semitone;
+destroyable=dtb;
+platform_id=spawn_platform(minx, maxx, miny, maxy, wall, volume, pitch);
+}
+}
+void wallcheck()
+{
+for(uint i=0; i<walls.length(); i++)
+{
+if(walls[i].wallhealth<=0)
+{
+p.destroy_sound(walls[i].hurtsound);
+string[] defsfx=find_files("sounds/objects/walls/"+walls[i].wall+"/*death*");
+if(defsfx.length()!=0) walls[i].defsound=p.play_extended_2d("sounds/objects/walls/"+walls[i].wall+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,walls[i].minx,walls[i].miny,0,0,0,0,false,0,0,wallvolume,wallpitch,false);
+p.update_sound_2d(walls[i].defsound,walls[i].minx,walls[i].miny);
+p.update_sound_range_2d(walls[i].defsound,0,walls[i].maxx-walls[i].minx,0,walls[i].maxy-walls[i].miny);
+remove_platform(walls[i].platform_id);
+walls.remove_at(i);
+return;
+}
+}
+}
+int spawn_wall(double x1, double x2, double y1, double y2, double hp, double hp2, string wall, double wallvolume, double wallpitch, bool destroyable)
+{
+    wall wl1(x1, x2, y1, y2, hp, hp2, wall, wallvolume, wallpitch, destroyable);
+    walls.insert_last(wl1);
+    return walls.length() - 1; 
+}
+void update_wall(int id, double x1, double x2, double y1, double y2)
+{
+    if (id >= 0 && id < walls.length())
+    {
+        walls[id].minx = x1;
+        walls[id].maxx = x2;
+        walls[id].miny = y1;
+        walls[id].maxy = y2;
+    }
+}
+void remove_wall(int id)
+{
+    if (id >= 0 && id < walls.length())
+    {
+        walls.remove_at(id);
+    }
+}
+void destroy_all_walls()
+{
+    walls.resize(0);
+}

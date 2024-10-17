@@ -1,0 +1,29 @@
+Make objects found in the objects menu trackable
+Add a sonar to platforms, walls, and staircases.
+Add boss enemies.
+Add throwable items.
+Add flying vehicles such as aircrafts.
+Add falling and jumpping lojic to animals, enemies, robots, and zombies.
+Add a server side scoreboard system to all of the game modes.
+Add a map uploader and downloader.
+Restrict certain weapons and Shields behind levels.
+Implement a way to restrict all npcs to a certain part of the map, such as near walls, or other tiles.
+Implement a buffer system to track various system events in the other game modes.
+Add acheavments and death messages.
+Add a runs counter.
+Implement a way to submit bug reports, feature requests, and other game feedback.
+*done. Add lockable doors and passages with a password, a pin, or a key.
+*Done. Fix all sound sorces destroying themselves after landing on platforms upon reloading the map.
+*Done. Add interactible objects.
+*Done. Add moving platforms and hazards.
+*Done. Add weapon slots to the hole number row.
+*Done. Implement a way to set output devices in the settings menu.
+*Done. Change map parsing to use spaces instead of colens when writing maps to files.
+*Done. Add volume and pitch support to platforms and walls.
+*Done. Make walls destructable.
+*Done. Add the air tile and wall border to the platform and wall menus.
+*done. Make doors destructable.
+*Done. Fix file dooplecation for maps.
+*done. Add more things to track in the objects menu.
+*Done. Add more things to spy with the spire.
+*Done. Finish parsing and writing conveyor_belts, projectiles, teleporters, and vehicles to maps.

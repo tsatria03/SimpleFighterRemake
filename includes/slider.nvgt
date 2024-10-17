@@ -1,0 +1,161 @@
+class slider_item
+{
+string name;
+float min;
+float max;
+float current_value;
+float initial_value;
+float step_size;
+slider_item(string item_name,float min_value,float max_value,float initial_value,float step)
+{
+name=item_name;
+min=min_value;
+max=max_value;
+this.initial_value=initial_value;
+current_value=initial_value;
+step_size=step;
+}
+void reset()
+{
+current_value=initial_value;
+}
+}
+class slider
+{
+slider_item@[]items;
+bool enable_up_and_down=true;
+bool enable_left_and_right=true;
+bool enable_home_and_end=true;
+bool enable_beeps=false;
+bool speak_percentages=false;
+bool speak_position_information=false;
+int current_item=0;
+void clear_all_items()
+{
+items.resize(0);
+}
+int add_slider_item(string name,float min_value,float max_value,float initial_value,float value_step)
+{
+items.insert_last(slider_item(name,min_value,max_value,initial_value,value_step));
+return items.length();
+}
+void reset_all_items()
+{
+for(uint i=0; i<items.length(); i++)
+{
+items[i].reset();
+}
+}
+int run_slider(string title,int start_position=-1)
+{
+current_item=start_position;
+reset_all_items();
+if(title!="") speak(title);
+while(true)
+{
+wait(5);
+if(key_repeating(KEY_TAB))
+{
+if(shift_is_down())
+{
+current_item=(current_item-1+items.length())%items.length();
+if(this.enable_beeps) beep_item_value(current_item);
+string[] mclick=find_files("sounds/menus/"+menutype+"/*click*");
+if(mclick.length()!=0) spool.play_stationary("sounds/menus/"+menutype+"/"+mclick[random(0,mclick.length()-1)],false);
+}
+else
+{
+current_item=(current_item+1)%items.length();
+if(this.enable_beeps) beep_item_value(current_item);
+string[] mclick=find_files("sounds/menus/"+menutype+"/*click*");
+if(mclick.length()!=0) spool.play_stationary("sounds/menus/"+menutype+"/"+mclick[random(0,mclick.length()-1)],false);
+}
+speak(get_item_description(current_item));
+}
+if(key_repeating(KEY_DOWN) and this.enable_up_and_down and items[current_item].current_value!=items[current_item].min)
+{
+adjust_value(current_item,-1);
+}
+if(key_repeating(KEY_UP) and this.enable_up_and_down and items[current_item].current_value!=items[current_item].max)
+{
+adjust_value(current_item,1);
+}
+if(key_repeating(KEY_LEFT) and this.enable_left_and_right and items[current_item].current_value!=items[current_item].min)
+{
+adjust_value(current_item,-1);
+}
+if(key_repeating(KEY_RIGHT) and this.enable_left_and_right and items[current_item].current_value!=items[current_item].max)
+{
+adjust_value(current_item,1);
+}
+if(key_pressed(KEY_HOME) and this.enable_home_and_end and items[current_item].current_value!=items[current_item].min)
+{
+items[current_item].current_value=items[current_item].min;
+if(this.enable_beeps) beep_item_value(current_item);
+speak(get_spoken_value(current_item));
+}
+if(key_repeating(KEY_END) and this.enable_home_and_end and items[current_item].current_value!=items[current_item].max)
+{
+items[current_item].current_value=items[current_item].max;
+if(this.enable_beeps) beep_item_value(current_item);
+speak(get_spoken_value(current_item));
+}
+if(key_pressed(KEY_ESCAPE)) return 0;
+if(key_pressed(KEY_RETURN))
+{
+if(current_item==-1)
+{
+string []menter=find_files("sounds/menus/"+menutype+"/*enter*");
+if(menter.length()!=0) spool.play_stationary("sounds/menus/"+menutype+"/"+menter[random(0,menter.length()-1)],false);
+speak("You need to specify a value before confirming.");
+}
+else
+{
+string []menter=find_files("sounds/menus/"+menutype+"/*enter*");
+if(menter.length()!=0) spool.play_stationary("sounds/menus/"+menutype+"/"+menter[random(0,menter.length()-1)],false);
+return current_item+1;
+}
+}
+}
+return -1;
+}
+void adjust_value(int item_index,int direction)
+{
+slider_item@item=items[item_index];
+item.current_value=clamp(item.current_value+direction*item.step_size,item.min,item.max);
+speak(get_spoken_value(item_index));
+if(this.enable_beeps) beep_item_value(current_item);
+}
+void beep_item_value(int item_index)
+{
+slider_item@item=items[item_index];
+double percentage=(item.current_value-item.min)/(item.max-item.min)*100;
+beep_percentage(percentage);
+}
+string get_spoken_value(int item_index)
+{
+slider_item@item=items[item_index];
+string value;
+if(this.speak_percentages)
+{
+value=round((item.current_value-item.min)/(item.max-item.min)*100,2)+"percent";
+}
+else
+{
+value=string (round(item.current_value,2));
+}
+if(this.speak_position_information)
+{
+value+=", "+(item_index+1)+" of "+items.length();
+}
+return value;
+}
+string get_item_description(int item_index)
+{
+return items[item_index].name+": slider: "+get_spoken_value(item_index);
+}
+float get_item_value(int item_index)
+{
+return items[item_index].current_value;
+}
+}

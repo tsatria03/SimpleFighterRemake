@@ -1,0 +1,43 @@
+travelpoint@[]travelpoints(0);
+class travelpoint
+{
+int travsound;
+double minx,maxx,miny,maxy;
+int destx,desty;
+string destmap;
+string endtext;
+travelpoint(double mx,double mx2,double my,double my2,string dm,int dx,int dy,string et)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+destmap=dm;
+destx=dx;
+desty=dy;
+endtext=et;
+}
+}
+void travelcheck()
+{
+for(uint i=0; i<travelpoints.length(); i++)
+{
+if(travelpoints[i].minx<=me.x and travelpoints[i].maxx>=me.x and travelpoints[i].miny<=me.y and travelpoints[i].maxy>=me.y and key_pressed(KEY_RETURN))
+{
+me.x=travelpoints[i].destx;
+me.y=travelpoints[i].desty;
+travelpoints[i].travsound=mpool.play_stationary("map_finish.ogg",false);
+speak(travelpoints[i].endtext);
+load_map(travelpoints[i].destmap);
+}
+}
+}
+void spawn_travelpoint(double minx,double maxx,double miny,double maxy,string destmap,int destx,int desty,string endtext)
+{
+travelpoint tp1(minx,maxx,miny,maxy,destmap,destx,desty,endtext);
+travelpoints.insert_last(tp1);
+}
+void destroy_all_travelpoints()
+{
+travelpoints.resize(0);
+}

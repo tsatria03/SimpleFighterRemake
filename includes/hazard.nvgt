@@ -1,0 +1,185 @@
+hazard@ [] hazards(0);
+class hazard
+{
+bool ledgespawn;
+int fallsound, hazardsound;
+double minx, maxx, miny, maxy;
+string hazardtype;
+hazard(double mx,double mx2,double my,double my2,string ht,bool lgp)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+hazardtype=ht;
+ledgespawn=lgp;
+string[] plattype=find_directories("sounds/objects/platforms/*ledge*");
+if(plattype.length() != 0 and ledgespawn == true)
+{
+string ledgetype=plattype[random(0,plattype.length()-1)];
+spawn_platform(minx - 2, minx - 1, miny, miny, ledgetype, 0, 100);    
+spawn_platform(maxx + 1, maxx + 2, miny, miny, ledgetype, 0, 100);
+}
+string[] hazsfx=find_files("sounds/objects/hazards/"+hazardtype+"/*loop*");
+if(hazsfx.length()!=0) hazardsound=hazardpool.play_extended_2d("sounds/objects/hazards/"+hazardtype+"/"+hazsfx[random(0,hazsfx.length()-1)],me.x,me.y,minx,miny,0,0,0,0,true,0,0,painvolume,painpitch,false);
+hazardpool.update_sound_2d(hazardsound,minx,miny);
+hazardpool.update_sound_range_2d(hazardsound,0,maxx-minx,0,maxy-miny);
+}
+bool is_on_hazard()
+    {
+        return (me.x >= minx && me.x <= maxx && me.y >= miny && me.y <= maxy);
+    }
+}
+void hazardcheck()
+{
+for (uint i=0; i<hazards.length(); i++)
+{
+if(hazards[i].is_on_hazard())
+{
+if(lifecard>=2)
+{
+hazardpool.destroy_sound(hazards[i].hazardsound);
+string[] fallsfx=find_files("sounds/objects/hazards/"+hazards[i].hazardtype+"/*fall*");
+if(fallsfx.length()!=0) hazards[i].fallsound=hazardpool.play_stationary_extended("sounds/objects/hazards/"+hazards[i].hazardtype+"/"+fallsfx[random(0,fallsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+string[] lifesfx=find_files("sounds/characters/"+chartype+"/*life*");
+if(lifesfx.length()!=0 and charlifesound==1) hazardpool.play_stationary("sounds/characters/"+chartype+"/"+lifesfx[random(0,lifesfx.length()-1)],false);
+lifecard-=1;
+health=maxhealth;
+hazards.remove_at(i);
+return;
+}
+if(lifecard<=1)
+{
+hazardpool.destroy_sound(hazards[i].hazardsound);
+string[] fallsfx=find_files("sounds/objects/hazards/"+hazards[i].hazardtype+"/*fall*");
+if(fallsfx.length()!=0) dlgplay("sounds/objects/hazards/"+hazards[i].hazardtype+"/"+fallsfx[random(0,fallsfx.length()-1)]);
+hazards.remove_at(i);
+destroymap();
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("You have died. Would you like to try again?",true);
+if(mres==0)
+{
+wait(500);
+string[] charlist=find_directories("data/layouts/characters/*");
+for(uint i=0; i<charlist.length(); i++)
+{
+charparse(charlist[i]);
+}
+@current_char=get_default_char();
+shieldtype=current_char.shieldtype;
+attack=current_char.attack;
+defence=current_char.defence;
+points=current_char.points;
+health=current_char.health;
+maxhealth=current_char.maxhealth;
+lifecard=current_char.lifecard;
+level=current_char.level;
+levmod=current_char.levmod;
+xp=current_char.xp;
+xpmod=current_char.xpmod;
+xprequiered=current_char.xprequiered;
+chardeathsound=current_char.chardeathsound;
+charfallsound=current_char.charfallsound;
+charfallsound2=current_char.charfallsound2;
+charhurtsound=current_char.charhurtsound;
+charhealsound=current_char.charhealsound;
+charhealsound2=current_char.charhealsound2;
+charhealsound3=current_char.charhealsound3;
+charinvsound=current_char.charinvsound;
+charjumpsound=current_char.charjumpsound;
+charlevsound=current_char.charlevsound;
+charlifesound=current_char.charlifesound;
+charrocksound=current_char.charrocksound;
+charsitsound=current_char.charsitsound;
+charstandsound=current_char.charstandsound;
+charturnsound=current_char.charturnsound;
+}
+if(mres==1)
+{
+wait(500);
+string[] charlist=find_directories("data/layouts/characters/*");
+for(uint i=0; i<charlist.length(); i++)
+{
+charparse(charlist[i]);
+}
+@current_char=get_default_char();
+shieldtype=current_char.shieldtype;
+attack=current_char.attack;
+defence=current_char.defence;
+points=current_char.points;
+health=current_char.health;
+maxhealth=current_char.maxhealth;
+lifecard=current_char.lifecard;
+level=current_char.level;
+levmod=current_char.levmod;
+xp=current_char.xp;
+xpmod=current_char.xpmod;
+xprequiered=current_char.xprequiered;
+chardeathsound=current_char.chardeathsound;
+charfallsound=current_char.charfallsound;
+charfallsound2=current_char.charfallsound2;
+charhurtsound=current_char.charhurtsound;
+charhealsound=current_char.charhealsound;
+charhealsound2=current_char.charhealsound2;
+charhealsound3=current_char.charhealsound3;
+charinvsound=current_char.charinvsound;
+charjumpsound=current_char.charjumpsound;
+charlevsound=current_char.charlevsound;
+charlifesound=current_char.charlifesound;
+charrocksound=current_char.charrocksound;
+charsitsound=current_char.charsitsound;
+charstandsound=current_char.charstandsound;
+charturnsound=current_char.charturnsound;
+}
+if(mres==2)
+{
+clearmap();
+destroymap();
+mapmenu();
+}
+}
+}
+}
+}
+int spawn_hazard(double minx, double maxx, double miny, double maxy, string hazardtype,bool ledgespawn)
+{
+    hazard hz1(minx,maxx,miny,maxy,hazardtype,ledgespawn);
+    hazards.insert_last(hz1);
+    return hazards.length() - 1;
+}
+void update_hazard(int id, double minx, double maxx, double miny, double maxy)
+{
+    if (id >= 0 && id < hazards.length())
+    {
+        hazards[id].minx = minx;
+        hazards[id].maxx = maxx;
+        hazards[id].miny = miny;
+        hazards[id].maxy = maxy;
+        double centerx = (minx + maxx) / 2;
+        double centery = (miny + maxy) / 2;
+        hazardpool.update_sound_2d(hazards[id].hazardsound, centerx, centery);
+        hazardpool.update_sound_range_2d(hazards[id].hazardsound, 0, maxx - minx, 0, maxy - miny);
+    }
+}
+void remove_hazard(int id)
+{
+    if (id >= 0 && id < hazards.length())
+    {
+        hazardpool.destroy_sound(hazards[id].hazardsound);
+        hazards.remove_at(id);
+    }
+}
+void destroy_all_hazards()
+{
+for(uint i=0; i<hazards.length(); i++)
+{
+hazardpool.destroy_sound(hazards[i].hazardsound);
+}
+hazards.resize(0);
+}

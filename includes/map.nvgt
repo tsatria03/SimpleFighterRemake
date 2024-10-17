@@ -1,0 +1,964 @@
+void clearmap()
+{
+destroy_all_blockages();
+destroy_all_musicambs();
+destroy_all_musicsources();
+destroy_all_platforms();
+destroy_all_ambsources();
+destroy_all_soundsources();
+destroy_all_reverb_effects();
+destroy_all_spawnpoints();
+destroy_all_staircases();
+destroy_all_walls();
+destroy_all_zones();
+}
+void destroymap()
+{
+destroy_all_animals();
+destroy_all_animalzones();
+destroy_all_belts();
+destroy_all_bombs();
+destroy_all_bombzones();
+destroy_all_bullets();
+destroy_all_calanders();
+destroy_all_checkpoints();
+destroy_all_clocks();
+destroy_all_dialogs();
+destroy_all_doors();
+destroy_all_enemies();
+destroy_all_enemyzones();
+destroy_all_hazards();
+destroy_all_healthzones();
+destroy_all_instruments();
+destroy_all_lifts();
+destroy_all_moving_hazards();
+destroy_all_moving_platforms();
+destroy_all_objs();
+destroy_all_objzones();
+destroy_all_psdoors();
+destroy_all_pspassages();
+destroy_all_passages();
+destroy_all_projectiles();
+destroy_all_projzones();
+destroy_all_robots();
+destroy_all_robotzones();
+destroy_all_signs();
+destroy_all_spikes();
+destroy_all_teleporters();
+destroy_all_text_squares();
+destroy_all_timedmusics();
+destroy_all_timedsources();
+destroy_all_timedtexts();
+destroy_all_travelpoints();
+destroy_all_turrets();
+destroy_all_vanishing_platforms();
+destroy_all_vehicles();
+destroy_all_zombies();
+destroy_all_zombiezones();
+}
+void load_map(string name, bool instant_update=false, bool speak_percentage=false, int loadtime=50, int loadbeeps=1, int loadsounds=1)
+{
+mapname=name;
+clearmap();
+destroymap();
+if(string_ends_with(mapname,".map"))
+{
+mapname=string_replace(mapname,".map","",true);
+}
+string filename="data/maps/"+mapname+".map";
+if(!file_exists(filename))
+{
+dlg("Error. This map is invalid. Please check the map name in the file and try again.");
+mapmenu();
+}
+mapper.open(filename,"rb");
+mapdata=mapper.read();
+mapper.close();
+sound mapload;
+timer maploadtimer;
+if(loadsounds==1) mpool.play_stationary("maploadstart.ogg",false);
+if(loadsounds==1) mapload.load("maploading.ogg");
+if(loadsounds==1) mapload.play_looped();
+string[] lines=delinear(mapdata);
+double percent=0;
+int last_beep_percent=-1;
+for (uint i=0; i<lines.length(); i++)
+{
+if(loadbeeps == 1)
+{
+double l=lines.length(), ind=i;
+int current_percent=int(ind/l*100);
+if(current_percent>last_beep_percent && maploadtimer.elapsed>=loadtime)
+{
+if(speak_percentage==true) speak(current_percent+" percent");
+beep_percentage(current_percent);
+last_beep_percent=current_percent;
+maploadtimer.restart();
+}
+}        
+if(!instant_update)
+{
+wait(5);
+}
+string[] sd=string_split(lines[i], " ", true);
+if(sd[0]=="name" && sd.length()==2)
+{
+mapname=sd[1];
+}
+if(sd[0]=="maxx" && sd.length()==2)
+{
+maxx=stn(sd[1]);
+}
+if(sd[0]=="maxy" && sd.length()==2)
+{
+maxy=stn(sd[1]);
+}
+if(sd[0]=="platform" && sd.length()==7)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+string tiletype=sd[4];
+double tilevol=stn(sd[5]);
+double tilepitch=stn(sd[6]);
+spawn_platform(mx, mx2, my, my, tiletype, tilevol, tilepitch);
+}
+else if(sd[0]=="staircase" && sd.length()==6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string tiletype=sd[5];
+spawn_staircase(mx, mx2, my, my2, tiletype);
+}
+else if(sd[0]=="vanishing_platform" && sd.length()==11)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+string tiletype=sd[4];
+double tilevol=stn(sd[5]);
+double tilepitch=stn(sd[6]);
+string vplattype=sd[7];
+double vplatvol=stn(sd[8]);
+double vplatpitch=stn(sd[9]);
+int sp=stn(sd[10]);
+spawn_vanishing_platform(mx, mx2, my, my, tiletype, tilevol, tilepitch, vplattype, vplatvol, vplatpitch, sp);
+}
+else if(sd[0]=="wall" && sd.length()==10)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+double hp=stn(sd[5]);
+string walltype=sd[6];
+double wallvol=stn(sd[7]);
+double wallpitch=stn(sd[8]);
+bool dbl=string_to_bool(sd[9]);
+spawn_wall(mx, mx2, my, my2, hp, hp, walltype, wallvol, wallpitch, dbl);
+}
+else if(sd[0]=="blockage" && sd.length()>=6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string txt=join_string_array(sd, 5, sd.length());
+spawn_blockage(mx, mx2, my, my2, txt);
+}
+else if(sd[0]=="door" && sd.length()==14)
+{
+int sx=stn(sd[1]);
+int sy=stn(sd[2]);
+int sx2=stn(sd[3]);
+int sy2=stn(sd[4]);
+double hp=stn(sd[5]);
+int sp=stn(sd[6]);
+string lotype=sd[7];
+string motype=sd[8];
+string optype=sd[9];
+string cotype=sd[10];
+string dotype=sd[11];
+bool amt=string_to_bool(sd[12]);
+bool dbl=string_to_bool(sd[13]);
+spawn_door(sx, sy, sx2, sy2, hp, hp, sp, lotype, motype, optype, cotype, dotype, amt, dbl);
+}
+else if(sd[0]=="psdoor" && sd.length()==15)
+{
+int sx=stn(sd[1]);
+int sy=stn(sd[2]);
+int sx2=stn(sd[3]);
+int sy2=stn(sd[4]);
+double hp=stn(sd[5]);
+int sp=stn(sd[6]);
+string drpass=sd[7];
+string lotype=sd[8];
+string motype=sd[9];
+string optype=sd[10];
+string cotype=sd[11];
+string dotype=sd[12];
+bool amt=string_to_bool(sd[13]);
+bool dbl=string_to_bool(sd[14]);
+spawn_psdoor(sx, sy, sx2, sy2, hp, hp, sp, drpass, lotype, motype, optype, cotype, dotype, amt, dbl);
+}
+else if(sd[0]=="passage" && sd.length()==11)
+{
+int sx=stn(sd[1]);
+int sy=stn(sd[2]);
+int dir=stn(sd[3]);
+int lt=stn(sd[4]);
+int sp=stn(sd[5]);
+string tiletype=sd[6];
+string lotype=sd[7];
+string optype=sd[8];
+string cotype=sd[9];
+int sp2=stn(sd[10]);
+spawn_passage(sx, sy, dir, lt, sp, tiletype, lotype, optype, cotype, sp2);
+}
+else if(sd[0]=="pspassage" && sd.length()==12)
+{
+int sx=stn(sd[1]);
+int sy=stn(sd[2]);
+int dir=stn(sd[3]);
+int lt=stn(sd[4]);
+int sp=stn(sd[5]);
+string tiletype=sd[6];
+string lotype=sd[7];
+string optype=sd[8];
+string cotype=sd[9];
+string pspass=sd[10];
+int sp2=stn(sd[11]);
+spawn_pspassage(sx, sy, dir, lt, sp, tiletype, lotype, optype, cotype, pspass, sp2);
+}
+else if(sd[0]=="zone" && sd.length()>=6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string txt=join_string_array(sd, 5, sd.length());
+spawn_zone(mx, mx2, my, my2, txt);
+}
+else if(sd[0]=="reverb" && sd.length()==11)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string id=sd[5];
+float dry=stn(sd[6]);
+float wet=stn(sd[7]);
+float size=stn(sd[8]);
+float damp=stn(sd[9]);
+float width=stn(sd[10]);
+spawn_reverb_effect(mx, mx2, my, my2, id, dry, wet, size, damp, width);
+}
+else if(sd[0]=="text_square" && sd.length()>=4)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+string txt=join_string_array(sd, 3, sd.length());
+spawn_text_square(x, y, txt);
+}
+else if(sd[0]=="clock" && sd.length()>=6)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+string txt=join_string_array(sd, 3, sd.length()-2);
+string clocktype=sd[sd.length()-2];
+bool dbl=string_to_bool(sd[sd.length()-1]);
+spawn_clock(x, y, txt, clocktype, dbl);
+}
+else if(sd[0]=="calander" && sd.length()>=6)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+string txt=join_string_array(sd, 3, sd.length()-2);
+string calandertype=sd[sd.length()-2];
+bool dbl=string_to_bool(sd[sd.length()-1]);
+spawn_calander(x, y, txt, calandertype, dbl);
+}
+else if(sd[0]=="music_ambience" && sd.length()==8)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string musictype=sd[5];
+double musicvol=stn(sd[6]);
+double musicpitch=stn(sd[7]);
+spawn_musicamb(mx, mx2, my, my2, musictype, musicvol, musicpitch);
+}
+else if(sd[0]=="music_source" && sd.length()==8)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string musictype=sd[5];
+double musvol=stn(sd[6]);
+double muspitch=stn(sd[7]);
+spawn_musicsource(mx, mx2, my, my2, musictype, musvol, muspitch);
+}
+else if(sd[0]=="sound_ambience" && sd.length()==8)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string sorcetype=sd[5];
+double soundvol=stn(sd[6]);
+double soundpitch=stn(sd[7]);
+spawn_ambsource(mx, mx2, my, my2, sorcetype, soundvol, soundpitch);
+}
+else if(sd[0]=="sound_source" && sd.length()==8)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string sourcetype=sd[5];
+double soundvol=stn(sd[6]);
+double soundpitch=stn(sd[7]);
+spawn_soundsource(mx, mx2, my, my2, sourcetype, soundvol, soundpitch);
+}
+else if(sd[0]=="timed_music" && sd.length()==9)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string musictype=sd[5];
+double musvol=stn(sd[6]);
+double muspitch=stn(sd[7]);
+int musictime=stn(sd[8]);
+spawn_timedmusic(mx, mx2, my, my2, musvol, muspitch, musictime, musictype);
+}
+else if(sd[0]=="timed_source" && sd.length()==9)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string sourcetype=sd[5];
+double soundvol=stn(sd[6]);
+double soundpitch=stn(sd[7]);
+int sourcetime=stn(sd[8]);
+spawn_timedsource(mx, mx2, my, my2, soundvol, soundpitch, sourcetime, sourcetype);
+}
+else if(sd[0]=="timed_text" && sd.length()>=7)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+int texttime=stn(sd[5]);
+string txt=join_string_array(sd, 6, sd.length());
+spawn_timedtext(mx, mx2, my, my2, texttime, txt);
+}
+else if(sd[0]=="health_zone" && sd.length()==7)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+int hp=stn(sd[5]);
+int ht=stn(sd[6]);
+spawn_healthzone(mx, mx2, my, my2, hp, ht);
+}
+else if(sd[0]=="hazard" && sd.length()==7)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string hazardtype=sd[5];
+bool lgp=string_to_bool(sd[6]);
+spawn_hazard(mx, mx2, my, my2, hazardtype, lgp);
+}
+else if(sd[0]=="lift" && sd.length()==13)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+int dir=stn(sd[5]);
+int sp=stn(sd[6]);
+string tiletype=sd[7];
+double tilevol=stn(sd[8]);
+double tilepitch=stn(sd[9]);
+string lifttype=sd[10];
+double liftvol=stn(sd[11]);
+double liftpitch=stn(sd[12]);
+spawn_lift(mx, mx2, my, my2, dir, sp, tiletype, tilevol, tilepitch, lifttype, liftvol, liftpitch);
+}
+else if(sd[0]=="mhazard" && sd.length()==11)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+double sx=stn(sd[5]);
+double sy=stn(sd[6]);
+int dir=stn(sd[7]);
+int dir2=stn(sd[8]);
+int sp=stn(sd[9]);
+string hazardtype=sd[10];
+spawn_moving_hazard(mx, mx2, my, my2, sx, sy, dir, dir2, sp, hazardtype);
+}
+else if(sd[0]=="mplatform" && sd.length()==16)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+double sx=stn(sd[5]);
+int dir=stn(sd[6]);
+int dir2=stn(sd[7]);
+int sp=stn(sd[8]);
+string tiletype=sd[9];
+double tilevol=stn(sd[10]);
+double tilepitch=stn(sd[11]);
+string mplattype=sd[12];
+double mplatvol=stn(sd[13]);
+double mplatpitch=stn(sd[14]);
+int vs=stn(sd[15]);
+spawn_moving_platform(mx, mx2, my, my2, sx, dir, dir2, sp, tiletype, tilevol, tilepitch, mplattype, mplatvol, mplatpitch, vs);
+}
+else if(sd[0]=="sign" && sd.length()>=6)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+string txt=join_string_array(sd, 3, sd.length()-2);
+string signtype=sd[sd.length()-2];
+bool dbl=string_to_bool(sd[sd.length()-1]);
+spawn_sign(x, y, txt, signtype, dbl);
+}
+else if(sd[0]=="checkpoint" && sd.length()==5)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+int checktime=stn(sd[3]);
+string checktype=sd[4];
+spawn_checkpoint(x, y, checktime, checktype);
+}
+else if(sd[0]=="dialog" && sd.length()>=8)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string txt=join_string_array(sd, 5, sd.length()-2);
+string dlgtype=sd[sd.length()-2];
+dlgtyp=dlgtype;
+bool dlm=string_to_bool(sd[sd.length()-1]);
+spawn_dialog(mx, mx2, my, my2, txt, dlgtype, dlm);
+}
+else if(sd[0]=="instrument" && sd.length()==6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+bool insthp=string_to_bool(sd[5]);
+spawn_instrument(mx, mx2, my, my2, insthp);
+}
+else if(sd[0]=="item" && sd.length()==7)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+int objtime=stn(sd[3]);
+string objtype=sd[4];
+string objtype2=sd[5];
+bool automatic=string_to_bool(sd[6]);
+spawn_obj(x, y, objtime, objtype, objtype2, automatic);
+}
+else if(sd[0]=="item_zone" && sd.length()==8)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+int sp=stn(sd[5]);
+string objtype=sd[6];
+string objtype2=sd[7];
+spawn_objzone(mx, mx2, my, my2, sp, objtype, objtype2);
+}
+else if(sd[0]=="spike" && sd.length()==10)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+double hp=stn(sd[5]);
+int dmg=stn(sd[6]);
+int sp=stn(sd[7]);
+string spiketype=sd[8];
+bool dbl=string_to_bool(sd[9]);
+spawn_spike(mx, mx2, my, my2, hp, hp, dmg, sp, spiketype, dbl);
+}
+else if(sd[0]=="spawnpoint" && sd.length()==3)
+{
+int spx=stn(sd[1]);
+int spy=stn(sd[2]);
+create_spawnpoint(spx, spy);
+}
+else if(sd[0]=="travelpoint" && sd.length()>=9)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+string destmap=sd[5];
+int destx=stn(sd[6]);
+int desty=stn(sd[7]);
+string endtext=sd[8];
+spawn_travelpoint(mx, mx2, my, my2, destmap, destx, desty, endtext);
+}
+else if(sd[0]=="animal" && sd.length()==14)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+double hp=stn(sd[3]);
+int card=stn(sd[4]);
+int dmg=stn(sd[5]);
+int ft=stn(sd[6]);
+int sp=stn(sd[7]);
+double lv=stn(sd[8]);
+double xp=stn(sd[9]);
+string amtype=sd[10];
+bool fb=string_to_bool(sd[11]);
+bool mb=string_to_bool(sd[12]);
+bool mb2=string_to_bool(sd[13]);
+spawn_animal(x, y, hp, hp, card, dmg, ft, sp, lv, xp, amtype, fb, mb, mb2);
+}
+else if(sd[0]=="enemy" && sd.length()==14)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+double hp=stn(sd[3]);
+int card=stn(sd[4]);
+int dmg=stn(sd[5]);
+int ft=stn(sd[6]);
+int sp=stn(sd[7]);
+double lv=stn(sd[8]);
+double xp=stn(sd[9]);
+string emtype=sd[10];
+bool fb=string_to_bool(sd[11]);
+bool mb=string_to_bool(sd[12]);
+bool mb2=string_to_bool(sd[13]);
+spawn_enemy(x, y, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2);
+}
+else if(sd[0]=="projectile" && sd.length()==13)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+int dir=stn(sd[3]);
+double hp=stn(sd[4]);
+int card=stn(sd[5]);
+int dmg=stn(sd[6]);
+int sp=stn(sd[7]);
+double lv=stn(sd[8]);
+double xp=stn(sd[9]);
+string potype=sd[10];
+bool fb=string_to_bool(sd[11]);
+bool mb=string_to_bool(sd[12]);
+spawn_projectile(x, y, dir, hp, hp, card, dmg, sp, lv, xp, potype, fb, mb);
+}
+else if(sd[0]=="robot" && sd.length()==14)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+double hp=stn(sd[3]);
+int card=stn(sd[4]);
+int dmg=stn(sd[5]);
+int ft=stn(sd[6]);
+int sp=stn(sd[7]);
+double lv=stn(sd[8]);
+double xp=stn(sd[9]);
+string rotype=sd[10];
+bool fb=string_to_bool(sd[11]);
+bool mb=string_to_bool(sd[12]);
+bool mb2=string_to_bool(sd[13]);
+spawn_robot(x, y, hp, hp, card, dmg, ft, sp, lv, xp, rotype, fb, mb, mb2);
+}
+else if(sd[0]=="turret" && sd.length()==17)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+double hp=stn(sd[3]);
+int card=stn(sd[4]);
+int dmg=stn(sd[5]);
+int ft=stn(sd[6]);
+int lt=stn(sd[7]);
+int sp=stn(sd[8]);
+double lv=stn(sd[9]);
+double xp=stn(sd[10]);
+string tutype=sd[11];
+string tutype2=sd[12];
+string tutype3=sd[13];
+bool fb=string_to_bool(sd[14]);
+bool mb=string_to_bool(sd[15]);
+bool mb2=string_to_bool(sd[16]);
+spawn_turret(x, y, hp, hp, card, dmg, ft, lt, sp, lv, xp, tutype, tutype2, tutype3, fb, mb, mb2);
+}
+else if(sd[0]=="zombie" && sd.length()==14)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+double hp=stn(sd[3]);
+int card=stn(sd[4]);
+int dmg=stn(sd[5]);
+int ft=stn(sd[6]);
+int sp=stn(sd[7]);
+double lv=stn(sd[8]);
+double xp=stn(sd[9]);
+string zotype=sd[10];
+bool fb=string_to_bool(sd[11]);
+bool mb=string_to_bool(sd[12]);
+bool mb2=string_to_bool(sd[13]);
+spawn_zombie(x, y, hp, hp, card, dmg, ft, sp, lv, xp, zotype, fb, mb, mb2);
+}
+else if(sd[0]=="animal_zone" && sd.length()==6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+int y=stn(sd[3]);
+int sp=stn(sd[4]);
+string amtype=sd[5];
+spawn_animalzone(mx, mx2, y, sp, amtype);
+}
+else if(sd[0]=="bomb" && sd.length()==6)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+int dmg=stn(sd[3]);
+int sp=stn(sd[4]);
+string botype=sd[5];
+spawn_bomb(x, y, dmg, sp, botype);
+}
+else if(sd[0]=="bomb_zone" && sd.length()==6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+int y=stn(sd[3]);
+int sp=stn(sd[4]);
+string botype=sd[5];
+spawn_bombzone(mx, mx2, y, sp, botype);
+}
+else if(sd[0]=="belt" && sd.length()==9)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+double my=stn(sd[3]);
+double my2=stn(sd[4]);
+int dir=stn(sd[5]);
+int sp=stn(sd[6]);
+string tiletype=sd[7];
+string belttyp=sd[8];
+spawn_belt(mx, mx2, my, my2, dir, sp, tiletype, belttyp);
+}
+else if(sd[0]=="enemy_zone" && sd.length()==6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+int y=stn(sd[3]);
+int sp=stn(sd[4]);
+string emtype=sd[5];
+spawn_enemyzone(mx, mx2, y, sp, emtype);
+}
+else if(sd[0]=="projectile_zone" && sd.length()==6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+int y=stn(sd[3]);
+int sp=stn(sd[4]);
+string potype=sd[5];
+spawn_projzone(mx, mx2, y, sp, potype);
+}
+else if(sd[0]=="robot_zone" && sd.length()==6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+int y=stn(sd[3]);
+int sp=stn(sd[4]);
+string rotype=sd[5];
+spawn_robotzone(mx, mx2, y, sp, rotype);
+}
+else if(sd[0]=="teleporter" && sd.length()==9)
+{
+int sx=stn(sd[1]);
+int sy=stn(sd[2]);
+int sx2=stn(sd[3]);
+int sy2=stn(sd[4]);
+int dir=stn(sd[5]);
+int sp=stn(sd[6]);
+string teltype=sd[7];
+bool mb=string_to_bool(sd[8]);
+spawn_teleporter(x, y, x2, y2, dir, sp, teltype, mb);
+}
+else if(sd[0]=="vehicle" && sd.length()==7)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+double hp=stn(sd[3]);
+int dmg=stn(sd[4]);
+string vehtyp=sd[5];
+bool fb=string_to_bool(sd[6]);
+spawn_vehicle(x, y, hp, hp, dmg, vehtyp, fb);
+}
+else if(sd[0]=="zombie_zone" && sd.length()==6)
+{
+double mx=stn(sd[1]);
+double mx2=stn(sd[2]);
+int y=stn(sd[3]);
+int sp=stn(sd[4]);
+string zotype=sd[5];
+spawn_zombiezone(mx, mx2, y, sp, zotype);
+}
+if(last_spawnpoint!is null)
+{
+me.x=last_spawnpoint.spawnx;
+me.y=last_spawnpoint.spawny;
+cammable=true;
+jumpable=true;
+moveable=true;
+speedable=true;
+sittable=true;
+sitting=false;
+turnable=true;
+telable=true;
+}
+else if(spawnpoints.length()>0)
+{
+me.x=spawnpoints[0].spawnx;
+me.y=spawnpoints[0].spawny;
+cammable=true;
+jumpable=true;
+moveable=true;
+speedable=true;
+sittable=true;
+sitting=false;
+turnable=true;
+telable=true;
+}
+else
+{
+me.x=me.x;
+me.y=me.y;
+cammable=true;
+jumpable=true;
+moveable=true;
+speedable=true;
+sittable=true;
+sitting=false;
+turnable=true;
+telable=true;
+}
+}
+if(loadsounds==1) mapload.stop();
+if(loadsounds==1) mpool.play_stationary("maploadstop.ogg",false);
+if(loadbeeps == 1 && last_beep_percent<100)
+{
+if(speak_percentage==true) speak("100 "+"percent");
+beep_percentage(100);
+}
+}
+void create_map(string name, double mx, double my, string tiletype)
+{
+mapname=name;
+maxx=mx;
+maxy=my;
+mapper.open("data/maps/"+name+".map","wb");
+mapdata=mapper.read();
+mapper.write("name "+mapname+"\r\n"+"maxx "+mx+"\r\n"+"maxy "+my+"\r\n"+"platform 0 "+mx+" 0 "+tiletype+" 0 100");
+mapper.close();
+spawn_platform(0, mx, 0, 0, tiletype, 0, 100);
+}
+void playcam()
+{
+for (uint i = 0; i < hazards.length(); i++)
+{
+if(cam.x>=hazards[i].minx && cam.x<=hazards[i].maxx && cam.y>=hazards[i].miny && cam.y<=hazards[i].maxy)
+{
+if(mfc==true) camslot=campool.play_stationary("camerahazard.ogg",false);
+if(mfc==false) camslot=campool.play_2d("camerahazard.ogg",me.x,me.y,cam.x,cam.y,false);
+}
+}
+if (string_contains(gct(cam.x,cam.y),"wall",1)>-1)
+{
+string[] wallers=find_files("sounds/objects/walls/"+gct(cam.x,cam.y)+"/*wall*");
+if(wallers.length()!=0 and mfc==true) camslot=campool.play_stationary_extended("sounds/objects/walls/"+gct(cam.x,cam.y)+"/"+wallers[random(0,wallers.length()-1)],false,0,0,cameravolume,camerapitch);
+if(wallers.length()!=0 and mfc==false) camslot=campool.play_extended_2d("sounds/objects/walls/"+gct(cam.x,cam.y)+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,cam.x,cam.y,0,0,0,0,false,0,0,cameravolume,camerapitch);
+cbounce();
+}
+else if(gct(cam.x, cam.y)=="" || gct(cam.x, cam.y)=="air")
+{
+if(mfc==true) camslot=campool.play_stationary_extended("cameraair.ogg",false,0,0,cameravolume,100,false);
+if(mfc==false) camslot=campool.play_extended_2d("cameraair.ogg",me.x,me.y,cam.x,cam.y,0,0,0,0,false,0,0,cameravolume,100,false);
+}
+else
+{
+string[] tilers=find_files("sounds/objects/platforms/"+gct(cam.x,cam.y)+"/*step*");
+if(tilers.length()!=0 and mfc==true) camslot=campool.play_stationary_extended("sounds/objects/platforms/"+gct(cam.x,cam.y)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,cameravolume,camerapitch);
+if(tilers.length()!=0 and mfc==false) camslot=campool.play_extended_2d("sounds/objects/platforms/"+gct(cam.x,cam.y)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,cam.x,cam.y,0,0,0,0,false,0,0,cameravolume,camerapitch);
+}
+}
+void playstep()
+{
+for(uint i=0; i<blockages.length(); i++)
+{
+if(is_in_blockage(blockages[i].text))
+{
+speak(blockages[i].text);
+pbounce();
+return;
+}
+}
+if (string_contains(gmt(me.x,me.y),"wall",1)>-1)
+{
+string[] wallers=find_files("sounds/objects/walls/"+gmt(me.x,me.y)+"/*wall*");
+if(wallers.length()!=0) wallslot=p.play_extended_2d("sounds/objects/walls/"+gmt(me.x,me.y)+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,me.x,me.y,0,0,0,0,false,0,0,wallvolume,wallpitch);
+pbounce();
+}
+else
+{
+string[] tilers=find_files("sounds/objects/platforms/"+gmt(me.x,me.y)+"/*step*");
+if(tilers.length()!=0) tileslot=p.play_stationary_extended("sounds/objects/platforms/"+gmt(me.x,me.y)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+}
+}
+void playfall()
+{
+if (string_contains(gmt(me.x,me.y),"wall",1)>-1)
+{
+string[] wallers=find_files("sounds/objects/walls/"+gmt(me.x,me.y)+"/*wall*");
+if(wallers.length()!=0) wallslot=p.play_extended_2d("sounds/objects/walls/"+gmt(me.x,me.y)+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,me.x,me.y,0,0,0,0,false,0,0,wallvolume,wallpitch);
+}
+else
+{
+if(tilename!="hardland")
+{
+string [] tilers=find_files("sounds/objects/platforms/"+gmt(me.x,me.y)+"/*hardland*");
+if(tilers.length()!=0) tilename=tilers[random(0,tilers.length()-1)];
+if(tilers.length()!=0) tileslot=p.play_stationary_extended("sounds/objects/platforms/"+gmt(me.x,me.y)+"/"+tilename,false,0,0,tilevolume,tilepitch);
+}
+}
+}
+void playland()
+{
+if (string_contains(gmt(me.x,me.y),"wall",1)>-1)
+{
+string[] wallers=find_files("sounds/objects/walls/"+gmt(me.x,me.y)+"/*wall*");
+if(wallers.length()!=0) wallslot=p.play_extended_2d("sounds/objects/walls/"+gmt(me.x,me.y)+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,me.x,me.y,0,0,0,0,false,0,0,wallvolume,wallpitch);
+}
+else
+{
+if(tilename!="land")
+{
+string [] tilers=find_files("sounds/objects/platforms/"+gmt(me.x,me.y)+"/*land*");
+for (uint i=0; i<tilers.length(); i++)
+{
+if(string_contains(tilers[i],"hard",1)>-1)
+tilers.remove_at(i);
+}
+if(tilers.length()!=0) tilename=tilers[random(0,tilers.length()-1)];
+if(tilers.length()!=0) tileslot=p.play_stationary_extended("sounds/objects/platforms/"+gmt(me.x,me.y)+"/"+tilename,false,0,0,tilevolume,tilepitch);
+}
+}
+}
+void cbounce()
+{
+if(camdir=="right")
+cam.x--;
+else if(camdir=="left")
+cam.x++;
+else if(camdir=="up")
+cam.y--;
+else if(camdir=="down")
+cam.y++;
+}
+void pbounce()
+{
+if(facing=="right")
+me.x--;
+else if(facing=="left")
+me.x++;
+else if(facing=="up")
+me.y--;
+else if(facing=="down")
+me.y++;
+}
+void checkforplatforms()
+{
+if (gmt(me.x,me.y)!="")
+{
+playland();
+jumping=0;
+falling=false;
+}
+}
+void checkforwalls()
+{
+if(gmt(me.x,me.y)!="" and string_contains(gmt(me.x,me.y),"wall",1)>-1)
+{
+string[] wallers=find_files("sounds/objects/walls/"+gmt(me.x,me.y)+"/*wall*");
+if(wallers.length()!=0) wallslot=p.play_extended_2d("sounds/objects/walls/"+gmt(me.x,me.y)+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,me.x,me.y,0,0,0,0,false,0,0,wallvolume,wallpitch);
+ascending=false;
+jumptimer.restart();
+atapex=true;
+}
+}
+void fallcheck()
+{
+if(jumping==0 && falling==false && (gmt(me.x,me.y)==""||gmt(me.x,me.y)=="air") && doormove==false && psdoormove==false && liftmove==false && me.y>0)
+{
+falling=true;
+string[] fallsfx=find_files("sounds/characters/"+chartype+"/*fall*");
+if(fallsfx.length()!=0 and charfallsound==1 and me.y>=8) p.play_stationary("sounds/characters/"+chartype+"/"+fallsfx[random(0,fallsfx.length()-1)],false);
+string[] fallinsfx=find_files("sounds/characters/"+chartype+"/*plummet*");
+if(fallinsfx.length()!=0 and charfallsound2==1 and me.y>=8) fallslot=p.play_stationary("sounds/characters/"+chartype+"/"+fallinsfx[random(0,fallinsfx.length()-1)],false);
+}
+if(falling)
+{
+if(falltimer.elapsed>=falltime&&me.y>0)
+{
+falltimer.restart();
+me.y--;
+fallcounter++;
+}
+if(gmt(me.x, me.y)!="" && gmt(me.x, me.y)!="air")
+{
+if(fallcounter>=1 and p.sound_is_playing(fallslot)) p.destroy_sound(fallslot);
+string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
+if(arqsfx.length()!=0 and shieldhitsound==1 and fallcounter>=8 and shieldon==1) shieldslot=p.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch);
+string[] hurtsfx=find_files("sounds/characters/"+chartype+"/*hurt*");
+if(hurtsfx.length()!=0 and charhurtsound==1 and fallcounter>=8 and shieldon==0) painslot=p.play_stationary_extended("sounds/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+if(fallcounter>=8) jumpable=false;
+if(fallcounter>=8) moveable=false;
+if(fallcounter>=8) sitting=true;
+if(fallcounter<=7) playland();
+else if(fallcounter>7)
+{
+playfall();
+if(fallcounter>=8 and shieldon==0) health-=fallcounter*21-defence;
+if(fallcounter>=8 and shieldon==1) shieldstrength-=fallcounter*21-shielddefence;
+}
+falling=false;
+fallcounter=0;
+for(uint i=0; i<checkpoints.length(); i++)
+{
+if(me.x==checkpoints[i].checkx and me.y==checkpoints[i].checky)
+{
+//checkpool.destroy_sound(checkpoints[i].checksound);
+string[]getsfx=find_files("sounds/objects/checkpoints/"+checkpoints[i].checktype+"/*get*");
+if(getsfx.length()!=0) checkpoints[i].getsound=checkpool.play_stationary_extended("sounds/objects/checkpoints/"+checkpoints[i].checktype+"/"+getsfx[random(0,getsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+@last_checkpoint=checkpoints[i];
+checkpoints.remove_at(i);
+return;
+}
+}
+}
+}
+}

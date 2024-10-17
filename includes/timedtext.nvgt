@@ -1,0 +1,37 @@
+timedtext@[]timedtexts(0);
+class timedtext
+{
+double minx, maxx, miny, maxy;
+int texttime;
+string text;
+timer texttimer;
+timedtext(double mx,double mx2,double my,double my2,int sp,string txt)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+texttime=sp;
+text=txt;
+}
+}
+void timedtxtloop()
+{
+for(uint i=0; i<timedtexts.length(); i++)
+{
+if(timedtexts[i].minx<=me.x and timedtexts[i].maxx>=me.x and timedtexts[i].miny<=me.y and timedtexts[i].maxy>=me.y and timedtexts[i].texttimer.elapsed>=timedtexts[i].texttime)
+{
+speak(timedtexts[i].text);
+timedtexts[i].texttimer.restart();
+}
+}
+}
+void spawn_timedtext(double x1,double x2,double y1,double y2,int texttime,string text)
+{
+timedtext td1(x1,x2,y1,y2,texttime,text);
+timedtexts.insert_last(td1);
+}
+void destroy_all_timedtexts()
+{
+timedtexts.resize(0);
+}

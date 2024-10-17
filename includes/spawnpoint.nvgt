@@ -1,0 +1,33 @@
+spawnpoint @[]spawnpoints(0);
+spawnpoint @last_spawnpoint =null;
+class spawnpoint 
+{
+int spawnx;
+int spawny;
+spawnpoint (int spx,int spy)
+{
+spawnx=spx;
+spawny=spy;
+}
+}
+void spawncheck()
+{
+for(uint i=0; i<spawnpoints.length(); i++)
+{
+if(me.x==spawnpoints[i].spawnx and me.y==spawnpoints[i].spawny)
+{
+@last_spawnpoint =spawnpoints[i];
+return;
+}
+}
+}
+void create_spawnpoint (int x,int y)
+{
+spawnpoint sp1(x,y);
+spawnpoints.insert_last(sp1);
+}
+void destroy_all_spawnpoints()
+{
+spawnpoints.resize(0);
+@last_spawnpoint=null;
+}

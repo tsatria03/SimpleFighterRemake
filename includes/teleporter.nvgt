@@ -1,0 +1,95 @@
+teleporter@[]teleporters(0);
+class teleporter
+{
+bool moveable;
+int telsound, wepsound;
+int telx;
+int tely;
+int dtelx;
+int dtely;
+int teldir;
+int teltime;
+string teltype;
+timer teltimer;
+teleporter(int tx,int ty,int dtx,int dty,int tdir,int ts,string tt,bool tm)
+{
+telx=tx;
+tely=ty;
+dtelx=dtx;
+dtely=dty;
+teldir=tdir;
+teltime=ts;
+teltype=tt;
+moveable=tm;
+string[] telsfx=find_files("sounds/objects/teleporters/"+teltype+"/*loop*");
+if(telsfx.length()!=0) telsound=telpool.play_extended_2d("sounds/objects/teleporters/"+teltype+"/"+telsfx[random(0,telsfx.length()-1)],me.x,me.y,telx,tely,0,0,0,0,true,0,0,painvolume,painpitch,false);
+}
+}
+void telloop()
+{
+for(uint i=0; i<teleporters.length(); i++)
+{
+if(teleporters[i].teltimer.elapsed>=teleporters[i].teltime)
+{
+telpool.update_sound_2d(teleporters[i].telsound,teleporters[i].telx,teleporters[i].tely);
+teleporters[i].teltimer.restart();
+if (teleporters[i].telx<=maxx and teleporters[i].teltimer.elapsed>=teleporters[i].teltime and teleporters[i].teldir==1 and teleporters[i].moveable==true and paused==0)
+{
+teleporters[i].telx++;
+teleporters[i].teltimer.restart();
+}
+else if (teleporters[i].telx>=0 and teleporters[i].teltimer.elapsed>=teleporters[i].teltime and teleporters[i].teldir==0 and teleporters[i].moveable==true and paused==0)
+{
+teleporters[i].telx--;
+teleporters[i].teltimer.restart();
+}
+if (teleporters[i].teldir==1 and teleporters[i].telx>maxx and teleporters[i].moveable==true and paused==0)
+{
+teleporters[i].teldir=0;
+}
+else if (teleporters[i].teldir==0 and teleporters[i].telx<=0 and teleporters[i].moveable==true and paused==0)
+{
+teleporters[i].teldir=1;
+}
+if(teleporters[i].teldir==1 and teleporters[i].moveable==true and paused==0)
+{
+teleporters[i].telx++;
+}
+else if (teleporters[i].teldir==0 and teleporters[i].moveable==true and paused==0)
+{
+teleporters[i].telx--;
+}
+if(paused==1)
+{
+telpool.pause_sound(teleporters[i].telsound);
+}
+else
+{
+telpool.resume_sound(teleporters[i].telsound);
+}
+if(me.x==teleporters[i].telx and me.y==teleporters[i].tely and paused==0)
+{
+telpool.destroy_sound(teleporters[i].telsound);
+string[] hitsfx=find_files("sounds/objects/teleporters/"+teleporters[i].teltype+"/*hit*");
+if(hitsfx.length()!=0) teleporters[i].wepsound=telpool.play_stationary_extended("sounds/objects/teleporters/"+teleporters[i].teltype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+me.x=teleporters[i].dtelx;
+me.y=teleporters[i].dtely;
+teleporters.remove_at(i);
+return;
+}
+}
+}
+}
+void spawn_teleporter(int x,int y,int dx,int dy,int dir,int teltime,string teltype,bool moveable)
+{
+teleporter t1(x,y,dx,dy,dir,teltime,teltype,moveable);
+teleporters.insert_last(t1);
+}
+void destroy_all_teleporters()
+{
+for(uint i=0; i<teleporters.length(); i++)
+{
+telpool.destroy_sound(teleporters[i].telsound);
+}
+teleporters.resize(0);
+}

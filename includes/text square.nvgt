@@ -1,0 +1,32 @@
+text_square@[]text_squares(0);
+class text_square
+{
+int textx;
+int texty;
+string text;
+text_square(int tx,int ty,string txt)
+{
+textx=tx;
+texty=ty;
+text=txt;
+}
+}
+void textcheck()
+{
+for(uint i=0; i<text_squares.length(); i++)
+{
+if(me.x==text_squares[i].textx and me.y==text_squares[i].texty and key_pressed(KEY_RETURN))
+{
+speak(text_squares[i].text);
+}
+}
+}
+void spawn_text_square(int x,int y,string text)
+{
+text_square text1(x,y,text);
+text_squares.insert_last(text1);
+}
+void destroy_all_text_squares()
+{
+text_squares.resize(0);
+}

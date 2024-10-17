@@ -1,2 +1,2 @@
 # SimpleFighterRemake
-A classic spinoff of other popular off-line shooters.
+A classic spinoff of other popular offline shooters.

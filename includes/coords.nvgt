@@ -1,0 +1,31 @@
+void speakcoordinates()
+{
+if(locspeech==1 and me.y>=1 and gmt(me.x,me.y)=="")
+{
+speak("in the air,"+"facing;"+facing);
+}
+else if(locspeech==1 and me.y>=0 )
+{
+speak("on;"+gmt(me.x,me.y)+","+"facing;"+facing);
+}
+if(locspeech==2 )
+{
+speak(me.x+",;"+me.y+",;"+"facing;"+facing);
+}
+if(locspeech==3 and me.y>=1  and gmt(me.x,me.y)=="")
+{
+speak(me.x+",;"+me.y+";"+"in the air,"+"facing;"+facing);
+}
+else if(locspeech==3 and me.y>=0 )
+{
+speak(me.x+",;"+me.y+";"+"on;"+gmt(me.x,me.y)+","+"facing;"+facing);
+}
+if(locspeech==4 and me.y>=1  and gmt(me.x,me.y)=="")
+{
+speak("current location,"+me.x+",;"+me.y+","+"you're currently in the air,"+"facing;"+facing);
+}
+else if(locspeech==4 and me.y>=0 )
+{
+speak("current location,"+me.x+",;"+me.y+","+"you're walking on;"+gmt(me.x,me.y)+","+"facing;"+facing);
+}
+}

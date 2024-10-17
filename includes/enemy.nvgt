@@ -1,0 +1,121 @@
+enemy@[]enemies(0);
+class enemy
+{
+bool fireable, moveable, moveable2;
+int defsound, emsound, falsound, hurtsound, tilesound, wepsound;
+double emlevel;
+double emxp;
+int enemycard;
+int enehealth;
+double enemyhealth;
+double enemymaxhealth;
+int emx;
+int emy;
+int damage;
+int enemytime;
+int firetime;
+string enemytype;
+timer enemytimer, firetimer;
+enemy(int ex,int ey,double hp,double maxhp,int ec,int dm,int ft,int sp,double emlv,double exp,string et,bool emf,bool emt,bool emt2)
+{
+this.enehealth=hp;
+emx=ex;
+emy=ey;
+enemyhealth=hp;
+enemymaxhealth=maxhp;
+enemycard=ec;
+damage=dm;
+firetime=ft;
+enemytime=sp;
+emlevel=emlv;
+emxp=exp;
+enemytype=et;
+fireable=emf;
+moveable=emt;
+moveable2=emt2;
+string[] emsfx=find_files("sounds/npc/enemies/"+enemytype+"/*taunt*");
+if(emsfx.length()!=0) emsound=enemypool.play_extended_2d("sounds/npc/enemies/"+enemytype+"/"+emsfx[random(0,emsfx.length()-1)],me.x,me.y,emx,emy,0,0,0,0,true,0,0,painvolume,painpitch,false);
+}
+}
+void enemyloop()
+{
+for(uint i=0; i<enemies.length(); i++)
+{
+if(enemies[i].enemytimer.elapsed>=enemies[i].enemytime)
+{
+string[] tilers=find_files("sounds/objects/platforms/"+gmt(enemies[i].emx, enemies[i].emy)+"/*step*");
+if(enemies[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=enemypool.play_extended_2d("sounds/objects/platforms/"+gmt(enemies[i].emx, enemies[i].emy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,enemies[i].emx,enemies[i].emy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+enemypool.update_sound_2d(enemies[i].emsound,enemies[i].emx,enemies[i].emy);
+enemies[i].enemytimer.restart();
+if(enemies[i].emx<me.x and enemies[i].moveable==true and paused==0)
+{
+enemies[i].emx++;
+}
+if(enemies[i].emx>me.x and enemies[i].moveable==true and paused==0)
+{
+enemies[i].emx--;
+}
+if(enemies[i].emy<me.y and enemies[i].moveable2==true and paused==0)
+{
+enemies[i].emy++;
+}
+if(enemies[i].emy>me.y and enemies[i].moveable2==true and paused==0)
+{
+enemies[i].emy--;
+}
+}
+if(me.x==enemies[i].emx and me.y==enemies[i].emy and enemies[i].firetimer.elapsed>=enemies[i].firetime and enemies[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
+{
+string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
+if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=enemypool.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
+string[] hitsfx=find_files("sounds/npc/enemies/"+enemies[i].enemytype+"/*hit*");
+if(hitsfx.length()!=0) enemies[i].wepsound=enemypool.play_stationary_extended("sounds/npc/enemies/"+enemies[i].enemytype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+shieldstrength-=enemies[i].damage*enemies[i].emlevel-shielddefence;
+enemies[i].firetimer.restart();
+}
+else if(me.x==enemies[i].emx and me.y==enemies[i].emy and enemies[i].firetimer.elapsed>=enemies[i].firetime and enemies[i].fireable==true and shieldon==0 and paused==0)
+{
+string[] hitsfx=find_files("sounds/npc/enemies/"+enemies[i].enemytype+"/*hit*");
+if(hitsfx.length()!=0) enemies[i].wepsound=enemypool.play_stationary_extended("sounds/npc/enemies/"+enemies[i].enemytype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] hurtsfx=find_files("sounds/characters/"+chartype+"/*hurt*");
+if(hurtsfx.length()!=0 and charhurtsound==1) painslot=enemypool.play_stationary_extended("sounds/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+health-=enemies[i].damage*enemies[i].emlevel-defence;
+enemies[i].firetimer.restart();
+}
+if(enemies[i].enemyhealth<=0)
+{
+if(enemies[i].enemycard>=2 and paused==0)
+{
+string[] lifesfx=find_files("sounds/npc/enemies/"+enemies[i].enemytype+"/*life*");
+if(lifesfx.length()!=0) enemypool.play_2d("sounds/npc/enemies/"+enemies[i].enemytype+"/"+lifesfx[random(0,lifesfx.length()-1)],me.x,me.y,enemies[i].emx,enemies[i].emy,false);
+enemies[i].enemyhealth=enemies[i].enehealth;
+enemies[i].enemycard-=1;
+}
+else if(enemies[i].enemycard<=1 and paused==0)
+{
+enemypool.destroy_sound(enemies[i].hurtsound);
+enemypool.destroy_sound(enemies[i].emsound);
+string[] defsfx=find_files("sounds/npc/enemies/"+enemies[i].enemytype+"/*death*");
+if(defsfx.length()!=0) enemies[i].defsound=enemypool.play_extended_2d("sounds/npc/enemies/"+enemies[i].enemytype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,enemies[i].emx,enemies[i].emy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+if(xpmod>=1) xp+=enemies[i].emxp*enemies[i].emlevel*xpmod;
+kills+=1;
+spawn_bodyfall(enemies[i].emx, enemies[i].emy, random(500,1000));
+enemies.remove_at(i);
+return;
+}
+}
+}
+}
+void spawn_enemy(int x,int y,double hp,double maxhp,int ec,int dm,int firetime,int enemytime,double emlevel,double xp,string enemytype,bool fireable,bool moveable,bool moveable2)
+{
+enemy e1(x,y,hp,maxhp,ec,dm,firetime,enemytime,emlevel,xp,enemytype,fireable,moveable,moveable2);
+enemies.insert_last(e1);
+}
+void destroy_all_enemies()
+{
+for(uint i=0; i<enemies.length(); i++)
+{
+enemypool.destroy_sound(enemies[i].emsound);
+}
+enemies.resize(0);
+}

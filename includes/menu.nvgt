@@ -1,0 +1,3355 @@
+void mainmenu()
+{
+setupmenu(true);
+if(hidedocks==false) m.add_item_tts("documentation menu", "help");
+if(hidegames==false) m.add_item_tts("game menu", "shoot");
+if(hidemaps==false) m.add_item_tts("map menu", "map");
+if(hidesets==false) m.add_item_tts("settings menu", "settings");
+m.add_item_tts("test speakers", "st");
+if(directory_exists("sounds") and !directory_empty("sounds")) m.add_item_tts("redownload all sounds", "rdl");
+m.add_item_tts("restart game", "rx");
+m.add_item_tts("exit game", "ex");
+int mres=m.run("Main menu. Please choose an option with your arrow keys, then press enter to activate one.",true);
+string main=m.get_item_name(mres);
+if(mres==0)
+{
+speak("exiting");
+m.fade_music();
+exit();
+}
+if(main=="map")
+{
+mapmenu();
+}
+if(main=="shoot")
+{
+gamemenu();
+}
+if(main=="help")
+{
+docksmenu();
+}
+if(main=="st")
+{
+m.fade_music();
+dlgplay("speakertest.ogg", true, true, 30);
+mainmenu();
+}
+if(main=="ex")
+{
+speak("exiting");
+m.fade_music();
+exit();
+}
+if(main=="rdl")
+{
+m.fade_music();
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Are you sure you want to delete and redownload all sounds? This action can't be undone.",true);
+if(mres==0)
+{
+speak("canceled");
+mainmenu();
+}
+if(mres==1)
+{
+if(directory_exists("sounds")) directory_delete("sounds");
+downloadsounds();
+}
+if(mres==2)
+{
+mainmenu();
+}
+}
+if(main=="rx")
+{
+speak("restarting");
+m.fade_music();
+restart();
+}
+if(main=="settings")
+{
+m.fade_music();
+settingsmenu();
+}
+}
+void docksmenu()
+{
+setupmenu(true);
+m.add_item_tts("changelog", "changelog");
+m.add_item_tts("credits", "credits");
+m.add_item_tts("readme", "readme");
+m.add_item_tts("back", "back");
+int mres=m.run("Documentation menu",true);
+string dnm=m.get_item_name(mres);
+if(mres==0)
+{
+mainmenu();
+}
+if(dnm=="changelog")
+{
+m.fade_music();
+if(dockmode==1)
+{
+dockread("docks/changelog.txt");
+}
+else if(dockmode==0)
+{
+docks.open("docks/changelog.txt","r");
+changesplit=docks.read();
+dock=string_split(changesplit,"\r\n",true);
+setupmenu2();
+for(uint i=0; i<dock.length(); i++)
+{
+m.add_item_tts(dock[i],dock[i],"",false);
+}
+int mres=m.run_extended("Changelog", true,0,false);
+if(mres==0)
+{
+docksmenu();
+}
+if (mres==0 and mres>=dock.length())
+{
+return;
+}
+if (mres>0 and mres<=dock.length())
+{
+return;
+}
+}
+}
+if(dnm=="credits")
+{
+m.fade_music();
+if(dockmode==1)
+{
+dockread("docks/credits.txt");
+}
+else if(dockmode==0)
+{
+docks2.open("docks/credits.txt","r");
+credsplit=docks2.read();
+dock2=string_split(credsplit,"\r\n",true);
+setupmenu2();
+for(uint i=0; i<dock2.length(); i++)
+{
+m.add_item_tts(dock2[i],dock2[i],"",false);
+}
+int mres=m.run_extended("Credits", true,0,false);
+if(mres==0)
+{
+docksmenu();
+}
+if (mres==0 and mres>=dock2.length())
+{
+return;
+}
+if (mres>0 and mres<=dock2.length())
+{
+return;
+}
+}
+}
+if(dnm=="readme")
+{
+m.fade_music();
+if(dockmode==1)
+{
+dockread("docks/readme.txt");
+}
+else if(dockmode==0)
+{
+docks3.open("docks/readme.txt","r");
+redsplit=docks3.read();
+dock3=string_split(redsplit,"\r\n",true);
+setupmenu2();
+for(uint i=0; i<dock3.length(); i++)
+{
+m.add_item_tts(dock3[i],dock3[i],"",false);
+}
+int mres=m.run_extended("Readme", true,0,false);
+if(mres==0)
+{
+docksmenu();
+}
+if (mres==0 and mres>=dock3.length())
+{
+return;
+}
+if (mres>0 and mres<=dock3.length())
+{
+return;
+}
+}
+}
+if(dnm=="back")
+{
+mainmenu();
+}
+}
+void hidemenu()
+{
+if(hidedocks==false)
+{
+hidstatus="unhidden";
+}
+else
+{
+hidstatus="hidden";
+}
+if(hidegames==false)
+{
+hidstatus2="unhidden";
+}
+else
+{
+hidstatus2="hidden";
+}
+if(hidemaps==false)
+{
+hidstatus3="unhidden";
+}
+else
+{
+hidstatus3="hidden";
+}
+if(hidesets==false)
+{
+hidstatus4="unhidden";
+}
+else
+{
+hidstatus4="hidden";
+}
+setupmenu();
+m.add_item_tts("Documentation menu. Status, "+hidstatus+".", "docks");
+m.add_item_tts("Game menu. Status, "+hidstatus2+".", "games");
+m.add_item_tts("Map menu. Status, "+hidstatus3+".", "maps");
+m.add_item_tts("Settings menu. Status, "+hidstatus4+".", "settings");
+m.add_item_tts("back", "back");
+int mres=m.run("Choose the main menu items you'd like to show or hide.",true);
+string hdm=m.get_item_name(mres);
+if(mres==0)
+{
+speak("canceled");
+settingsmenu();
+}
+if(hdm=="docks")
+{
+if(hidedocks==false)
+{
+hidedocks=true;
+hidstatus="hidden";
+speak("documentation menu hidden");
+}
+else
+{
+hidedocks=false;
+hidstatus="unhidden";
+speak("documentation menu unhidden");
+}
+hidemenu();
+}
+if(hdm=="games")
+{
+if(hidegames==false)
+{
+hidegames=true;
+hidstatus2="hidden";
+speak("game menu hidden");
+}
+else
+{
+hidegames=false;
+hidstatus2="unhidden";
+speak("game menu unhidden");
+}
+hidemenu();
+}
+if(hdm=="maps")
+{
+if(hidemaps==false)
+{
+hidemaps=true;
+hidstatus3="hidden";
+speak("map menu hidden");
+}
+else
+{
+hidemaps=false;
+hidstatus3="unhidden";
+speak("map menu unhidden");
+}
+hidemenu();
+}
+if(hdm=="settings")
+{
+if(hidesets==false)
+{
+hidesets=true;
+hidstatus4="hidden";
+speak("settings menu hidden");
+}
+else
+{
+hidesets=false;
+hidstatus4="unhidden";
+speak("settings menu unhidden");
+}
+hidemenu();
+}
+if(hdm=="back")
+{
+speak("canceled");
+settingsmenu();
+}
+}
+void settingsmenu()
+{
+setupmenu();
+m.add_item_tts("Select character type. Currently set to "+chartype, "slt");
+m.add_item_tts("Select keyboard theme. Currently set to "+keyboardtheme, "slk");
+m.add_item_tts("Select menu sounds. Currently set to "+menutype, "slm");
+m.add_item_tts("Select sound device. Currently set to "+soundcard, "sdm");
+if(mskipnum==1) m.add_item_tts("Set up and down skip amount in all menus. Currently set to "+mskipnum+"item per press", "skipm");
+if(mskipnum<=0 or mskipnum>=2) m.add_item_tts("Set up and down skip amount in all menus. Currently set to "+mskipnum+"items per press", "skipm");
+m.add_item_tts("show or hide main menu items", "hideme");
+if(autojump==0)
+m.add_item_tts("enable auto jumpping in maps", "sjn");
+else
+m.add_item_tts("disable auto jumpping in maps", "sjn");
+if(autosave==0)
+m.add_item_tts("enable game auto saving", "sgn");
+else
+m.add_item_tts("disable game auto saving", "sgn");
+if(dockmode==0)
+m.add_item_tts("enable form based documentation", "dcb");
+else
+m.add_item_tts("disable form based documentation", "dcb");
+if(fademode==0)
+m.add_item_tts("enable global volume fading", "fdv");
+else
+m.add_item_tts("disable global volume fading", "fdv");
+if(pausem==0)
+m.add_item_tts("enable pause menu for all game modes", "psm");
+else
+m.add_item_tts("disable pause menu for all game modes", "psm");
+if(spacehold==0)
+m.add_item_tts("enable holding of space in all menus", "shd");
+else
+m.add_item_tts("disable holding of space in all menus", "shd");
+if(hrtf==true)
+m.add_item_tts("disable global hrtf support", "glh");
+else
+m.add_item_tts("enable global hrtf support", "glh");
+if(mreset==0)
+m.add_item_tts("enable menus resetting in all menus", "mt");
+else
+m.add_item_tts("disable menus resetting in all menus", "mt");
+if(up_down==0)
+m.add_item_tts("enable up and down in all menus", "pd");
+else
+m.add_item_tts("disable up and down in all menus", "pd");
+if(left_right==0)
+m.add_item_tts("enable left and right in all menus", "lr");
+else
+m.add_item_tts("disable left and right in all menus", "lr");
+if(home_end==0)
+m.add_item_tts("enable home and end in all menus", "hd");
+else
+m.add_item_tts("disable home and end in all menus", "hd");
+if(wrap==0)
+m.add_item_tts("enable wrapping in all menus", "rg");
+else
+m.add_item_tts("disable wrapping in all menus", "rg");
+if(repeat_items==0)
+m.add_item_tts("enable repeating items in all menus", "rms");
+else
+m.add_item_tts("disable repeating items in all menus", "rms");
+if(numbers==0)
+m.add_item_tts("enable number scrolling in all menus", "nbs");
+else
+m.add_item_tts("disable number scrolling in all menus", "nbs");
+if(first_letter==0)
+m.add_item_tts("enable first letter scrolling in all menus", "fls");
+else
+m.add_item_tts("disable first letter scrolling in all menus", "fls");
+if(position_info==0)
+m.add_item_tts("enable position information in all menus", "psn");
+else
+m.add_item_tts("disable position information in all menus", "psn");
+if(side_scroll==0)
+m.add_item_tts("enable side scrolling in all menus", "psl");
+else
+m.add_item_tts("disable side scrolling in all menus", "psl");
+m.add_item_tts("reset settings", "rest");
+m.add_item_tts("save settings", "preffs");
+m.add_item_tts("back", "back");
+int mres=m.run("Settings menu",true);
+string ssm=m.get_item_name(mres);
+if(mres==0)
+{
+mainmenu();
+}
+if(ssm=="hideme")
+{
+hidemenu();
+}
+if(ssm=="skipm")
+{
+input.set_only_allowed_chars("1234567890-");
+string skmount=input.input("Enter the maximum up and down skip amount you'd like to set.");
+if(mskipnum=="")
+return;
+mskipnum=string_to_number(skmount);
+speak("Up and down skip amount set.");
+settingsmenu();
+}
+if(ssm=="slt")
+{
+string[] chars=find_directories("data/layouts/characters/*");
+if(chars.length()==0)
+{
+dlg("Error. There are no characters available to view.");
+settingsmenu();
+}
+else
+{
+destroy_all_charas();
+string[] charlist=find_directories("data/layouts/characters/*");
+for(uint i=0; i<charlist.length(); i++)
+{
+charparse(charlist[i]);
+}
+string res=charsmenu();
+if(res!="")
+{
+chartype=res;
+}
+}
+}
+if(ssm=="slk")
+{
+string[] themetype=find_directories("sounds/typing themes/*");
+if(themetype.length()==0)
+{
+dlg("Error. There are no keyboard themes available to view.");
+settingsmenu();
+}
+else
+{
+string res=keyboardchoosers();
+if(res!="")
+{
+keyboardtheme=res;
+}
+}
+}
+if(ssm=="slm")
+{
+string[] menu=find_directories("sounds/menus/*");
+if(menu.length()==0)
+{
+dlg("Error. There are no menus available to view.");
+settingsmenu();
+}
+else
+{
+string res=menuchoosers();
+if(res!="")
+{
+menutype=res;
+}
+}
+}
+if(ssm=="sdm")
+{
+string[]@ devices=get_sound_output_devices();
+devices.remove_at(0);
+setupmenu();
+for(uint i=0; i<devices.length(); i++)
+{
+m.add_item_tts(devices[i],devices[i],"",true);
+}
+int mres=m.run("Choose a sound device you would like to use in the game.",true);
+if(mres==0)
+{
+speak("canceled");
+settingsmenu();
+}
+if(mres>0 and mres<=devices.length())
+{
+soundcard=devices[mres-1];
+sound_output_device = mres;
+speak("Sound device set to "+soundcard);
+settingsmenu();
+}
+}
+if(ssm=="sjn")
+{
+if(autojump==0)
+{
+autojump=1;
+speak("auto jumpping in maps enabled");
+}
+else
+{
+autojump=0;
+speak("auto jumpping in maps disabled");
+}
+settingsmenu();
+}
+if(ssm=="sgn")
+{
+if(autosave==0)
+{
+autosave=1;
+speak("game auto saving enabled");
+}
+else
+{
+autosave=0;
+speak("game auto saving disabled");
+}
+settingsmenu();
+}
+if(ssm=="dcb")
+{
+if(dockmode==0)
+{
+dockmode=1;
+speak("form based documentation enabled");
+}
+else
+{
+dockmode=0;
+speak("form based documentation disabled");
+}
+settingsmenu();
+}
+if(ssm=="fdv")
+{
+if(fademode==0)
+{
+fademode=1;
+speak("global volume fading enabled");
+}
+else
+{
+fademode=0;
+speak("global volume fading disabled");
+}
+settingsmenu();
+}
+if(ssm=="psm")
+{
+if(pausem==0)
+{
+pausem=1;
+speak("pause menu enabled for all game modes");
+}
+else
+{
+pausem=0;
+speak("pause menu disabled for all game modes");
+}
+settingsmenu();
+}
+if(ssm=="shd")
+{
+if(spacehold==0)
+{
+spacehold=1;
+speak("space hold in menus enabled");
+}
+else
+{
+spacehold=0;
+speak("space hold in menus disabled");
+}
+settingsmenu();
+}
+if(ssm=="glh")
+{
+if(hrtf==true)
+{
+hrtf=false;
+sound_global_hrtf=false;
+speak("global hrtf disabled");
+}
+else
+{
+hrtf=true;
+sound_global_hrtf=true;
+speak("global hrtf enabled");
+}
+settingsmenu();
+}
+if(ssm=="mt")
+{
+if(mreset==0)
+{
+mreset=1;
+m.reset(true);
+speak("menus resetting enabled");
+}
+else
+{
+mreset=0;
+m.reset(false);
+speak("menus resetting disabled");
+}
+settingsmenu();
+}
+if(ssm=="pd")
+{
+if(up_down==0)
+{
+up_down=1;
+m.enable_up_and_down=true;
+speak("up and down enabled");
+}
+else
+{
+up_down=0;
+m.enable_up_and_down=false;
+speak("up and down disabled");
+}
+settingsmenu();
+}
+if(ssm=="lr")
+{
+if(left_right==0)
+{
+left_right=1;
+m.enable_left_and_right=true;
+speak("left and right enabled");
+}
+else
+{
+left_right=0;
+m.enable_left_and_right=false;
+speak("left and right disabled");
+}
+settingsmenu();
+}
+if(ssm=="hd")
+{
+if(home_end==0)
+{
+home_end=1;
+m.enable_home_and_end=true;
+speak("home and end enabled");
+}
+else
+{
+home_end=0;
+m.enable_home_and_end=false;
+speak("home and end disabled");
+}
+settingsmenu();
+}
+if(ssm=="rg")
+{
+if(wrap==0)
+{
+wrap=1;
+m.wrap=true;
+speak("wrapping enabled");
+}
+else
+{
+wrap=0;
+m.wrap=false;
+speak("wrapping disabled");
+}
+settingsmenu();
+}
+if(ssm=="rms")
+{
+if(repeat_items==0)
+{
+repeat_items=1;
+m.repeat_items_at_edges=true;
+speak("repeating items enabled");
+}
+else
+{
+repeat_items=0;
+m.repeat_items_at_edges=false;
+speak("repeating items disabled");
+}
+settingsmenu();
+}
+if(ssm=="nbs")
+{
+if(numbers==0)
+{
+numbers=1;
+m.enable_numbers=true;
+speak("number scrolling enabled");
+}
+else
+{
+numbers=0;
+m.enable_numbers=false;
+speak("number scrolling disabled");
+}
+settingsmenu();
+}
+if(ssm=="fls")
+{
+if(first_letter==0)
+{
+first_letter=1;
+m.enable_first_letter_navigation=true;
+speak("first letter scrolling enabled");
+}
+else
+{
+first_letter=0;
+m.enable_first_letter_navigation=false;
+speak("first letter scrolling disabled");
+}
+settingsmenu();
+}
+if(ssm=="psn")
+{
+if(position_info==0)
+{
+position_info=1;
+m.speak_position_information=true;
+speak("position info enabled");
+}
+else
+{
+position_info=0;
+m.speak_position_information=false;
+speak("position info disabled");
+}
+settingsmenu();
+}
+if(ssm=="psl")
+{
+if(side_scroll==0)
+{
+side_scroll=1;
+m.enable_side_scrolling=true;
+speak("side scrolling enabled");
+}
+else
+{
+side_scroll=0;
+m.enable_side_scrolling=false;
+speak("side scrolling disabled");
+}
+settingsmenu();
+}
+if(ssm=="rest")
+{
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Are you sure you want to reset all of your settings?",true);
+if(mres==0)
+{
+speak("canceled");
+settingsmenu();
+}
+if(mres==1)
+{
+if(file_exists("data/saves/options.dat")) file_delete("data/saves/options.dat");
+speak("settings reset");
+resetpreffs();
+settingsmenu();
+}
+if(mres==2)
+{
+settingsmenu();
+}
+}
+if(ssm=="preffs")
+{
+speak("settings saved");
+writepreffs();
+settingsmenu();
+}
+if(ssm=="back")
+{
+mainmenu();
+}
+}
+void mapmenu()
+{
+setupmenu(true);
+m.add_item_tts("load map", "mg");
+m.add_item_tts("new map", "nm");
+m.add_item_tts("back", "back");
+int mres=m.run("Map menu",true);
+string buildem=m.get_item_name(mres);
+if(mres==0)
+{
+mainmenu();
+}
+if(buildem=="mg")
+{
+m.fade_music();
+string[] maps=find_files("data/maps/*.map");
+if(maps.length()==0)
+{
+dlg("Error. There are no maps available to view.");
+mapmenu();
+}
+else
+{
+setupmenu();
+for(uint i=0; i<maps.length(); i++)
+{
+m.add_item_tts(string_replace(maps[i],".map","",true)+", size: "+measure_file_size(file_get_size("data/maps/"+maps[i])));
+}
+int mres=m.run("Maps menu", true);
+if(mres==0)
+{
+mapmenu();
+}
+if (mres==0 and mres>=maps.length())
+{
+mapmenu();
+}
+if (mres>0 and mres<=maps.length())
+{
+mapname=maps[mres-1];
+mapname=string_replace(mapname, ".map", "", true);
+load_map(mapname);
+builder();
+}
+}
+}
+if(buildem=="nm")
+{
+m.fade_music();
+input.set_only_allowed_chars("none");
+string name=input.input("Enter the name of this map.");
+input.set_only_allowed_chars("1234567890-");
+string mx=input.input("Enter the maximum length of this map.");
+string my=input.input("Enter the maximum height of this map.");
+if(mapname=="" and maxx=="" and maxy=="")
+return;
+mapname=name;
+maxx=string_to_number(mx);
+maxy=string_to_number(my);
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+mapmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+if(file_exists("data/maps/"+mapname+".map"))
+{
+dlg("Error. A map with this name already exists. Please choose a different one.");
+mapmenu();
+}
+else
+{
+create_map(mapname, maxx, maxy, tiletype);
+load_map(mapname);
+builder();
+}
+}
+if(buildem=="back")
+{
+mainmenu();
+}
+}
+void gamemenu()
+{
+setupmenu(true);
+m.add_item_tts("load game", "lg");
+m.add_item_tts("new game", "ng");
+m.add_item_tts("settings", "set");
+m.add_item_tts("back", "back");
+int mres=m.run("Game menu",true);
+string gamem=m.get_item_name(mres);
+if(mres==0)
+{
+mainmenu();
+}
+if(gamem=="lg")
+{
+if(file_exists("data/saves/game.dat"))
+{
+m.fade_music();
+readdata();
+fighter();
+}
+else
+{
+m.fade_music();
+dlg("Error. The data assosiated with this game does not exist.");
+gamemenu();
+}
+}
+if(gamem=="ng")
+{
+if(file_exists("data/saves/game.dat"))
+{
+setupmenu(true);
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Are you sure you want to start over from the beginning? This will erase all of the progress you made on the current game.",true);
+if(mres==0)
+{
+speak("canceled");
+gamemenu();
+}
+if(mres==1)
+{
+modemenu();
+}
+if(mres==2)
+{
+gamemenu();
+}
+}
+else
+{
+modemenu();
+}
+}
+if(gamem=="set")
+{
+m.fade_music();
+gamepreffs();
+}
+if(gamem=="back")
+{
+mainmenu();
+}
+}
+void modemenu()
+{
+setupmenu(true);
+m.add_item_tts("normal", "nm");
+m.add_item_tts("custom", "cm");
+m.add_item_tts("back", "back");
+int mres=m.run("Choose a mode you would like to play on",true);
+string modem=m.get_item_name(mres);
+if(mres==0)
+{
+gamemenu();
+}
+if(modem=="nm")
+{
+normalmenu();
+}
+if(modem=="cm")
+{
+custommenu();
+}
+if(modem=="back")
+{
+gamemenu();
+}
+}
+void normalmenu()
+{
+setupmenu(true);
+m.add_item_tts("kill animals", "km");
+m.add_item_tts("kill enemies", "kn");
+m.add_item_tts("kill projectiles", "kp");
+m.add_item_tts("kill robots", "kb");
+m.add_item_tts("kill zombies", "kz");
+m.add_item_tts("back", "back");
+int mres=m.run("normal menu",true);
+string normem=m.get_item_name(mres);
+if(mres==0)
+{
+modemenu();
+}
+if(normem=="km")
+{
+m.fade_music();
+string[] animal=find_directories("sounds/npc/animals/*");
+if(animal.length()==0)
+{
+dlg("Error. There are no animals detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=1;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres2==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+if(normem=="kn")
+{
+m.fade_music();
+string[] enemy=find_directories("sounds/npc/enemies/*");
+if(enemy.length()==0)
+{
+dlg("Error. There are no enemies detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=2;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres2==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+if(normem=="kp")
+{
+m.fade_music();
+string[] projectile=find_directories("sounds/npc/projectiles/*");
+if(projectile.length()==0)
+{
+dlg("Error. There are no projectiles detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=3;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres2==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+if(normem=="kb")
+{
+m.fade_music();
+string[] robot=find_directories("sounds/npc/robots/*");
+if(robot.length()==0)
+{
+dlg("Error. There are no robots detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=4;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres2==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+if(normem=="kz")
+{
+m.fade_music();
+string[] zombie=find_directories("sounds/npc/zombies/*");
+if(zombie.length()==0)
+{
+dlg("Error. There are no zombies detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=5;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres2==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres3==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+if(normem=="back")
+{
+modemenu();
+}
+}
+void custommenu()
+{
+setupmenu(true);
+m.add_item_tts("kill animals", "km");
+m.add_item_tts("kill enemies", "kn");
+m.add_item_tts("kill projectiles", "kp");
+m.add_item_tts("kill robots", "kb");
+m.add_item_tts("kill zombies", "kz");
+m.add_item_tts("back", "back");
+int mres=m.run("custom menu",true);
+string cusmem=m.get_item_name(mres);
+if(mres==0)
+{
+modemenu();
+}
+if(cusmem=="km")
+{
+m.fade_music();
+string[] animal=find_directories("sounds/npc/animals/*");
+if(animal.length()==0)
+{
+dlg("Error. There are no animals available to view.");
+custommenu();
+}
+else
+{
+string[] animaltype=find_directories("sounds/npc/animals/*");
+setupmenu();
+for(uint i=0; i<animaltype.length(); i++)
+{
+m.add_item_tts(animaltype[i],animaltype[i]);
+}
+int mres=m.run("Animals menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=animaltype.length())
+{
+gamemode=6;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+if (mres>0 and mres<=animaltype.length())
+{
+amtype=animaltype[mres-1];
+gamemode=6;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+}
+if(cusmem=="kn")
+{
+m.fade_music();
+string[] enemy=find_directories("sounds/npc/enemies/*");
+if(enemy.length()==0)
+{
+dlg("Error. There are no enemies available to view.");
+custommenu();
+}
+else
+{
+string[] enemytype=find_directories("sounds/npc/enemies/*");
+setupmenu();
+for(uint i=0; i<enemytype.length(); i++)
+{
+m.add_item_tts(enemytype[i],enemytype[i]);
+}
+int mres=m.run("enemies menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=enemytype.length())
+{
+gamemode=7;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+if (mres>0 and mres<=enemytype.length())
+{
+emtype=enemytype[mres-1];
+gamemode=7;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+}
+if(cusmem=="kp")
+{
+m.fade_music();
+string[] projectile=find_directories("sounds/npc/projectiles/*");
+if(projectile.length()==0)
+{
+dlg("Error. There are no projectiles available to view.");
+custommenu();
+}
+else
+{
+string[] projtype=find_directories("sounds/npc/projectiles/*");
+setupmenu();
+for(uint i=0; i<projtype.length(); i++)
+{
+m.add_item_tts(projtype[i],projtype[i]);
+}
+int mres=m.run("projectiles menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=projtype.length())
+{
+gamemode=8;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+if (mres>0 and mres<=projtype.length())
+{
+potype=projtype[mres-1];
+gamemode=8;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+}
+if(cusmem=="kb")
+{
+m.fade_music();
+string[] robot=find_directories("sounds/npc/robots/*");
+if(robot.length()==0)
+{
+dlg("Error. There are no robots available to view.");
+custommenu();
+}
+else
+{
+string[] robottype=find_directories("sounds/npc/robots/*");
+setupmenu();
+for(uint i=0; i<robottype.length(); i++)
+{
+m.add_item_tts(robottype[i],robottype[i]);
+}
+int mres=m.run("robots menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=robottype.length())
+{
+gamemode=9;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+if (mres>0 and mres<=robottype.length())
+{
+rotype=robottype[mres-1];
+gamemode=9;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+}
+if(cusmem=="kz")
+{
+m.fade_music();
+string[] zombie=find_directories("sounds/npc/zombies/*");
+if(zombie.length()==0)
+{
+dlg("Error. There are no zombies available to view.");
+custommenu();
+}
+else
+{
+string[] zombietype=find_directories("sounds/npc/zombies/*");
+setupmenu();
+for(uint i=0; i<zombietype.length(); i++)
+{
+m.add_item_tts(zombietype[i],zombietype[i]);
+}
+int mres=m.run("zombies menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=zombietype.length())
+{
+gamemode=10;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+if (mres>0 and mres<=zombietype.length())
+{
+zotype=zombietype[mres-1];
+gamemode=10;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/objects/musics/*");
+if(music.length()==0)
+{
+dlg("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+}
+if(mres3==2)
+{
+musmode=0;
+spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
+spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+resetgame();
+fighter();
+}
+if(mres4==2)
+{
+sorcemode=0;
+spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+resetgame();
+fighter();
+}
+}
+}
+}
+if(cusmem=="back")
+{
+modemenu();
+}
+}
+void gamepreffs()
+{
+setupmenu();
+m.add_item_tts("reset game", "rg");
+m.add_item_tts("save game", "sg");
+m.add_item_tts("back", "back");
+int mres=m.run("Game options",true);
+string gamepm=m.get_item_name(mres);
+if(mres==0)
+{
+gamemenu();
+}
+if(gamepm=="rg")
+{
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Are you sure you want to reset all of your game's data?",true);
+if(mres==0)
+{
+speak("canceled");
+gamepreffs();
+}
+if(mres==1)
+{
+if(file_exists("data/saves/game.dat")) file_delete("data/saves/game.dat");
+speak("game reset");
+resetgame();
+gamepreffs();
+}
+if(mres==2)
+{
+gamepreffs();
+}
+}
+if(gamepm=="sg")
+{
+speak("game saved");
+writedata();
+gamepreffs();
+}
+if(gamepm=="back")
+{
+gamemenu();
+}
+}

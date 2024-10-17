@@ -1,0 +1,96 @@
+bool liftmove;
+lift@[]lifts(0);
+class lift
+{
+    int liftsound;
+    int platform_id;
+    double minx, maxx, miny, maxy;
+         double lifty;
+    int liftdir;
+    int lifttime;
+    double tilevolume;
+    double tilepitch;
+    double liftvolume;
+    double liftpitch;
+    string tile;
+    string lifttype;
+    timer lifttimer;
+    lift(double mx, double mx2, double my, double my2, int dir, int sp, string ty, double vol, double semitone, string lt, double vol2, double semitone2)
+    {
+        minx = mx;
+        maxx = mx2;
+        miny = my;
+        maxy = my2;
+        liftdir = dir;
+        lifttime = sp;
+        tile = ty;
+        tilevolume = vol;
+        tilepitch = semitone;
+        lifttype = lt;
+        liftvolume = vol2;
+        liftpitch = semitone2;
+        lifty = miny;
+        platform_id = spawn_platform(minx, maxx, lifty, lifty, tile, tilevolume, tilepitch);
+        string[] liftsfx = find_files("sounds/objects/lifts/" + lifttype + "/*loop*");
+        if (liftsfx.length() != 0) liftsound = liftpool.play_extended_2d("sounds/objects/lifts/" + lifttype + "/" + liftsfx[random(0, liftsfx.length() - 1)], me.x, me.y, minx, miny, 0, 0, 0, 0, true, 0, 0, liftvolume, liftpitch, false);
+        update_lift_sound();
+    }
+    void move()
+    {
+        if (lifttimer.elapsed >= lifttime)
+        {
+            lifttimer.restart();
+            int old_y = lifty;
+            if (liftdir == 1 && lifty < maxy)
+                lifty++;
+            else if (liftdir == 0 && lifty > miny)
+                lifty--;
+            if ((liftdir == 1 && lifty >= maxy) || (liftdir == 0 && lifty <= miny))
+                liftdir = 1 - liftdir;
+            if (liftmove)
+                me.y += (lifty - old_y);
+            update_platform(platform_id, minx, maxx, lifty, lifty);
+            update_lift_sound();
+        }
+    }
+    void update_lift_sound()
+    {
+        liftpool.update_sound_2d(liftsound, minx, lifty);
+        liftpool.update_sound_range_2d(liftsound, 0, maxx - minx, 0, maxy - miny);
+    }
+    bool is_on_lift()
+    {
+        return (me.x >= minx && me.x <= maxx && (me.y == lifty || me.y == lifty - 1 || me.y == lifty + 1));
+    }
+    void check_player()
+    {
+        liftmove = is_on_lift();
+        if (liftmove)
+        {
+            me.y = lifty;
+        }
+    }
+};
+void liftloop()
+{
+    for (uint i = 0; i < lifts.length(); i++)
+    {
+        lifts[i].check_player();
+        lifts[i].move();
+    }
+}
+void spawn_lift(double minx, double maxx, double miny, double maxy, int dir, int lifttime, string tile, double tilevol, double tilepitch, string lifttype, double liftvol, double liftpitch)
+{
+    lift lt1(minx, maxx, miny, maxy, dir, lifttime, tile, tilevol, tilepitch, lifttype, liftvol, liftpitch);
+    lifts.insert_last(lt1);
+}
+void destroy_all_lifts()
+{
+    for (uint i = 0; i < lifts.length(); i++)
+    {
+        liftpool.destroy_sound(lifts[i].liftsound);
+        remove_platform(lifts[i].platform_id);
+    }
+    lifts.resize(0);
+    liftmove = false;
+}
