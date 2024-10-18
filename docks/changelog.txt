@@ -1,4 +1,5 @@
 new in 5.3
+Minor shield improvements.
 The maps menu will now show the actual size of maps while hovering over them.
 new in 5.2
 Revampt the intire readme with added and removed keyboard shortcuts. I also took out large amounts of Unnecessary info that didn't need to be there in preparation for a more thorough documentation of the game's mecanics.
