@@ -44,7 +44,7 @@ for(uint i=0; i<animals.length(); i++)
 if(animals[i].animaltimer.elapsed>=animals[i].animaltime)
 {
 string[] tilers=find_files("sounds/objects/platforms/"+gmt(animals[i].amx, animals[i].amy)+"/*step*");
-if(animals[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=animalpool.play_extended_2d("sounds/objects/platforms/"+gmt(animals[i].amx, animals[i].amy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,animals[i].amx,animals[i].amy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+if(animals[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/objects/platforms/"+gmt(animals[i].amx, animals[i].amy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,animals[i].amx,animals[i].amy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
 animalpool.update_sound_2d(animals[i].amsound,animals[i].amx,animals[i].amy);
 animals[i].animaltimer.restart();
 if(animals[i].amx<me.x and animals[i].moveable==true and paused==0)

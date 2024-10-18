@@ -44,7 +44,7 @@ for(uint i=0; i<enemies.length(); i++)
 if(enemies[i].enemytimer.elapsed>=enemies[i].enemytime)
 {
 string[] tilers=find_files("sounds/objects/platforms/"+gmt(enemies[i].emx, enemies[i].emy)+"/*step*");
-if(enemies[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=enemypool.play_extended_2d("sounds/objects/platforms/"+gmt(enemies[i].emx, enemies[i].emy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,enemies[i].emx,enemies[i].emy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+if(enemies[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/objects/platforms/"+gmt(enemies[i].emx, enemies[i].emy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,enemies[i].emx,enemies[i].emy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
 enemypool.update_sound_2d(enemies[i].emsound,enemies[i].emx,enemies[i].emy);
 enemies[i].enemytimer.restart();
 if(enemies[i].emx<me.x and enemies[i].moveable==true and paused==0)
