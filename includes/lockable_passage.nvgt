@@ -157,7 +157,8 @@ if(is_at_endpoint(me.x,me.y) && key_pressed(KEY_RETURN))
     {
         if(!is_open)
         {
-            string pass = input.input("Enter the password to open this locked passage.");
+input.set_only_allowed_chars("none");
+string pass = input.input("Enter the password to open this locked passage.");
             toggle_pspassage(pass);
         }
         else

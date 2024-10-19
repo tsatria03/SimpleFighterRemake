@@ -56,6 +56,7 @@ if(movesfx.length()!=0) psdoors[i].movesound=doorpool.play_stationary_extended("
 }
 if(psdoors[i].startx==me.x and psdoors[i].starty==me.y and psdoors[i].automatic==false and key_pressed(KEY_RETURN))
 {
+input.set_only_allowed_chars("none");
 string pass = input.input("Enter the password to open this locked door.");
 if(psdoors[i].check_password(pass))
 {

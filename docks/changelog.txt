@@ -1,4 +1,5 @@
 new in 5.3
+Fixed a bug of not being able to type alphanumeric passwords correctly with locked doors and locked passages.
 Fixed a bug where instruments built above Y 0 would spawn a platform at the wrong height. For example, an instrument from heights Y 10 to Y 13 would spawn its platform at Y 24 instead of spawning it at Y 14.
 Minor passage improvements. This includes lockable passages as well.
 Minor shield improvements.
