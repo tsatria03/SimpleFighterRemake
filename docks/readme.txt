@@ -88,6 +88,7 @@ Tab: Cycles forward through the available inventory items, if pressed.
 Shift plus tab: Cycles backward through the available inventory items, if pressed.
 Shift plus enter: Uses an inventory item when it's currently focused, if pressed/held down.
 Shift plus left braket: Drops an inventory item depending on where you're facing, if pressed.
+Alt plus slash: Opens a prompt that lets you type the x and y Coordinates you'd like to move to on the map in the builder mode, if pressed.
 Enter: Interacts with various objects, such as doors, signs, passages, dialogs, and various other menu items, if pressed.
 Escape: Exits the current game or map and returns you to the last focused menu, if pressed.
 
