@@ -34,12 +34,13 @@ if(getsfx.length()!=0) checkpool.play_stationary_extended("sounds/objects/checkp
 me.x=last_checkpoint.checkx;
 me.y=last_checkpoint.checky;
 health = maxhealth;
-load_map(mapname);
+if(building==true) load_map(mapname);
 }
 else if(lifecard<=1)
 {
 p.destroy_sound(painslot);
-destroymap();
+if(building==true) destroymap();
+if(building==false) destroygame();
 string[] defsfx=find_files("sounds/characters/"+chartype+"/*death*");
 if(defsfx.length()!=0 and chardeathsound==1) dlgplay("sounds/characters/"+chartype+"/"+defsfx[random(0,defsfx.length()-1)], true, true, 30);
 if(tilename!="hardland")
@@ -131,9 +132,11 @@ charturnsound=current_char.charturnsound;
 }
 if(mres==2)
 {
-clearmap();
-destroymap();
-mapmenu();
+if(building==true) clearmap();
+if(building==true) destroymap();
+if(building==true) mapmenu();
+if(building==false) destroygame();
+if(building==false) gamemenu();
 }
 }
 }

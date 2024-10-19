@@ -144,15 +144,6 @@ readpreffs();
 if(directory_exists("sounds") and !directory_empty("sounds")) mainmenu();
 else downloadsounds();
 }
-void destroygame()
-{
-destroy_all_animals();
-destroy_all_enemies();
-destroy_all_projectiles();
-destroy_all_turrets();
-destroy_all_robots();
-destroy_all_zombies();
-}
 void dockread(const string&in filename)
 {
 if(!file_exists(filename))

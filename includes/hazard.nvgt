@@ -54,7 +54,8 @@ hazardpool.destroy_sound(hazards[i].hazardsound);
 string[] fallsfx=find_files("sounds/objects/hazards/"+hazards[i].hazardtype+"/*fall*");
 if(fallsfx.length()!=0) dlgplay("sounds/objects/hazards/"+hazards[i].hazardtype+"/"+fallsfx[random(0,fallsfx.length()-1)]);
 hazards.remove_at(i);
-destroymap();
+if(building==true) destroymap();
+if(building==false) destroygame();
 setupmenu();
 m.wrap_sound="none.ogg";
 m.click_sound="menu1.ogg";
@@ -139,9 +140,11 @@ charturnsound=current_char.charturnsound;
 }
 if(mres==2)
 {
-clearmap();
-destroymap();
-mapmenu();
+if(building==true) clearmap();
+if(building==true) destroymap();
+if(building==true) mapmenu();
+if(building==false) destroygame();
+if(building==false) gamemenu();
 }
 }
 }

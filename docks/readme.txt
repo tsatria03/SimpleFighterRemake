@@ -35,7 +35,7 @@ Alt plus left arrow: Moves left at double speed on the X axis, if pressed/held d
 Alt plus right arrow: Moves right at double speed on the X axis, if pressed/held down.
 Alt plus down arrow: Moves down at double speed on the Y axis, if pressed/held down.
 Alt plus up arrow: Moves up at double speed on the Y axis, if pressed/held down.
-Spacebar: Causes your character to jump up on the Y axes, if pressed/held down.
+Spacebar: Causes your character to jump higher on the Y axes, if pressed/held down.
 Letter, J: Moves to a random coordinate on the X axis, if pressed.
 Letter, K: Moves to a random coordinate on the Y axis, if pressed.
 Letter, L: Moves to a random coordinate on both the X and Y axis, if pressed.
@@ -57,38 +57,39 @@ Shift plus up arrow: Moves the spire up to find objects on the top side of the m
 
 Miscellaneous keys.
 Letter, C: Check your current location and the tile being walked on, if pressed.
-Letter, X: toggles auto walking, if pressed.
-Letter, T: Sit/stand at your current location, if pressed.
+Letter, X: toggles auto walking on or off, if pressed.
+Letter, T: Sit or stand at your current location, if pressed.
 Letter, A: Decreases your overall movement speed, if pressed.
 Letter, D: Increases your overall movement speed, if pressed.
 Letter, F: Resets your overall movement speed back to default, if pressed.
-Letter, Q: Anounces the zone you're on, if pressed.
+Letter, Q: Anounces the zone you're on in the builder mode, if pressed.
 Letter, P: Pauses or resumes the currently active game, if pressed.
-Letter, R: Reloads ammo into a particular weapon category, if pressed/held down.
+Letter, R: Reloads ammo into a particular weapon category, if pressed.
 Letter, Z: Anounces ammo of a particular weapon category, if pressed.
 Letter, Y: Anounces how long you've been playing the game, if pressed.
-Letter, U: Anounces the current map you're playing, if pressed.
+Letter, U: Anounces the current map you're playing on in the builder mode, if pressed.
 Letter, H: Anounces your current health in percentages and how many lives you have, if pressed.
 Letter, B: Equips a shield if one is available, if pressed.
-Letter, N: Anounces the total kills of all enemies regardless of the type, if pressed.
+Letter, N: Anounces the total kills of all npcs in one of the game modes, if pressed.
 Letter, M: Anounces your current shield strength in percentages, if pressed.
-Semicolon: Anounces current maximum jump height, if pressed.
-Apostrophe: Anounces current overall movement speed, if pressed.
-Comma: Anounces current maximum X position, if pressed.
-PERIOD: Anounces current maximum Y position, if pressed.
-F1: Decreases your maximum X position in one of the normal game modes, if pressed.
-F2: Increases your maximum X position in one of the normal game modes, if pressed.
-F3: Decreases your maximum Y position in one of the normal game modes, if pressed.
-F4: Increases your maximum Y position in one of the normal game modes, if pressed.
-F5: Decreases your maximum jump height, if pressed.
-F6: Increases your maximum jump height, if pressed.
+Semicolon: Anounces the current maximum jump height, if pressed.
+Apostrophe: Anounces the current overall movement speed, if pressed.
+Comma: Anounces the current maximum X position, if pressed.
+PERIOD: Anounces the current maximum Y position, if pressed.
+F1: Decreases your maximum jump height, if pressed.
+F2: Increases your maximum jump height, if pressed.
+F3: Resets your jump height back to default, if pressed.
+F4: Decreases your maximum X position in one of the game modes, if pressed.
+F5: Increases your maximum X position in one of the game modes, if pressed.
+F6: Decreases your maximum Y position in one of the game modes, if pressed.
+F7: Increases your maximum Y position in one of the game modes, if pressed.
 Control: Fires the currently selected weapon, if pressed/held down.
 Tab: Cycles forward through the available inventory items, if pressed.
 Shift plus tab: Cycles backward through the available inventory items, if pressed.
 Shift plus enter: Uses an inventory item when it's currently focused, if pressed/held down.
-Shift plus backspace: Drops an inventory item depending on where you're facing, if pressed/held down.
+Shift plus left braket: Drops an inventory item depending on where you're facing, if pressed.
 Enter: Interacts with various objects, such as doors, signs, passages, dialogs, and various other menu items, if pressed.
-Escape: Exits the current game and returns to the last focused menu, rather than exiting intirely, if pressed.
+Escape: Exits the current game or map and returns you to the last focused menu, if pressed.
 
 Menu keys.
 Letter, W: Opens the weapons menu, if pressed.

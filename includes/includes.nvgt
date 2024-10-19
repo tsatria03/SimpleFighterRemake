@@ -6,7 +6,6 @@
 #include"bomb.nvgt"
 #include"bombzone.nvgt"
 #include"buffer.nvgt"
-#include"builder.nvgt"
 #include"bullet.nvgt"
 #include"calander.nvgt"
 #include"character.nvgt"
