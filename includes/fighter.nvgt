@@ -244,6 +244,14 @@ if(me.x>=maxx)
 {
 me.x=maxx;
 }
+if(me.y<=0)
+{
+me.y=0;
+}
+if(me.y>=maxy)
+{
+me.y=maxy;
+}
 if(health<=0)
 {
 health=0;
@@ -1065,6 +1073,7 @@ speak("there are no objects on the field to view.");
 }
 else
 {
+pause_pools();
 objinfo();
 }
 }

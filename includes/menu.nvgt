@@ -870,7 +870,7 @@ mapmenu();
 }
 else
 {
-if(building==true) create_map(mapname, maxx, maxy, tiletype);
+create_map(mapname, maxx, maxy, tiletype);
 load_map(mapname);
 building=true;
 fighter(true);
