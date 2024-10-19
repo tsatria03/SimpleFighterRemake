@@ -12,10 +12,10 @@ Implement a buffer system to track various system events in the other game modes
 Add acheavments and death messages.
 Add a runs counter.
 Implement a way to submit bug reports, feature requests, and other game feedback.
-*done. Add lockable doors and passages with a password, a pin, or a key.
+*done. Add lockable doors and lockable passages with a password, pin, or key.
 *Done. Fix all sound sorces destroying themselves after landing on platforms upon reloading the map.
 *Done. Add interactible objects.
-*Done. Add moving platforms and hazards.
+*Done. Add moving platforms and moving hazards.
 *Done. Add weapon slots to the hole number row.
 *Done. Implement a way to set output devices in the settings menu.
 *Done. Change map parsing to use spaces instead of colens when writing maps to files.
