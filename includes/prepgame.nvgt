@@ -150,6 +150,7 @@ int mres=m.run("Builder menu",true);
 string buildem=m.get_item_name(mres);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -170,6 +171,7 @@ string[] soundamb=find_directories("sounds/objects/sources/*");
 if(soundamb.length()==0)
 {
 dlg("Error. There are no sound ambiences available to view.");
+resume_pools();
 return;
 }
 else
@@ -187,6 +189,7 @@ if(volume=="" and pitch=="")
 return;
 volume=string_to_number(vol);
 pitch=string_to_number(semitone);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"sound_ambience "+x+" "+paxx+" "+y+" "+paxy+" "+sorcetyp+" "+volume+" "+pitch);
@@ -213,6 +216,7 @@ string[] musicamb=find_directories("sounds/objects/musics/*");
 if(musicamb.length()==0)
 {
 dlg("Error. There are no music ambiences available to view.");
+resume_pools();
 return;
 }
 else
@@ -230,6 +234,7 @@ if(volume=="" and pitch=="")
 return;
 volume=string_to_number(vol);
 pitch=string_to_number(semitone);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"music_ambience "+x+" "+paxx+" "+y+" "+paxy+" "+mustyp+" "+volume+" "+pitch);
@@ -266,6 +271,7 @@ string[] animal=find_directories("sounds/npc/animals/*");
 if(animal.length()==0)
 {
 dlg("Error. There are no animals available to view.");
+resume_pools();
 return;
 }
 else
@@ -339,6 +345,7 @@ if(mres4==2)
 {
 mb2=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"animal "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+amtype+" "+fb+" "+mb+" "+mb2);
@@ -365,6 +372,7 @@ string[] animal=find_directories("sounds/npc/animals/*");
 if(animal.length()==0)
 {
 dlg("Error. There are no animals available to view.");
+resume_pools();
 return;
 }
 else
@@ -375,6 +383,7 @@ if(res!="")
 amtype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"animal_zone "+x+" "+paxx+" "+y+" "+speedtime+" "+amtype);
@@ -400,6 +409,7 @@ paxx=string_to_number(mx2);
 y=string_to_number(my);
 paxy=string_to_number(my2);
 txt=text;
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"blockage "+x+" "+paxx+" "+y+" "+paxy+" "+txt);
@@ -426,6 +436,7 @@ string[] bomb=find_directories("sounds/objects/bombs/*");
 if(bomb.length()==0)
 {
 dlg("Error. There are no bombs available to view.");
+resume_pools();
 return;
 }
 else
@@ -436,6 +447,7 @@ if(res!="")
 botype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"bomb "+x+" "+y+" "+damage+" "+speedtime+" "+botype);
@@ -462,6 +474,7 @@ string[] bomb=find_directories("sounds/objects/bombs/*");
 if(bomb.length()==0)
 {
 dlg("Error. There are no bombs available to view.");
+resume_pools();
 return;
 }
 else
@@ -472,6 +485,7 @@ if(res!="")
 botype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"bomb_zone "+x+" "+paxx+" "+y+" "+speedtime+" "+botype);
@@ -497,6 +511,7 @@ string[] calander=find_directories("sounds/objects/calanders/*");
 if(calander.length()==0)
 {
 dlg("Error. There are no calanders available to view.");
+resume_pools();
 return;
 }
 else
@@ -528,6 +543,7 @@ if(mres==2)
 dmd=false;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"calander "+x+" "+y+" "+txt+" "+calandertyp+" "+dmd);
@@ -553,6 +569,7 @@ string[] clock=find_directories("sounds/objects/clocks/*");
 if(clock.length()==0)
 {
 dlg("Error. There are no clocks available to view.");
+resume_pools();
 return;
 }
 else
@@ -584,6 +601,7 @@ if(mres==2)
 dmd=false;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"clock "+x+" "+y+" "+txt+" "+clocktyp+" "+dmd);
@@ -614,6 +632,7 @@ string[] platform=find_directories("sounds/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -628,6 +647,7 @@ string[] belt=find_directories("sounds/objects/belts/*");
 if(belt.length()==0)
 {
 dlg("Error. There are no belts available to view.");
+resume_pools();
 return;
 }
 else
@@ -638,6 +658,7 @@ if(res!="")
 belttyp=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"belt "+x+" "+paxx+" "+y+" "+paxy+" "+direction+" "+speedtime+" "+tiletype+" "+belttyp);
@@ -667,6 +688,7 @@ string[] dialog=find_directories("sounds/objects/dialogs/*");
 if(dialog.length()==0)
 {
 dlg("Error. There are no dialogs available to view.");
+resume_pools();
 return;
 }
 else
@@ -698,6 +720,7 @@ if(mres25==2)
 {
 dlt=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"dialog "+x+" "+paxx+" "+y+" "+paxy+" "+txt+" "+dlgtyp+" "+dlt);
@@ -728,6 +751,7 @@ string[] dloop=find_directories("sounds/objects/doors/loop/*");
 if(dloop.length()==0)
 {
 dlg("Error. There are no door loops available to view.");
+resume_pools();
 return;
 }
 else
@@ -742,6 +766,7 @@ string[] dmove=find_directories("sounds/objects/doors/move/*");
 if(dmove.length()==0)
 {
 dlg("Error. There are no door moves available to view.");
+resume_pools();
 return;
 }
 else
@@ -756,6 +781,7 @@ string[] dopen=find_directories("sounds/objects/doors/open/*");
 if(dopen.length()==0)
 {
 dlg("Error. There are no door opens available to view.");
+resume_pools();
 return;
 }
 else
@@ -770,6 +796,7 @@ string[] dclose=find_directories("sounds/objects/doors/close/*");
 if(dclose.length()==0)
 {
 dlg("Error. There are no door closes available to view.");
+resume_pools();
 return;
 }
 else
@@ -784,6 +811,7 @@ string[] desttype=find_directories("sounds/objects/doors/dest/*");
 if(desttype.length()==0)
 {
 dlg("Error. There are no door destructions available to view.");
+resume_pools();
 return;
 }
 else
@@ -851,6 +879,7 @@ return;
 }
 if(mres23==1)
 {
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"door "+x2+" "+y2+" "+x+" "+y+" "+minhp+" "+speedtime+" "+looptyp+" "+movtyp+" "+opentyp+" "+clostyp+" "+desttyp+" "+dmt+" "+dmd);
@@ -863,6 +892,7 @@ speak("Map updated.");
 if(mres23==2)
 {
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"door "+x+" "+y+" "+x2+" "+y2+" "+minhp+" "+speedtime+" "+looptyp+" "+movtyp+" "+opentyp+" "+clostyp+" "+desttyp+" "+dmt+" "+dmd);
@@ -896,6 +926,7 @@ string[] dloop=find_directories("sounds/objects/doors/loop/*");
 if(dloop.length()==0)
 {
 dlg("Error. There are no door loops available to view.");
+resume_pools();
 return;
 }
 else
@@ -910,6 +941,7 @@ string[] dmove=find_directories("sounds/objects/doors/move/*");
 if(dmove.length()==0)
 {
 dlg("Error. There are no door moves available to view.");
+resume_pools();
 return;
 }
 else
@@ -924,6 +956,7 @@ string[] dopen=find_directories("sounds/objects/doors/open/*");
 if(dopen.length()==0)
 {
 dlg("Error. There are no door opens available to view.");
+resume_pools();
 return;
 }
 else
@@ -938,6 +971,7 @@ string[] dclose=find_directories("sounds/objects/doors/close/*");
 if(dclose.length()==0)
 {
 dlg("Error. There are no door closes available to view.");
+resume_pools();
 return;
 }
 else
@@ -952,6 +986,7 @@ string[] desttype=find_directories("sounds/objects/doors/dest/*");
 if(desttype.length()==0)
 {
 dlg("Error. There are no door destructions available to view.");
+resume_pools();
 return;
 }
 else
@@ -1019,6 +1054,7 @@ return;
 }
 if(mres23==1)
 {
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"psdoor "+x2+" "+y2+" "+x+" "+y+" "+minhp+" "+speedtime+" "+drpassword+" "+looptyp+" "+movtyp+" "+opentyp+" "+clostyp+" "+desttyp+" "+dmt+" "+dmd);
@@ -1031,6 +1067,7 @@ speak("Map updated.");
 if(mres23==2)
 {
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"psdoor "+x+" "+y+" "+x2+" "+y2+" "+minhp+" "+speedtime+" "+drpassword+" "+looptyp+" "+movtyp+" "+opentyp+" "+clostyp+" "+desttyp+" "+dmt+" "+dmd);
@@ -1059,6 +1096,7 @@ string[] platform=find_directories("sounds/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -1073,6 +1111,7 @@ string[] dloop=find_directories("sounds/objects/doors/loop/*");
 if(dloop.length()==0)
 {
 dlg("Error. There are no door loops available to view.");
+resume_pools();
 return;
 }
 else
@@ -1087,6 +1126,7 @@ string[] dopen=find_directories("sounds/objects/doors/open/*");
 if(dopen.length()==0)
 {
 dlg("Error. There are no door opens available to view.");
+resume_pools();
 return;
 }
 else
@@ -1101,6 +1141,7 @@ string[] dclose=find_directories("sounds/objects/doors/close/*");
 if(dclose.length()==0)
 {
 dlg("Error. There are no door closes available to view.");
+resume_pools();
 return;
 }
 else
@@ -1115,6 +1156,7 @@ string sp2=input.input("Enter the closing time of this passage.");
 if(speedtime2=="")
 return;
 speedtime2=string_to_number(sp);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"passage "+x+" "+y+" "+direction+" "+ln+" "+speedtime+" "+tiletype+" "+looptyp+" "+opentyp+" "+clostyp+" "+speedtime2);
@@ -1143,6 +1185,7 @@ string[] platform=find_directories("sounds/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -1157,6 +1200,7 @@ string[] dloop=find_directories("sounds/objects/doors/loop/*");
 if(dloop.length()==0)
 {
 dlg("Error. There are no door loops available to view.");
+resume_pools();
 return;
 }
 else
@@ -1171,6 +1215,7 @@ string[] dopen=find_directories("sounds/objects/doors/open/*");
 if(dopen.length()==0)
 {
 dlg("Error. There are no door opens available to view.");
+resume_pools();
 return;
 }
 else
@@ -1185,6 +1230,7 @@ string[] dclose=find_directories("sounds/objects/doors/close/*");
 if(dclose.length()==0)
 {
 dlg("Error. There are no door closes available to view.");
+resume_pools();
 return;
 }
 else
@@ -1202,6 +1248,7 @@ if(pspassword=="" and speedtime2=="")
 return;
 pspassword=ps;
 speedtime2=string_to_number(sp);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"pspassage "+x+" "+y+" "+direction+" "+ln+" "+speedtime+" "+tiletype+" "+looptyp+" "+opentyp+" "+clostyp+" "+pspassword+" "+speedtime2);
@@ -1238,6 +1285,7 @@ string[] enemy=find_directories("sounds/npc/enemies/*");
 if(enemy.length()==0)
 {
 dlg("Error. There are no enemies available to view.");
+resume_pools();
 return;
 }
 else
@@ -1311,6 +1359,7 @@ if(mres7==2)
 {
 mb2=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"enemy "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+emtype+" "+fb+" "+mb+" "+mb2);
@@ -1337,6 +1386,7 @@ string[] enemy=find_directories("sounds/npc/enemies/*");
 if(enemy.length()==0)
 {
 dlg("Error. There are no enemies available to view.");
+resume_pools();
 return;
 }
 else
@@ -1347,6 +1397,7 @@ if(res!="")
 emtype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"enemy_zone "+x+" "+paxx+" "+y+" "+speedtime+" "+emtype);
@@ -1373,6 +1424,7 @@ string[] hazardtype=find_directories("sounds/objects/hazards/*");
 if(hazardtype.length()==0)
 {
 dlg("Error. There are no hazards available to view.");
+resume_pools();
 return;
 }
 else
@@ -1404,6 +1456,7 @@ if(mres==2)
 lp=false;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"hazard "+x+" "+paxx+" "+y+" "+paxy+" "+hazztype+" "+lp);
@@ -1430,6 +1483,7 @@ y=string_to_number(my);
 paxy=string_to_number(my2);
 damage=string_to_number(hp);
 speedtime=string_to_number(ht);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"health_zone "+x+" "+paxx+" "+y+" "+paxy+" "+damage+" "+speedtime);
@@ -1466,6 +1520,7 @@ string[] hazardtype=find_directories("sounds/objects/hazards/*");
 if(hazardtype.length()==0)
 {
 dlg("Error. There are no hazards available to view.");
+resume_pools();
 return;
 }
 else
@@ -1476,6 +1531,7 @@ if(res!="")
 hazztype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"mhazard "+x+" "+paxx+" "+y+" "+paxy+" "+x2+" "+y2+" "+direction+" "+direction2+" "+speedtime+" "+hazztype);
@@ -1510,6 +1566,7 @@ string[] platform=find_directories("sounds/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -1531,6 +1588,7 @@ string[] mplatform=find_directories("sounds/objects/moving platforms/*");
 if(mplatform.length()==0)
 {
 dlg("Error. There are no moving platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -1550,6 +1608,7 @@ return;
 volume2=string_to_number(vol2);
 pitch2=string_to_number(semitone2);
 volset=string_to_number(vof);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"mplatform "+x+" "+paxx+" "+y+" "+paxy+" "+x2+" "+direction+" "+direction2+" "+speedtime+" "+tiletype+" "+volume+" "+pitch+" "+mplattyp+" "+volume2+" "+pitch2+" "+volset);
@@ -1574,6 +1633,7 @@ string[] checktype=find_directories("sounds/objects/checkpoints/*");
 if(checktype.length()==0)
 {
 dlg("Error. There are no checkpoints available to view.");
+resume_pools();
 return;
 }
 else
@@ -1584,6 +1644,7 @@ if(res!="")
 checktyp=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"checkpoint "+x+" "+y+" "+speedtime+" "+checktyp);
@@ -1627,6 +1688,7 @@ if(mres==2)
 {
 inp=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"instrument "+x+" "+paxx+" "+y+" "+paxy+" "+inp);
@@ -1663,6 +1725,7 @@ string[] ithealth=find_directories("sounds/equipments/items/unsorted/health/*");
 if(ithealth.length()==0)
 {
 dlg("Error. There are no health items available to view.");
+resume_pools();
 return;
 }
 else
@@ -1681,6 +1744,7 @@ string[] itother=find_directories("sounds/equipments/items/unsorted/other/*");
 if(itother.length()==0)
 {
 dlg("Error. There are no other items available to view.");
+resume_pools();
 return;
 }
 else
@@ -1714,6 +1778,7 @@ if(mres28==2)
 {
 itm=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"item "+x+" "+y+" "+speedtime+" "+itemtype+" "+itemtype2+" "+itm);
@@ -1754,6 +1819,7 @@ string[] ithealth=find_directories("sounds/equipments/items/unsorted/health/*");
 if(ithealth.length()==0)
 {
 dlg("Error. There are no health items available to view.");
+resume_pools();
 return;
 }
 else
@@ -1772,6 +1838,7 @@ string[] itother=find_directories("sounds/equipments/items/unsorted/other/*");
 if(itother.length()==0)
 {
 dlg("Error. There are no other items available to view.");
+resume_pools();
 return;
 }
 else
@@ -1784,6 +1851,7 @@ itemtype2=res;
 }
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"item_zone "+x+" "+paxx+" "+y+" "+paxy+" "+speedtime+" "+itemtype+" "+itemtype2);
@@ -1814,6 +1882,7 @@ string[] platform=find_directories("sounds/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -1835,6 +1904,7 @@ string[] liftform=find_directories("sounds/objects/lifts/*");
 if(liftform.length()==0)
 {
 dlg("Error. There are no lifts available to view.");
+resume_pools();
 return;
 }
 else
@@ -1852,6 +1922,7 @@ if(volume2=="" and pitch2=="")
 return;
 volume2=string_to_number(vol2);
 pitch2=string_to_number(semitone2);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"lift "+x+" "+paxx+" "+y+" "+paxy+" "+direction+" "+speedtime+" "+tiletype+" "+volume+" "+pitch+" "+lifttyp+" "+volume2+" "+pitch2);
@@ -1878,6 +1949,7 @@ string[] music=find_directories("sounds/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no music sources available to view.");
+resume_pools();
 return;
 }
 else
@@ -1895,6 +1967,7 @@ if(volume=="" and pitch=="")
 return;
 volume=string_to_number(vol);
 pitch=string_to_number(semitone);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"music_source "+x+" "+paxx+" "+y+" "+paxy+" "+mustyp+" "+volume+" "+pitch);
@@ -1919,6 +1992,7 @@ string[] platform=find_directories("sounds/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -1936,6 +2010,7 @@ if(volume=="" and pitch=="")
 return;
 volume=string_to_number(vol);
 pitch=string_to_number(semitone);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"platform "+x+" "+paxx+" "+y+" "+tiletype+" "+volume+" "+pitch);
@@ -1972,6 +2047,7 @@ string[] projectile=find_directories("sounds/npc/projectiles/*");
 if(projectile.length()==0)
 {
 dlg("Error. There are no projectiles available to view.");
+resume_pools();
 return;
 }
 else
@@ -2024,6 +2100,7 @@ if(mres9==2)
 {
 mb=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"projectile "+x+" "+y+" "+direction+" "+minhp+" "+card+" "+damage+" "+speedtime+" "+lv+" "+xn+" "+potype+" "+fb+" "+mb);
@@ -2050,6 +2127,7 @@ string[] projectile=find_directories("sounds/npc/projectiles/*");
 if(projectile.length()==0)
 {
 dlg("Error. There are no projectiles available to view.");
+resume_pools();
 return;
 }
 else
@@ -2060,6 +2138,7 @@ if(res!="")
 potype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"projectile_zone "+x+" "+paxx+" "+y+" "+speedtime+" "+potype);
@@ -2086,6 +2165,7 @@ y=string_to_number(my);
 paxy=string_to_number(my2);
 reverid=rd;
 reverbmenu();
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"reverb "+x+" "+paxx+" "+y+" "+paxy+" "+reverid+" "+revdry+" "+revwet+" "+revsize+" "+revdamp+" "+revwidth);
@@ -2122,6 +2202,7 @@ string[] robot=find_directories("sounds/npc/robots/*");
 if(robot.length()==0)
 {
 dlg("Error. There are no robots available to view.");
+resume_pools();
 return;
 }
 else
@@ -2195,6 +2276,7 @@ if(mres12==2)
 {
 mb2=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"robot "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+rotype+" "+fb+" "+mb+" "+mb2);
@@ -2221,6 +2303,7 @@ string[] robot=find_directories("sounds/npc/robots/*");
 if(robot.length()==0)
 {
 dlg("Error. There are no robots available to view.");
+resume_pools();
 return;
 }
 else
@@ -2231,6 +2314,7 @@ if(res!="")
 rotype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"robot_zone "+x+" "+paxx+" "+y+" "+speedtime+" "+rotype);
@@ -2256,6 +2340,7 @@ string[] signs=find_directories("sounds/objects/signs/*");
 if(signs.length()==0)
 {
 dlg("Error. There are no signs available to view.");
+resume_pools();
 return;
 }
 else
@@ -2287,6 +2372,7 @@ if(mres==2)
 dmd=false;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"sign "+x+" "+y+" "+txt+" "+signtyp+" "+dmd);
@@ -2313,6 +2399,7 @@ string[] source=find_directories("sounds/objects/sources/*");
 if(source.length()==0)
 {
 dlg("Error. There are no sources available to view.");
+resume_pools();
 return;
 }
 else
@@ -2330,6 +2417,7 @@ if(volume=="" and pitch=="")
 return;
 volume=string_to_number(vol);
 pitch=string_to_number(semitone);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"sound_source "+x+" "+paxx+" "+y+" "+paxy+" "+sorcetyp+" "+volume+" "+pitch);
@@ -2362,6 +2450,7 @@ string[] spike=find_directories("sounds/objects/spikes/*");
 if(spike.length()==0)
 {
 dlg("Error. There are no spikes available to view.");
+resume_pools();
 return;
 }
 else
@@ -2393,6 +2482,7 @@ if(mres==2)
 {
 dmd=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"spike "+x+" "+paxx+" "+y+" "+paxy+" "+minhp+" "+damage+" "+speedtime+" "+spiktype+" "+dmd);
@@ -2411,6 +2501,7 @@ if(x=="" and y=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"spawnpoint "+x+" "+y);
@@ -2437,6 +2528,7 @@ string[] platform=find_directories("sounds/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -2447,6 +2539,7 @@ if(res!="")
 tiletype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"staircase "+x+" "+paxx+" "+y+" "+paxy+" "+tiletype);
@@ -2477,6 +2570,7 @@ string[] teleporter=find_directories("sounds/objects/teleporters/*");
 if(teleporter.length()==0)
 {
 dlg("Error. There are no teleporters available to view.");
+resume_pools();
 return;
 }
 else
@@ -2508,6 +2602,7 @@ if(mres16==2)
 {
 mb=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"teleporter "+x+" "+y+" "+x2+" "+y2+" "+direction+" "+speedtime+" "+teltype+" "+mb);
@@ -2529,6 +2624,7 @@ return;
 x=string_to_number(mx);
 y=string_to_number(my);
 txt=text;
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"text_square "+x+" "+y+" "+txt);
@@ -2555,6 +2651,7 @@ string[] source=find_directories("sounds/objects/sources/*");
 if(source.length()==0)
 {
 dlg("Error. There are no sources available to view.");
+resume_pools();
 return;
 }
 else
@@ -2574,6 +2671,7 @@ return;
 volume=string_to_number(vol);
 pitch=string_to_number(semitone);
 speedtime=string_to_number(sp);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"timed_source "+x+" "+paxx+" "+y+" "+paxy+" "+sorcetyp+" "+volume+" "+pitch+" "+speedtime);
@@ -2600,6 +2698,7 @@ string[] music=find_directories("sounds/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
+resume_pools();
 return;
 }
 else
@@ -2619,6 +2718,7 @@ return;
 volume=string_to_number(vol);
 pitch=string_to_number(semitone);
 speedtime=string_to_number(sp);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"timed_music "+x+" "+paxx+" "+y+" "+paxy+" "+mustyp+" "+volume+" "+pitch+" "+speedtime);
@@ -2646,6 +2746,7 @@ y=string_to_number(my);
 paxy=string_to_number(my2);
 speedtime=string_to_number(sp);
 txt=text;
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"timed_text "+x+" "+paxx+" "+y+" "+paxy+" "+speedtime+" "+txt);
@@ -2698,6 +2799,7 @@ string mtext2=input.input("Enter the destenation map of this travelpoint to go b
 if(txt=="")
 return;
 txt=mtext2;
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"travelpoint "+x+" "+paxx+" "+y+" "+paxy+" "+txt+" "+y2+" "+x2+" "+txt2);
@@ -2710,6 +2812,7 @@ speak("Map updated.");
 if(mres==2)
 {
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"travelpoint "+x+" "+paxx+" "+y+" "+paxy+" "+txt+" "+x2+" "+y2+" "+txt2);
@@ -2748,6 +2851,7 @@ string[] turret=find_directories("sounds/npc/turrets/*");
 if(turret.length()==0)
 {
 dlg("Error. There are no turrets available to view.");
+resume_pools();
 return;
 }
 else
@@ -2777,6 +2881,7 @@ string[] animal=find_directories("sounds/npc/animals/*");
 if(animal.length()==0)
 {
 dlg("Error. There are no animals available to view.");
+resume_pools();
 return;
 }
 else
@@ -2795,6 +2900,7 @@ string[] enemy=find_directories("sounds/npc/enemies/*");
 if(enemy.length()==0)
 {
 dlg("Error. There are no enemies available to view.");
+resume_pools();
 return;
 }
 else
@@ -2813,6 +2919,7 @@ string[] projectile=find_directories("sounds/npc/projectiles/*");
 if(projectile.length()==0)
 {
 dlg("Error. There are no projectiles available to view.");
+resume_pools();
 return;
 }
 else
@@ -2831,6 +2938,7 @@ string[] robot=find_directories("sounds/npc/robots/*");
 if(robot.length()==0)
 {
 dlg("Error. There are no robots available to view.");
+resume_pools();
 return;
 }
 else
@@ -2849,6 +2957,7 @@ string[] zombie=find_directories("sounds/npc/zombies/*");
 if(zombie.length()==0)
 {
 dlg("Error. There are no zombies available to view.");
+resume_pools();
 return;
 }
 else
@@ -2924,6 +3033,7 @@ if(mres20==2)
 {
 mb2=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"turret "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+launchtime+" "+speedtime+" "+lv+" "+xn+" "+tutype+" "+tutype2+" "+tutype3+" "+fb+" "+mb+" "+mb2);
@@ -2950,6 +3060,7 @@ string[] vehicle=find_directories("sounds/objects/vehicles/*");
 if(vehicle.length()==0)
 {
 dlg("Error. There are no vehicles available to view.");
+resume_pools();
 return;
 }
 else
@@ -2981,6 +3092,7 @@ if(mres8==2)
 {
 fb=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"vehicle "+x+" "+y+" "+minhp+" "+damage+" "+vehtyp+" "+fb);
@@ -3005,6 +3117,7 @@ string[] platform=find_directories("sounds/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -3026,6 +3139,7 @@ string[] vplatform=find_directories("sounds/objects/vanishing platforms/*");
 if(vplatform.length()==0)
 {
 dlg("Error. There are no vanishing platforms available to view.");
+resume_pools();
 return;
 }
 else
@@ -3045,6 +3159,7 @@ return;
 volume2=string_to_number(vol2);
 pitch2=string_to_number(semitone2);
 speedtime=string_to_number(sp);
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"vanishing_platform "+x+" "+paxx+" "+y+" "+tiletype+" "+volume+" "+pitch+" "+vplattyp+" "+volume2+" "+pitch2+" "+speedtime);
@@ -3073,6 +3188,7 @@ string[] border=find_directories("sounds/objects/walls/*");
 if(border.length()==0)
 {
 dlg("Error. There are no walls available to view.");
+resume_pools();
 return;
 }
 else
@@ -3111,6 +3227,7 @@ if(mres==2)
 dmd=false;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"wall "+x+" "+paxx+" "+y+" "+paxy+" "+minhp+" "+walltype+" "+volume+" "+pitch+" "+dmd);
@@ -3147,6 +3264,7 @@ string[] zombie=find_directories("sounds/npc/zombies/*");
 if(zombie.length()==0)
 {
 dlg("Error. There are no zombies available to view.");
+resume_pools();
 return;
 }
 else
@@ -3220,6 +3338,7 @@ if(mres15==2)
 {
 mb2=false;
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"zombie "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+zotype+" "+fb+" "+mb+" "+mb2);
@@ -3246,6 +3365,7 @@ string[] zombie=find_directories("sounds/npc/zombies/*");
 if(zombie.length()==0)
 {
 dlg("Error. There are no zombies available to view.");
+resume_pools();
 return;
 }
 else
@@ -3256,6 +3376,7 @@ if(res!="")
 zotype=res;
 }
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"zombie_zone "+x+" "+paxx+" "+y+" "+speedtime+" "+zotype);
@@ -3281,6 +3402,7 @@ paxx=string_to_number(mx2);
 y=string_to_number(my);
 paxy=string_to_number(my2);
 txt=text;
+resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"zone "+x+" "+paxx+" "+y+" "+paxy+" "+txt);
@@ -3296,6 +3418,7 @@ mapper.open("data/maps/"+mapname+".map", "ab");
 mapdata=mapper.read();
 input.set_only_allowed_chars("none");
 string newline=input.input("Enter the line you'd like to add.");
+resume_pools();
 mapper.write("\r\n"+newline);
 mapper.close();
 load_map(mapname);
@@ -3318,6 +3441,7 @@ m.add_item_tts(filtered_lines[i],filtered_lines[i], "", true);
 int mres=m.run("Select a line to remove", true);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3331,6 +3455,7 @@ for (uint i=0; i<lines.length(); i++)
 if(i>0) final+="\r\n";
 final+=lines[i];
 }
+resume_pools();
 mapper.open("data/maps/"+mapname+".map", "wb");
 mapdata=mapper.read();
 mapper.write(final);
@@ -3357,6 +3482,7 @@ m.add_item_tts(filtered_lines[i],filtered_lines[i], "", true);
 int mres=m.run("Select a line to edit", true);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3372,6 +3498,7 @@ for (uint i=0; i<lines.length(); i++)
 if(i>0) mapline+="\r\n";
 mapline += lines[i];
 }
+resume_pools();
 mapper.open("data/maps/" + mapname + ".map", "wb");
 mapper.write(mapline);
 mapper.close();
@@ -3392,6 +3519,7 @@ m.add_item_tts("no");
 int mres=m.run("Are you sure you want to delete the current map? This action can't be undone.",true);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3409,12 +3537,14 @@ mapmenu();
 }
 if(mres==2)
 {
+resume_pools();
 speak("canceled");
 return;
 }
 }
 if(buildem=="clboard")
 {
+resume_pools();
 mapper.open("data/maps/" + mapname + ".map", "rb");
 mapdata=mapper.read();
 clipboard_copy_text(mapdata);
@@ -3433,17 +3563,20 @@ m.add_item_tts("no");
 int mres=m.run("Are you sure you want to overwrite all existing map data with what's on your clipboard?",true);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
 if(mres==1)
 {
+resume_pools();
 mapper.open("data/maps/" + mapname + ".map", "wb");
 mapdata=mapper.read();
 mapdata=clipboard_read_text();
 if(mapdata=="") dlg("error. The map data you've pasted is invalid.");
 else
 {
+resume_pools();
 mapper.write(mapdata);
 mapper.close();
 load_map(mapname);
@@ -3453,6 +3586,7 @@ speak("Map updated.");
 }
 if(mres==2)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3469,16 +3603,19 @@ m.add_item_tts("no");
 int mres=m.run("Are you sure you want to reload the current map?",true);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
 if(mres==1)
 {
+resume_pools();
 load_map(mapname);
 speak("map reloaded");
 }
 if(mres==2)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3495,6 +3632,7 @@ int mres=m.run("Items menu",true);
 string itsm=m.get_item_name(mres);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3533,6 +3671,7 @@ useitems=true;
 }
 if(itsm=="back")
 {
+resume_pools();
 return;
 }
 }
@@ -3547,9 +3686,11 @@ s.add_slider_item("width", 0.0, 1.0, 0.0, 0.1);
 int sres = s.run_slider("Reverb Designer. Press tab or shift tab to cycle through the reverb parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
 if (sres==0)
 {
+resume_pools();
 speak("Canceled");
 return;
 }
+resume_pools();
 revdry = s.get_item_value(0);
 revwet = s.get_item_value(1);
 revsize = s.get_item_value(2);
@@ -3568,6 +3709,7 @@ int mres=m.run("Weapons menu",true);
 string wpsm=m.get_item_name(mres);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3577,6 +3719,7 @@ string[] archers=find_directories("data/layouts/equipments/weapons/archery/*");
 if(archers.length()==0)
 {
 dlg("Error. There are no archery weapons available to view.");
+resume_pools();
 return;
 }
 else
@@ -3605,6 +3748,7 @@ string[] fighters=find_directories("data/layouts/equipments/weapons/artillery/*"
 if(fighters.length()==0)
 {
 dlg("Error. There are no artillery weapons available to view.");
+resume_pools();
 return;
 }
 else
@@ -3633,6 +3777,7 @@ string[] killers=find_directories("data/layouts/equipments/weapons/explosive/*")
 if(killers.length()==0)
 {
 dlg("Error. There are no explosive weapons available to view.");
+resume_pools();
 return;
 }
 else
@@ -3661,6 +3806,7 @@ string[] brawlers=find_directories("data/layouts/equipments/weapons/melee/*");
 if(brawlers.length()==0)
 {
 dlg("Error. There are no melee weapons available to view.");
+resume_pools();
 return;
 }
 else
@@ -3685,6 +3831,7 @@ draw_weapon(weapontype, weapontype2, weprange, weprange2, wepdamage, wepspeed, m
 }
 if(wpsm=="back")
 {
+resume_pools();
 return;
 }
 }
@@ -3747,6 +3894,7 @@ m.add_item_tts(zombies[i].zombtype+";"+"at;"+zombies[i].zombx+";"+zombies[i].zom
 int mres=m.run("Object info", true);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3755,7 +3903,7 @@ void pausemenu()
 {
 p.play_stationary("pause.ogg",false);
 if(autosave==1) writedata();
-pause();
+pause_game();
 setupmenu();
 m.add_item_tts("resume game", "rmg");
 m.add_item_tts("view statistics", "vs");
@@ -3765,14 +3913,14 @@ if(mres==0)
 {
 p.play_stationary("resume.ogg",false);
 if(autosave==1) writedata();
-resume();
+resume_game();
 return;
 }
 if(psmem=="rmg")
 {
 p.play_stationary("resume.ogg",false);
 if(autosave==1) writedata();
-resume();
+resume_game();
 return;
 }
 if(psmem=="vs")
@@ -3837,6 +3985,7 @@ int mres=m.run("Points menu. ",true);
 string ptmem=m.get_item_name(mres);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 return;
 }
@@ -3845,6 +3994,7 @@ if(ptmem=="umat")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=1)
@@ -3855,6 +4005,7 @@ if(attack=="")
 return;
 int tempstat=string_to_number(att);
 p.play_stationary("buy"+random(1,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 attack+=tempstat;
 points-=tempstat;
@@ -3866,6 +4017,7 @@ if(ptmem=="umd")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=1)
@@ -3876,6 +4028,7 @@ if(defence=="")
 return;
 int tempstat=string_to_number(def);
 p.play_stationary("buy"+random(1,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 defence+=tempstat;
 points-=tempstat;
@@ -3887,6 +4040,7 @@ if(ptmem=="uma")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=1)
@@ -3897,6 +4051,7 @@ if(ammo=="")
 return;
 int tempstat=string_to_number(amm);
 p.play_stationary("buy"+random(1,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 ammo+=tempstat;
 points-=tempstat;
@@ -3908,6 +4063,7 @@ if(ptmem=="umh")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=1)
@@ -3918,6 +4074,7 @@ if(health=="")
 return;
 int tempstat=string_to_number(hp);
 p.play_stationary("buy"+random(1,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 maxhealth+=tempstat;
 points-=tempstat;
@@ -3929,6 +4086,7 @@ if(ptmem=="umlf")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=1)
@@ -3939,6 +4097,7 @@ if(lifecard=="")
 return;
 int tempstat=string_to_number(lc);
 p.play_stationary("buy"+random(1,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 lifecard+=tempstat;
 points-=tempstat;
@@ -3950,6 +4109,7 @@ if(ptmem=="umst")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=1)
@@ -3960,6 +4120,7 @@ if(maxshieldstrength=="")
 return;
 int tempstat=string_to_number(sg);
 p.play_stationary("buy"+random(1,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 maxshieldstrength+=tempstat;
 points-=tempstat;
@@ -3971,6 +4132,7 @@ if(ptmem=="umsd")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=1)
@@ -3981,6 +4143,7 @@ if(shielddefence=="")
 return;
 int tempstat=string_to_number(sd);
 p.play_stationary("buy"+random(1,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 shielddefence+=tempstat;
 points-=tempstat;
@@ -3992,6 +4155,7 @@ if(ptmem=="umra1")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=1)
@@ -4002,6 +4166,7 @@ if(weprange=="")
 return;
 int tempstat=string_to_number(rg1);
 p.play_stationary("buy"+random(1,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 weprange+=tempstat;
 points-=tempstat;
@@ -4013,6 +4178,7 @@ if(ptmem=="umra2")
 if(points<=0)
 {
 dlg("Error, you don't have enough points to complete this action.");
+resume_pools();
 return;
 }
 else if(points>=2)
@@ -4023,6 +4189,7 @@ if(weprange2=="")
 return;
 int tempstat=string_to_number(rg2);
 p.play_stationary("buy"+random(2,4)+".ogg",false);
+resume_pools();
 speak("Perchis completed.");
 weprange2+=tempstat;
 points-=tempstat;
@@ -4031,6 +4198,7 @@ update_wep_vl_range(weapontype, weapontype2, weprange2);
 }
 if(ptmem=="back")
 {
+resume_pools();
 return;
 }
 }

@@ -427,6 +427,7 @@ itemsmenu();
 }
 if(mres>0 and mres<=jucers.length())
 {
+resume_pools();
 drinktype=jucers[mres-1];
 speak(drinktype+";"+"equipped");
 t.destroy_sound(prevslot);
@@ -483,6 +484,7 @@ itemsmenu();
 }
 if(mres>0 and mres<=spicers.length())
 {
+resume_pools();
 foodtype=spicers[mres-1];
 speak(foodtype+";"+"equipped");
 t.destroy_sound(prevslot);
@@ -539,6 +541,7 @@ itemsmenu();
 }
 if(mres>0 and mres<=healthers.length())
 {
+resume_pools();
 healtype=healthers[mres-1];
 speak(healtype+";"+"equipped");
 t.destroy_sound(prevslot);
@@ -764,10 +767,12 @@ wepreloadsound=current_weapon.wepreloadsound;
 wepshellsound=current_weapon.wepshellsound;
 if(mres-1<archers.length())
 {
+resume_pools();
 weapontype2=archers[mres-1];
 }
 else
 {
+resume_pools();
 weapontype2="fist";
 }
 }
@@ -863,10 +868,12 @@ wepreloadsound=current_weapon.wepreloadsound;
 wepshellsound=current_weapon.wepshellsound;
 if(mres-1<fighters.length())
 {
+resume_pools();
 weapontype2=fighters[mres-1];
 }
 else
 {
+resume_pools();
 weapontype2="fist";
 }
 }
@@ -962,10 +969,12 @@ wepreloadsound=current_weapon.wepreloadsound;
 wepshellsound=current_weapon.wepshellsound;
 if(mres-1<killers.length())
 {
+resume_pools();
 weapontype2=killers[mres-1];
 }
 else
 {
+resume_pools();
 weapontype2="fist";
 }
 }
@@ -1061,10 +1070,12 @@ wepreloadsound=current_weapon.wepreloadsound;
 wepshellsound=current_weapon.wepshellsound;
 if(mres-1<brawlers.length())
 {
-weapontype2 = brawlers[mres - 1];
+resume_pools();
+weapontype2 = brawlers[mres-1];
 }
 else
 {
+resume_pools();
 weapontype2="fist";
 }
 }
@@ -1114,6 +1125,7 @@ m.add_item_tts(shields[i].name+". defence "+shields[i].shielddefence+". Weight "
 int mres=m.run("Shields menu", true);
 if(mres==0)
 {
+resume_pools();
 speak("canceled");
 }
 if(mres>0 and mres<=shields.length())
@@ -1133,6 +1145,7 @@ shieldremovesound=current_shield.shieldremovesound;
 shieldwearsound=current_shield.shieldwearsound;
 if(mres-1<armor.length())
 {
+resume_pools();
 shieldtype=armor[mres-1];
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*draw*");

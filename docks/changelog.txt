@@ -1,4 +1,5 @@
 new in 5.3
+Simplified pausing and resuming sounds in the gametime script with 2 new functions. Instead of pausing and resumeing individual sounds, all sound pools will be paused and resumed when the user pauses or resumes the game in all scenarios.
 Updated the credits file with  additional people who contributed to this project.
 Updated the readme file with added and modified keyboard shortcuts.
 Performed major optimizations to the code. The builder script is no longer a part of the includes folder, therefore combineing most of the functions found within it into the fighter script to hopefully minimize code duplication.

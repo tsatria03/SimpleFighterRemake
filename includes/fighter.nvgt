@@ -323,10 +323,12 @@ speak("Invalid input. Please enter two numbers separated by a space.");
 }
 if(key_pressed(KEY_I))
 {
+pause_pools();
 itemsmenu();
 }
 if(key_pressed(KEY_W))
 {
+pause_pools();
 weaponsmenu();
 }
 if(key_pressed(KEY_S))
@@ -348,6 +350,7 @@ for(uint i=0; i<shieldlist.length(); i++)
 {
 shieldparse(shieldlist[i]);
 }
+pause_pools();
 string res=shieldsmenu();
 if(res!="")
 {
@@ -357,6 +360,7 @@ shieldtype=res;
 }
 if(key_pressed(KEY_O) and building==true)
 {
+pause_pools();
 buildmenu();
 }
 if (key_pressed(KEY_TAB) and key_up(KEY_LMENU) and key_up(KEY_RMENU))
@@ -1076,12 +1080,12 @@ if(pausem==0)
 if(paused==0)
 {
 p.play_stationary("pause.ogg",false);
-pause();
+pause_game();
 }
 else if(paused==1)
 {
 p.play_stationary("resume.ogg",false);
-resume();
+resume_game();
 }
 }
 else if(pausem==1)
@@ -1091,6 +1095,7 @@ pausemenu();
 }
 if(key_pressed(KEY_V))
 {
+pause_pools();
 pointsmenu();
 }
 if(key_pressed(KEY_BACKSLASH) and healable==true)
