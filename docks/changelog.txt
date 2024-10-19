@@ -1,5 +1,6 @@
 new in 5.3
-Updated readme with added and modified keyboard shortcuts.
+Updated the credits file with  additional people who contributed to this project.
+Updated the readme file with added and modified keyboard shortcuts.
 Performed major optimizations to the code. The builder script is no longer a part of the includes folder, therefore combineing most of the functions found within it into the fighter script to hopefully minimize code duplication.
 Fixed a bug of not being able to type alphanumeric passwords correctly with locked doors and locked passages.
 Fixed a bug where instruments built above Y 0 would spawn a platform at the wrong height. For example, an instrument from heights Y 10 to Y 13 would spawn its platform at Y 24 instead of spawning it at Y 14.
@@ -277,7 +278,7 @@ Dialogs can now be written to the map you're currently working on.
 Timed music and timed sources can now be written to the map you're currently working on.
 Music and sources can now be written to the map you're currently working on.
 Clocks and calendars can now be written to the map you're currently working on.
-Updated readme with modified and removed keyboard shortcuts.
+Updated the readme file with modified and removed keyboard shortcuts.
 Menu music volumes can now be saved upon exiting the game.
 Resolved an issue of maximum x and y resetting back to 100 upon reloading the map after creation.
 You can now view your overall shield strength in the statistics menu.
