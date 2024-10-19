@@ -1,5 +1,6 @@
 new in 5.3
-Minor passage improvements. This includes the lockable passages as well.
+Fixed a bug where instruments built above Y 0 would spawn a platform at the wrong height. For example, an instrument from heights Y 10 to Y 13 would spawn its platform at Y 24 instead of spawning it at Y 14.
+Minor passage improvements. This includes lockable passages as well.
 Minor shield improvements.
 The maps menu will now show the actual size of maps while hovering over them.
 new in 5.2
@@ -146,8 +147,8 @@ Made walls more acuret in turms of how tall they are when spying them.
 new in 4.0
 Made it so increasing the maximum x and y positions in the other game modes would also expand the platform, music, and sound source of the intire map as well. This also applies to the camera.
 Limeted the maximum x and y positions of all of the game related maps to 1000. The map builder will remain uneffected.
-Limeted the maximum jump hight to all of the characters to 20.
-You can now reset your jump hight by pressing F3 in the map builder, and F7 in all of the other game modes.
+Limeted the maximum jump height to all of the characters to 20.
+You can now reset your jump height by pressing F3 in the map builder, and F7 in all of the other game modes.
 Added toggling of holding space in the settings menu.
 Added toggling auto jumpping in the settings menu.
 Bullets and walls are now trackable in the objects menu.
@@ -229,7 +230,7 @@ Made pressing the letter Z to check weapon status less verbose.
 You can now set a default shield for use in all of the character files.
 Added the level modifier to all of the character files. The level modifier refers to how hard it is to actually get experience. The higher this value, the harder it is to get experience, but easier to get more points overall.
 Added the experience modifier to all of the character files. the experience modifier refers to how much experience you gain per level. The higher this value, the more experience you'll reseave, regardless of what your level modifier is set to.
-Jump hight is no longer parsed, and therefore will not be used in the game for all characters.
+Jump height is no longer parsed, and therefore will not be used in the game for all characters.
 new in 3.3
 Made it so falling respects your character's defence and shield defence.
 Fixed sertain sounds not playing propperly in some of the character folders.
@@ -318,11 +319,11 @@ You can now view how many enemies have spawned on the map while playing one of t
 You can now view how long you've been playing the game in the statistics menu.
 The maps menu now only speaks the base name of the map file, rather than apending an extencion to the end of it.
 new in 2.6
-Fixed maps not being able to load propperly after they have been built within the main map menu of the game. If you've built a map with a name such as main, with the maximum length and hight set to 50, and with the tile set to anything you want, you'll now be able to load it back from within the load maps menu for easy retreivel.
+Fixed maps not being able to load propperly after they have been built within the main map menu of the game. If you've built a map with a name such as main, with the maximum length and height set to 50, and with the tile set to anything you want, you'll now be able to load it back from within the load maps menu for easy retreivel.
 Made it so when you press R while a weapon with ammo is loaded, it doesn't reload it when there's already a set amount of ammo in it. From now on, you can only reload the weapon if the loaded ammo reaches 0 for that particular weapon.
 Cleaned up lots of code related to playing sounds if an error occured anywear in the game. Dialogs will now play those sounds instead of the normal sound_pool.
 The statistics menu intro will now tell you how many entries there are Available to view upon launching it.
-You can now view the folowing statistics. Current location, current overall health, maximum jumphight, maximum X position, maximum Y position, current level/experience, current amount of points, and total kills for all enemies. More may be added soon.
+You can now view the folowing statistics. Current location, current overall health, maximum jumpheight, maximum X position, maximum Y position, current level/experience, current amount of points, and total kills for all enemies. More may be added soon.
 Added the pause menu to all of the game modes. This let's you view statistics right from within the menu, and resume the game when needed.
 Updated the credits file with more of the people who contributed to this project. Please check them out if you can.
 Pressing tab now speaks the menu intro in Mason's m_pro class.

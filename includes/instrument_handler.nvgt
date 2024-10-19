@@ -18,7 +18,7 @@ miny=my;
 maxy=my2;
 insthelp=inhp;
 spawn_wall(minx,maxx,miny,maxy,1,1,"wallbump",0,100,false);
-spawn_platform(minx,maxx,miny+maxy+1,miny+maxy+1,"metal",0,100);
+spawn_platform(minx, maxx, maxy + 1, maxy + 1, "metal", 0, 100);
 }
 }
 string get_new_perc(string perc,int direction)
