@@ -1,3 +1,48 @@
+string gmt(double x, double y)
+{
+string mt;
+for(uint i=0; i<platforms.length(); i++)
+{
+if(platforms[i].minx<=x and platforms[i].maxx>=x and platforms[i].miny<=y and platforms[i].maxy>=y)
+{
+mt=platforms[i].tile;
+tilevolume=platforms[i].volume;
+tilepitch=platforms[i].pitch;
+}
+}
+for(uint i=0; i<walls.length(); i++)
+{
+if(walls[i].minx<=x and walls[i].maxx>=x and walls[i].miny<=y and walls[i].maxy>=y)
+{
+wallvolume=walls[i].volume;
+wallpitch=walls[i].pitch;
+}
+}
+return mt;
+}
+string gct(double x, double y)
+{
+string ct;
+for(uint i=0; i<platforms.length(); i++)
+{
+if(platforms[i].minx<=x and platforms[i].maxx>=x and platforms[i].miny<=y and platforms[i].maxy>=y)
+{
+ct=platforms[i].tile;
+tilevolume=platforms[i].volume;
+tilepitch=platforms[i].pitch;
+}
+}
+for(uint i=0; i<walls.length(); i++)
+{
+if(walls[i].minx<=x and walls[i].maxx>=x and walls[i].miny<=y and walls[i].maxy>=y)
+{
+//ct=walls[i].wall;
+wallvolume=walls[i].volume;
+wallpitch=walls[i].pitch;
+}
+}
+return ct;
+}
 void clearmap()
 {
 destroy_all_blockages();
@@ -55,6 +100,19 @@ destroy_all_vanishing_platforms();
 destroy_all_vehicles();
 destroy_all_zombies();
 destroy_all_zombiezones();
+}
+void gop(int x, int y)
+{
+if(x<0 or x>maxx or y<0 or y>maxy)
+{
+dlg("error! You can't move out of map boundries! Please try again!");
+}
+else
+{
+me.x=x;
+me.y=y;
+speak("Moved to "+me.x+", "+me.y+".");
+}
 }
 void load_map(string name, bool instant_update=false, bool speak_percentage=false, int loadtime=50, int loadbeeps=1, int loadsounds=1)
 {

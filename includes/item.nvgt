@@ -19,6 +19,17 @@ objtype2=ty2;
 automatic=itc;
 }
 }
+void drop_item(string direction, string objtype, string objtype2)
+{
+if(direction=="left")
+{
+spawn_obj(me.x-1, me.y, 500, objtype, objtype2, true);
+}
+if(direction=="right")
+{
+spawn_obj(me.x+1, me.y, 500, objtype, objtype2, true);
+}
+}
 void objloop()
 {
 for(uint i=0; i<objs.length(); i++)

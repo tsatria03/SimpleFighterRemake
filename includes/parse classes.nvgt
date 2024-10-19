@@ -1,3 +1,48 @@
+character@ get_default_char()
+{
+if(charas.is_empty())
+{
+return null;
+}
+for(uint i=0; i<charas.length(); i++)
+{
+if(charas[i].name == chartype)
+{
+return charas[i];
+}
+}
+return null;
+}
+shield@ get_default_shield()
+{
+if(shields.is_empty())
+{
+return null;
+}
+for(uint i=0; i<shields.length(); i++)
+{
+if(shields[i].name=="large shield")
+{
+return shields[i];
+}
+}
+return null;
+}
+weapon@ get_default_weapon()
+{
+if(weapons.is_empty())
+{
+return null;
+}
+for(uint i=0; i<weapons.length(); i++)
+{
+if(weapons[i].name=="fist")
+{
+return weapons[i];
+}
+}
+return null;
+}
 character@[]charas(0);
 class character
 {

@@ -25,6 +25,10 @@ zdata=zones[i].text;
 if(zdata!="") return zdata;
 else return "Unknown Area";
 }
+string gmz()
+{
+return get_zone_at(me.x,me.y);
+}
 void checkloc()
 {
 if (get_zone_at(me.x, me.y)!="")
