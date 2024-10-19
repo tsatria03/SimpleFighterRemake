@@ -153,6 +153,73 @@ destroy_all_turrets();
 destroy_all_robots();
 destroy_all_zombies();
 }
+void dockread(const string&in filename)
+{
+if(!file_exists(filename))
+{
+alert("Error","Could not fined "+string_replace(filename, "docks/", "", true));
+docksmenu();
+}
+dockfile.open(filename,"rb");
+string docktext=dockfile.read();
+dockfile.close();
+form.reset();
+form.create_window("Viewing "+string_replace(filename, "docks/", "", true),false,false,false);
+int dockbox=form.create_input_box(string_replace(filename, "docks/", "", true), docktext, read_only:true, multiline:true);
+int dockclose=form.create_button("&close",false,true);
+form.focus(dockbox);
+while(true)
+{
+wait(5);
+form.monitor();
+if (form.is_pressed(dockclose))
+{
+docksmenu();
+}
+}
+}
+void downloadsounds()
+{
+quest=question("Error", "There are no sounds detected in the game! Would you like to download them now?");
+if (quest==1)
+{
+if (file_exists("sounds.zip"))
+{
+alert("file found", "This file already exists. The downloader will now skip to the extraction process.");
+}
+else
+{
+string result=dl_file("https://www.dropbox.com/scl/fi/exse692jtre29cak9rfng/sounds.zip?rlkey=ep8rows3g35z0ompmvt6wlxpa&dl=1", "sounds.zip");
+if (result != "finished")
+{
+alert("download error", "Download failed or was canceled.");
+if(file_exists("sounds.zip")) file_delete("sounds.zip");
+mainmenu();
+}
+alert("finished", "Download completed successfully.");
+}
+alert("extracting", "Extracting files.");
+int progslot=temp.play_stationary_extended("pi2.ogg", true, 0, 0, 0, 100);
+if(!directory_exists("sounds")) directory_create("sounds");
+bool result=run("lib/unzip.exe", "-q -o sounds.zip -d sounds", true, true);
+if (result==true)
+{
+temp.destroy_sound(progslot);
+alert("extraction_complete", "Extraction finished successfully.");
+if(file_exists("sounds.zip")) file_delete("sounds.zip");
+restart();
+}
+else
+{
+alert("extraction_error", "Error occurred during extraction.");
+mainmenu();
+}
+}
+else
+{
+mainmenu();
+}
+}
 void getver()
 {
 ver.open("docks/version.txt","rb");

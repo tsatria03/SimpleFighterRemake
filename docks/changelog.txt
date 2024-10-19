@@ -1,5 +1,5 @@
 new in 5.3
-Minor passage improvements. This includes lockable passages as well.
+Minor passage improvements. This includes the lockable passages as well.
 Minor shield improvements.
 The maps menu will now show the actual size of maps while hovering over them.
 new in 5.2
