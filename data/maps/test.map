@@ -2,5 +2,4 @@ name test
 maxx 100
 maxy 100
 platform 0 100 0 marble2 0 100
-wall 6 6 0 5 600 walldebris 0 100 false
-passage 5 0 1 10 50 hardwood loop3 open close 50
+wall 5 5 0 5 500 walldebris 0 100 false

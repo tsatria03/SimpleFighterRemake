@@ -68,13 +68,16 @@ if(bullets[i].direction=="down")
 {
 bullets[i].bully--;
 }
-string surface=gmt(bullets[i].bullx,bullets[i].bully);
-if(string_contains(surface,"wall",1)>-1 and bullets[i].bounce==true)
+for(uint i=0; i<walls.length(); i++)
+{
+if(walls[i].minx<=bullets[i].bullx and walls[i].maxx>=bullets[i].bullx and walls[i].miny<=bullets[i].bully and walls[i].maxy>=bullets[i].bully)
 {
 if(walls[i].destroyable==false) p.destroy_sound(bullets[i].bullsound);
 string[] recsfx=find_files("sounds/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/*rico*");
 if(recsfx.length()!=0 and weprecsound==1) bullets[i].wepsound=p.play_extended_2d("sounds/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/"+recsfx[random(0,recsfx.length()-1)],me.x,me.y,bullets[i].bullx,bullets[i].bully,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
 bullets[i].bull_bounce();
+return;
+}
 }
 if(me.x==bullets[i].bullx and me.y==bullets[i].bully and shieldon==1 and shieldstrength<=maxshieldstrength and bullets[i].hitplayer==true)
 {
