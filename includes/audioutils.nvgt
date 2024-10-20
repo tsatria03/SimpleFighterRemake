@@ -1,4 +1,4 @@
-// helper: clamp a value to a minimum and maximum
+sound@ progress_sound;
 double clamp(double value, double min, double max){
 value=value<min? min:value;
 value=value>max? max:value;
@@ -15,7 +15,7 @@ string pack_audio(float[] data) {
 float[]@ unpack_audio(string data) {
     datastream ds;
     ds.binary = true;
-    float[] result; // Changed from 'float result;' to 'float[] result;'
+    float[] result;
     while (ds.good) {
         result.insert_last(ds.read_float());
     }
@@ -26,8 +26,8 @@ float[]@ sinewave(uint freq, double dur, double amp = 1.0, uint sr = 44100) {
     uint num_samples = (dur / 1000) * sr;
     float[] samples;
     samples.resize(num_samples);
-    double phi = 0.0; // phase accumulator
-    const double delta = 2 * pi * freq / sr; // phase increment per sample
+    double phi = 0.0;
+    const double delta = 2 * pi * freq / sr;
     uint t;
     for (t = 0; t < num_samples; t++) {
         samples[t] = amp * sin(phi);
@@ -62,14 +62,14 @@ void pad_shortest(float[]@ first, float[]@ second) {
 float[]@ ringmod(float[]@ modulator, float[]@ carrier) {
     pad_shortest(carrier, modulator);
     float[] result;
-    result.resize(carrier.length()); // Added this line to properly initialize 'result' array
+    result.resize(carrier.length());
     for (uint i = 0; i < carrier.length(); i++) {
         result[i] = carrier[i] * modulator[i];
     }
     return @result;
 }
 sound@ push_audio(float[]@ data, uint sr = 44100, uint channels = 1, bool stream_end=false) {
-    const string bytes = pack_audio(data); // Changed from 'unpack_audio(data)' to 'pack_audio(data)'
+    const string bytes = pack_audio(data);
     sound s;
     s.load("");
     s.push_memory(bytes, stream_end, sr, channels);
@@ -81,7 +81,7 @@ sound@ push_audio(const string&in bytes, uint sr = 44100, uint channels = 1, boo
     s.push_memory(bytes, stream_end, sr, channels);
     return @s; }
 bool push_audio(sound@ s, float[]@ data, uint sr = 44100, uint channels = 1, bool stream_end=false) {
-    const string bytes = pack_audio(data); // Changed from 'unpack_audio(data)' to 'pack_audio(data)'
+    const string bytes = pack_audio(data);
     if (!s.active) s.load("");
     return s.push_memory(bytes, stream_end, sr, channels);
 }
@@ -175,23 +175,18 @@ float[]@ adsr_envelope(float[]@ data, float attack, float decay, float sustain, 
     uint sustain_samples = total_samples - (attack_samples + decay_samples + release_samples);
     float[] envelope(total_samples);
     uint t;
-    // Attack phase
     for (t = 0; t < attack_samples; t++) {
         envelope[t] = t / float(attack_samples);
     }
-    // Decay phase
     for (uint i = 0; i < decay_samples; i++, t++) {
         envelope[t] = 1.0 - (1.0 - sustain) * (i / float(decay_samples));
     }
-    // Sustain phase
     for (uint i = 0; i < sustain_samples; i++, t++) {
         envelope[t] = sustain;
     }
-    // Release phase
     for (uint i = 0; i < release_samples; i++, t++) {
         envelope[t] = sustain * (1.0 - (i / float(release_samples)));
     }
-    // Apply the envelope to the data
     float[] result(total_samples);
     for (t = 0; t < total_samples; t++) {
         result[t] = data[t] * envelope[t];
