@@ -957,7 +957,7 @@ void checkforwalls()
 {
 for(uint i=0; i<walls.length(); i++)
 {
-if(gmt(me.x,me.y)!="" and walls[i].minx<=me.x and walls[i].maxx>=me.x and walls[i].miny<=me.y and walls[i].maxy>=me.y)
+if(walls[i].minx<=me.x and walls[i].maxx>=me.x and walls[i].miny<=me.y and walls[i].maxy>=me.y)
 {
 wallvolume=walls[i].volume;
 wallpitch=walls[i].pitch;
