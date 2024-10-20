@@ -1,5 +1,7 @@
+new in 5.4
+Fixed the bug of not being able to destroy more than 1 wall upon building them in the builder menu.
 new in 5.3
-Added placeholders for the folowing new folders. Bosses, found in the npc folder, hand crushers, found in the objects folder, and floor breakers, found in the objects folder. These will be coming in the next version of the game. Stay tuned for what's to come soon, especially for bosses.
+Added placeholders for the folowing new folders. Bosses, found in the npc folder, crushing clamps, found in the objects folder, and floor breakers, found in the objects folder. These will be coming in the next version of the game. Stay tuned for what's to come soon, especially for bosses.
 Simplified pausing and resuming sounds in the gametime script with 2 new functions. Instead of pausing and resumeing individual sounds, all sound pools will be paused and resumed when the user pauses or resumes the game in all scenarios.
 Updated the credits file with  additional people who contributed to this project.
 Updated the readme file with added and modified keyboard shortcuts.

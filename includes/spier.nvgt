@@ -260,13 +260,21 @@ if(spyage.x==psdoors[i17].startx && spyage.y==psdoors[i17].starty)
 materials+="locked door: "+i+" feet. ";
 }
 }
-for(uint i18=0; i18<lifts.length(); i18++)
+for (uint i18 = 0; i18 < walls.length(); i18++)
 {
-if(spyage.x>=lifts[i18].minx && spyage.x<=lifts[i18].maxx && spyage.y==lifts[i18].lifty)
+if(spyage.x>=walls[i18].minx && spyage.x<=walls[i18].maxx && spyage.y>=walls[i18].miny && spyage.y<=walls[i18].maxy)
+{
+materials+=(walls[i18].wall+": "+i+" feet. ");
+found_object=true;
+}
+}
+for(uint i19=0; i19<lifts.length(); i19++)
+{
+if(spyage.x>=lifts[i19].minx && spyage.x<=lifts[i19].maxx && spyage.y==lifts[i19].lifty)
 {
 if(!on_lift || (direction == "up" || direction == "down"))
 {
-materials += (lifts[i18].maxx - lifts[i18].minx + 1) + " x " + " tile lift: " + i + " feet. ";
+materials += (lifts[i19].maxx - lifts[i19].minx + 1) + " x " + " tile lift: " + i + " feet. ";
 found_object = true;
 }
 }
