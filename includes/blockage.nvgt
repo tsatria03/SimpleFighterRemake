@@ -12,7 +12,7 @@ maxy=my2;
 text=txt;
 }
 }
-bool is_in_blockage(string text)
+bool is_in_blockage(string& text)
 {
 for(uint i=0; i<blockages.length(); i++)
 {

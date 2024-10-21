@@ -853,14 +853,12 @@ if(tilers.length()!=0 and mfc==false) camslot=campool.play_extended_2d("sounds/o
 }
 void playstep()
 {
-for(uint i=0; i<blockages.length(); i++)
+string current_text;
+if(is_in_blockage(current_text))
 {
-if(is_in_blockage(blockages[i].text))
-{
-speak(blockages[i].text);
+speak(current_text);
 pbounce();
 return;
-}
 }
 for(uint i=0; i<walls.length(); i++)
 {

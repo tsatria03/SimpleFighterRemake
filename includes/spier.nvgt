@@ -140,7 +140,7 @@ for (uint i1 = 0; i1 < blockages.length(); i1++)
 {
 if(spyage.x>=blockages[i1].minx && spyage.x<=blockages[i1].maxx && spyage.y>=blockages[i1].miny && spyage.y<=blockages[i1].maxy)
 {
-materials+=(blockages[i1].maxx-blockages[i1].minx+1)+" x "+(blockages[i1].maxy-blockages[i1].miny+1)+" tile blockage: "+i+" feet. ";
+materials+="blockage: "+i+" feet. ";
 found_object=true;
 }
 }

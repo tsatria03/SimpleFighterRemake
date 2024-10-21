@@ -1,4 +1,6 @@
 new in 5.4
+Made spying blockages less verbose.
+Fixed an issue where multiple blockages would incorrectly display the text from the first blockage instead of their assigned text when building them in the builder menu.
 Fixed various bugs with npc classes.
 Fixed the bug of not being able to destroy more than 1 wall upon building them in the builder menu.
 new in 5.3
