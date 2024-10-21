@@ -83,7 +83,7 @@ turrets[i].tury--;
 if(me.x==turrets[i].turx and me.y==turrets[i].tury and turrets[i].firetimer.elapsed>=turrets[i].firetime and turrets[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
 string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
-if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=turpool.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
+if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength-=turrets[i].damage*turrets[i].turlevel-shielddefence;
 turrets[i].firetimer.restart();
 }
@@ -92,7 +92,7 @@ else if(me.x==turrets[i].turx and me.y==turrets[i].tury and turrets[i].firetimer
 string[] hitsfx=find_files("sounds/npc/turrets/"+turrets[i].turtype+"/*hit*");
 if(hitsfx.length()!=0) turrets[i].wepsound=turpool.play_stationary_extended("sounds/npc/turrets/"+turrets[i].turtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 string[] hurtsfx=find_files("sounds/characters/"+chartype+"/*hurt*");
-if(hurtsfx.length()!=0 and charhurtsound==1) painslot=turpool.play_stationary_extended("sounds/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=turrets[i].damage*turrets[i].turlevel-defence;
 turrets[i].firetimer.restart();
 }

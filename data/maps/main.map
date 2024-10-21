@@ -137,7 +137,7 @@ zone 35 45 30 35 vehicle
 sign 33 30 Vehicle: Players can enter and control for combat or transportation. sign true
 zone 50 60 30 35 wall
 sign 48 30 Wall: Blocks movement and can potentially be destroyed. sign true
-wall 50 60 30 30 1000 walldirt 0 100 false
+wall 50 60 30 30 1000 walldirt 0 100 true
 zone 65 75 30 35 zombie
 sign 63 30 Zombie: Undead entities with unique behaviors. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true
 zombie 65 30 2500 5 12 400 900 2 125 zb true false false

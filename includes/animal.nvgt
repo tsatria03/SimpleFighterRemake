@@ -67,7 +67,7 @@ animals[i].amy--;
 if(me.x==animals[i].amx and me.y==animals[i].amy and animals[i].firetimer.elapsed>=animals[i].firetime and animals[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
 string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
-if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=animalpool.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
+if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength-=animals[i].damage*animals[i].amlevel-shielddefence;
 animals[i].firetimer.restart();
 }
@@ -76,7 +76,7 @@ else if(me.x==animals[i].amx and me.y==animals[i].amy and animals[i].firetimer.e
 string[] hitsfx=find_files("sounds/npc/animals/"+animals[i].animaltype+"/*hit*");
 if(hitsfx.length()!=0) animals[i].wepsound=animalpool.play_stationary_extended("sounds/npc/animals/"+animals[i].animaltype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 string[] hurtsfx=find_files("sounds/characters/"+chartype+"/*hurt*");
-if(hurtsfx.length()!=0 and charhurtsound==1) painslot=animalpool.play_stationary_extended("sounds/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=animals[i].damage*animals[i].amlevel-defence;
 animals[i].firetimer.restart();
 }

@@ -3898,6 +3898,7 @@ resume_pools();
 speak("canceled");
 return;
 }
+resume_pools();
 }
 void pausemenu()
 {
