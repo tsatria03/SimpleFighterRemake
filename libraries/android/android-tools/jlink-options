@@ -1,0 +1,2 @@
+#Mon Sep 23 22:18:06 CDT 2024
+--no-header-files --no-man-pages --add-modules=java.base,java.logging --compress=2 -G --save-opts=jlink-options --output=java17 

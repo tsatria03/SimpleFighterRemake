@@ -1,4 +1,4 @@
-bool atapex, ascending, building, dlt, dmd, dmt, falling, fb, itm, inp, jb, lp, mb, mb2;
+bool atapex, ascending, building, dlt, dmd, dmt, falling, fb, itm, inp, jb, lp, lpg, mb, mb2;
 bool bouncing=true, charhit=true, cammable=true, camsz=false, drawable=true, droppable=true, fireable=true, healable=true, hidedocks=false, hidegames=false, hidemaps=false, hidesets=false, jumpable=true, melee=true, mfc=false, moveable=true, quittable=true, scadder=false, spawnable=true, sittable=true, sitting=false, speedable=true, telable=true, turnable=true, useitems=false;
 double x, paxx, y, paxy, x2, pax2, y2, paxy2, minhp, direction, direction2, card, damage, height, firetime, launchtime, lv, ln, pitch, pitch2, speedtime, speedtime2, volume, volume2, volset, xn;
 double autovolume=0, automaxvolume=120, autopan=0, automaxpan=100, autopitch=100, automaxpitch=200;
@@ -2372,12 +2372,33 @@ if(mres==2)
 dmd=false;
 }
 }
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like the sign sound to be looped?",true);
+if(mres==0)
+{
+speak("canceled");
+return;
+}
+if(mres==1)
+{
+lpg=true;
+}
+if(mres==2)
+{
+lpg=false;
+}
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"sign "+x+" "+y+" "+txt+" "+signtyp+" "+dmd);
+mapper.write("\r\n"+"sign "+x+" "+y+" "+txt+" "+signtyp+" "+dmd+" "+lpg);
 mapper.close();
-spawn_sign(x, y, txt, signtyp, dmd);
+spawn_sign(x, y, txt, signtyp, dmd, lpg);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");

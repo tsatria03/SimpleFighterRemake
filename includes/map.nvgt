@@ -468,14 +468,15 @@ double mplatpitch=stn(sd[14]);
 int vs=stn(sd[15]);
 spawn_moving_platform(mx, mx2, my, my2, sx, dir, dir2, sp, tiletype, tilevol, tilepitch, mplattype, mplatvol, mplatpitch, vs);
 }
-else if(sd[0]=="sign" && sd.length()>=6)
+else if(sd[0]=="sign" && sd.length()>=7)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
-string txt=join_string_array(sd, 3, sd.length()-2);
-string signtype=sd[sd.length()-2];
-bool dbl=string_to_bool(sd[sd.length()-1]);
-spawn_sign(x, y, txt, signtype, dbl);
+string txt=join_string_array(sd, 3, sd.length()-3);
+string signtype=sd[sd.length()-3];
+bool dbl=string_to_bool(sd[sd.length()-2]);
+bool lps=string_to_bool(sd[sd.length()-1]);
+spawn_sign(x, y, txt, signtype, dbl, lps);
 }
 else if(sd[0]=="checkpoint" && sd.length()==5)
 {
@@ -859,6 +860,11 @@ if(is_in_blockage(current_text))
 speak(current_text);
 pbounce();
 return;
+}
+for(uint i=0; i<signs.length(); i++)
+{
+string[] signsfx=find_files("sounds/objects/signs/"+signs[i].signtype+"/*loop*");
+if(signsfx.length()!=0 and signs[i].looping==false) signs[i].signsound=signpool.play_2d("sounds/objects/signs/"+signs[i].signtype+"/"+signsfx[random(0,signsfx.length()-1)],me.x,me.y,signs[i].signx,signs[i].signy,false);
 }
 for(uint i=0; i<walls.length(); i++)
 {

@@ -1,21 +1,22 @@
 sign@[]signs(0);
 class sign
 {
-bool destroyable;
+bool destroyable, looping;
 int hurtsound, signsound, pressound;
 int signx;
 int signy;
 string text;
 string signtype;
-sign(int sx,int sy,string txt, string st,bool dbl)
+sign(int sx,int sy,string txt, string st,bool dbl,bool lps)
 {
 signx=sx;
 signy=sy;
 text=txt;
 signtype=st;
 destroyable=dbl;
+looping=lps;
 string[] signsfx=find_files("sounds/objects/signs/"+signtype+"/*loop*");
-if(signsfx.length()!=0) signsound=signpool.play_2d("sounds/objects/signs/"+signtype+"/"+signsfx[random(0,signsfx.length()-1)],me.x,me.y,signx,signy,true);
+if(signsfx.length()!=0 and looping==true) signsound=signpool.play_2d("sounds/objects/signs/"+signtype+"/"+signsfx[random(0,signsfx.length()-1)],me.x,me.y,signx,signy,true);
 }
 }
 void signcheck()
@@ -30,10 +31,10 @@ speak(signs[i].text);
 }
 }
 }
-void spawn_sign(int x,int y,string text,string signtype,bool destroyable)
+void spawn_sign(int x,int y,string text,string signtype,bool destroyable,bool looping)
 {
-sign s1(x,y,text,signtype,destroyable);
-signs.insert_last(s1);
+sign sg1(x,y,text,signtype,destroyable,looping);
+signs.insert_last(sg1);
 }
 void destroy_all_signs()
 {
