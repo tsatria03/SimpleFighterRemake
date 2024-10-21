@@ -1,10 +1,12 @@
 new in 5.4
+Fixed miscalculations of health for all objects that take them, including makable characters.
+Npc types such as animals, enemies, and projectiles will now show how many lives they have when spying them. These will be Represented by the letter X. For example, a dog may look something like this. 2 x dog, 5 feet. 4 x dog2, 10 feet.
 Made spying blockages less verbose.
 Fixed an issue where multiple blockages would incorrectly display the text from the first blockage instead of their assigned text when building them in the builder menu.
 Fixed various bugs with npc classes.
 Fixed the bug of not being able to destroy more than 1 wall upon building them in the builder menu.
 new in 5.3
-Added placeholders for the folowing new folders. Bosses, found in the npc folder, crushing clamps, found in the objects folder, and floor breakers, found in the objects folder. These will be coming in the next version of the game. Stay tuned for what's to come soon, especially for bosses.
+Added placeholders for the folowing new folders. Bosses, found in the npc folder, crushing clamps, found in the objects folder, and floor breakers, found in the objects folder. These will be coming in later versions of the game. Stay tuned for what's to come soon, especially for bosses.
 Simplified pausing and resuming sounds in the gametime script with 2 new functions. Instead of pausing and resumeing individual sounds, all sound pools will be paused and resumed when the user pauses or resumes the game in all scenarios.
 Updated the credits file with  additional people who contributed to this project.
 Updated the readme file with added and modified keyboard shortcuts.

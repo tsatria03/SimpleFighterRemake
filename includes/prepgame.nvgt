@@ -3849,7 +3849,7 @@ setupmenu();
 m.add_item_tts("total objects "+(animals.length()+bullets.length()+doors.length()+enemies.length()+projectiles.length()+robots.length()+spikes.length()+turrets.length()+vehicles.length()+walls.length()+zombies.length()));
 for(uint i=0; i<animals.length(); i++)
 {
-m.add_item_tts(animals[i].animaltype+";"+"at;"+animals[i].amx+";"+animals[i].amy+";"+"HP"+round(animals[i].animalhealth/animals[i].animalmaxhealth*100,0)+"percent"+";"+"level"+animals[i].amlevel);
+m.add_item_tts(animals[i].animaltype+";"+"at;"+animals[i].amx+";"+animals[i].amy+";"+"HP"+round(animals[i].animalhealth/animals[i].animalmaxhealth*100,2)+"percent"+";"+"level"+animals[i].amlevel);
 }
 for(uint i=0; i<bullets.length(); i++)
 {
@@ -3857,39 +3857,39 @@ m.add_item_tts("bullet at;"+bullets[i].bullx+";"+bullets[i].bully);
 }
 for(uint i=0; i<doors.length(); i++)
 {
-m.add_item_tts("door at;"+doors[i].startx+";"+doors[i].starty+";"+"HP"+round(doors[i].doorhealth/doors[i].doormaxhealth*100,0)+"percent");
+m.add_item_tts("door at;"+doors[i].startx+";"+doors[i].starty+";"+"HP"+round(doors[i].doorhealth/doors[i].doormaxhealth*100,2)+"percent");
 }
 for(uint i=0; i<enemies.length(); i++)
 {
-m.add_item_tts(enemies[i].enemytype+";"+"at;"+enemies[i].emx+";"+enemies[i].emy+";"+"HP"+round(enemies[i].enemyhealth/enemies[i].enemymaxhealth*100,0)+"percent"+";"+"level"+enemies[i].emlevel);
+m.add_item_tts(enemies[i].enemytype+";"+"at;"+enemies[i].emx+";"+enemies[i].emy+";"+"HP"+round(enemies[i].enemyhealth/enemies[i].enemymaxhealth*100,2)+"percent"+";"+"level"+enemies[i].emlevel);
 }
 for(uint i=0; i<projectiles.length(); i++)
 {
-m.add_item_tts(projectiles[i].projtype+";"+"at;"+projectiles[i].prox+";"+projectiles[i].proy+";"+"HP"+round(projectiles[i].projhealth/projectiles[i].projmaxhealth*100,0)+"percent"+";"+"level"+projectiles[i].projlevel);
+m.add_item_tts(projectiles[i].projtype+";"+"at;"+projectiles[i].prox+";"+projectiles[i].proy+";"+"HP"+round(projectiles[i].projhealth/projectiles[i].projmaxhealth*100,2)+"percent"+";"+"level"+projectiles[i].projlevel);
 }
 for(uint i=0; i<robots.length(); i++)
 {
-m.add_item_tts(robots[i].robtype+";"+"at;"+robots[i].robx+";"+robots[i].roby+";"+"HP"+round(robots[i].robothealth/robots[i].robotmaxhealth*100,0)+"percent"+";"+"level"+robots[i].roblevel);
+m.add_item_tts(robots[i].robtype+";"+"at;"+robots[i].robx+";"+robots[i].roby+";"+"HP"+round(robots[i].robothealth/robots[i].robotmaxhealth*100,2)+"percent"+";"+"level"+robots[i].roblevel);
 }
 for(uint i=0; i<spikes.length(); i++)
 {
-m.add_item_tts(spikes[i].spiketype+";"+"at;"+spikes[i].minx+";"+spikes[i].miny+";"+"HP"+round(spikes[i].spikehealth/spikes[i].spikemaxhealth*100,0)+"percent");
+m.add_item_tts(spikes[i].spiketype+";"+"at;"+spikes[i].minx+";"+spikes[i].miny+";"+"HP"+round(spikes[i].spikehealth/spikes[i].spikemaxhealth*100,2)+"percent");
 }
 for(uint i=0; i<turrets.length(); i++)
 {
-m.add_item_tts(turrets[i].turtype+";"+"at;"+turrets[i].turx+";"+turrets[i].tury+";"+"HP"+round(turrets[i].turhealth/turrets[i].turmaxhealth*100,0)+"percent"+";"+"level"+turrets[i].turlevel);
+m.add_item_tts(turrets[i].turtype+";"+"at;"+turrets[i].turx+";"+turrets[i].tury+";"+"HP"+round(turrets[i].turhealth/turrets[i].turmaxhealth*100,2)+"percent"+";"+"level"+turrets[i].turlevel);
 }
 for(uint i=0; i<vehicles.length(); i++)
 {
-m.add_item_tts(vehicles[i].vehtype+";"+"at;"+vehicles[i].vehx+";"+vehicles[i].vehy+";"+"HP"+round(vehicles[i].vehhealth/vehicles[i].vehmaxhealth*100,0)+"percent");
+m.add_item_tts(vehicles[i].vehtype+";"+"at;"+vehicles[i].vehx+";"+vehicles[i].vehy+";"+"HP"+round(vehicles[i].vehhealth/vehicles[i].vehmaxhealth*100,2)+"percent");
 }
 for(uint i=0; i<walls.length(); i++)
 {
-m.add_item_tts(walls[i].wall+";"+"at;"+walls[i].minx+";"+walls[i].miny+";"+"HP"+round(walls[i].wallhealth/walls[i].wallmaxhealth*100,0)+"percent");
+m.add_item_tts(walls[i].wall+";"+"at;"+walls[i].minx+";"+walls[i].miny+";"+"HP"+round(walls[i].wallhealth/walls[i].wallmaxhealth*100,2)+"percent");
 }
 for(uint i=0; i<zombies.length(); i++)
 {
-m.add_item_tts(zombies[i].zombtype+";"+"at;"+zombies[i].zombx+";"+zombies[i].zomby+";"+"HP"+round(zombies[i].zombiehealth/zombies[i].zombiemaxhealth*100,0)+"percent"+";"+"level"+zombies[i].zomblevel);
+m.add_item_tts(zombies[i].zombtype+";"+"at;"+zombies[i].zombx+";"+zombies[i].zomby+";"+"HP"+round(zombies[i].zombiehealth/zombies[i].zombiemaxhealth*100,2)+"percent"+";"+"level"+zombies[i].zomblevel);
 }
 int mres=m.run("Object info", true);
 if(mres==0)
@@ -3944,9 +3944,9 @@ if(gamemode==9) m.add_item_tts("there are;"+robots.length()+rotype+";"+"spawned 
 if(gamemode==10) m.add_item_tts("there are;"+zombies.length()+zotype+";"+"spawned on the map.");
 if(me.y>=1  and gmt(me.x,me.y)=="") m.add_item_tts("current location,"+me.x+",;"+me.y+","+"you're currently in the air,"+"facing;"+facing);
 else if(me.y>=0 ) m.add_item_tts("current location,"+me.x+",;"+me.y+","+"you're walking on;"+gmt(me.x,me.y)+","+"facing;"+facing);
-if(lifecard>=2) m.add_item_tts("health, "+round(health/maxhealth*100,0)+"percent, "+health+"of "+maxhealth+"hitpoints remaining, with "+lifecard+"lives left.");
-else if(lifecard<=1) m.add_item_tts("health, "+round(health/maxhealth*100,0)+"percent, "+health+"of "+maxhealth+"hitpoints remaining, with "+lifecard+"life left.");
-if(shieldon==1) m.add_item_tts("shield strength, "+round(shieldstrength/maxshieldstrength*100,0)+"percent, "+shieldstrength+"of "+maxshieldstrength+"hitpoints remaining.");
+if(lifecard>=2) m.add_item_tts("health, "+round(health/maxhealth*100,2)+"percent, "+health+"of "+maxhealth+"hitpoints remaining, with "+lifecard+"lives left.");
+else if(lifecard<=1) m.add_item_tts("health, "+round(health/maxhealth*100,2)+"percent, "+health+"of "+maxhealth+"hitpoints remaining, with "+lifecard+"life left.");
+if(shieldon==1) m.add_item_tts("shield strength, "+round(shieldstrength/maxshieldstrength*100,2)+"percent, "+shieldstrength+"of "+maxshieldstrength+"hitpoints remaining.");
 m.add_item_tts("Your maximum jump height is"+jumpheight+"squares");
 m.add_item_tts("Your maximum x position is"+maxx+"tiles");
 m.add_item_tts("Your maximum y position is"+maxy+"tiles");

@@ -6,7 +6,7 @@ platform 0 200 10 carpet2 0 100
 platform 0 200 20 carpet 0 100
 platform 0 200 30 carpet3 0 100
 zone 0 200 0 200 main
-sign 0 0 Welcome to the Simple Fighter main map. This map showcases various game objects and building features using zones. Explore to learn about different objects! Note: all signs including this one are destroyable. If you get tired of reading, just beat the living hell out of them, and they'll happily go away for good. Unless you reload the map that is. I mean ahem, did I just say that? Woops! Anyways enjoy exploring! sign true
+sign 1 0 Welcome to the Simple Fighter main map. This map showcases various game objects and building features using zones. Explore to learn about different objects! Note: all signs including this one are destroyable. If you get tired of reading, just beat the living hell out of them, and they'll happily go away for good. Unless you reload the map that is. I mean ahem, did I just say that? Woops! Anyways enjoy exploring! sign true
 zone 20 30 0 5 animal
 sign 18 0 Animal: Living creatures that can be friendly or hostile. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true
 animal 20 0 1000 2 10 500 1000 1 50 dog true false false
