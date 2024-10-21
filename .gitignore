@@ -1,4 +1,3 @@
-libraries/
-releases/
-sounds/
+*.ogg
+*.wav
 New File.txt
