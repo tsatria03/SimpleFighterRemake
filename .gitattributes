@@ -1,6 +1,15 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+#binary files
+*.dat linguist-language=Binary
+
+# nvgt files
+*.nvgt linguist-language=AngelScript
+
+# simple fighter game files
+*.sif linguist-language=INI
+
 # Web Development files
 *.js linguist-language=JavaScript
 *.ts linguist-language=TypeScript
@@ -52,12 +61,3 @@
 *.txt linguist-language=Text
 *.doc linguist-language=Text
 *.pdf linguist-language=Text
-
-#binary files
-*.dat linguist-language=Binary
-
-# nvgt files
-*.nvgt linguist-language=AngelScript
-
-# simple fighter game files
-*.sif linguist-language=INI

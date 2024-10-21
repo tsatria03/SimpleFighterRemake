@@ -50,7 +50,7 @@ sign 3 10 Enemy Zone: Periodically spawns enemies within the defined area. sign 
 enemy_zone 5 15 10 2500 random
 zone 20 30 10 15 hazard
 sign 18 10 Hazard: Damages the player when touched. sign true
-hazard 20 30 10 10 fire
+hazard 20 30 10 10 fire false
 zone 35 45 10 15 health_zone
 sign 33 10 Health Zone: Restores or takes away the player's health when they stand in it. sign true
 health_zone 35 45 10 10 1000 1000
@@ -65,7 +65,7 @@ sign 78 10 Item Zone: Periodically spawns items within the defined area. sign tr
 item_zone 80 90 10 10 500 health apple
 zone 95 105 10 15 lift
 sign 93 10 Lift: Moves players vertically between different levels. sign true
-lift 95 105 10 1 50 metal15 0 100 lift 0 100
+lift 95 105 0 100 1 50 metal15 0 100 lift 0 100
 zone 110 120 10 15 moving_hazard
 sign 108 10 Moving Hazard: A hazard that moves, making it more dangerous. sign true
 mhazard 110 120 10 10 0 0 0 0 50 water
