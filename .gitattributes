@@ -1,8 +1,63 @@
-# NVGT files
-*.nvgt linguist-language=Nvgt
-# C++ files
-*.cpp linguist-language=C++
-*.h linguist-language=C++
+# Auto detect text files and perform LF normalization
+* text=auto
 
-# AngelScript files
+# Web Development files
+*.js linguist-language=JavaScript
+*.ts linguist-language=TypeScript
+*.html linguist-language=HTML
+*.css linguist-language=CSS
+*.php linguist-language=PHP
+
+# General Purpose files
+*.py linguist-language=Python
+*.java linguist-language=Java
+*.h linguist-language=C++
+*.c linguist-language=C
+*.cs linguist-language=C#
+*.rb linguist-language=Ruby
+*.go linguist-language=Go
+*.rs linguist-language=Rust
+*.swift linguist-language=Swift
+*.kt linguist-language=Kotlin
+
+# Scripting files
+*.lua linguist-language=Lua
+*.pl linguist-language=Perl
+*.sh linguist-language=Shell
+*.ps1 linguist-language=PowerShell
+
+# Game Development files
+*.gd linguist-language=GDScript
 *.as linguist-language=AngelScript
+*.cpp linguist-language=C++
+*.gml linguist-language=GameMaker
+*.unity linguist-language=ShaderLab
+
+# Data files
+*.json linguist-language=JSON
+*.xml linguist-language=XML
+*.yaml linguist-language=YAML
+*.yml linguist-language=YAML
+*.csv linguist-language=CSV
+*.sql linguist-language=SQL
+
+# Config Files
+*.ini linguist-language=INI
+*.conf linguist-language=Configuration
+*.cfg linguist-language=Configuration
+*.toml linguist-language=TOML
+
+# Documentation files
+*.md linguist-language=Markdown
+*.txt linguist-language=Text
+*.doc linguist-language=Text
+*.pdf linguist-language=Text
+
+#binary files
+*.dat linguist-language=Binary
+
+# nvgt files
+*.nvgt linguist-language=AngelScript
+
+# simple fighter game files
+*.sif linguist-language=INI
