@@ -1,8 +1,8 @@
+# NVGT files
+*.nvgt linguist-language=Nvgt
 # C++ files
 *.cpp linguist-language=C++
 *.h linguist-language=C++
-*.nvgt linguist-language=C++
 
 # AngelScript files
 *.as linguist-language=AngelScript
-*.nvgt linguist-language=AngelScript
