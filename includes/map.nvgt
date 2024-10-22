@@ -983,7 +983,7 @@ atapex=true;
 }
 void fallcheck()
 {
-if(jumping==0 && falling==false && (gmt(me.x,me.y)==""||gmt(me.x,me.y)=="air") && doormove==false && psdoormove==false && liftmove==false && me.y>0)
+if(jumping==0 && falling==false && (gmt(me.x,me.y)==""||gmt(me.x,me.y)=="air") && doormove==false && psdoormove==false && liftmove==false && platformmove==false && me.y>0)
 {
 falling=true;
 string[] fallsfx=find_files("sounds/characters/"+chartype+"/*fall*");
