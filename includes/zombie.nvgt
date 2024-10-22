@@ -11,16 +11,20 @@ double zombiehealth;
 double zombiemaxhealth;
 int zombx;
 int zomby;
+int zombirange;
+int zombirange2;
 int damage;
 int zombietime;
 int firetime;
 string zombtype;
 timer zombietimer, firetimer;
-zombie(int zx,int zy,double hp,double maxhp,int zc,int dm,int ft,int sp,double zlv,double zxp,string zt,bool zombf,bool zombt,bool zombt2)
+zombie(int zx,int zy,int zbrange,int zbrange2,double hp,double maxhp,int zc,int dm,int ft,int sp,double zlv,double zxp,string zt,bool zombf,bool zombt,bool zombt2)
 {
 this.zombhealth=hp;
 zombx=zx;
 zomby=zy;
+zombirange=zbrange;
+zombirange2=zbrange2;
 zombiehealth=hp;
 zombiemaxhealth=maxhp;
 zombiecard=zc;
@@ -64,14 +68,14 @@ if(zombies[i].zomby>me.y and zombies[i].moveable2==true and paused==0)
 zombies[i].zomby--;
 }
 }
-if(me.x==zombies[i].zombx and me.y==zombies[i].zomby and zombies[i].firetimer.elapsed>=zombies[i].firetime and zombies[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
+if(absolute(me.x-zombies[i].zombx)<=zombies[i].zombirange and absolute(me.y-zombies[i].zomby)<=zombies[i].zombirange2 and zombies[i].firetimer.elapsed>=zombies[i].firetime and zombies[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
 string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength-=zombies[i].damage*zombies[i].zomblevel-shielddefence;
 zombies[i].firetimer.restart();
 }
-else if(me.x==zombies[i].zombx and me.y==zombies[i].zomby and zombies[i].firetimer.elapsed>=zombies[i].firetime and zombies[i].fireable==true and shieldon==0 and shieldstrength<=maxshieldstrength and paused==0)
+else if(absolute(me.x-zombies[i].zombx)<=zombies[i].zombirange and absolute(me.y-zombies[i].zomby)<=zombies[i].zombirange2 and zombies[i].firetimer.elapsed>=zombies[i].firetime and zombies[i].fireable==true and shieldon==0 and shieldstrength<=maxshieldstrength and paused==0)
 {
 string[] hitsfx=find_files("sounds/npc/zombies/"+zombies[i].zombtype+"/*hit*");
 if(hitsfx.length()!=0) zombies[i].wepsound=zombpool.play_stationary_extended("sounds/npc/zombies/"+zombies[i].zombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -104,10 +108,10 @@ return;
 }
 }
 }
-void spawn_zombie(int x,int y,double hp,double maxhp,int zc,int dm,int firetime,int zombietime,double zomblevel,double xp,string zombtype,bool fireable,bool moveable,bool moveable2)
+void spawn_zombie(int x,int y,int zombierange,int zombierange2,double hp,double maxhp,int zc,int dm,int firetime,int zombietime,double zomblevel,double xp,string zombtype,bool fireable,bool moveable,bool moveable2)
 {
-zombie z1(x,y,hp,maxhp,zc,dm,firetime,zombietime,zomblevel,xp,zombtype,fireable,moveable,moveable2);
-zombies.insert_last(z1);
+zombie zb1(x,y,zombierange,zombierange2,hp,maxhp,zc,dm,firetime,zombietime,zomblevel,xp,zombtype,fireable,moveable,moveable2);
+zombies.insert_last(zb1);
 }
 void destroy_all_zombies()
 {

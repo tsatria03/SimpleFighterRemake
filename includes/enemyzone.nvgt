@@ -27,7 +27,7 @@ if(emtype=="random" && enemytype.length()>0)
 {
 emtype=enemytype[random(0,enemytype.length()-1)];
 }
-spawn_enemy(random(enemyzones[i].minx, enemyzones[i].maxx), enemyzones[i].emy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, emtype, true, true, false);
+spawn_enemy(random(enemyzones[i].minx, enemyzones[i].maxx), enemyzones[i].emy, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, emtype, true, true, false);
 enemyzones[i].spawntimer.restart();
 }
 }

@@ -73,13 +73,13 @@ zombiezoneloop();
 if(amsptimer.elapsed>=amsptime and animals.length()<aninum and gamemode==1 and building==false and spawnable==true)
 {
 string[] animaltype=find_directories("sounds/npc/animals/*");
-spawn_animal(random(0, maxx), 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, animaltype[random(0,animaltype.length()-1)], true, true, false);
+spawn_animal(random(0, maxx), 0, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, animaltype[random(0,animaltype.length()-1)], true, true, false);
 amsptimer.restart();
 }
 if(emsptimer.elapsed>=emsptime and enemies.length()<eninum and gamemode==2 and building==false and spawnable==true)
 {
 string[] enemytype=find_directories("sounds/npc/enemies/*");
-spawn_enemy(random(0, maxx), 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, enemytype[random(0,enemytype.length()-1)], true, true, false);
+spawn_enemy(random(0, maxx), 0, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, enemytype[random(0,enemytype.length()-1)], true, true, false);
 emsptimer.restart();
 }
 if(prosptimer.elapsed>=prosptime and projectiles.length()<projnum and gamemode==3 and building==false and spawnable==true)
@@ -91,13 +91,13 @@ prosptimer.restart();
 if(robsptimer.elapsed>=robsptime and robots.length()<robnum and gamemode==4 and building==false and spawnable==true)
 {
 string[] robottype=find_directories("sounds/npc/robots/*");
-spawn_robot(random(0, maxx), 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, robottype[random(0,robottype.length()-1)], true, true, false);
+spawn_robot(random(0, maxx), 0, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, robottype[random(0,robottype.length()-1)], true, true, false);
 robsptimer.restart();
 }
 if(zombsptimer.elapsed>=zombsptime and zombies.length()<zombnum and gamemode==5 and building==false and spawnable==true)
 {
 string[] zombietype=find_directories("sounds/npc/zombies/*");
-spawn_zombie(random(0, maxx), 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, zombietype[random(0,zombietype.length()-1)], true, true, false);
+spawn_zombie(random(0, maxx), 0, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, zombietype[random(0,zombietype.length()-1)], true, true, false);
 zombsptimer.restart();
 }
 if(amsptimer.elapsed>=amsptime and animals.length()<aninum and gamemode==6 and building==false and spawnable==true and  amtype!="")
@@ -105,7 +105,7 @@ if(amsptimer.elapsed>=amsptime and animals.length()<aninum and gamemode==6 and b
 string[] animaltype=find_directories("sounds/npc/animals/*");
 if(amtype!="" and animaltype.find(amtype)>-1)
 {
-spawn_animal(random(0, maxx), 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, amtype, true, true, false);
+spawn_animal(random(0, maxx), 0, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, amtype, true, true, false);
 amsptimer.restart();
 }
 }
@@ -114,7 +114,7 @@ if(emsptimer.elapsed>=emsptime and enemies.length()<eninum and gamemode==7 and b
 string[] enemytype=find_directories("sounds/npc/enemies/*");
 if(emtype!="" and enemytype.find(emtype)>-1)
 {
-spawn_enemy(random(0, maxx), 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, emtype, true, true, false);
+spawn_enemy(random(0, maxx), 0, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, emtype, true, true, false);
 emsptimer.restart();
 }
 }
@@ -132,7 +132,7 @@ if(robsptimer.elapsed>=robsptime and robots.length()<robnum and gamemode==9 and 
 string[] robottype=find_directories("sounds/npc/robots/*");
 if(rotype!="" and robottype.find(rotype)>-1)
 {
-spawn_robot(random(0, maxx), 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, rotype, true, true, false);
+spawn_robot(random(0, maxx), 0, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, rotype, true, true, false);
 robsptimer.restart();
 }
 }
@@ -141,7 +141,7 @@ if(zombsptimer.elapsed>=zombsptime and zombies.length()<zombnum and gamemode==10
 string[] zombietype=find_directories("sounds/npc/zombies/*");
 if(zotype!="" and zombietype.find(zotype)>-1)
 {
-spawn_zombie(random(0, maxx), 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, zotype, true, true, false);
+spawn_zombie(random(0, maxx), 0, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, zotype, true, true, false);
 zombsptimer.restart();
 }
 }

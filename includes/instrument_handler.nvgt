@@ -1616,6 +1616,7 @@ instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(key_pressed(KEY_ESCAPE))
 {
+resume_pools();
 instpool.destroy_all();
 speak("exiting");
 return;
@@ -1628,6 +1629,7 @@ for(uint i=0; i<instruments.length(); i++)
 {
 if(me.x>=instruments[i].minx-1 and me.x<=instruments[i].maxx+1 and me.y>=instruments[i].miny-1 and me.y<=instruments[i].maxy+1 and key_pressed(KEY_RETURN))
 {
+pause_pools();
 if(instruments[i].insthelp==true) speak("Instruments player. Press letters and numbers to play chords, melodies, and drums on the keyboard. Press the Tab key to cycle through the instrument categories. Press Left and Right arrow keys to cycle through the instrument types. Hold Up or Down arrow keys to utilize the pitch modulator. Press the Enter key to enable or disable the overlapping pettle for the current instrument you're playing. Press the Backslash key to enable or disable the sustaining pettle for the current instrument you're playing. Press the Escape key to exit the instruments player.");
 if(instruments[i].insthelp==false) speak("instruments player");
 instcad=1;

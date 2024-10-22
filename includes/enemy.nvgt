@@ -11,16 +11,20 @@ double enemyhealth;
 double enemymaxhealth;
 int emx;
 int emy;
+int enerange;
+int enerange2;
 int damage;
 int enemytime;
 int firetime;
 string enemytype;
 timer enemytimer, firetimer;
-enemy(int ex,int ey,double hp,double maxhp,int ec,int dm,int ft,int sp,double emlv,double exp,string et,bool emf,bool emt,bool emt2)
+enemy(int ex,int ey,int enrange,int enrange2,double hp,double maxhp,int ec,int dm,int ft,int sp,double emlv,double exp,string et,bool emf,bool emt,bool emt2)
 {
 this.enehealth=hp;
 emx=ex;
 emy=ey;
+enerange=enrange;
+enerange2=enrange2;
 enemyhealth=hp;
 enemymaxhealth=maxhp;
 enemycard=ec;
@@ -64,7 +68,7 @@ if(enemies[i].emy>me.y and enemies[i].moveable2==true and paused==0)
 enemies[i].emy--;
 }
 }
-if(me.x==enemies[i].emx and me.y==enemies[i].emy and enemies[i].firetimer.elapsed>=enemies[i].firetime and enemies[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
+if(absolute(me.x-enemies[i].emx)<=enemies[i].enerange and absolute(me.y-enemies[i].emy)<=enemies[i].enerange2 and enemies[i].firetimer.elapsed>=enemies[i].firetime and enemies[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
 string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
@@ -73,7 +77,7 @@ if(hitsfx.length()!=0) enemies[i].wepsound=enemypool.play_stationary_extended("s
 shieldstrength-=enemies[i].damage*enemies[i].emlevel-shielddefence;
 enemies[i].firetimer.restart();
 }
-else if(me.x==enemies[i].emx and me.y==enemies[i].emy and enemies[i].firetimer.elapsed>=enemies[i].firetime and enemies[i].fireable==true and shieldon==0 and paused==0)
+else if(absolute(me.x-enemies[i].emx)<=enemies[i].enerange and absolute(me.y-enemies[i].emy)<=enemies[i].enerange2 and enemies[i].firetimer.elapsed>=enemies[i].firetime and enemies[i].fireable==true and shieldon==0 and paused==0)
 {
 string[] hitsfx=find_files("sounds/npc/enemies/"+enemies[i].enemytype+"/*hit*");
 if(hitsfx.length()!=0) enemies[i].wepsound=enemypool.play_stationary_extended("sounds/npc/enemies/"+enemies[i].enemytype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -106,10 +110,10 @@ return;
 }
 }
 }
-void spawn_enemy(int x,int y,double hp,double maxhp,int ec,int dm,int firetime,int enemytime,double emlevel,double xp,string enemytype,bool fireable,bool moveable,bool moveable2)
+void spawn_enemy(int x,int y,int enemrange,int enemrange2,double hp,double maxhp,int ec,int dm,int firetime,int enemytime,double emlevel,double xp,string enemytype,bool fireable,bool moveable,bool moveable2)
 {
-enemy e1(x,y,hp,maxhp,ec,dm,firetime,enemytime,emlevel,xp,enemytype,fireable,moveable,moveable2);
-enemies.insert_last(e1);
+enemy en1(x,y,enemrange,enemrange2,hp,maxhp,ec,dm,firetime,enemytime,emlevel,xp,enemytype,fireable,moveable,moveable2);
+enemies.insert_last(en1);
 }
 void destroy_all_enemies()
 {

@@ -11,16 +11,20 @@ double animalhealth;
 double animalmaxhealth;
 int amx;
 int amy;
+int anirange;
+int anirange2;
 int damage;
 int animaltime;
 int firetime;
 string animaltype;
 timer animaltimer, firetimer;
-animal(int ax,int ay,double hp,double maxhp,int ac,int dm,int ft,int sp,double amlv,double axp,string at,bool amf,bool amt,bool amt2)
+animal(int ax,int ay,int anrange,int anrange2,double hp,double maxhp,int ac,int dm,int ft,int sp,double amlv,double axp,string at,bool amf,bool amt,bool amt2)
 {
 this.anihealth=hp;
 amx=ax;
 amy=ay;
+anirange=anrange;
+anirange2=anrange2;
 animalhealth=hp;
 animalmaxhealth=maxhp;
 animalcard=ac;
@@ -64,14 +68,14 @@ if(animals[i].amy>me.y and animals[i].moveable2==true and paused==0)
 animals[i].amy--;
 }
 }
-if(me.x==animals[i].amx and me.y==animals[i].amy and animals[i].firetimer.elapsed>=animals[i].firetime and animals[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
+if(absolute(me.x-animals[i].amx)<=animals[i].anirange and absolute(me.y-animals[i].amy)<=animals[i].anirange2 and animals[i].firetimer.elapsed>=animals[i].firetime and animals[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
 string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength-=animals[i].damage*animals[i].amlevel-shielddefence;
 animals[i].firetimer.restart();
 }
-else if(me.x==animals[i].amx and me.y==animals[i].amy and animals[i].firetimer.elapsed>=animals[i].firetime and animals[i].fireable==true and shieldon==0 and paused==0)
+else if(absolute(me.x-animals[i].amx)<=animals[i].anirange and absolute(me.y-animals[i].amy)<=animals[i].anirange2 and animals[i].firetimer.elapsed>=animals[i].firetime and animals[i].fireable==true and shieldon==0 and paused==0)
 {
 string[] hitsfx=find_files("sounds/npc/animals/"+animals[i].animaltype+"/*hit*");
 if(hitsfx.length()!=0) animals[i].wepsound=animalpool.play_stationary_extended("sounds/npc/animals/"+animals[i].animaltype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -104,10 +108,10 @@ return;
 }
 }
 }
-void spawn_animal(int x,int y,double hp,double maxhp,int ac,int dm,int firetime,int animaltime,double amlevel,double xp,string animaltype,bool fireable,bool moveable,bool moveable2)
+void spawn_animal(int x,int y,int animrange,int animrange2,double hp,double maxhp,int ac,int dm,int firetime,int animaltime,double amlevel,double xp,string animaltype,bool fireable,bool moveable,bool moveable2)
 {
-animal a1(x,y,hp,maxhp,ac,dm,firetime,animaltime,amlevel,xp,animaltype,fireable,moveable,moveable2);
-animals.insert_last(a1);
+animal an1(x,y,animrange,animrange2,hp,maxhp,ac,dm,firetime,animaltime,amlevel,xp,animaltype,fireable,moveable,moveable2);
+animals.insert_last(an1);
 }
 void destroy_all_animals()
 {

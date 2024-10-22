@@ -559,39 +559,43 @@ int desty=stn(sd[7]);
 string endtext=sd[8];
 spawn_travelpoint(mx, mx2, my, my2, destmap, destx, desty, endtext);
 }
-else if(sd[0]=="animal" && sd.length()==14)
+else if(sd[0]=="animal" && sd.length()==16)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
-double hp=stn(sd[3]);
-int card=stn(sd[4]);
-int dmg=stn(sd[5]);
-int ft=stn(sd[6]);
-int sp=stn(sd[7]);
-double lv=stn(sd[8]);
-double xp=stn(sd[9]);
-string amtype=sd[10];
-bool fb=string_to_bool(sd[11]);
-bool mb=string_to_bool(sd[12]);
-bool mb2=string_to_bool(sd[13]);
-spawn_animal(x, y, hp, hp, card, dmg, ft, sp, lv, xp, amtype, fb, mb, mb2);
+int anirange=stn(sd[3]);
+int anirange2=stn(sd[4]);
+double hp=stn(sd[5]);
+int card=stn(sd[6]);
+int dmg=stn(sd[7]);
+int ft=stn(sd[8]);
+int sp=stn(sd[9]);
+double lv=stn(sd[10]);
+double xp=stn(sd[11]);
+string amtype=sd[12];
+bool fb=string_to_bool(sd[13]);
+bool mb=string_to_bool(sd[14]);
+bool mb2=string_to_bool(sd[15]);
+spawn_animal(x, y, anirange, anirange2, hp, hp, card, dmg, ft, sp, lv, xp, amtype, fb, mb, mb2);
 }
-else if(sd[0]=="enemy" && sd.length()==14)
+else if(sd[0]=="enemy" && sd.length()==16)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
-double hp=stn(sd[3]);
-int card=stn(sd[4]);
-int dmg=stn(sd[5]);
-int ft=stn(sd[6]);
-int sp=stn(sd[7]);
-double lv=stn(sd[8]);
-double xp=stn(sd[9]);
-string emtype=sd[10];
-bool fb=string_to_bool(sd[11]);
-bool mb=string_to_bool(sd[12]);
-bool mb2=string_to_bool(sd[13]);
-spawn_enemy(x, y, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2);
+int enerange=stn(sd[3]);
+int enerange2=stn(sd[4]);
+double hp=stn(sd[5]);
+int card=stn(sd[6]);
+int dmg=stn(sd[7]);
+int ft=stn(sd[8]);
+int sp=stn(sd[9]);
+double lv=stn(sd[10]);
+double xp=stn(sd[11]);
+string emtype=sd[12];
+bool fb=string_to_bool(sd[13]);
+bool mb=string_to_bool(sd[14]);
+bool mb2=string_to_bool(sd[15]);
+spawn_enemy(x, y, enerange, enerange2, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2);
 }
 else if(sd[0]=="projectile" && sd.length()==13)
 {
@@ -609,22 +613,24 @@ bool fb=string_to_bool(sd[11]);
 bool mb=string_to_bool(sd[12]);
 spawn_projectile(x, y, dir, hp, hp, card, dmg, sp, lv, xp, potype, fb, mb);
 }
-else if(sd[0]=="robot" && sd.length()==14)
+else if(sd[0]=="robot" && sd.length()==16)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
-double hp=stn(sd[3]);
-int card=stn(sd[4]);
-int dmg=stn(sd[5]);
-int ft=stn(sd[6]);
-int sp=stn(sd[7]);
-double lv=stn(sd[8]);
-double xp=stn(sd[9]);
-string rotype=sd[10];
-bool fb=string_to_bool(sd[11]);
-bool mb=string_to_bool(sd[12]);
-bool mb2=string_to_bool(sd[13]);
-spawn_robot(x, y, hp, hp, card, dmg, ft, sp, lv, xp, rotype, fb, mb, mb2);
+int roborange=stn(sd[3]);
+int roborange2=stn(sd[4]);
+double hp=stn(sd[5]);
+int card=stn(sd[6]);
+int dmg=stn(sd[7]);
+int ft=stn(sd[8]);
+int sp=stn(sd[9]);
+double lv=stn(sd[10]);
+double xp=stn(sd[11]);
+string rotype=sd[12];
+bool fb=string_to_bool(sd[13]);
+bool mb=string_to_bool(sd[14]);
+bool mb2=string_to_bool(sd[15]);
+spawn_robot(x, y, roborange, roborange2, hp, hp, card, dmg, ft, sp, lv, xp, rotype, fb, mb, mb2);
 }
 else if(sd[0]=="turret" && sd.length()==17)
 {
@@ -646,22 +652,24 @@ bool mb=string_to_bool(sd[15]);
 bool mb2=string_to_bool(sd[16]);
 spawn_turret(x, y, hp, hp, card, dmg, ft, lt, sp, lv, xp, tutype, tutype2, tutype3, fb, mb, mb2);
 }
-else if(sd[0]=="zombie" && sd.length()==14)
+else if(sd[0]=="zombie" && sd.length()==16)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
-double hp=stn(sd[3]);
-int card=stn(sd[4]);
-int dmg=stn(sd[5]);
-int ft=stn(sd[6]);
-int sp=stn(sd[7]);
-double lv=stn(sd[8]);
-double xp=stn(sd[9]);
-string zotype=sd[10];
-bool fb=string_to_bool(sd[11]);
-bool mb=string_to_bool(sd[12]);
-bool mb2=string_to_bool(sd[13]);
-spawn_zombie(x, y, hp, hp, card, dmg, ft, sp, lv, xp, zotype, fb, mb, mb2);
+int zombirange=stn(sd[3]);
+int zombirange2=stn(sd[4]);
+double hp=stn(sd[5]);
+int card=stn(sd[6]);
+int dmg=stn(sd[7]);
+int ft=stn(sd[8]);
+int sp=stn(sd[9]);
+double lv=stn(sd[10]);
+double xp=stn(sd[11]);
+string zotype=sd[12];
+bool fb=string_to_bool(sd[13]);
+bool mb=string_to_bool(sd[14]);
+bool mb2=string_to_bool(sd[15]);
+spawn_zombie(x, y, zombirange, zombirange2, hp, hp, card, dmg, ft, sp, lv, xp, zotype, fb, mb, mb2);
 }
 else if(sd[0]=="animal_zone" && sd.length()==6)
 {
@@ -863,7 +871,7 @@ return;
 }
 for(uint i=0; i<signs.length(); i++)
 {
-string[] signsfx=find_files("sounds/objects/signs/"+signs[i].signtype+"/*loop*");
+string[] signsfx=find_files("sounds/objects/signs/"+signs[i].signtype+"/*step*");
 if(signsfx.length()!=0 and signs[i].looping==false) signs[i].signsound=signpool.play_2d("sounds/objects/signs/"+signs[i].signtype+"/"+signsfx[random(0,signsfx.length()-1)],me.x,me.y,signs[i].signx,signs[i].signy,false);
 }
 for(uint i=0; i<walls.length(); i++)

@@ -15,7 +15,7 @@ double weaponvolume=0, weaponmaxvolume=120, weaponpan=0, weaponmaxpan=100, weapo
 double attack=0, ammo=100, defence=0, health=100, kills=0, points=0, xp=0, xpmod=1, xprequiered=1, level=1, levmod=1, lifecard=1, loadedammo=100, shieldstrength=100, shielddefence=0, shieldlevel, maxammo=100, maxhealth=100, maxshieldstrength=100, maxx=100, maxy=100, weplevel=1;
 float revdry, revwet, revsize, revdamp, revwidth;
 int autoslot, camslot, fallslot, invslot, itemslot, painslot, prevslot, shieldloop, shieldslot, shieldremoveslot, shieldwearslot, tileslot, wallslot, weaponslot;
-int charmode, fallcounter, gamemode, jumping, gametime, musmode, movetime, platmode, sorcemode, ty1, ty2;
+int amrange, amrange2, emrange, emrange2, robrange, robrange2, zombrange, zombrange2, charmode, fallcounter, gamemode, jumping, gametime, musmode, movetime, platmode, sorcemode, ty1, ty2;
 int chardeathsound=1, charfallsound=1, charfallsound2=1, charhurtsound=1, charhealsound=1, charhealsound2=1, charhealsound3=1, charinvsound=1, charjumpsound=1, charlevsound=1, charlifesound=1, charrocksound=1, charsitsound=1, charstandsound=1, charturnsound=1;
 int shieldbreaksound=1, shielddrawsound=1, shieldhitsound=1, shieldloopsound=1, shieldremovesound=1, shieldwearsound=1;
 int wepdrawsound=1, wepemptysound=1, wepfiresound=1, wephitsound=1, weploopsound=1, weprecsound=1, wepreloadsound=1, wepshellsound=1;
@@ -249,6 +249,8 @@ if(buildem=="an")
 input.set_only_allowed_chars("1234567890-");
 string mx=input.input("Enter the x of this animal.");
 string my=input.input("Enter the y of this animal.");
+string rng=input.input("Enter the horizontal range of this animal.");
+string rng2=input.input("Enter the vertical range of this animal.");
 string hp=input.input("Enter the health of this animal.");
 string hc=input.input("Enter the maximum lives of this animal.");
 string dm=input.input("Enter the maximum damage of this animal.");
@@ -256,10 +258,12 @@ string ft=input.input("Enter the fire time of this animal.");
 string sp=input.input("Enter the speed of this animal.");
 string lev=input.input("Enter the level of this animal.");
 string exper=input.input("Enter the xp of this animal.");
-if(x=="" and y=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
+if(x=="" and y=="" and amrange=="" and amrange2=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
+amrange=string_to_number(rng);
+amrange2=string_to_number(rng2);
 minhp=string_to_number(hp);
 card=string_to_number(hc);
 damage=string_to_number(dm);
@@ -348,9 +352,9 @@ mb2=false;
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"animal "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+amtype+" "+fb+" "+mb+" "+mb2);
+mapper.write("\r\n"+"animal "+x+" "+y+" "+amrange+" "+amrange2+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+amtype+" "+fb+" "+mb+" "+mb2);
 mapper.close();
-spawn_animal(x, y, minhp, minhp, card, damage, firetime, speedtime, lv, xn, amtype, fb, mb, mb2);
+spawn_animal(x, y, amrange, amrange2, minhp, minhp, card, damage, firetime, speedtime, lv, xn, amtype, fb, mb, mb2);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -1263,6 +1267,8 @@ if(buildem=="em")
 input.set_only_allowed_chars("1234567890-");
 string mx=input.input("Enter the x of this enemy.");
 string my=input.input("Enter the y of this enemy.");
+string rng=input.input("Enter the horizontal range of this enemy.");
+string rng2=input.input("Enter the vertical range of this enemy.");
 string hp=input.input("Enter the health of this enemy.");
 string hc=input.input("Enter the maximum lives of this enemy.");
 string dm=input.input("Enter the maximum damage of this enemy.");
@@ -1270,10 +1276,12 @@ string ft=input.input("Enter the fire time of this enemy.");
 string sp=input.input("Enter the speed of this enemy.");
 string lev=input.input("Enter the level of this enemy.");
 string exper=input.input("Enter the xp of this enemy.");
-if(x=="" and y=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
+if(x=="" and y=="" and emrange=="" and emrange2=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
+emrange=string_to_number(rng);
+emrange2=string_to_number(rng2);
 minhp=string_to_number(hp);
 card=string_to_number(hc);
 damage=string_to_number(dm);
@@ -1303,17 +1311,17 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres5=m.run("Should the enemy attack you?",true);
-if(mres5==0)
+int mres2=m.run("Should the enemy attack you?",true);
+if(mres2==0)
 {
 speak("canceled");
 return;
 }
-if(mres5==1)
+if(mres2==1)
 {
 fb=true;
 }
-if(mres5==2)
+if(mres2==2)
 {
 fb=false;
 }
@@ -1324,17 +1332,17 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres6=m.run("Should the enemy move?",true);
-if(mres6==0)
+int mres3=m.run("Should the enemy move?",true);
+if(mres3==0)
 {
 speak("canceled");
 return;
 }
-if(mres6==1)
+if(mres3==1)
 {
 mb=true;
 }
-if(mres6==2)
+if(mres3==2)
 {
 mb=false;
 }
@@ -1345,26 +1353,26 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres7=m.run("Should the enemy folow you up on other platforms?",true);
-if(mres7==0)
+int mres4=m.run("Should the enemy folow you up on other platforms?",true);
+if(mres4==0)
 {
 speak("canceled");
 return;
 }
-if(mres7==1)
+if(mres4==1)
 {
 mb2=true;
 }
-if(mres7==2)
+if(mres4==2)
 {
 mb2=false;
 }
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"enemy "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+emtype+" "+fb+" "+mb+" "+mb2);
+mapper.write("\r\n"+"enemy "+x+" "+y+" "+emrange+" "+emrange2+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+emtype+" "+fb+" "+mb+" "+mb2);
 mapper.close();
-spawn_enemy(x, y, minhp, minhp, card, damage, firetime, speedtime, lv, xn, emtype, fb, mb, mb2);
+spawn_enemy(x, y, emrange, emrange2, minhp, minhp, card, damage, firetime, speedtime, lv, xn, emtype, fb, mb, mb2);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -2180,6 +2188,8 @@ if(buildem=="rt")
 input.set_only_allowed_chars("1234567890-");
 string mx=input.input("Enter the x of this robot.");
 string my=input.input("Enter the y of this robot.");
+string rng=input.input("Enter the horizontal range of this robot.");
+string rng2=input.input("Enter the vertical range of this robot.");
 string hp=input.input("Enter the health of this robot.");
 string hc=input.input("Enter the maximum lives of this robot.");
 string dm=input.input("Enter the maximum damage of this robot.");
@@ -2187,10 +2197,12 @@ string ft=input.input("Enter the fire time of this robot.");
 string sp=input.input("Enter the speed of this robot.");
 string lev=input.input("Enter the level of this robot.");
 string exper=input.input("Enter the xp of this robot.");
-if(x=="" and y=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
+if(x=="" and y=="" and robrange=="" and robrange2=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
+robrange=string_to_number(rng);
+robrange2=string_to_number(rng2);
 minhp=string_to_number(hp);
 card=string_to_number(hc);
 damage=string_to_number(dm);
@@ -2220,17 +2232,17 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres10=m.run("Should the robot attack you?",true);
-if(mres10==0)
+int mres2=m.run("Should the robot attack you?",true);
+if(mres2==0)
 {
 speak("canceled");
 return;
 }
-if(mres10==1)
+if(mres2==1)
 {
 fb=true;
 }
-if(mres10==2)
+if(mres2==2)
 {
 fb=false;
 }
@@ -2241,17 +2253,17 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres11=m.run("Should the robot move?",true);
-if(mres11==0)
+int mres3=m.run("Should the robot move?",true);
+if(mres3==0)
 {
 speak("canceled");
 return;
 }
-if(mres11==1)
+if(mres3==1)
 {
 mb=true;
 }
-if(mres11==2)
+if(mres3==2)
 {
 mb=false;
 }
@@ -2262,26 +2274,26 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres12=m.run("Should the robot folow you up on other platforms?",true);
-if(mres12==0)
+int mres4=m.run("Should the robot folow you up on other platforms?",true);
+if(mres4==0)
 {
 speak("canceled");
 return;
 }
-if(mres12==1)
+if(mres4==1)
 {
 mb2=true;
 }
-if(mres12==2)
+if(mres4==2)
 {
 mb2=false;
 }
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"robot "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+rotype+" "+fb+" "+mb+" "+mb2);
+mapper.write("\r\n"+"robot "+x+" "+y+" "+robrange+" "+robrange2+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+rotype+" "+fb+" "+mb+" "+mb2);
 mapper.close();
-spawn_robot(x, y, minhp, minhp, card, damage, firetime, speedtime, lv, xn, rotype, fb, mb, mb2);
+spawn_robot(x, y, robrange, robrange2, minhp, minhp, card, damage, firetime, speedtime, lv, xn, rotype, fb, mb, mb2);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -3263,6 +3275,8 @@ if(buildem=="zb")
 input.set_only_allowed_chars("1234567890-");
 string mx=input.input("Enter the x of this zombie.");
 string my=input.input("Enter the y of this zombie.");
+string rng=input.input("Enter the horizontal range of this zombie.");
+string rng2=input.input("Enter the vertical range of this zombie.");
 string hp=input.input("Enter the health of this zombie.");
 string hc=input.input("Enter the maximum lives of this zombie.");
 string dm=input.input("Enter the maximum damage of this zombie.");
@@ -3270,10 +3284,12 @@ string ft=input.input("Enter the fire time of this zombie.");
 string sp=input.input("Enter the speed of this zombie.");
 string lev=input.input("Enter the level of this zombie.");
 string exper=input.input("Enter the xp of this zombie.");
-if(x=="" and y=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
+if(x=="" and y=="" and zombrange=="" and zombrange2=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
+zombrange=string_to_number(rng);
+zombrange2=string_to_number(rng2);
 minhp=string_to_number(hp);
 card=string_to_number(hc);
 damage=string_to_number(dm);
@@ -3303,17 +3319,17 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres13=m.run("Should the zombie attack you?",true);
-if(mres13==0)
+int mres2=m.run("Should the zombie attack you?",true);
+if(mres2==0)
 {
 speak("canceled");
 return;
 }
-if(mres13==1)
+if(mres2==1)
 {
 fb=true;
 }
-if(mres13==2)
+if(mres2==2)
 {
 fb=false;
 }
@@ -3324,17 +3340,17 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres14=m.run("Should the zombie move?",true);
-if(mres14==0)
+int mres3=m.run("Should the zombie move?",true);
+if(mres3==0)
 {
 speak("canceled");
 return;
 }
-if(mres14==1)
+if(mres3==1)
 {
 mb=true;
 }
-if(mres14==2)
+if(mres3==2)
 {
 mb=false;
 }
@@ -3345,26 +3361,26 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres15=m.run("Should the zombie folow you up on other platforms?",true);
-if(mres15==0)
+int mres4=m.run("Should the zombie folow you up on other platforms?",true);
+if(mres4==0)
 {
 speak("canceled");
 return;
 }
-if(mres15==1)
+if(mres4==1)
 {
 mb2=true;
 }
-if(mres15==2)
+if(mres4==2)
 {
 mb2=false;
 }
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"zombie "+x+" "+y+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+zotype+" "+fb+" "+mb+" "+mb2);
+mapper.write("\r\n"+"zombie "+x+" "+y+" "+zombrange+" "+zombrange2+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+zotype+" "+fb+" "+mb+" "+mb2);
 mapper.close();
-spawn_zombie(x, y, minhp, minhp, card, damage, firetime, speedtime, lv, xn, zotype, fb, mb, mb2);
+spawn_zombie(x, y, zombrange, zombrange2, minhp, minhp, card, damage, firetime, speedtime, lv, xn, zotype, fb, mb, mb2);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");

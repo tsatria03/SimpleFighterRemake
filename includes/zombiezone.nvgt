@@ -27,7 +27,7 @@ if(zotype=="random" && zombtype.length()>0)
 {
 zotype=zombtype[random(0,zombtype.length()-1)];
 }
-spawn_zombie(random(zombiezones[i].minx, zombiezones[i].maxx), zombiezones[i].zomby, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, zotype, true, true, false);
+spawn_zombie(random(zombiezones[i].minx, zombiezones[i].maxx), zombiezones[i].zomby, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, zotype, true, true, false);
 zombiezones[i].spawntimer.restart();
 }
 }

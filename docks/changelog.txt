@@ -1,6 +1,7 @@
 new in 5.4
+Added the ability to set horizontal and vertical ranges for animals, enemies, robots, and zombies while building them in the builder menu.
 Added a prompt to the sign builder that asks weather you'd like the sign sound to be looped or not while walking over it.
-Fixed miscalculations of health for all objects that take them, including creatable characters.
+Fixed a miscalculation bug with health for all objects that take them, including creatable characters.
 Npc types such as animals, enemies, and projectiles will now show how many lives they have when spying them. These will be Represented by the letter X. For example, a dog may look something like this. 2 x dog, 5 feet. 4 x dog2, 10 feet.
 Made spying blockages less verbose.
 Fixed an issue where multiple blockages would incorrectly display the text from the first blockage instead of their assigned text when building them in the builder menu.

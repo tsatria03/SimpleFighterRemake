@@ -11,16 +11,20 @@ double robothealth;
 double robotmaxhealth;
 int robx;
 int roby;
+int roborange;
+int roborange2;
 int damage;
 int robottime;
 int firetime;
 string robtype;
 timer robottimer, firetimer;
-robot(int rx,int ry,double hp,double maxhp,int rc,int dm,int ft,int sp,double rvl,double rxp,string rt,bool robf,bool robt,bool robt2)
+robot(int rx,int ry,int rbrange,int rbrange2,double hp,double maxhp,int rc,int dm,int ft,int sp,double rvl,double rxp,string rt,bool robf,bool robt,bool robt2)
 {
 this.robhealth=hp;
 robx=rx;
 roby=ry;
+roborange=rbrange;
+roborange2=rbrange2;
 robothealth=hp;
 robotmaxhealth=maxhp;
 robotcard=rc;
@@ -64,14 +68,14 @@ if(robots[i].roby>me.y and robots[i].moveable2==true and paused==0)
 robots[i].roby--;
 }
 }
-if(me.x==robots[i].robx and me.y==robots[i].roby and robots[i].firetimer.elapsed>=robots[i].firetime and robots[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
+if(absolute(me.x-robots[i].robx)<=robots[i].roborange and absolute(me.y-robots[i].roby)<=robots[i].roborange2 and robots[i].firetimer.elapsed>=robots[i].firetime and robots[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
 string[] arqsfx=find_files("sounds/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength-=robots[i].damage*robots[i].roblevel-shielddefence;
 robots[i].firetimer.restart();
 }
-else if(me.x==robots[i].robx and me.y==robots[i].roby and robots[i].firetimer.elapsed>=robots[i].firetime and robots[i].fireable==true and shieldon==0 and paused==0)
+else if(absolute(me.x-robots[i].robx)<=robots[i].roborange and absolute(me.y-robots[i].roby)<=robots[i].roborange2 and robots[i].firetimer.elapsed>=robots[i].firetime and robots[i].fireable==true and shieldon==0 and paused==0)
 {
 string[] hitsfx=find_files("sounds/npc/robots/"+robots[i].robtype+"/*hit*");
 if(hitsfx.length()!=0) robots[i].wepsound=robpool.play_stationary_extended("sounds/npc/robots/"+robots[i].robtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -103,10 +107,10 @@ return;
 }
 }
 }
-void spawn_robot(int x,int y,double hp,double maxhp,int rc,int dm,int firetime,int robottime,double roblevel,double xp,string robtype,bool fireable,bool moveable,bool moveable2)
+void spawn_robot(int x,int y,int robotrange,int robotrange2,double hp,double maxhp,int rc,int dm,int firetime,int robottime,double roblevel,double xp,string robtype,bool fireable,bool moveable,bool moveable2)
 {
-robot r1(x,y,hp,maxhp,rc,dm,firetime,robottime,roblevel,xp,robtype,fireable,moveable,moveable2);
-robots.insert_last(r1);
+robot rb1(x,y,robotrange,robotrange2,hp,maxhp,rc,dm,firetime,robottime,roblevel,xp,robtype,fireable,moveable,moveable2);
+robots.insert_last(rb1);
 }
 void destroy_all_robots()
 {
