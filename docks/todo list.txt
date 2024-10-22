@@ -1,3 +1,5 @@
+Fix falling off of map boundaries. Temporary solution, Build blockages or walls at negative one and at the end of the maximum length of the map.
+Fix passages to let walls disappear and reappear as it opens and closes.
 Make objects found in the objects menu trackable
 Add a sonar to platforms, walls, and staircases.
 Add boss enemies.
@@ -12,7 +14,8 @@ Implement a buffer system to track various system events in the other game modes
 Add acheavments and death messages.
 Add a runs counter.
 Implement a way to submit bug reports, feature requests, and other game feedback.
-*done. Add lockable doors and lockable passages with a password, pin, or key.
+*Done. Add horizontal and vertical atack ranges to npcs.
+*Done. Add lockable doors and passages with a password, pin, or key.
 *Done. Fix all sound sorces destroying themselves after landing on platforms upon reloading the map.
 *Done. Add interactible objects.
 *Done. Add moving platforms and moving hazards.
