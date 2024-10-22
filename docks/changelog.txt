@@ -1,4 +1,5 @@
 new in 5.4
+Fixed a bug where horizontal and vertical ranges of animals, enemies, robots, and zombies weren't being defined correctly upon setting it in the builder menu.
 Added the ability to set horizontal and vertical ranges for animals, enemies, robots, and zombies while building them in the builder menu.
 Added a prompt to the sign builder that asks weather you'd like the sign sound to be looped or not while walking over it.
 Fixed a miscalculation bug with health for all objects that take them, including creatable characters.
