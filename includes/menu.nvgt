@@ -313,9 +313,10 @@ settingsmenu();
 void settingsmenu()
 {
 setupmenu();
-m.add_item_tts("Select character type. Currently set to "+chartype, "slt");
-m.add_item_tts("Select keyboard theme. Currently set to "+keyboardtheme, "slk");
-m.add_item_tts("Select menu sounds. Currently set to "+menutype, "slm");
+m.add_item_tts("Select character type for the "+soundpack+" sound pack. Currently set to "+chartype, "slt");
+m.add_item_tts("Select keyboard theme for the "+soundpack+" sound pack. Currently set to "+keyboardtheme, "slk");
+m.add_item_tts("Select menu sounds for the "+soundpack+" sound pack. Currently set to "+menutype, "slm");
+m.add_item_tts("Select sound pack. Currently set to "+soundpack, "spk");
 m.add_item_tts("Select sound device. Currently set to "+soundcard, "sdm");
 if(mskipnum==1) m.add_item_tts("Set up and down skip amount in all menus. Currently set to "+mskipnum+"item per press", "skipm");
 if(mskipnum<=0 or mskipnum>=2) m.add_item_tts("Set up and down skip amount in all menus. Currently set to "+mskipnum+"items per press", "skipm");
@@ -465,6 +466,39 @@ string res=menuchoosers();
 if(res!="")
 {
 menutype=res;
+}
+}
+}
+if(ssm=="spk")
+{
+string[] soundpacktyp=find_directories("sounds/*");
+if(soundpacktyp.length()==0)
+{
+dlg("Error. There are no sound packs available to view.");
+settingsmenu();
+}
+else
+{
+string[] soundpacks=find_directories("sounds/*");
+setupmenu();
+for(uint i=0; i<soundpacks.length(); i++)
+{
+m.add_item_tts(soundpacks[i],soundpacks[i]);
+}
+int mres=m.run("Choose the sound pack you would like to use throughout the intire game.", true);
+if(mres==0)
+{
+settingsmenu();
+}
+if (mres==0 and mres>=soundpacks.length())
+{
+soundpack=soundpacks[mres-1];
+}
+if (mres>0 and mres<=soundpacks.length())
+{
+soundpack=soundpacks[mres-1];
+speak("Sound pack set.");
+settingsmenu();
 }
 }
 }
