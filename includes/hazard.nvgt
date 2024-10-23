@@ -13,15 +13,15 @@ miny=my;
 maxy=my2;
 hazardtype=ht;
 ledgespawn=lgp;
-string[] plattype=find_directories("sounds/objects/platforms/*ledge*");
+string[] plattype=find_directories("sounds/"+soundpack+"/objects/platforms/*ledge*");
 if(plattype.length() != 0 and ledgespawn == true)
 {
 string ledgetype=plattype[random(0,plattype.length()-1)];
 spawn_platform(minx - 2, minx - 1, miny, miny, ledgetype, 0, 100);    
 spawn_platform(maxx + 1, maxx + 2, miny, miny, ledgetype, 0, 100);
 }
-string[] hazsfx=find_files("sounds/objects/hazards/"+hazardtype+"/*loop*");
-if(hazsfx.length()!=0) hazardsound=hazardpool.play_extended_2d("sounds/objects/hazards/"+hazardtype+"/"+hazsfx[random(0,hazsfx.length()-1)],me.x,me.y,minx,miny,0,0,0,0,true,0,0,painvolume,painpitch,false);
+string[] hazsfx=find_files("sounds/"+soundpack+"/objects/hazards/"+hazardtype+"/*loop*");
+if(hazsfx.length()!=0) hazardsound=hazardpool.play_extended_2d("sounds/"+soundpack+"/objects/hazards/"+hazardtype+"/"+hazsfx[random(0,hazsfx.length()-1)],me.x,me.y,minx,miny,0,0,0,0,true,0,0,painvolume,painpitch,false);
 hazardpool.update_sound_2d(hazardsound,minx,miny);
 hazardpool.update_sound_range_2d(hazardsound,0,maxx-minx,0,maxy-miny);
 }
@@ -39,10 +39,10 @@ if(hazards[i].is_on_hazard())
 if(lifecard>=2)
 {
 hazardpool.destroy_sound(hazards[i].hazardsound);
-string[] fallsfx=find_files("sounds/objects/hazards/"+hazards[i].hazardtype+"/*fall*");
-if(fallsfx.length()!=0) hazards[i].fallsound=hazardpool.play_stationary_extended("sounds/objects/hazards/"+hazards[i].hazardtype+"/"+fallsfx[random(0,fallsfx.length()-1)],false,0,0,painvolume,painpitch,false);
-string[] lifesfx=find_files("sounds/characters/"+chartype+"/*life*");
-if(lifesfx.length()!=0 and charlifesound==1) hazardpool.play_stationary("sounds/characters/"+chartype+"/"+lifesfx[random(0,lifesfx.length()-1)],false);
+string[] fallsfx=find_files("sounds/"+soundpack+"/objects/hazards/"+hazards[i].hazardtype+"/*fall*");
+if(fallsfx.length()!=0) hazards[i].fallsound=hazardpool.play_stationary_extended("sounds/"+soundpack+"/objects/hazards/"+hazards[i].hazardtype+"/"+fallsfx[random(0,fallsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+string[] lifesfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*life*");
+if(lifesfx.length()!=0 and charlifesound==1) hazardpool.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+lifesfx[random(0,lifesfx.length()-1)],false);
 lifecard-=1;
 health=maxhealth;
 hazards.remove_at(i);
@@ -51,8 +51,8 @@ return;
 if(lifecard<=1)
 {
 hazardpool.destroy_sound(hazards[i].hazardsound);
-string[] fallsfx=find_files("sounds/objects/hazards/"+hazards[i].hazardtype+"/*fall*");
-if(fallsfx.length()!=0) dlgplay("sounds/objects/hazards/"+hazards[i].hazardtype+"/"+fallsfx[random(0,fallsfx.length()-1)]);
+string[] fallsfx=find_files("sounds/"+soundpack+"/objects/hazards/"+hazards[i].hazardtype+"/*fall*");
+if(fallsfx.length()!=0) dlgplay("sounds/"+soundpack+"/objects/hazards/"+hazards[i].hazardtype+"/"+fallsfx[random(0,fallsfx.length()-1)]);
 hazards.remove_at(i);
 if(building==true) destroymap();
 if(building==false) destroygame();

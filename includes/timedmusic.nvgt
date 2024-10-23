@@ -27,8 +27,8 @@ for(uint i=0; i<timedmusics.length(); i++)
 if(timedmusics[i].musictimer.elapsed>=timedmusics[i].musictime)
 {
 muspool.destroy_sound(timedmusics[i].tracksound);
-string[] musfilesfx=find_files("sounds/objects/musics/"+timedmusics[i].musictype+"/*music*");
-if(musfilesfx.length()!=0) timedmusics[i].tracksound=muspool.play_extended_2d("sounds/objects/musics/"+timedmusics[i].musictype+"/"+musfilesfx[random(0,musfilesfx.length()-1)],me.x,me.y,timedmusics[i].minx,timedmusics[i].miny,0,0,0,0,false,0,0,volume,pitch,false);
+string[] musfilesfx=find_files("sounds/"+soundpack+"/objects/musics/"+timedmusics[i].musictype+"/*music*");
+if(musfilesfx.length()!=0) timedmusics[i].tracksound=muspool.play_extended_2d("sounds/"+soundpack+"/objects/musics/"+timedmusics[i].musictype+"/"+musfilesfx[random(0,musfilesfx.length()-1)],me.x,me.y,timedmusics[i].minx,timedmusics[i].miny,0,0,0,0,false,0,0,volume,pitch,false);
 muspool.update_sound_2d(timedmusics[i].tracksound,timedmusics[i].minx,timedmusics[i].miny);
 muspool.update_sound_range_2d(timedmusics[i].tracksound, 0, timedmusics[i].maxx-timedmusics[i].minx, 0, timedmusics[i].maxy-timedmusics[i].miny);
 timedmusics[i].musictimer.restart();

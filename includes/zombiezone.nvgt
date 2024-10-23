@@ -21,7 +21,7 @@ for(uint i=0; i<zombiezones.length(); i++)
 {
 if(zombiezones[i].minx<=me.x and zombiezones[i].maxx>=me.x and zombiezones[i].zomby==me.y and zombiezones[i].spawntimer.elapsed>=zombiezones[i].spawntime)
 {
-string[] zombtype=find_directories("sounds/npc/zombies/*");
+string[] zombtype=find_directories("sounds/"+soundpack+"/npc/zombies/*");
 string zotype = zombiezones[i].zombtype;
 if(zotype=="random" && zombtype.length()>0)
 {

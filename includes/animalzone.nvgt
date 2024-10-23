@@ -21,7 +21,7 @@ for(uint i=0; i<animalzones.length(); i++)
 {
 if(animalzones[i].minx<=me.x and animalzones[i].maxx>=me.x and animalzones[i].amy==me.y and animalzones[i].spawntimer.elapsed>=animalzones[i].spawntime)
 {
-string[] animaltype=find_directories("sounds/npc/animals/*");
+string[] animaltype=find_directories("sounds/"+soundpack+"/npc/animals/*");
 string amtype = animalzones[i].animaltype;
 if(amtype=="random" && animaltype.length()>0)
 {

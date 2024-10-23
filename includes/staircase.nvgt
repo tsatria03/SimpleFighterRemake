@@ -35,8 +35,8 @@ if (key_down(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSH
 {
 if (onstaircase==true&&movetimer.elapsed>=movetime&&me.y<staircases[i].maxy)
 {
-string[] tilers=find_files("sounds/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
-if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
+if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
 movetimer.restart();
 me.y++;
 }
@@ -45,8 +45,8 @@ if (key_down(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_R
 {
 if (onstaircase==true&&movetimer.elapsed>=movetime&&me.y>staircases[i].miny)
 {
-string[] tilers=find_files("sounds/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
-if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
+if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
 movetimer.restart();
 me.y--;
 }

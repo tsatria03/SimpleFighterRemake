@@ -15,8 +15,8 @@ maxy=my2;
 musictype=mrt;
 volume=vol;
 pitch=semitone;
-string[] musfilesfx=find_files("sounds/objects/musics/"+musictype+"/*music*");
-if(musfilesfx.length()!=0) tracksound=muspool.play_extended_2d("sounds/objects/musics/"+musictype+"/"+musfilesfx[random(0,musfilesfx.length()-1)],me.x,me.y,minx,miny,0,0,0,0,true,0,0,volume,pitch,false);
+string[] musfilesfx=find_files("sounds/"+soundpack+"/objects/musics/"+musictype+"/*music*");
+if(musfilesfx.length()!=0) tracksound=muspool.play_extended_2d("sounds/"+soundpack+"/objects/musics/"+musictype+"/"+musfilesfx[random(0,musfilesfx.length()-1)],me.x,me.y,minx,miny,0,0,0,0,true,0,0,volume,pitch,false);
 muspool.update_sound_2d(tracksound,minx,miny);
 muspool.update_sound_range_2d(tracksound, 0,maxx-minx,0,maxy-miny);
 }

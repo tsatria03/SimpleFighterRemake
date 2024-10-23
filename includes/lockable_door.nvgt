@@ -33,8 +33,8 @@ closetype=clsound;
 desttype=dsound;
 automatic=dcl;
 destroyable=dtb;
-string[] psdoorsfx=find_files("sounds/objects/doors/loop/"+looptype+"/*loop*");
-if(psdoorsfx.length()!=0) psdoorsound=doorpool.play_extended_2d("sounds/objects/doors/loop/"+looptype+"/"+psdoorsfx[random(0,psdoorsfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,true,0,0,doorvolume,doorpitch,false);
+string[] psdoorsfx=find_files("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/*loop*");
+if(psdoorsfx.length()!=0) psdoorsound=doorpool.play_extended_2d("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/"+psdoorsfx[random(0,psdoorsfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,true,0,0,doorvolume,doorpitch,false);
 }
 bool check_password(string input)
 {
@@ -49,10 +49,10 @@ if(psdoors[i].startx==me.x and psdoors[i].starty==me.y and psdoors[i].automatic=
 {
 psdoormove=true;
 psdoors[i].is_moving=true;
-string[] opensfx=find_files("sounds/objects/doors/open/"+psdoors[i].opentype+"/*open*");
-if(opensfx.length()!=0) psdoors[i].opensound=doorpool.play_stationary_extended("sounds/objects/doors/open/"+psdoors[i].opentype+"/"+opensfx[random(0,opensfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
-string[] movesfx=find_files("sounds/objects/doors/move/"+psdoors[i].movetype+"/*move*");
-if(movesfx.length()!=0) psdoors[i].movesound=doorpool.play_stationary_extended("sounds/objects/doors/move/"+psdoors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+psdoors[i].opentype+"/*open*");
+if(opensfx.length()!=0) psdoors[i].opensound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/open/"+psdoors[i].opentype+"/"+opensfx[random(0,opensfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+string[] movesfx=find_files("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/*move*");
+if(movesfx.length()!=0) psdoors[i].movesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
 }
 if(psdoors[i].startx==me.x and psdoors[i].starty==me.y and psdoors[i].automatic==false and key_pressed(KEY_RETURN))
 {
@@ -62,10 +62,10 @@ if(psdoors[i].check_password(pass))
 {
 psdoormove=true;
 psdoors[i].is_moving=true;
-string[] opensfx=find_files("sounds/objects/doors/open/"+psdoors[i].opentype+"/*open*");
-if(opensfx.length()!=0) psdoors[i].opensound=doorpool.play_stationary_extended("sounds/objects/doors/open/"+psdoors[i].opentype+"/"+opensfx[random(0,opensfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
-string[] movesfx=find_files("sounds/objects/doors/move/"+psdoors[i].movetype+"/*move*");
-if(movesfx.length()!=0) psdoors[i].movesound=doorpool.play_stationary_extended("sounds/objects/doors/move/"+psdoors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+psdoors[i].opentype+"/*open*");
+if(opensfx.length()!=0) psdoors[i].opensound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/open/"+psdoors[i].opentype+"/"+opensfx[random(0,opensfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+string[] movesfx=find_files("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/*move*");
+if(movesfx.length()!=0) psdoors[i].movesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
 }
 else
 {
@@ -76,8 +76,8 @@ if(psdoors[i].psdoorhealth<=0)
 {
 doorpool.destroy_sound(psdoors[i].hurtsound);
 doorpool.destroy_sound(psdoors[i].psdoorsound);
-string[] defsfx=find_files("sounds/objects/doors/dest/"+psdoors[i].desttype+"/*death*");
-if(defsfx.length()!=0) psdoors[i].defsound=doorpool.play_extended_2d("sounds/objects/doors/dest/"+psdoors[i].desttype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,psdoors[i].startx,psdoors[i].starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+string[] defsfx=find_files("sounds/"+soundpack+"/objects/doors/dest/"+psdoors[i].desttype+"/*death*");
+if(defsfx.length()!=0) psdoors[i].defsound=doorpool.play_extended_2d("sounds/"+soundpack+"/objects/doors/dest/"+psdoors[i].desttype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,psdoors[i].startx,psdoors[i].starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
 psdoors.remove_at(i);
 return;
 }
@@ -114,8 +114,8 @@ me.y--;
 if(me.x==psdoors[i].endx and me.y==psdoors[i].endy)
 {
 doorpool.destroy_sound(psdoors[i].movesound);
-string[] closesfx=find_files("sounds/objects/doors/close/"+psdoors[i].closetype+"/*close*");
-if(closesfx.length()!=0) psdoors[i].closesound=doorpool.play_stationary_extended("sounds/objects/doors/close/"+psdoors[i].closetype+"/"+closesfx[random(0,closesfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+string[] closesfx=find_files("sounds/"+soundpack+"/objects/doors/close/"+psdoors[i].closetype+"/*close*");
+if(closesfx.length()!=0) psdoors[i].closesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/close/"+psdoors[i].closetype+"/"+closesfx[random(0,closesfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
 psdoormove=false;
 psdoors[i].is_moving=false;
 }

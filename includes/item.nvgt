@@ -37,16 +37,16 @@ for(uint i=0; i<objs.length(); i++)
 if(objs[i].objtimer.elapsed>=objs[i].objtime)
 {
 //itempool.destroy_sound(objs[i].objsound);
-string[] objsfx=find_files("sounds/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/*loop*");
-if(objsfx.length()!=0) objs[i].objsound=itempool.play_extended_2d("sounds/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/"+objsfx[random(0,objsfx.length()-1)],me.x,me.y,objs[i].itx,objs[i].ity,0,0,0,0,false,0,0,itemvolume,itempitch,false);
+string[] objsfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/*loop*");
+if(objsfx.length()!=0) objs[i].objsound=itempool.play_extended_2d("sounds/"+soundpack+"/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/"+objsfx[random(0,objsfx.length()-1)],me.x,me.y,objs[i].itx,objs[i].ity,0,0,0,0,false,0,0,itemvolume,itempitch,false);
 objs[i].objtimer.restart();
 }
 if(me.x==objs[i].itx and me.y==objs[i].ity and objs[i].automatic==true)
 {
 //itempool.destroy_sound(objs[i].hurtsound);
 //itempool.destroy_sound(objs[i].objsound);
-string[] getsfx=find_files("sounds/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/*get*");
-if(getsfx.length()!=0) objs[i].getsound=itempool.play_stationary_extended("sounds/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/"+getsfx[random(0,getsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+string[] getsfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/*get*");
+if(getsfx.length()!=0) objs[i].getsound=itempool.play_stationary_extended("sounds/"+soundpack+"/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/"+getsfx[random(0,getsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
 give(objs[i].objtype2,1);
 speak(objs[i].objtype2);
 objs.remove_at(i);
@@ -56,8 +56,8 @@ if(me.x==objs[i].itx and me.y==objs[i].ity and objs[i].automatic==false and key_
 {
 //itempool.destroy_sound(objs[i].hurtsound);
 //itempool.destroy_sound(objs[i].objsound);
-string[] getsfx=find_files("sounds/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/*get*");
-if(getsfx.length()!=0) objs[i].getsound=itempool.play_stationary_extended("sounds/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/"+getsfx[random(0,getsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+string[] getsfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/*get*");
+if(getsfx.length()!=0) objs[i].getsound=itempool.play_stationary_extended("sounds/"+soundpack+"/equipments/items/unsorted/"+objs[i].objtype+"/"+objs[i].objtype2+"/"+getsfx[random(0,getsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
 give(objs[i].objtype2,1);
 speak(objs[i].objtype2);
 objs.remove_at(i);

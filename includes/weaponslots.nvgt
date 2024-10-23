@@ -15,8 +15,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -29,8 +29,8 @@ artparse(artlist[i]);
 }
 weapontype2="asault ryfel";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -44,8 +44,8 @@ exoparse(exolist[i]);
 }
 weapontype2="lazer cannon";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -58,8 +58,8 @@ meleparse(melelist[i]);
 }
 weapontype2="club";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_1))
@@ -75,8 +75,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -89,8 +89,8 @@ artparse(artlist[i]);
 }
 weapontype2="asault ryfel 2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -103,8 +103,8 @@ exoparse(exolist[i]);
 }
 weapontype2="medium cannon";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -117,8 +117,8 @@ meleparse(melelist[i]);
 }
 weapontype2="club2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_2))
@@ -134,8 +134,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -148,8 +148,8 @@ artparse(artlist[i]);
 }
 weapontype2="asault ryfel3";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -162,8 +162,8 @@ exoparse(exolist[i]);
 }
 weapontype2="rocket launcher";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -176,8 +176,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combat_knife";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_3))
@@ -193,8 +193,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -207,8 +207,8 @@ artparse(artlist[i]);
 }
 weapontype2="average gun";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -221,8 +221,8 @@ exoparse(exolist[i]);
 }
 weapontype2="rocket launcher2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -235,8 +235,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combo";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_4))
@@ -252,8 +252,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -266,8 +266,8 @@ artparse(artlist[i]);
 }
 weapontype2="average gun2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -280,8 +280,8 @@ exoparse(exolist[i]);
 }
 weapontype2="rpg launcher";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -294,8 +294,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combo2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_5))
@@ -311,8 +311,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -325,8 +325,8 @@ artparse(artlist[i]);
 }
 weapontype2="banelli";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -339,8 +339,8 @@ exoparse(exolist[i]);
 }
 weapontype2="sticky bomb";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -353,8 +353,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combo3";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_6))
@@ -370,8 +370,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -384,8 +384,8 @@ artparse(artlist[i]);
 }
 weapontype2="barretM82 snyper";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -398,8 +398,8 @@ exoparse(exolist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -412,8 +412,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combo4";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_7))
@@ -429,8 +429,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -443,8 +443,8 @@ artparse(artlist[i]);
 }
 weapontype2="barrit snyper ryfel";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -457,8 +457,8 @@ exoparse(exolist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -471,8 +471,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combo5";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_8))
@@ -488,8 +488,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -502,8 +502,8 @@ artparse(artlist[i]);
 }
 weapontype2="bazooka";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -516,8 +516,8 @@ exoparse(exolist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -530,8 +530,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combo6";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_9))
@@ -547,8 +547,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -561,8 +561,8 @@ artparse(artlist[i]);
 }
 weapontype2="bereta m 1951 machine pistal";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -575,8 +575,8 @@ exoparse(exolist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -589,8 +589,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combo7";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_0))
@@ -606,8 +606,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -620,8 +620,8 @@ artparse(artlist[i]);
 }
 weapontype2="bereta m9 pistal";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -634,8 +634,8 @@ exoparse(exolist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -648,8 +648,8 @@ meleparse(melelist[i]);
 }
 weapontype2="combo8";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_MINUS))
@@ -665,8 +665,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -679,8 +679,8 @@ artparse(artlist[i]);
 }
 weapontype2="blz83 portable machinegun";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -693,8 +693,8 @@ exoparse(exolist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -707,8 +707,8 @@ meleparse(melelist[i]);
 }
 weapontype2="crowbar";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_EQUALS))
@@ -724,8 +724,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -738,8 +738,8 @@ artparse(artlist[i]);
 }
 weapontype2="broken ryfel";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -752,8 +752,8 @@ exoparse(exolist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -766,8 +766,8 @@ meleparse(melelist[i]);
 }
 weapontype2="crt17 combat_knife";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_BACK))
@@ -783,8 +783,8 @@ arcparse(arclist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -797,8 +797,8 @@ artparse(artlist[i]);
 }
 weapontype2="browning_high_power_bda_handgun";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -811,8 +811,8 @@ exoparse(exolist[i]);
 }
 weapontype2="";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -825,8 +825,8 @@ meleparse(melelist[i]);
 }
 weapontype2="dagger";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 }
@@ -843,8 +843,8 @@ arcparse(arclist[i]);
 }
 weapontype2="arrow gun";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -857,8 +857,8 @@ artparse(artlist[i]);
 }
 weapontype2="9MM Uzi";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -871,8 +871,8 @@ exoparse(exolist[i]);
 }
 weapontype2="big cannon";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -885,8 +885,8 @@ meleparse(melelist[i]);
 }
 weapontype2="axe";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_1))
@@ -902,8 +902,8 @@ arcparse(arclist[i]);
 }
 weapontype2="arrow launcher";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -916,8 +916,8 @@ artparse(artlist[i]);
 }
 weapontype2="12 gage shotgun";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -930,8 +930,8 @@ exoparse(exolist[i]);
 }
 weapontype2="bottle bomb";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -944,8 +944,8 @@ meleparse(melelist[i]);
 }
 weapontype2="axe2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_2))
@@ -961,8 +961,8 @@ arcparse(arclist[i]);
 }
 weapontype2="crossbow";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -975,8 +975,8 @@ artparse(artlist[i]);
 }
 weapontype2="AA12";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -989,8 +989,8 @@ exoparse(exolist[i]);
 }
 weapontype2="claymorebomb";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1003,8 +1003,8 @@ meleparse(melelist[i]);
 }
 weapontype2="axe3";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_3))
@@ -1020,8 +1020,8 @@ arcparse(arclist[i]);
 }
 weapontype2="crossbow2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1034,8 +1034,8 @@ artparse(artlist[i]);
 }
 weapontype2="AA12 2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1048,8 +1048,8 @@ exoparse(exolist[i]);
 }
 weapontype2="fireball";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1062,8 +1062,8 @@ meleparse(melelist[i]);
 }
 weapontype2="baseball";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_4))
@@ -1079,8 +1079,8 @@ arcparse(arclist[i]);
 }
 weapontype2="Crossbow3";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1093,8 +1093,8 @@ artparse(artlist[i]);
 }
 weapontype2="ACR";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1107,8 +1107,8 @@ exoparse(exolist[i]);
 }
 weapontype2="firebomb";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1121,8 +1121,8 @@ meleparse(melelist[i]);
 }
 weapontype2="baseball bat";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_5))
@@ -1138,8 +1138,8 @@ arcparse(arclist[i]);
 }
 weapontype2="crossbow4";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1152,8 +1152,8 @@ artparse(artlist[i]);
 }
 weapontype2="admingun";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1166,8 +1166,8 @@ exoparse(exolist[i]);
 }
 weapontype2="firestar";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1180,8 +1180,8 @@ meleparse(melelist[i]);
 }
 weapontype2="beer boddle";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_6))
@@ -1197,8 +1197,8 @@ arcparse(arclist[i]);
 }
 weapontype2="crossbow5";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1211,8 +1211,8 @@ artparse(artlist[i]);
 }
 weapontype2="admingun2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1225,8 +1225,8 @@ exoparse(exolist[i]);
 }
 weapontype2="flame thrower";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1239,8 +1239,8 @@ meleparse(melelist[i]);
 }
 weapontype2="boomerang";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_7))
@@ -1256,8 +1256,8 @@ arcparse(arclist[i]);
 }
 weapontype2="crossbow6";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1270,8 +1270,8 @@ artparse(artlist[i]);
 }
 weapontype2="ads30";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1284,8 +1284,8 @@ exoparse(exolist[i]);
 }
 weapontype2="gass cannister";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1298,8 +1298,8 @@ meleparse(melelist[i]);
 }
 weapontype2="boomerang2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_8))
@@ -1315,8 +1315,8 @@ arcparse(arclist[i]);
 }
 weapontype2="dart launcher";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1329,8 +1329,8 @@ artparse(artlist[i]);
 }
 weapontype2="AK47";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1343,8 +1343,8 @@ exoparse(exolist[i]);
 }
 weapontype2="grenade";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1357,8 +1357,8 @@ meleparse(melelist[i]);
 }
 weapontype2="branch";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_9))
@@ -1374,8 +1374,8 @@ arcparse(arclist[i]);
 }
 weapontype2="hunting bow";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1388,8 +1388,8 @@ artparse(artlist[i]);
 }
 weapontype2="AK47 2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1402,8 +1402,8 @@ exoparse(exolist[i]);
 }
 weapontype2="grenade2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1416,8 +1416,8 @@ meleparse(melelist[i]);
 }
 weapontype2="brass knuckles";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_0))
@@ -1433,8 +1433,8 @@ arcparse(arclist[i]);
 }
 weapontype2="small bow";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1447,8 +1447,8 @@ artparse(artlist[i]);
 }
 weapontype2="AK47 3";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1461,8 +1461,8 @@ exoparse(exolist[i]);
 }
 weapontype2="grenade3";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1475,8 +1475,8 @@ meleparse(melelist[i]);
 }
 weapontype2="braud sword";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_MINUS))
@@ -1492,8 +1492,8 @@ arcparse(arclist[i]);
 }
 weapontype2="small bow2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1506,8 +1506,8 @@ artparse(artlist[i]);
 }
 weapontype2="anzo";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1520,8 +1520,8 @@ exoparse(exolist[i]);
 }
 weapontype2="hand mine";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1534,8 +1534,8 @@ meleparse(melelist[i]);
 }
 weapontype2="chainsaw";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_EQUALS))
@@ -1551,8 +1551,8 @@ arcparse(arclist[i]);
 }
 weapontype2="water launcher";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1565,8 +1565,8 @@ artparse(artlist[i]);
 }
 weapontype2="ar15";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1579,8 +1579,8 @@ exoparse(exolist[i]);
 }
 weapontype2="large bomb";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1593,8 +1593,8 @@ meleparse(melelist[i]);
 }
 weapontype2="clause";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 if(key_pressed(KEY_BACK))
@@ -1610,8 +1610,8 @@ arcparse(arclist[i]);
 }
 weapontype2="water launcher2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="artillery" and drawable==true)
 {
@@ -1624,8 +1624,8 @@ artparse(artlist[i]);
 }
 weapontype2="AR15 2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="explosive" and drawable==true)
 {
@@ -1638,8 +1638,8 @@ exoparse(exolist[i]);
 }
 weapontype2="large bomb2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 if(weapontype=="melee" and drawable==true)
 {
@@ -1652,8 +1652,8 @@ meleparse(melelist[i]);
 }
 weapontype2="clause2";
 speak(weapontype2+" "+"equipped");
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 }

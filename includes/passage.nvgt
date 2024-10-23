@@ -30,8 +30,8 @@ closetime=ct;
 is_open=false;
 is_sound_paused=false;
 platform_id=-1;
-string[] passagesfx=find_files("sounds/objects/doors/loop/"+looptype+"/*loop*");
-if(passagesfx.length()!=0) passagesound=passagepool.play_extended_2d("sounds/objects/doors/loop/"+looptype+"/"+passagesfx[random(0,passagesfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,true,0,0,doorvolume,doorpitch,false);
+string[] passagesfx=find_files("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/*loop*");
+if(passagesfx.length()!=0) passagesound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/"+passagesfx[random(0,passagesfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,true,0,0,doorvolume,doorpitch,false);
 update_passage_sound();
 }
 bool is_endpoint(int x, int y)
@@ -91,8 +91,8 @@ if(passagesound!=-1 && !is_sound_paused)
 passagepool.pause_sound(passagesound);
 is_sound_paused=true;
 }
-string[] opensfx=find_files("sounds/objects/doors/open/"+opentype+"/*open*");
-if(opensfx.length()!=0) opensound=passagepool.play_extended_2d("sounds/objects/doors/open/"+opentype+"/"+opensfx[random(0,opensfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+opentype+"/*open*");
+if(opensfx.length()!=0) opensound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/open/"+opentype+"/"+opensfx[random(0,opensfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
 update_passage_sound();
 int platform_start_x=startx;
 int platform_start_y=starty;
@@ -122,8 +122,8 @@ if(passagesound!=-1 && is_sound_paused)
 passagepool.resume_sound(passagesound);
 is_sound_paused=false;
 }
-string[] closesfx=find_files("sounds/objects/doors/close/"+closetype+"/*close*");
-if(closesfx.length()!=0) closesound=passagepool.play_extended_2d("sounds/objects/doors/close/"+closetype+"/"+closesfx[random(0,closesfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+string[] closesfx=find_files("sounds/"+soundpack+"/objects/doors/close/"+closetype+"/*close*");
+if(closesfx.length()!=0) closesound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/close/"+closetype+"/"+closesfx[random(0,closesfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
 update_passage_sound();
 if(platform_id!=-1)
 {

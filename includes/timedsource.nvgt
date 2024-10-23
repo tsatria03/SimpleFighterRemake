@@ -27,8 +27,8 @@ for(uint i=0; i<timedsources.length(); i++)
 if(timedsources[i].sourcetimer.elapsed>=timedsources[i].sourcetime)
 {
 sourcepool.destroy_sound(timedsources[i].sorcesound);
-string[] srcfilesfx=find_files("sounds/objects/sources/"+timedsources[i].sourcetype+"/*loop*");
-if(srcfilesfx.length()!=0) timedsources[i].sorcesound=sourcepool.play_extended_2d("sounds/objects/sources/"+timedsources[i].sourcetype+"/"+srcfilesfx[random(0,srcfilesfx.length()-1)],me.x,me.y,timedsources[i].minx,timedsources[i].miny,0,0,0,0,false,0,0,volume,pitch,false);
+string[] srcfilesfx=find_files("sounds/"+soundpack+"/objects/sources/"+timedsources[i].sourcetype+"/*loop*");
+if(srcfilesfx.length()!=0) timedsources[i].sorcesound=sourcepool.play_extended_2d("sounds/"+soundpack+"/objects/sources/"+timedsources[i].sourcetype+"/"+srcfilesfx[random(0,srcfilesfx.length()-1)],me.x,me.y,timedsources[i].minx,timedsources[i].miny,0,0,0,0,false,0,0,volume,pitch,false);
 sourcepool.update_sound_2d(timedsources[i].sorcesound,timedsources[i].minx,timedsources[i].miny);
 sourcepool.update_sound_range_2d(timedsources[i].sorcesound, 0, timedsources[i].maxx-timedsources[i].minx, 0, timedsources[i].maxy-timedsources[i].miny);
 timedsources[i].sourcetimer.restart();

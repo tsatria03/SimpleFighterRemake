@@ -20,15 +20,15 @@ if(wep_maxammo<loadedammo)
 {
 loadedammo=wep_maxammo;
 }
-string[] drawsfx=find_files("sounds/equipments/weapons/"+weapon_name+"/"+weapon_name2+"/*draw*");
-if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapon_name+"/"+weapon_name2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapon_name+"/"+weapon_name2+"/*draw*");
+if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapon_name+"/"+weapon_name2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 void reload_weapon()
 {
 if(ammo<=0)
 {
-string[] emptysfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*empty*");
-if(emptysfx.length()!=0 and wepemptysound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+emptysfx[random(0,emptysfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] emptysfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*empty*");
+if(emptysfx.length()!=0 and wepemptysound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+emptysfx[random(0,emptysfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 else
 {
@@ -47,8 +47,8 @@ am=maxammo-loadedammo;
 }
 loadedammo+=am;
 ammo-=am; 
-string[] reloadsfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*reload*");
-if(reloadsfx.length()!=0 and wepreloadsound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+reloadsfx[random(0,reloadsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] reloadsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*reload*");
+if(reloadsfx.length()!=0 and wepreloadsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+reloadsfx[random(0,reloadsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 void auto_fire_weapon()
@@ -58,13 +58,13 @@ if(weapontype2==""==false and wephold==1 and weapontimer.elapsed>=weapontime and
 weapontimer.restart();
 if(loadedammo==0 and melee==false)
 {
-string[] emptysfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*empty*");
-if(emptysfx.length()!=0) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+emptysfx[random(0,emptysfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] emptysfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*empty*");
+if(emptysfx.length()!=0) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+emptysfx[random(0,emptysfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 else
 {
-string[] firesfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
-if(firesfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
+if(firesfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage*attack, wepspeed, facing, weapontype, weapontype2, bouncing, charhit, scadder);
 if(melee==false)
 {
@@ -80,13 +80,13 @@ if(weapontype2==""==false and wephold==0 and weapontimer2.elapsed>=weapontime2 a
 weapontimer2.restart();
 if(loadedammo==0 and melee==false)
 {
-string[] emptysfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*empty*");
-if(emptysfx.length()!=0) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+emptysfx[random(0,emptysfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] emptysfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*empty*");
+if(emptysfx.length()!=0) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+emptysfx[random(0,emptysfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 else
 {
-string[] firesfx=find_files("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
-if(firesfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
+if(firesfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage*attack, wepspeed, facing, weapontype, weapontype2, bouncing, charhit, scadder);
 if(melee==false)
 {

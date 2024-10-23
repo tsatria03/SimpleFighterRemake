@@ -21,7 +21,7 @@ for(uint i=0; i<robotzones.length(); i++)
 {
 if(robotzones[i].minx<=me.x and robotzones[i].maxx>=me.x and robotzones[i].roby==me.y and robotzones[i].spawntimer.elapsed>=robotzones[i].spawntime)
 {
-string[] robtype=find_directories("sounds/npc/robots/*");
+string[] robtype=find_directories("sounds/"+soundpack+"/npc/robots/*");
 string rotype = robotzones[i].robtype;
 if(rotype=="random" && robtype.length()>0)
 {

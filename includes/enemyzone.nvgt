@@ -21,7 +21,7 @@ for(uint i=0; i<enemyzones.length(); i++)
 {
 if(enemyzones[i].minx<=me.x and enemyzones[i].maxx>=me.x and enemyzones[i].emy==me.y and enemyzones[i].spawntimer.elapsed>=enemyzones[i].spawntime)
 {
-string[] enemytype=find_directories("sounds/npc/enemies/*");
+string[] enemytype=find_directories("sounds/"+soundpack+"/npc/enemies/*");
 string emtype = enemyzones[i].enemytype;
 if(emtype=="random" && enemytype.length()>0)
 {

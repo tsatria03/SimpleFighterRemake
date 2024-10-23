@@ -1,10 +1,10 @@
 int mreset=0, mskipnum=1, up_down=1, left_right=0, home_end=0, wrap=0, repeat_items=0, numbers=0, first_letter=0, position_info=0, side_scroll=0;
-string[] mclick=find_files("sounds/menus/"+menutype+"/*click*");
-string[] menter=find_files("sounds/menus/"+menutype+"/*enter*");
-string[] mopen=find_files("sounds/menus/"+menutype+"/*open*");
-string[] mctrack=find_files("sounds/menus/"+menutype+"/*music*");
-string[] mrap=find_files("sounds/menus/"+menutype+"/*wrap*");
-string[] medge=find_files("sounds/menus/"+menutype+"/*edge*");
+string[] mclick=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*click*");
+string[] menter=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*enter*");
+string[] mopen=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*open*");
+string[] mctrack=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*music*");
+string[] mrap=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*wrap*");
+string[] medge=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*edge*");
 void create_slider(bool anounce_percentage=false, bool provide_beeps=false)
 {
 if(anounce_percentage==true) s.speak_percentages=true;
@@ -22,7 +22,7 @@ void setupmenu(bool music_added=false)
 m.set_up_and_down_skip_amount(mskipnum);
 if(mreset==1) m.reset(true);
 else if(mreset==0) m.reset(false);
-if(music_added==true and mctrack.length()!=0) m.add_music("sounds/menus/"+menutype+"/"+mctrack[random(0,mctrack.length()-1)]);
+if(music_added==true and mctrack.length()!=0) m.add_music("sounds/"+soundpack+"/menus/"+menutype+"/"+mctrack[random(0,mctrack.length()-1)]);
 else if(music_added==false) m.add_music("");
 if(autojump==1) autojump=1;
 else if(autojump==0) autojump=0;
@@ -66,11 +66,11 @@ if(side_scroll==1) m.enable_side_scrolling=true;
 else if(side_scroll==0) m.enable_side_scrolling=false;
 m.enable_enter=true;
 m.allow_escape=true;
-if(mclick.length()!=0) m.click_sound=("sounds/menus/"+menutype+"/"+mclick[random(0,mclick.length()-1)]);
-if(medge.length()!=0) m.edge_sound=("sounds/menus/"+menutype+"/"+medge[random(0,medge.length()-1)]);
-if(menter.length()!=0) m.enter_sound=("sounds/menus/"+menutype+"/"+menter[random(0,menter.length()-1)]);
-if(mopen.length()!=0) m.open_sound=("sounds/menus/"+menutype+"/"+mopen[random(0,mopen.length()-1)]);
-if(mrap.length()!=0) m.wrap_sound=("sounds/menus/"+menutype+"/"+mrap[random(0,mrap.length()-1)]);
+if(mclick.length()!=0) m.click_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mclick[random(0,mclick.length()-1)]);
+if(medge.length()!=0) m.edge_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+medge[random(0,medge.length()-1)]);
+if(menter.length()!=0) m.enter_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+menter[random(0,menter.length()-1)]);
+if(mopen.length()!=0) m.open_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mopen[random(0,mopen.length()-1)]);
+if(mrap.length()!=0) m.wrap_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mrap[random(0,mrap.length()-1)]);
 }
 void setupmenu2(bool main=true)
 {
@@ -91,7 +91,7 @@ m.enable_first_letter_navigation=true;
 m.speak_position_information=false;
 m.click_sound="none.ogg";
 m.edge_sound="none.ogg";
-if(menter.length()!=0) m.enter_sound=("sounds/menus/"+menutype+"/"+menter[random(0,menter.length()-1)]);
-if(mopen.length()!=0) m.open_sound=("sounds/menus/"+menutype+"/"+mopen[random(0,mopen.length()-1)]);
+if(menter.length()!=0) m.enter_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+menter[random(0,menter.length()-1)]);
+if(mopen.length()!=0) m.open_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mopen[random(0,mopen.length()-1)]);
 m.wrap_sound="none.ogg";
 }

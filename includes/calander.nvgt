@@ -14,8 +14,8 @@ calandery=cny;
 cdtext=cntext;
 calandertype=cntype;
 destroyable=dbl;
-string[] calandersfx=find_files("sounds/objects/calanders/"+calandertype+"/*loop*");
-if(calandersfx.length()!=0) calandersound=calpool.play_2d("sounds/objects/calanders/"+calandertype+"/"+calandersfx[random(0,calandersfx.length()-1)],me.x,me.y,calanderx,calandery,true);
+string[] calandersfx=find_files("sounds/"+soundpack+"/objects/calanders/"+calandertype+"/*loop*");
+if(calandersfx.length()!=0) calandersound=calpool.play_2d("sounds/"+soundpack+"/objects/calanders/"+calandertype+"/"+calandersfx[random(0,calandersfx.length()-1)],me.x,me.y,calanderx,calandery,true);
 }
 }
 void calandercheck()
@@ -24,8 +24,8 @@ for(uint i=0; i<calanders.length(); i++)
 {
 if(me.x==calanders[i].calanderx and me.y==calanders[i].calandery and key_pressed(KEY_RETURN))
 {
-string[] pressfx=find_files("sounds/objects/calanders/"+calanders[i].calandertype+"/*pres*");
-if(pressfx.length()!=0) calanders[i].pressound=calpool.play_stationary("sounds/objects/calanders/"+calanders[i].calandertype+"/"+pressfx[random(0,pressfx.length()-1)],false);
+string[] pressfx=find_files("sounds/"+soundpack+"/objects/calanders/"+calanders[i].calandertype+"/*pres*");
+if(pressfx.length()!=0) calanders[i].pressound=calpool.play_stationary("sounds/"+soundpack+"/objects/calanders/"+calanders[i].calandertype+"/"+pressfx[random(0,pressfx.length()-1)],false);
 speak(calanders[i].cdtext+get_date(false, false));
 }
 }

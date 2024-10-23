@@ -616,8 +616,8 @@ speak(intro);
 }
 if(allow_escape == true) {
 if(key_pressed(KEY_ESCAPE)) {
-string[] mclos=find_files("sounds/menus/"+menutype+"/*close*");
-if(mclos.length()!=0) spool.play_stationary("sounds/menus/"+menutype+"/"+mclos[random(0,mclos.length()-1)],false);
+string[] mclos=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*close*");
+if(mclos.length()!=0) spool.play_stationary("sounds/"+soundpack+"/menus/"+menutype+"/"+mclos[random(0,mclos.length()-1)],false);
 running = false;
 return 0;
 }

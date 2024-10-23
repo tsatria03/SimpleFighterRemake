@@ -436,7 +436,7 @@ chartype=res;
 }
 if(ssm=="slk")
 {
-string[] themetype=find_directories("sounds/typing themes/*");
+string[] themetype=find_directories("sounds/"+soundpack+"/typing themes/*");
 if(themetype.length()==0)
 {
 dlg("Error. There are no keyboard themes available to view.");
@@ -453,7 +453,7 @@ keyboardtheme=res;
 }
 if(ssm=="slm")
 {
-string[] menu=find_directories("sounds/menus/*");
+string[] menu=find_directories("sounds/"+soundpack+"/menus/*");
 if(menu.length()==0)
 {
 dlg("Error. There are no menus available to view.");
@@ -849,7 +849,7 @@ return;
 mapname=name;
 maxx=string_to_number(mx);
 maxy=string_to_number(my);
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -994,7 +994,7 @@ modemenu();
 if(normem=="km")
 {
 m.fade_music();
-string[] animal=find_directories("sounds/npc/animals/*");
+string[] animal=find_directories("sounds/"+soundpack+"/npc/animals/*");
 if(animal.length()==0)
 {
 dlg("Error. There are no animals detected in the game!");
@@ -1019,7 +1019,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -1063,7 +1063,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres2==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -1109,7 +1109,7 @@ fighter(false);
 if(mres3==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -1148,7 +1148,7 @@ fighter(false);
 if(normem=="kn")
 {
 m.fade_music();
-string[] enemy=find_directories("sounds/npc/enemies/*");
+string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
 if(enemy.length()==0)
 {
 dlg("Error. There are no enemies detected in the game!");
@@ -1173,7 +1173,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -1217,7 +1217,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres2==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -1263,7 +1263,7 @@ fighter(false);
 if(mres3==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -1302,7 +1302,7 @@ fighter(false);
 if(normem=="kp")
 {
 m.fade_music();
-string[] projectile=find_directories("sounds/npc/projectiles/*");
+string[] projectile=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
 if(projectile.length()==0)
 {
 dlg("Error. There are no projectiles detected in the game!");
@@ -1327,7 +1327,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -1371,7 +1371,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres2==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -1417,7 +1417,7 @@ fighter(false);
 if(mres3==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -1456,7 +1456,7 @@ fighter(false);
 if(normem=="kb")
 {
 m.fade_music();
-string[] robot=find_directories("sounds/npc/robots/*");
+string[] robot=find_directories("sounds/"+soundpack+"/npc/robots/*");
 if(robot.length()==0)
 {
 dlg("Error. There are no robots detected in the game!");
@@ -1481,7 +1481,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -1525,7 +1525,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres2==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -1571,7 +1571,7 @@ fighter(false);
 if(mres3==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -1610,7 +1610,7 @@ fighter(false);
 if(normem=="kz")
 {
 m.fade_music();
-string[] zombie=find_directories("sounds/npc/zombies/*");
+string[] zombie=find_directories("sounds/"+soundpack+"/npc/zombies/*");
 if(zombie.length()==0)
 {
 dlg("Error. There are no zombies detected in the game!");
@@ -1635,7 +1635,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -1679,7 +1679,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres2==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -1725,7 +1725,7 @@ fighter(false);
 if(mres3==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -1784,7 +1784,7 @@ modemenu();
 if(cusmem=="km")
 {
 m.fade_music();
-string[] animal=find_directories("sounds/npc/animals/*");
+string[] animal=find_directories("sounds/"+soundpack+"/npc/animals/*");
 if(animal.length()==0)
 {
 dlg("Error. There are no animals available to view.");
@@ -1792,7 +1792,7 @@ custommenu();
 }
 else
 {
-string[] animaltype=find_directories("sounds/npc/animals/*");
+string[] animaltype=find_directories("sounds/"+soundpack+"/npc/animals/*");
 setupmenu();
 for(uint i=0; i<animaltype.length(); i++)
 {
@@ -1822,7 +1822,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -1866,7 +1866,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -1912,7 +1912,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -1967,7 +1967,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -2011,7 +2011,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -2057,7 +2057,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -2097,7 +2097,7 @@ fighter(false);
 if(cusmem=="kn")
 {
 m.fade_music();
-string[] enemy=find_directories("sounds/npc/enemies/*");
+string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
 if(enemy.length()==0)
 {
 dlg("Error. There are no enemies available to view.");
@@ -2105,7 +2105,7 @@ custommenu();
 }
 else
 {
-string[] enemytype=find_directories("sounds/npc/enemies/*");
+string[] enemytype=find_directories("sounds/"+soundpack+"/npc/enemies/*");
 setupmenu();
 for(uint i=0; i<enemytype.length(); i++)
 {
@@ -2135,7 +2135,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -2179,7 +2179,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -2225,7 +2225,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -2280,7 +2280,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -2324,7 +2324,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -2370,7 +2370,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -2410,7 +2410,7 @@ fighter(false);
 if(cusmem=="kp")
 {
 m.fade_music();
-string[] projectile=find_directories("sounds/npc/projectiles/*");
+string[] projectile=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
 if(projectile.length()==0)
 {
 dlg("Error. There are no projectiles available to view.");
@@ -2418,7 +2418,7 @@ custommenu();
 }
 else
 {
-string[] projtype=find_directories("sounds/npc/projectiles/*");
+string[] projtype=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
 setupmenu();
 for(uint i=0; i<projtype.length(); i++)
 {
@@ -2448,7 +2448,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -2492,7 +2492,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -2538,7 +2538,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -2593,7 +2593,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -2637,7 +2637,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -2683,7 +2683,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -2723,7 +2723,7 @@ fighter(false);
 if(cusmem=="kb")
 {
 m.fade_music();
-string[] robot=find_directories("sounds/npc/robots/*");
+string[] robot=find_directories("sounds/"+soundpack+"/npc/robots/*");
 if(robot.length()==0)
 {
 dlg("Error. There are no robots available to view.");
@@ -2731,7 +2731,7 @@ custommenu();
 }
 else
 {
-string[] robottype=find_directories("sounds/npc/robots/*");
+string[] robottype=find_directories("sounds/"+soundpack+"/npc/robots/*");
 setupmenu();
 for(uint i=0; i<robottype.length(); i++)
 {
@@ -2761,7 +2761,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -2805,7 +2805,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -2851,7 +2851,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -2906,7 +2906,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -2950,7 +2950,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -2996,7 +2996,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -3036,7 +3036,7 @@ fighter(false);
 if(cusmem=="kz")
 {
 m.fade_music();
-string[] zombie=find_directories("sounds/npc/zombies/*");
+string[] zombie=find_directories("sounds/"+soundpack+"/npc/zombies/*");
 if(zombie.length()==0)
 {
 dlg("Error. There are no zombies available to view.");
@@ -3044,7 +3044,7 @@ custommenu();
 }
 else
 {
-string[] zombietype=find_directories("sounds/npc/zombies/*");
+string[] zombietype=find_directories("sounds/"+soundpack+"/npc/zombies/*");
 setupmenu();
 for(uint i=0; i<zombietype.length(); i++)
 {
@@ -3074,7 +3074,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -3118,7 +3118,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -3164,7 +3164,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");
@@ -3219,7 +3219,7 @@ if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
 if(mres2==1)
 {
 platmode=1;
-string[] platform=find_directories("sounds/objects/platforms/*");
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
 dlg("Error. There are no platforms available to view.");
@@ -3263,7 +3263,7 @@ if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pi
 if(mres3==1)
 {
 musmode=1;
-string[] music=find_directories("sounds/objects/musics/*");
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
 dlg("Error. There are no musics available to view.");
@@ -3309,7 +3309,7 @@ fighter(false);
 if(mres4==1)
 {
 sorcemode=1;
-string[] sorce=find_directories("sounds/objects/sources/*");
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
 dlg("Error. There are no sound sources available to view.");

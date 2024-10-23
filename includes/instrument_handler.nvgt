@@ -23,7 +23,7 @@ spawn_platform(minx, maxx, maxy + 1, maxy + 1, "metal", 0, 100);
 }
 string get_new_perc(string perc,int direction)
 {
-string[] percussion=find_directories("sounds/objects/instruments/drums/*");
+string[] percussion=find_directories("sounds/"+soundpack+"/objects/instruments/drums/*");
 int percindex=-1;
 for (uint i=0; i<percussion.length(); i++)
 {
@@ -58,7 +58,7 @@ return percussion[percindex];
 }
 string get_new_mallit(string mallit,int direction)
 {
-string[] piano=find_directories("sounds/objects/instruments/pianos/*");
+string[] piano=find_directories("sounds/"+soundpack+"/objects/instruments/pianos/*");
 int mallitindex=-1;
 for (uint i=0; i<piano.length(); i++)
 {
@@ -251,23 +251,23 @@ if(key_pressed(keycheck1))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey1.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey1.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey1.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey1.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum1.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum1.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum1.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum1.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -276,23 +276,23 @@ if(key_pressed(keycheck2))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey2.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey2.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey2.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey2.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum2.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum2.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum2.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum2.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -301,23 +301,23 @@ if(key_pressed(keycheck3))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey3.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey3.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey3.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey3.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum3.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum3.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum3.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum3.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -326,23 +326,23 @@ if(key_pressed(keycheck4))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey4.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey4.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey4.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey4.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum4.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum4.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum4.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum4.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -351,23 +351,23 @@ if(key_pressed(keycheck5))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey5.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey5.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey5.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey5.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum5.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum5.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum5.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum5.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -376,23 +376,23 @@ if(key_pressed(keycheck6))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey6.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey6.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey6.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey6.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum6.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum6.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum6.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum6.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -401,23 +401,23 @@ if(key_pressed(keycheck7))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey7.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey7.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey7.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey7.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum7.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum7.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum7.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum7.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -426,23 +426,23 @@ if(key_pressed(keycheck8))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey8.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey8.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey8.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey8.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum8.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum8.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum8.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum8.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -451,23 +451,23 @@ if(key_pressed(keycheck9))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey9.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey9.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey9.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey9.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum9.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum9.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum9.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum9.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -476,23 +476,23 @@ if(key_pressed(keycheck10))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey10.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey10.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey10.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey10.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum10.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum10.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum10.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum10.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -501,23 +501,23 @@ if(key_pressed(keycheck11))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey11.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey11.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey11.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey11.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum11.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum11.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum11.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum11.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -526,23 +526,23 @@ if(key_pressed(keycheck12))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey12.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey12.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey12.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey12.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum12.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum12.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum12.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum12.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -551,23 +551,23 @@ if(key_pressed(keycheck13))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey13.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey13.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey13.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey13.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum13.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum13.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum13.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum13.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -576,23 +576,23 @@ if(key_pressed(keycheck14))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey14.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey14.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey14.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey14.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum14.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum14.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum14.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum14.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -601,23 +601,23 @@ if(key_pressed(keycheck15))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey15.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey15.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey15.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey15.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum15.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum15.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum15.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum15.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -626,23 +626,23 @@ if(key_pressed(keycheck16))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey16.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey16.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey16.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey16.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum16.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum16.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum16.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum16.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -651,23 +651,23 @@ if(key_pressed(keycheck17))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey17.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey17.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey17.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey17.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum17.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum17.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum17.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum17.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -676,23 +676,23 @@ if(key_pressed(keycheck18))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey18.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey18.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey18.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey18.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum18.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum18.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum18.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum18.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -701,23 +701,23 @@ if(key_pressed(keycheck19))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey19.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey19.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey19.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey19.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum19.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum19.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum19.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum19.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -726,23 +726,23 @@ if(key_pressed(keycheck20))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey20.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey20.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey20.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey20.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum20.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum20.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum20.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum20.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -751,23 +751,23 @@ if(key_pressed(keycheck21))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey21.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey21.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey21.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey21.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum21.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum21.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum21.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum21.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -776,23 +776,23 @@ if(key_pressed(keycheck22))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey22.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey22.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey22.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey22.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum22.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum22.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum22.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum22.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -801,23 +801,23 @@ if(key_pressed(keycheck23))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey23.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey23.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey23.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey23.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum23.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum23.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum23.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum23.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -826,23 +826,23 @@ if(key_pressed(keycheck24))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey24.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey24.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey24.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey24.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum24.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum24.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum24.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum24.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -851,23 +851,23 @@ if(key_pressed(keycheck25))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey25.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey25.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey25.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey25.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum25.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum25.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum25.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum25.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -876,23 +876,23 @@ if(key_pressed(keycheck26))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey26.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey26.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey26.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey26.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum26.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum26.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum26.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum26.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -901,23 +901,23 @@ if(key_pressed(keycheck27))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey27.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey27.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey27.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey27.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum27.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum27.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum27.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum27.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -926,23 +926,23 @@ if(key_pressed(keycheck28))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey28.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey28.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey28.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey28.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum28.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum28.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum28.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum28.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -951,23 +951,23 @@ if(key_pressed(keycheck29))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey29.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey29.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey29.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey29.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum29.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum29.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum29.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum29.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -976,23 +976,23 @@ if(key_pressed(keycheck30))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey30.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey30.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey30.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey30.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum30.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum30.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum30.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum30.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -1001,23 +1001,23 @@ if(key_pressed(keycheck31))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey31.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey31.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey31.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey31.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum31.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum31.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum31.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum31.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -1026,23 +1026,23 @@ if(key_pressed(keycheck32))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey32.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey32.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey32.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey32.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum32.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum32.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum32.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum32.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -1051,23 +1051,23 @@ if(key_pressed(keycheck33))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey33.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey33.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey33.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey33.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum33.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum33.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum33.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum33.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -1076,23 +1076,23 @@ if(key_pressed(keycheck34))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey34.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey34.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey34.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey34.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum34.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum34.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum34.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum34.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -1101,23 +1101,23 @@ if(key_pressed(keycheck35))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey35.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey35.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey35.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey35.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum35.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum35.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum35.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum35.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }
@@ -1126,23 +1126,23 @@ if(key_pressed(keycheck36))
 if(instcad==1 and overlap==0)
 {
 instpool.destroy_sound(pianoslot);
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey36.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey36.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==1 and overlap==1)
 {
-pianoslot=instpool.play_stationary("sounds/objects/instruments/pianos/"+piano+"/pianokey36.ogg",false);
+pianoslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/pianos/"+piano+"/pianokey36.ogg",false);
 instpool.update_sound_start_values(pianoslot,pianospan,pianosvolume,pianospitch);
 }
 else if(instcad==2 and overlap==0)
 {
 instpool.destroy_sound(drumslot);
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum36.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum36.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 if(instcad==2 and overlap==1)
 {
-drumslot=instpool.play_stationary("sounds/objects/instruments/drums/"+drum+"/drum36.wav",false);
+drumslot=instpool.play_stationary("sounds/"+soundpack+"/objects/instruments/drums/"+drum+"/drum36.wav",false);
 instpool.update_sound_start_values(drumslot,pianospan,pianosvolume,pianospitch);
 }
 }

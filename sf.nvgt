@@ -6,9 +6,11 @@ bool hrtf=true;
 bool y_is_elevation=true;
 int quest, mres;
 int dockmode=1, echomode=1, fademode=1, keytime=200, spacehold=1;
+string chartype="default";
 string keyboardtheme="keyboard";
 string menutype="default";
 string soundcard="Default";
+string soundpack="default";
 string[] dock, dock2, dock3;
 string changesplit, credsplit, redsplit;
 string mapdata;
@@ -374,6 +376,7 @@ void resetpreffs()
 {
 chartype="default";
 keyboardtheme="keyboard";
+soundpack="default";
 soundcard="Default";
 sound_output_device=1;
 menutype="default";
