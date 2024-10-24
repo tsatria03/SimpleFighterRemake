@@ -313,9 +313,18 @@ settingsmenu();
 void settingsmenu()
 {
 setupmenu();
+if(chartype=="")
+m.add_item_tts("Select character type for the "+soundpack+" sound pack. Currently set to nothing.", "slt");
+else
 m.add_item_tts("Select character type for the "+soundpack+" sound pack. Currently set to "+chartype, "slt");
+if(keyboardtheme=="")
+m.add_item_tts("Select keyboard theme for the "+soundpack+" sound pack. Currently set to nothing.", "slk");
+else
 m.add_item_tts("Select keyboard theme for the "+soundpack+" sound pack. Currently set to "+keyboardtheme, "slk");
-m.add_item_tts("Select menu sounds for the "+soundpack+" sound pack. Currently set to "+menutype, "slm");
+if(menutype=="")
+m.add_item_tts("Select menu theme for the "+soundpack+" sound pack. Currently set to nothing.", "slm");
+else
+m.add_item_tts("Select menu theme for the "+soundpack+" sound pack. Currently set to "+menutype, "slm");
 m.add_item_tts("Select sound pack. Currently set to "+soundpack, "spk");
 m.add_item_tts("Select sound device. Currently set to "+soundcard, "sdm");
 if(mskipnum==1) m.add_item_tts("Set up and down skip amount in all menus. Currently set to "+mskipnum+"item per press", "skipm");
@@ -492,10 +501,16 @@ settingsmenu();
 }
 if (mres==0 and mres>=soundpacks.length())
 {
+chartype="";
+keyboardtheme="";
+menutype="";
 soundpack=soundpacks[mres-1];
 }
 if (mres>0 and mres<=soundpacks.length())
 {
+chartype="";
+keyboardtheme="";
+menutype="";
 soundpack=soundpacks[mres-1];
 speak("Sound pack set.");
 settingsmenu();

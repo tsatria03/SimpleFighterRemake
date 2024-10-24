@@ -135,7 +135,7 @@ void instplay()
 while(true)
 {
 wait(5);
-if(key_pressed(KEY_TAB))
+if(key_repeating(KEY_TAB))
 {
 if(instcad==1)
 {
@@ -152,7 +152,7 @@ instcad=1;
 speak("pianos, "+"currently on "+piano);
 }
 }
-if(key_pressed(KEY_LEFT))
+if(key_repeating(KEY_LEFT))
 {
 if(instcad==1)
 {
@@ -169,7 +169,7 @@ drum=get_new_perc(drum,1);
 speak(drum);
 }
 }
-if(key_pressed(KEY_RIGHT))
+if(key_repeating(KEY_RIGHT))
 {
 if(instcad==1)
 {

@@ -65,7 +65,7 @@ sign 78 10 Item Zone: Periodically spawns items within the defined area. sign tr
 item_zone 80 90 10 10 500 health apple
 zone 95 105 10 15 lift
 sign 93 10 Lift: Moves players vertically between different levels. sign true false
-lift 95 105 0 100 1 50 metal15 0 100 lift 0 100
+lift 95 105 0 50 0 50 metal15 0 100 lift 0 100
 zone 110 120 10 15 moving_hazard
 sign 108 10 Moving Hazard: A hazard that moves, making it more dangerous. sign true false
 mhazard 110 120 10 10 0 0 0 0 50 water
@@ -78,8 +78,8 @@ music_source 140 150 10 10 music107 0 100
 zone 155 165 10 15 passage
 sign 153 10 Passage: A special type of door that can be longer than regular doors. sign true false
 passage 155 10 1 10 500 fence loop3 open close 500
-wall 156 156 10 15 1 walldirt 0 100 false
-wall 165 165 10 15 1 walldirt 0 100 false
+wall 156 156 10 15 1 walldirt 0 100 true
+wall 165 165 10 15 1 walldirt 0 100 true
 zone 170 180 10 15 projectile
 sign 168 10 Projectile: Objects fired by weapons or enemies. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true false
 projectile 170 10 0 500 1 25 200 1 75 bolder true false

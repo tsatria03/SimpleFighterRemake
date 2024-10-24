@@ -61,7 +61,7 @@ for (uint i=0; i<menuchanges.length(); i++)
 {
 m.add_item_tts(menuchanges[i],menuchanges[i],"",true);
 }
-int mres=m.run("Choose the sounds you would like to use in all menus.",true);
+int mres=m.run("Choose the menu theme you would like to use in all menus.",true);
 if(mres==0)
 {
 speak("canceled");
