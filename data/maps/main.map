@@ -71,7 +71,7 @@ sign 108 10 Moving Hazard: A hazard that moves, making it more dangerous. sign t
 mhazard 110 120 10 10 0 0 0 0 50 water
 zone 125 135 10 15 moving_platform
 sign 123 10 Moving Platform: Carries the player and can move in various patterns. sign true false
-mplatform 125 135 10 10 0 0 0 50 hardwood 0 100 mplatform6 0 100 0
+mplatform 125 135 10 10 0 0 0 50 hardwood 0 100 mplatform6 0 100 -20
 zone 140 150 10 15 music
 sign 138 10 Music: Plays background music when the player enters the area. sign true false
 music_source 140 150 10 10 music107 0 100

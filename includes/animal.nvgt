@@ -13,18 +13,22 @@ int amx;
 int amy;
 int anirange;
 int anirange2;
+int anirange3;
+int anirange4;
 int damage;
 int animaltime;
 int firetime;
 string animaltype;
 timer animaltimer, firetimer;
-animal(int ax,int ay,int anrange,int anrange2,double hp,double maxhp,int ac,int dm,int ft,int sp,double amlv,double axp,string at,bool amf,bool amt,bool amt2)
+animal(int ax,int ay,int anrange,int anrange2,int anrange3,int anrange4,double hp,double maxhp,int ac,int dm,int ft,int sp,double amlv,double axp,string at,bool amf,bool amt,bool amt2)
 {
 this.anihealth=hp;
 amx=ax;
 amy=ay;
 anirange=anrange;
 anirange2=anrange2;
+anirange3=anrange3;
+anirange4=anrange4;
 animalhealth=hp;
 animalmaxhealth=maxhp;
 animalcard=ac;
@@ -47,8 +51,11 @@ for(uint i=0; i<animals.length(); i++)
 {
 if(animals[i].animaltimer.elapsed>=animals[i].animaltime)
 {
+if(abs(me.x-animals[i].amx)<=animals[i].anirange3 or abs(me.y-animals[i].amy)<=animals[i].anirange4)
+{
 string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(animals[i].amx, animals[i].amy)+"/*step*");
 if(animals[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(animals[i].amx, animals[i].amy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,animals[i].amx,animals[i].amy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+animalpool.update_sound_2d(animals[i].amsound,animals[i].amx,animals[i].amy);
 animalpool.update_sound_2d(animals[i].amsound,animals[i].amx,animals[i].amy);
 animals[i].animaltimer.restart();
 if(animals[i].amx<me.x and animals[i].moveable==true and paused==0)
@@ -66,6 +73,7 @@ animals[i].amy++;
 if(animals[i].amy>me.y and animals[i].moveable2==true and paused==0)
 {
 animals[i].amy--;
+}
 }
 }
 if(absolute(me.x-animals[i].amx)<=animals[i].anirange and absolute(me.y-animals[i].amy)<=animals[i].anirange2 and animals[i].firetimer.elapsed>=animals[i].firetime and animals[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
@@ -108,9 +116,9 @@ return;
 }
 }
 }
-void spawn_animal(int x,int y,int animrange,int animrange2,double hp,double maxhp,int ac,int dm,int firetime,int animaltime,double amlevel,double xp,string animaltype,bool fireable,bool moveable,bool moveable2)
+void spawn_animal(int x,int y,int animrange,int animrange2,int animrange3,int animrange4,double hp,double maxhp,int ac,int dm,int firetime,int animaltime,double amlevel,double xp,string animaltype,bool fireable,bool moveable,bool moveable2)
 {
-animal an1(x,y,animrange,animrange2,hp,maxhp,ac,dm,firetime,animaltime,amlevel,xp,animaltype,fireable,moveable,moveable2);
+animal an1(x,y,animrange,animrange2,animrange3,animrange4,hp,maxhp,ac,dm,firetime,animaltime,amlevel,xp,animaltype,fireable,moveable,moveable2);
 animals.insert_last(an1);
 }
 void destroy_all_animals()

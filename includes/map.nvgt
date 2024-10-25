@@ -54,7 +54,7 @@ destroy_all_clocks();
 destroy_all_dialogs();
 destroy_all_doors();
 destroy_all_enemies();
-destroy_all_enemyzones();
+destroy_all_enemiezones();
 destroy_all_hazards();
 destroy_all_healthzones();
 destroy_all_instruments();
@@ -559,43 +559,47 @@ int desty=stn(sd[7]);
 string endtext=sd[8];
 spawn_travelpoint(mx, mx2, my, my2, destmap, destx, desty, endtext);
 }
-else if(sd[0]=="animal" && sd.length()==16)
+else if(sd[0]=="animal" && sd.length()==18)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
 int anirange=stn(sd[3]);
 int anirange2=stn(sd[4]);
-double hp=stn(sd[5]);
-int card=stn(sd[6]);
-int dmg=stn(sd[7]);
-int ft=stn(sd[8]);
-int sp=stn(sd[9]);
-double lv=stn(sd[10]);
-double xp=stn(sd[11]);
-string amtype=sd[12];
-bool fb=string_to_bool(sd[13]);
-bool mb=string_to_bool(sd[14]);
-bool mb2=string_to_bool(sd[15]);
-spawn_animal(x, y, anirange, anirange2, hp, hp, card, dmg, ft, sp, lv, xp, amtype, fb, mb, mb2);
+int anirange3=stn(sd[5]);
+int anirange4=stn(sd[6]);
+double hp=stn(sd[7]);
+int card=stn(sd[8]);
+int dmg=stn(sd[9]);
+int ft=stn(sd[10]);
+int sp=stn(sd[11]);
+double lv=stn(sd[12]);
+double xp=stn(sd[13]);
+string amtype=sd[14];
+bool fb=string_to_bool(sd[15]);
+bool mb=string_to_bool(sd[16]);
+bool mb2=string_to_bool(sd[17]);
+spawn_animal(x, y, anirange, anirange2, anirange3, anirange4, hp, hp, card, dmg, ft, sp, lv, xp, amtype, fb, mb, mb2);
 }
-else if(sd[0]=="enemy" && sd.length()==16)
+else if(sd[0]=="enemie" && sd.length()==18)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
 int enerange=stn(sd[3]);
 int enerange2=stn(sd[4]);
-double hp=stn(sd[5]);
-int card=stn(sd[6]);
-int dmg=stn(sd[7]);
-int ft=stn(sd[8]);
-int sp=stn(sd[9]);
-double lv=stn(sd[10]);
-double xp=stn(sd[11]);
-string emtype=sd[12];
-bool fb=string_to_bool(sd[13]);
-bool mb=string_to_bool(sd[14]);
-bool mb2=string_to_bool(sd[15]);
-spawn_enemy(x, y, enerange, enerange2, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2);
+int enerange3=stn(sd[5]);
+int enerange4=stn(sd[6]);
+double hp=stn(sd[7]);
+int card=stn(sd[8]);
+int dmg=stn(sd[9]);
+int ft=stn(sd[10]);
+int sp=stn(sd[11]);
+double lv=stn(sd[12]);
+double xp=stn(sd[13]);
+string emtype=sd[14];
+bool fb=string_to_bool(sd[15]);
+bool mb=string_to_bool(sd[16]);
+bool mb2=string_to_bool(sd[17]);
+spawn_enemie(x, y, enerange, enerange2, enerange3, enerange4, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2);
 }
 else if(sd[0]=="projectile" && sd.length()==13)
 {
@@ -613,24 +617,26 @@ bool fb=string_to_bool(sd[11]);
 bool mb=string_to_bool(sd[12]);
 spawn_projectile(x, y, dir, hp, hp, card, dmg, sp, lv, xp, potype, fb, mb);
 }
-else if(sd[0]=="robot" && sd.length()==16)
+else if(sd[0]=="robot" && sd.length()==18)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
 int roborange=stn(sd[3]);
 int roborange2=stn(sd[4]);
-double hp=stn(sd[5]);
-int card=stn(sd[6]);
-int dmg=stn(sd[7]);
-int ft=stn(sd[8]);
-int sp=stn(sd[9]);
-double lv=stn(sd[10]);
-double xp=stn(sd[11]);
-string rotype=sd[12];
-bool fb=string_to_bool(sd[13]);
-bool mb=string_to_bool(sd[14]);
-bool mb2=string_to_bool(sd[15]);
-spawn_robot(x, y, roborange, roborange2, hp, hp, card, dmg, ft, sp, lv, xp, rotype, fb, mb, mb2);
+int roborange3=stn(sd[5]);
+int roborange4=stn(sd[6]);
+double hp=stn(sd[7]);
+int card=stn(sd[8]);
+int dmg=stn(sd[9]);
+int ft=stn(sd[10]);
+int sp=stn(sd[11]);
+double lv=stn(sd[12]);
+double xp=stn(sd[13]);
+string rotype=sd[14];
+bool fb=string_to_bool(sd[15]);
+bool mb=string_to_bool(sd[16]);
+bool mb2=string_to_bool(sd[17]);
+spawn_robot(x, y, roborange, roborange2, roborange3, roborange4, hp, hp, card, dmg, ft, sp, lv, xp, rotype, fb, mb, mb2);
 }
 else if(sd[0]=="turret" && sd.length()==17)
 {
@@ -652,24 +658,26 @@ bool mb=string_to_bool(sd[15]);
 bool mb2=string_to_bool(sd[16]);
 spawn_turret(x, y, hp, hp, card, dmg, ft, lt, sp, lv, xp, tutype, tutype2, tutype3, fb, mb, mb2);
 }
-else if(sd[0]=="zombie" && sd.length()==16)
+else if(sd[0]=="zombie" && sd.length()==18)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
 int zombirange=stn(sd[3]);
 int zombirange2=stn(sd[4]);
-double hp=stn(sd[5]);
-int card=stn(sd[6]);
-int dmg=stn(sd[7]);
-int ft=stn(sd[8]);
-int sp=stn(sd[9]);
-double lv=stn(sd[10]);
-double xp=stn(sd[11]);
-string zotype=sd[12];
-bool fb=string_to_bool(sd[13]);
-bool mb=string_to_bool(sd[14]);
-bool mb2=string_to_bool(sd[15]);
-spawn_zombie(x, y, zombirange, zombirange2, hp, hp, card, dmg, ft, sp, lv, xp, zotype, fb, mb, mb2);
+int zombirange3=stn(sd[5]);
+int zombirange4=stn(sd[6]);
+double hp=stn(sd[7]);
+int card=stn(sd[8]);
+int dmg=stn(sd[9]);
+int ft=stn(sd[10]);
+int sp=stn(sd[11]);
+double lv=stn(sd[12]);
+double xp=stn(sd[13]);
+string zotype=sd[14];
+bool fb=string_to_bool(sd[15]);
+bool mb=string_to_bool(sd[16]);
+bool mb2=string_to_bool(sd[17]);
+spawn_zombie(x, y, zombirange, zombirange2, zombirange3, zombirange4, hp, hp, card, dmg, ft, sp, lv, xp, zotype, fb, mb, mb2);
 }
 else if(sd[0]=="animal_zone" && sd.length()==6)
 {
@@ -710,14 +718,14 @@ string tiletype=sd[7];
 string belttyp=sd[8];
 spawn_belt(mx, mx2, my, my2, dir, sp, tiletype, belttyp);
 }
-else if(sd[0]=="enemy_zone" && sd.length()==6)
+else if(sd[0]=="enemie_zone" && sd.length()==6)
 {
 double mx=stn(sd[1]);
 double mx2=stn(sd[2]);
 int y=stn(sd[3]);
 int sp=stn(sd[4]);
 string emtype=sd[5];
-spawn_enemyzone(mx, mx2, y, sp, emtype);
+spawn_enemiezone(mx, mx2, y, sp, emtype);
 }
 else if(sd[0]=="projectile_zone" && sd.length()==6)
 {

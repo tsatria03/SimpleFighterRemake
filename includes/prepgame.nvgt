@@ -15,7 +15,7 @@ double weaponvolume=0, weaponmaxvolume=120, weaponpan=0, weaponmaxpan=100, weapo
 double attack=0, ammo=100, defence=0, health=100, kills=0, points=0, xp=0, xpmod=1, xprequiered=1, level=1, levmod=1, lifecard=1, loadedammo=100, shieldstrength=100, shielddefence=0, shieldlevel, maxammo=100, maxhealth=100, maxshieldstrength=100, maxx=100, maxy=100, weplevel=1;
 float revdry, revwet, revsize, revdamp, revwidth;
 int autoslot, camslot, fallslot, invslot, itemslot, painslot, prevslot, shieldloop, shieldslot, shieldremoveslot, shieldwearslot, tileslot, wallslot, weaponslot;
-int amrange, amrange2, emrange, emrange2, robrange, robrange2, zombrange, zombrange2, charmode, fallcounter, gamemode, jumping, gametime, musmode, movetime, platmode, sorcemode, ty1, ty2;
+int amrange, amrange2, amrange3, amrange4, emrange, emrange2, emrange3, emrange4, robrange, robrange2, robrange3, robrange4, zombrange, zombrange2, zombrange3, zombrange4, charmode, fallcounter, gamemode, jumping, gametime, musmode, movetime, platmode, sorcemode, ty1, ty2;
 int chardeathsound=1, charfallsound=1, charfallsound2=1, charhurtsound=1, charhealsound=1, charhealsound2=1, charhealsound3=1, charinvsound=1, charjumpsound=1, charlevsound=1, charlifesound=1, charrocksound=1, charsitsound=1, charstandsound=1, charturnsound=1;
 int shieldbreaksound=1, shielddrawsound=1, shieldhitsound=1, shieldloopsound=1, shieldremovesound=1, shieldwearsound=1;
 int wepdrawsound=1, wepemptysound=1, wepfiresound=1, wephitsound=1, weploopsound=1, weprecsound=1, wepreloadsound=1, wepshellsound=1;
@@ -98,8 +98,8 @@ m.add_item_tts("clock", "cl");
 m.add_item_tts("conveyor_belt", "cb");
 m.add_item_tts("dialog", "dlg");
 m.add_item_tts("door", "ds");
-m.add_item_tts("enemy", "em");
-m.add_item_tts("enemy zone", "ez");
+m.add_item_tts("enemie", "em");
+m.add_item_tts("enemie zone", "ez");
 m.add_item_tts("hazard", "hd");
 m.add_item_tts("health zone", "hz");
 m.add_item_tts("instrument", "inst");
@@ -248,8 +248,10 @@ if(buildem=="an")
 input.set_only_allowed_chars("1234567890-");
 string mx=input.input("Enter the x of this animal.");
 string my=input.input("Enter the y of this animal.");
-string rng=input.input("Enter the horizontal range of this animal.");
-string rng2=input.input("Enter the vertical range of this animal.");
+string rng=input.input("Enter the horizontal atack range of this animal.");
+string rng2=input.input("Enter the vertical atack range of this animal.");
+string rng3=input.input("Enter the horizontal seeing range of this animal.");
+string rng4=input.input("Enter the vertical seeing range of this animal.");
 string hp=input.input("Enter the health of this animal.");
 string hc=input.input("Enter the maximum lives of this animal.");
 string dm=input.input("Enter the maximum damage of this animal.");
@@ -257,12 +259,14 @@ string ft=input.input("Enter the fire time of this animal.");
 string sp=input.input("Enter the speed of this animal.");
 string lev=input.input("Enter the level of this animal.");
 string exper=input.input("Enter the xp of this animal.");
-if(x=="" and y=="" and amrange=="" and amrange2=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
+if(x=="" and y=="" and amrange=="" and amrange2=="" and amrange3=="" and amrange4=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
 amrange=string_to_number(rng);
 amrange2=string_to_number(rng2);
+amrange3=string_to_number(rng3);
+amrange4=string_to_number(rng4);
 minhp=string_to_number(hp);
 card=string_to_number(hc);
 damage=string_to_number(dm);
@@ -351,9 +355,9 @@ mb2=false;
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"animal "+x+" "+y+" "+amrange+" "+amrange2+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+amtype+" "+fb+" "+mb+" "+mb2);
+mapper.write("\r\n"+"animal "+x+" "+y+" "+amrange+" "+amrange2+" "+amrange3+" "+amrange4+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+amtype+" "+fb+" "+mb+" "+mb2);
 mapper.close();
-spawn_animal(x, y, amrange, amrange2, minhp, minhp, card, damage, firetime, speedtime, lv, xn, amtype, fb, mb, mb2);
+spawn_animal(x, y, amrange, amrange2, amrange3, amrange4, minhp, minhp, card, damage, firetime, speedtime, lv, xn, amtype, fb, mb, mb2);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -1264,23 +1268,27 @@ speak("Map updated.");
 if(buildem=="em")
 {
 input.set_only_allowed_chars("1234567890-");
-string mx=input.input("Enter the x of this enemy.");
-string my=input.input("Enter the y of this enemy.");
-string rng=input.input("Enter the horizontal range of this enemy.");
-string rng2=input.input("Enter the vertical range of this enemy.");
-string hp=input.input("Enter the health of this enemy.");
-string hc=input.input("Enter the maximum lives of this enemy.");
-string dm=input.input("Enter the maximum damage of this enemy.");
-string ft=input.input("Enter the fire time of this enemy.");
-string sp=input.input("Enter the speed of this enemy.");
-string lev=input.input("Enter the level of this enemy.");
-string exper=input.input("Enter the xp of this enemy.");
-if(x=="" and y=="" and emrange=="" and emrange2=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
+string mx=input.input("Enter the x of this enemie.");
+string my=input.input("Enter the y of this enemie.");
+string rng=input.input("Enter the horizontal atack range of this enemie.");
+string rng2=input.input("Enter the vertical atack range of this enemie.");
+string rng3=input.input("Enter the horizontal seeing range of this enemie.");
+string rng4=input.input("Enter the vertical seeing range of this enemie.");
+string hp=input.input("Enter the health of this enemie.");
+string hc=input.input("Enter the maximum lives of this enemie.");
+string dm=input.input("Enter the maximum damage of this enemie.");
+string ft=input.input("Enter the fire time of this enemie.");
+string sp=input.input("Enter the speed of this enemie.");
+string lev=input.input("Enter the level of this enemie.");
+string exper=input.input("Enter the xp of this enemie.");
+if(x=="" and y=="" and emrange=="" and emrange2=="" and emrange3=="" and emrange4=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
 emrange=string_to_number(rng);
 emrange2=string_to_number(rng2);
+emrange3=string_to_number(rng3);
+emrange4=string_to_number(rng4);
 minhp=string_to_number(hp);
 card=string_to_number(hc);
 damage=string_to_number(dm);
@@ -1288,8 +1296,8 @@ firetime=string_to_number(ft);
 speedtime=string_to_number(sp);
 lv=string_to_number(lev);
 xn=string_to_number(exper);
-string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
-if(enemy.length()==0)
+string[] enemie=find_directories("sounds/"+soundpack+"/npc/enemies/*");
+if(enemie.length()==0)
 {
 dlg("Error. There are no enemies available to view.");
 resume_pools();
@@ -1310,7 +1318,7 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres2=m.run("Should the enemy attack you?",true);
+int mres2=m.run("Should the enemie attack you?",true);
 if(mres2==0)
 {
 speak("canceled");
@@ -1331,7 +1339,7 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres3=m.run("Should the enemy move?",true);
+int mres3=m.run("Should the enemie move?",true);
 if(mres3==0)
 {
 speak("canceled");
@@ -1352,7 +1360,7 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres4=m.run("Should the enemy folow you up on other platforms?",true);
+int mres4=m.run("Should the enemie folow you up on other platforms?",true);
 if(mres4==0)
 {
 speak("canceled");
@@ -1369,9 +1377,9 @@ mb2=false;
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"enemy "+x+" "+y+" "+emrange+" "+emrange2+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+emtype+" "+fb+" "+mb+" "+mb2);
+mapper.write("\r\n"+"enemie "+x+" "+y+" "+emrange+" "+emrange2+" "+emrange3+" "+emrange4+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+emtype+" "+fb+" "+mb+" "+mb2);
 mapper.close();
-spawn_enemy(x, y, emrange, emrange2, minhp, minhp, card, damage, firetime, speedtime, lv, xn, emtype, fb, mb, mb2);
+spawn_enemie(x, y, emrange, emrange2, emrange3, emrange4, minhp, minhp, card, damage, firetime, speedtime, lv, xn, emtype, fb, mb, mb2);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -1379,18 +1387,18 @@ speak("Map updated.");
 if(buildem=="ez")
 {
 input.set_only_allowed_chars("1234567890-");
-string mx=input.input("Enter the minimum x of this enemy zone.");
-string mx2=input.input("Enter the maximum x of this enemy zone.");
-string my=input.input("Enter the y of this enemy zone.");
-string sp=input.input("Enter the spawn time of this enemy zone.");
+string mx=input.input("Enter the minimum x of this enemie zone.");
+string mx2=input.input("Enter the maximum x of this enemie zone.");
+string my=input.input("Enter the y of this enemie zone.");
+string sp=input.input("Enter the spawn time of this enemie zone.");
 if(x=="" and paxx=="" and y=="" and speedtime=="")
 return;
 x=string_to_number(mx);
 paxx=string_to_number(mx2);
 y=string_to_number(my);
 speedtime=string_to_number(sp);
-string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
-if(enemy.length()==0)
+string[] enemie=find_directories("sounds/"+soundpack+"/npc/enemies/*");
+if(enemie.length()==0)
 {
 dlg("Error. There are no enemies available to view.");
 resume_pools();
@@ -1407,9 +1415,9 @@ emtype=res;
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"enemy_zone "+x+" "+paxx+" "+y+" "+speedtime+" "+emtype);
+mapper.write("\r\n"+"enemie_zone "+x+" "+paxx+" "+y+" "+speedtime+" "+emtype);
 mapper.close();
-spawn_enemyzone(x, paxx, y, speedtime, emtype);
+spawn_enemiezone(x, paxx, y, speedtime, emtype);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -2182,13 +2190,15 @@ load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
 }
-if(buildem=="rt")
+if(buildem=="rb")
 {
 input.set_only_allowed_chars("1234567890-");
 string mx=input.input("Enter the x of this robot.");
 string my=input.input("Enter the y of this robot.");
-string rng=input.input("Enter the horizontal range of this robot.");
-string rng2=input.input("Enter the vertical range of this robot.");
+string rng=input.input("Enter the horizontal atack range of this robot.");
+string rng2=input.input("Enter the vertical atack range of this robot.");
+string rng3=input.input("Enter the horizontal seeing range of this robot.");
+string rng4=input.input("Enter the vertical seeing range of this robot.");
 string hp=input.input("Enter the health of this robot.");
 string hc=input.input("Enter the maximum lives of this robot.");
 string dm=input.input("Enter the maximum damage of this robot.");
@@ -2196,12 +2206,14 @@ string ft=input.input("Enter the fire time of this robot.");
 string sp=input.input("Enter the speed of this robot.");
 string lev=input.input("Enter the level of this robot.");
 string exper=input.input("Enter the xp of this robot.");
-if(x=="" and y=="" and robrange=="" and robrange2=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
+if(x=="" and y=="" and robrange=="" and robrange2=="" and robrange3=="" and robrange4=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
 robrange=string_to_number(rng);
 robrange2=string_to_number(rng2);
+robrange3=string_to_number(rng3);
+robrange4=string_to_number(rng4);
 minhp=string_to_number(hp);
 card=string_to_number(hc);
 damage=string_to_number(dm);
@@ -2290,9 +2302,9 @@ mb2=false;
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"robot "+x+" "+y+" "+robrange+" "+robrange2+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+rotype+" "+fb+" "+mb+" "+mb2);
+mapper.write("\r\n"+"robot "+x+" "+y+" "+robrange+" "+robrange2+" "+robrange3+" "+robrange4+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+rotype+" "+fb+" "+mb+" "+mb2);
 mapper.close();
-spawn_robot(x, y, robrange, robrange2, minhp, minhp, card, damage, firetime, speedtime, lv, xn, rotype, fb, mb, mb2);
+spawn_robot(x, y, robrange, robrange2, robrange3, robrange4, minhp, minhp, card, damage, firetime, speedtime, lv, xn, rotype, fb, mb, mb2);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -2896,7 +2908,7 @@ tutype=res;
 }
 setupmenu();
 m.add_item_tts("animal","an2");
-m.add_item_tts("enemy","em2");
+m.add_item_tts("enemie","em2");
 m.add_item_tts("projectile","pj2");
 m.add_item_tts("robot","rt2");
 m.add_item_tts("zombie","zb2");
@@ -2928,8 +2940,8 @@ tutype3=res;
 }
 if(buildem2=="em2")
 {
-string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
-if(enemy.length()==0)
+string[] enemie=find_directories("sounds/"+soundpack+"/npc/enemies/*");
+if(enemie.length()==0)
 {
 dlg("Error. There are no enemies available to view.");
 resume_pools();
@@ -2940,7 +2952,7 @@ else
 string res=enemiesmenu();
 if(res!="")
 {
-tutype2="enemy";
+tutype2="enemie";
 tutype3=res;
 }
 }
@@ -3274,8 +3286,10 @@ if(buildem=="zb")
 input.set_only_allowed_chars("1234567890-");
 string mx=input.input("Enter the x of this zombie.");
 string my=input.input("Enter the y of this zombie.");
-string rng=input.input("Enter the horizontal range of this zombie.");
-string rng2=input.input("Enter the vertical range of this zombie.");
+string rng=input.input("Enter the horizontal atack range of this zombie.");
+string rng2=input.input("Enter the vertical atack range of this zombie.");
+string rng3=input.input("Enter the horizontal seeing range of this zombie.");
+string rng4=input.input("Enter the vertical seeing range of this zombie.");
 string hp=input.input("Enter the health of this zombie.");
 string hc=input.input("Enter the maximum lives of this zombie.");
 string dm=input.input("Enter the maximum damage of this zombie.");
@@ -3283,12 +3297,14 @@ string ft=input.input("Enter the fire time of this zombie.");
 string sp=input.input("Enter the speed of this zombie.");
 string lev=input.input("Enter the level of this zombie.");
 string exper=input.input("Enter the xp of this zombie.");
-if(x=="" and y=="" and zombrange=="" and zombrange2=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
+if(x=="" and y=="" and zombrange=="" and zombrange2=="" and zombrange3=="" and zombrange4=="" and minhp=="" and card=="" and damage=="" and firetime=="" and speedtime=="" and lv=="" and xn=="")
 return;
 x=string_to_number(mx);
 y=string_to_number(my);
 zombrange=string_to_number(rng);
 zombrange2=string_to_number(rng2);
+zombrange3=string_to_number(rng3);
+zombrange4=string_to_number(rng4);
 minhp=string_to_number(hp);
 card=string_to_number(hc);
 damage=string_to_number(dm);
@@ -3377,9 +3393,9 @@ mb2=false;
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"zombie "+x+" "+y+" "+zombrange+" "+zombrange2+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+zotype+" "+fb+" "+mb+" "+mb2);
+mapper.write("\r\n"+"zombie "+x+" "+y+" "+zombrange+" "+zombrange2+" "+zombrange3+" "+zombrange4+" "+minhp+" "+card+" "+damage+" "+firetime+" "+speedtime+" "+lv+" "+xn+" "+zotype+" "+fb+" "+mb+" "+mb2);
 mapper.close();
-spawn_zombie(x, y, zombrange, zombrange2, minhp, minhp, card, damage, firetime, speedtime, lv, xn, zotype, fb, mb, mb2);
+spawn_zombie(x, y, zombrange, zombrange2, zombrange3, zombrange4, minhp, minhp, card, damage, firetime, speedtime, lv, xn, zotype, fb, mb, mb2);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -3874,13 +3890,13 @@ return;
 void objinfo()
 {
 string[] animaltype=find_directories("sounds/"+soundpack+"/npc/animals/*");
-string[] enemytype=find_directories("sounds/"+soundpack+"/npc/enemies/*");
+string[] enemietype=find_directories("sounds/"+soundpack+"/npc/enemies/*");
 string[] projtype=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
-string[] robtype=find_directories("sounds/"+soundpack+"/npc/robots/*");
+string[] robottype=find_directories("sounds/"+soundpack+"/npc/robots/*");
 string[] spiketype=find_directories("sounds/"+soundpack+"/objects/spikes/*");
 string[] turtype=find_directories("sounds/"+soundpack+"/npc/turrets/*");
 string[] vehtype=find_directories("sounds/"+soundpack+"/objects/vehicles/*");
-string[] zombtype=find_directories("sounds/"+soundpack+"/npc/zombies/*");
+string[] zombietype=find_directories("sounds/"+soundpack+"/npc/zombies/*");
 setupmenu();
 m.add_item_tts("total objects "+(animals.length()+bullets.length()+doors.length()+enemies.length()+projectiles.length()+robots.length()+spikes.length()+turrets.length()+vehicles.length()+walls.length()+zombies.length()));
 for(uint i=0; i<animals.length(); i++)
@@ -3897,7 +3913,7 @@ m.add_item_tts("door at;"+doors[i].startx+";"+doors[i].starty+";"+"HP"+round(doo
 }
 for(uint i=0; i<enemies.length(); i++)
 {
-m.add_item_tts(enemies[i].enemytype+";"+"at;"+enemies[i].emx+";"+enemies[i].emy+";"+"HP"+round(enemies[i].enemyhealth/enemies[i].enemymaxhealth*100,2)+"percent"+";"+"level"+enemies[i].emlevel);
+m.add_item_tts(enemies[i].enemietype+";"+"at;"+enemies[i].emx+";"+enemies[i].emy+";"+"HP"+round(enemies[i].enemiehealth/enemies[i].enemiemaxhealth*100,2)+"percent"+";"+"level"+enemies[i].emlevel);
 }
 for(uint i=0; i<projectiles.length(); i++)
 {
@@ -3905,7 +3921,7 @@ m.add_item_tts(projectiles[i].projtype+";"+"at;"+projectiles[i].prox+";"+project
 }
 for(uint i=0; i<robots.length(); i++)
 {
-m.add_item_tts(robots[i].robtype+";"+"at;"+robots[i].robx+";"+robots[i].roby+";"+"HP"+round(robots[i].robothealth/robots[i].robotmaxhealth*100,2)+"percent"+";"+"level"+robots[i].roblevel);
+m.add_item_tts(robots[i].robottype+";"+"at;"+robots[i].robx+";"+robots[i].roby+";"+"HP"+round(robots[i].robothealth/robots[i].robotmaxhealth*100,2)+"percent"+";"+"level"+robots[i].roblevel);
 }
 for(uint i=0; i<spikes.length(); i++)
 {
@@ -3925,7 +3941,7 @@ m.add_item_tts(walls[i].wall+";"+"at;"+walls[i].minx+";"+walls[i].miny+";"+"HP"+
 }
 for(uint i=0; i<zombies.length(); i++)
 {
-m.add_item_tts(zombies[i].zombtype+";"+"at;"+zombies[i].zombx+";"+zombies[i].zomby+";"+"HP"+round(zombies[i].zombiehealth/zombies[i].zombiemaxhealth*100,2)+"percent"+";"+"level"+zombies[i].zomblevel);
+m.add_item_tts(zombies[i].zombietype+";"+"at;"+zombies[i].zombx+";"+zombies[i].zomby+";"+"HP"+round(zombies[i].zombiehealth/zombies[i].zombiemaxhealth*100,2)+"percent"+";"+"level"+zombies[i].zomblevel);
 }
 int mres=m.run("Object info", true);
 if(mres==0)

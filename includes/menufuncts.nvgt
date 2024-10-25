@@ -1827,6 +1827,7 @@ m.add_item_tts("none","none");
 int mres=m.run("Loop sounds menu", true);
 if(mres==0)
 {
+looptyp="none";
 return "none";
 }
 if(m.get_item_name(mres)=="none")
@@ -1870,6 +1871,7 @@ m.add_item_tts("none","none");
 int mres=m.run("move sounds menu", true);
 if(mres==0)
 {
+movtyp="none";
 return "none";
 }
 if(m.get_item_name(mres)=="none")
@@ -1913,6 +1915,7 @@ m.add_item_tts("none","none");
 int mres=m.run("open sounds menu", true);
 if(mres==0)
 {
+opentyp="none";
 return "none";
 }
 if(m.get_item_name(mres)=="none")
@@ -1956,6 +1959,7 @@ m.add_item_tts("none","none");
 int mres=m.run("close sounds menu", true);
 if(mres==0)
 {
+clostyp="none";
 return "none";
 }
 if(m.get_item_name(mres)=="none")

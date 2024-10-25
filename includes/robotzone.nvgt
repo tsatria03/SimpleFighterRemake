@@ -27,7 +27,7 @@ if(rotype=="random" && robtype.length()>0)
 {
 rotype=robtype[random(0,robtype.length()-1)];
 }
-spawn_robot(random(robotzones[i].minx, robotzones[i].maxx), robotzones[i].roby, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, rotype, true, true, false);
+spawn_robot(random(robotzones[i].minx, robotzones[i].maxx), robotzones[i].roby, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, rotype, true, true, false);
 robotzones[i].spawntimer.restart();
 }
 }

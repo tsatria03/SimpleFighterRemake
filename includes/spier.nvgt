@@ -222,7 +222,7 @@ for (uint i12 = 0; i12 < enemies.length(); i12++)
 {
 if(spyage.x==enemies[i12].emx && spyage.y==enemies[i12].emy)
 {
-materials+=enemies[i12].enemycard+" x "+enemies[i12].enemytype+": "+i+" feet. ";
+materials+=enemies[i12].enemiecard+" x "+enemies[i12].enemietype+": "+i+" feet. ";
 }
 }
 for (uint i13 = 0; i13 < projectiles.length(); i13++)
@@ -236,7 +236,7 @@ for (uint i14 = 0; i14 < robots.length(); i14++)
 {
 if(spyage.x==robots[i14].robx && spyage.y==robots[i14].roby)
 {
-materials+=robots[i14].robotcard+" x "+robots[i14].robtype+": "+i+" feet. ";
+materials+=robots[i14].robotcard+" x "+robots[i14].robottype+": "+i+" feet. ";
 }
 }
 for (uint i15 = 0; i15 < turrets.length(); i15++)
@@ -250,7 +250,7 @@ for (uint i16 = 0; i16 < zombies.length(); i16++)
 {
 if(spyage.x==zombies[i16].zombx && spyage.y==zombies[i16].zomby)
 {
-materials+=zombies[i16].zombiecard+" x "+zombies[i16].zombtype+": "+i+" feet. ";
+materials+=zombies[i16].zombiecard+" x "+zombies[i16].zombietype+": "+i+" feet. ";
 }
 }
 for (uint i17 = 0; i17 < psdoors.length(); i17++)

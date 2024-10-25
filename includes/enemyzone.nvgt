@@ -1,43 +1,43 @@
-enemyzone@[]enemyzones(0);
-class enemyzone
+enemiezone@[]enemiezones(0);
+class enemiezone
 {
 double minx, maxx;
 int emy;
 int spawntime;
-string enemytype;
+string enemietype;
 timer spawntimer;
-enemyzone(double mx,double mx2,int ey,int sp,string et)
+enemiezone(double mx,double mx2,int ey,int sp,string et)
 {
 minx=mx;
 maxx=mx2;
 emy=ey;
 spawntime=sp;
-enemytype=et;
+enemietype=et;
 }
 }
-void enemyzoneloop()
+void enemiezoneloop()
 {
-for(uint i=0; i<enemyzones.length(); i++)
+for(uint i=0; i<enemiezones.length(); i++)
 {
-if(enemyzones[i].minx<=me.x and enemyzones[i].maxx>=me.x and enemyzones[i].emy==me.y and enemyzones[i].spawntimer.elapsed>=enemyzones[i].spawntime)
+if(enemiezones[i].minx<=me.x and enemiezones[i].maxx>=me.x and enemiezones[i].emy==me.y and enemiezones[i].spawntimer.elapsed>=enemiezones[i].spawntime)
 {
-string[] enemytype=find_directories("sounds/"+soundpack+"/npc/enemies/*");
-string emtype = enemyzones[i].enemytype;
-if(emtype=="random" && enemytype.length()>0)
+string[] enemietype=find_directories("sounds/"+soundpack+"/npc/enemies/*");
+string emtype = enemiezones[i].enemietype;
+if(emtype=="random" && enemietype.length()>0)
 {
-emtype=enemytype[random(0,enemytype.length()-1)];
+emtype=enemietype[random(0,enemietype.length()-1)];
 }
-spawn_enemy(random(enemyzones[i].minx, enemyzones[i].maxx), enemyzones[i].emy, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, emtype, true, true, false);
-enemyzones[i].spawntimer.restart();
+spawn_enemie(random(enemiezones[i].minx, enemiezones[i].maxx), enemiezones[i].emy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, emtype, true, true, false);
+enemiezones[i].spawntimer.restart();
 }
 }
 }
-void spawn_enemyzone(double x1,double x2,int y,int sp,string type)
+void spawn_enemiezone(double x1,double x2,int y,int sp,string type)
 {
-enemyzone ez1(x1,x2,y,sp,type);
-enemyzones.insert_last(ez1);
+enemiezone ez1(x1,x2,y,sp,type);
+enemiezones.insert_last(ez1);
 }
-void destroy_all_enemyzones()
+void destroy_all_enemiezones()
 {
-enemyzones.resize(0);
+enemiezones.resize(0);
 }

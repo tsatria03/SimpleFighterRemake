@@ -27,7 +27,7 @@ if(amtype=="random" && animaltype.length()>0)
 {
 amtype=animaltype[random(0,animaltype.length()-1)];
 }
-spawn_animal(random(animalzones[i].minx, animalzones[i].maxx), animalzones[i].amy, 0, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, amtype, true, true, false);
+spawn_animal(random(animalzones[i].minx, animalzones[i].maxx), animalzones[i].amy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, amtype, true, true, false);
 animalzones[i].spawntimer.restart();
 }
 }
