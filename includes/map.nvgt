@@ -164,14 +164,16 @@ double tilevol=stn(sd[5]);
 double tilepitch=stn(sd[6]);
 spawn_platform(mx, mx2, my, my, tiletype, tilevol, tilepitch);
 }
-else if(sd[0]=="staircase" && sd.length()==6)
+else if(sd[0]=="staircase" && sd.length()==8)
 {
 double mx=stn(sd[1]);
 double mx2=stn(sd[2]);
 double my=stn(sd[3]);
 double my2=stn(sd[4]);
 string tiletype=sd[5];
-spawn_staircase(mx, mx2, my, my2, tiletype);
+double stairsvol=stn(sd[6]);
+double stairspitch=stn(sd[7]);
+spawn_staircase(mx, mx2, my, my2, tiletype, stairsvol, stairspitch);
 }
 else if(sd[0]=="vanishing_platform" && sd.length()==11)
 {

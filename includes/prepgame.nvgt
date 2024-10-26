@@ -2583,12 +2583,19 @@ if(res!="")
 tiletype=res;
 }
 }
+input.set_only_allowed_chars("1234567890-");
+string vol=input.input("Enter the volume of this staircase. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
+string semitone=input.input("Enter the pitch of this staircase. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
+if(volume=="" and pitch=="")
+return;
+volume=string_to_number(vol);
+pitch=string_to_number(semitone);
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"staircase "+x+" "+paxx+" "+y+" "+paxy+" "+tiletype);
+mapper.write("\r\n"+"staircase "+x+" "+paxx+" "+y+" "+paxy+" "+tiletype+" "+volume+" "+pitch);
 mapper.close();
-spawn_staircase(x, paxx, y, paxy, tiletype);
+spawn_staircase(x, paxx, y, paxy, tiletype, volume, pitch);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
