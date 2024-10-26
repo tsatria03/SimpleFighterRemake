@@ -31,6 +31,86 @@ else
 onstaircase=false;
 staircases[i].abletojump=true;
 }
+if(key_down(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and keyrowhold==1 and movetimer.elapsed>=movetime and moveable==true and doormove==false)
+{
+if(facing=="down"==false)
+{
+facing="down";
+if(spokenturns==1) speak(facing);
+string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*turn*");
+if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+turnsfx[random(0,turnsfx.length()-1)],false);
+movetimer.restart();
+}
+else
+{
+if(onstaircase==true and me.y>staircases[i].miny)
+{
+string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
+if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+me.y--;
+movetimer.restart();
+}
+}
+}
+if(key_down(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and keyrowhold==1 and movetimer.elapsed>=movetime and moveable==true and doormove==false)
+{
+if(facing=="up"==false)
+{
+facing="up";
+if(spokenturns==1) speak(facing);
+string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*turn*");
+if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+turnsfx[random(0,turnsfx.length()-1)],false);
+movetimer.restart();
+}
+else
+{
+if(onstaircase==true and me.y<staircases[i].maxy)
+{
+string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
+if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+me.y++;
+movetimer.restart();
+}
+}
+}
+if(key_pressed(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and keyrowhold==0 and moveable==true and doormove==false)
+{
+if(facing=="down"==false)
+{
+facing="down";
+if(spokenturns==1) speak(facing);
+string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*turn*");
+if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+turnsfx[random(0,turnsfx.length()-1)],false);
+}
+else
+{
+if(onstaircase==true and me.y>staircases[i].miny)
+{
+string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
+if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+me.y--;
+}
+}
+}
+if(key_down(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and keyrowhold==0 and moveable==true and doormove==false)
+{
+if(facing=="up"==false)
+{
+facing="up";
+if(spokenturns==1) speak(facing);
+string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*turn*");
+if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+turnsfx[random(0,turnsfx.length()-1)],false);
+}
+else
+{
+if(onstaircase==true and me.y<staircases[i].maxy)
+{
+string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/*step*");
+if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(staircases[i].minx,staircases[i].miny)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+me.y++;
+}
+}
+}
 }
 }
 void spawn_staircase(double fminx, double fmaxx, double fminy, double fmaxy,string stile)
