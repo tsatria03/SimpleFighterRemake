@@ -2,5 +2,3 @@ name test
 maxx 100
 maxy 100
 platform 0 100 0 marble2 0 100
-animal 5 0 0 0 0 0 100 100 100 500 500 1 1000 monkey true true false
-platform 5 50 5 hardwood 0 100

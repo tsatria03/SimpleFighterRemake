@@ -104,6 +104,36 @@ me.x++;
 playstep();
 }
 }
+void move_down()
+{
+if(facing=="down"==false)
+{
+facing="down";
+if(spokenturns==1) speak(facing);
+string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*turn*");
+if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+turnsfx[random(0,turnsfx.length()-1)],false);
+}
+else
+{
+me.y--;
+playstep();
+}
+}
+void move_up()
+{
+if(facing=="up"==false)
+{
+facing="up";
+if(spokenturns==1) speak(facing);
+string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*turn*");
+if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+turnsfx[random(0,turnsfx.length()-1)],false);
+}
+else
+{
+me.y++;
+playstep();
+}
+}
 void step_left()
 {
 if(facing=="left"==false)
@@ -131,6 +161,36 @@ if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"
 else
 {
 me.x++;
+playstep();
+}
+}
+void step_down()
+{
+if(facing=="down"==false)
+{
+facing="down";
+if(spokenturns==1) speak(facing);
+string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*turn*");
+if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+turnsfx[random(0,turnsfx.length()-1)],false);
+}
+else
+{
+me.y--;
+playstep();
+}
+}
+void step_up()
+{
+if(facing=="up"==false)
+{
+facing="up";
+if(spokenturns==1) speak(facing);
+string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*turn*");
+if(turnsfx.length()!=0 and turnsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+turnsfx[random(0,turnsfx.length()-1)],false);
+}
+else
+{
+me.y++;
 playstep();
 }
 }
