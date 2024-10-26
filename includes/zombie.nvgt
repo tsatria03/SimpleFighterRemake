@@ -1,8 +1,8 @@
 zombie@[]zombies(0);
 class zombie
 {
-bool fireable, moveable, moveable2;
-int zombsound, defsound, hurtsound, tilesound, wepsound;
+bool fireable, moveable, moveable2, spotted;
+int zombsound, defsound, hurtsound, stepsound, tilesound, wepsound;
 int zombiecard;
 int zombhealth;
 double zomblevel;
@@ -41,6 +41,7 @@ zombietype=zt;
 fireable=zombf;
 moveable=zombt;
 moveable2=zombt2;
+spotted=false;
 string[] zombsfx=find_files("sounds/"+soundpack+"/npc/zombies/"+zombietype+"/*taunt*");
 if(zombsfx.length()!=0) zombsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/zombies/"+zombietype+"/"+zombsfx[random(0,zombsfx.length()-1)],me.x,me.y,zombx,zomby,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }
@@ -51,32 +52,41 @@ for(uint i=0; i<zombies.length(); i++)
 {
 if(zombies[i].zombietimer.elapsed>=zombies[i].zombietime)
 {
-if(absolute(me.x-zombies[i].zombx)<=zombies[i].zombirange3 or absolute(me.y-zombies[i].zomby)<=zombies[i].zombirange4)
+if(abs(me.x-zombies[i].zombx)<=zombies[i].zombirange3 and abs(me.y-zombies[i].zomby)<=zombies[i].zombirange4)
+{
+zombies[i].spotted=true;
+}
+if(zombies[i].spotted)
 {
 string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(zombies[i].zombx, zombies[i].zomby)+"/*step*");
-if(zombies[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(zombies[i].zombx, zombies[i].zomby)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,zombies[i].zombx,zombies[i].zomby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+if(zombies[i].moveable==true and zombies[i].stepsound==1 and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(zombies[i].zombx, zombies[i].zomby)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,zombies[i].zombx,zombies[i].zomby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
 zombpool.update_sound_2d(zombies[i].zombsound,zombies[i].zombx,zombies[i].zomby);
 zombies[i].zombietimer.restart();
 if(zombies[i].zombx<me.x and zombies[i].moveable==true and paused==0)
 {
 zombies[i].zombx++;
+zombies[i].stepsound=1;
 }
 if(zombies[i].zombx>me.x and zombies[i].moveable==true and paused==0)
 {
 zombies[i].zombx--;
+zombies[i].stepsound=1;
 }
 if(zombies[i].zomby<me.y and zombies[i].moveable2==true and paused==0)
 {
 zombies[i].zomby++;
+zombies[i].stepsound=1;
 }
 if(zombies[i].zomby>me.y and zombies[i].moveable2==true and paused==0)
 {
 zombies[i].zomby--;
+zombies[i].stepsound=1;
 }
 }
 }
 if(absolute(me.x-zombies[i].zombx)<=zombies[i].zombirange and absolute(me.y-zombies[i].zomby)<=zombies[i].zombirange2 and zombies[i].firetimer.elapsed>=zombies[i].firetime and zombies[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
+zombies[i].stepsound=0;
 string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength-=zombies[i].damage*zombies[i].zomblevel-shielddefence;
@@ -84,6 +94,7 @@ zombies[i].firetimer.restart();
 }
 else if(absolute(me.x-zombies[i].zombx)<=zombies[i].zombirange and absolute(me.y-zombies[i].zomby)<=zombies[i].zombirange2 and zombies[i].firetimer.elapsed>=zombies[i].firetime and zombies[i].fireable==true and shieldon==0 and paused==0)
 {
+zombies[i].stepsound=0;
 string[] hitsfx=find_files("sounds/"+soundpack+"/npc/zombies/"+zombies[i].zombietype+"/*hit*");
 if(hitsfx.length()!=0) zombies[i].wepsound=zombpool.play_stationary_extended("sounds/"+soundpack+"/npc/zombies/"+zombies[i].zombietype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");

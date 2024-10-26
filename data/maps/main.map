@@ -9,8 +9,8 @@ zone 0 200 0 200 main
 sign 0 0 Welcome to the Simple Fighter main map. This map showcases various game objects and building features using zones. Explore to learn about different objects! Note: all signs including this one are destroyable. If you get tired of reading, just beat the living hell out of them, and they'll happily go away for good. Unless you reload the map that is. I mean ahem, did I just say that? Woops! Anyways enjoy exploring! sign true false
 zone 20 30 0 5 animal
 sign 18 0 Animal: Living creatures that can be friendly or hostile. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true false
-animal 20 0 0 0 1000 2 10 500 1000 1 50 dog true false false
-animal 25 0 0 0 random(500,2000) random(1,5) random(5,20) random(100,1000) random(500,2000) random(1,10) random(50,200) dog2 true false false
+animal 20 0 0 0 0 0 1000 2 10 500 1000 1 50 dog true false false
+animal 25 0 0 0 0 0 random(500,2000) random(1,5) random(5,20) random(100,1000) random(500,2000) random(1,10) random(50,200) dog2 true false false
 zone 35 45 0 5 animal_zone
 sign 33 0 Animal Zone: Periodically spawns animals within the defined area. sign true false
 animal_zone 35 45 0 2500 random
@@ -41,13 +41,13 @@ dialog 155 165 0 0 Welcome to the dialog zone!--A dialog is an interactable elem
 zone 170 180 0 5 door
 sign 168 0 Door: Can be opened, closed, and potentially destroyed. sign true false
 door 170 0 180 0 1000 50 loop3 move2 open close dest false true
-zone 185 195 0 5 enemy
-sign 183 0 Enemy: Hostile characters that actively oppose the player. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true false
-enemy 185 0 0 0 1500 3 15 300 800 2 100 ch true false false
-enemy 190 0 0 0 random(1000,2000) random(2,5) random(10,25) random(200,500) random(600,1000) random(1,5) random(75,150) ch2 true false false
-zone 5 15 10 15 enemy_zone
-sign 3 10 Enemy Zone: Periodically spawns enemies within the defined area. sign true false
-enemy_zone 5 15 10 2500 random
+zone 185 195 0 5 enemie
+sign 183 0 enemie: Hostile characters that actively oppose the player. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true false
+enemie 185 0 0 0 0 0 1500 3 15 300 800 2 100 ch true false false
+enemie 190 0 0 0 0 0 random(1000,2000) random(2,5) random(10,25) random(200,500) random(600,1000) random(1,5) random(75,150) ch2 true false false
+zone 5 15 10 15 enemie_zone
+sign 3 10 enemie Zone: Periodically spawns enemies within the defined area. sign true false
+enemie_zone 5 15 10 2500 random
 zone 20 30 10 15 hazard
 sign 18 10 Hazard: Damages the player when touched. sign true false
 hazard 20 30 10 10 fire false
@@ -92,8 +92,8 @@ sign 3 20 Reverb: Modifies the sound in a specific area to add atmosphere. sign 
 reverb 5 15 20 25 w5Z414cV 1 1 0.5 0.5 1
 zone 20 30 20 25 robot
 sign 18 20 Robot: Mechanical entities with various behaviors. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true false
-robot 20 20 0 0 2000 4 20 200 600 3 150 rb true false false
-robot 25 20 0 0 random(1500,2500) random(3,6) random(15,30) random(150,300) random(500,800) random(2,5) random(100,200) rb2 true false false
+robot 20 20 0 0 0 0 2000 4 20 200 600 3 150 rb true false false
+robot 25 20 0 0 0 0 random(1500,2500) random(3,6) random(15,30) random(150,300) random(500,800) random(2,5) random(100,200) rb2 true false false
 zone 35 45 20 25 robot_zone
 sign 33 20 Robot Zone: Periodically spawns robots within the defined area. sign true false
 robot_zone 35 45 20 2500 random
@@ -140,8 +140,8 @@ sign 48 30 Wall: Blocks movement and can potentially be destroyed. sign true fal
 wall 50 60 30 30 1000 walldirt 0 100 true
 zone 65 75 30 35 zombie
 sign 63 30 Zombie: Undead entities with unique behaviors. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true false
-zombie 65 30 0 0 2500 5 12 400 900 2 125 zb true false false
-zombie 70 30 0 0 random(2000,3000) random(4,7) random(8,16) random(300,500) random(700,1100) random(1,3) random(100,150) zb2 true false false
+zombie 65 30 0 0 0 0 2500 5 12 400 900 2 125 zb true false false
+zombie 70 30 0 0 0 0 random(2000,3000) random(4,7) random(8,16) random(300,500) random(700,1100) random(1,3) random(100,150) zb2 true false false
 zone 80 90 30 35 zombie_zone
 sign 78 30 Zombie Zone: Periodically spawns zombies within the defined area. sign true false
 zombie_zone 80 90 30 2500 random

@@ -1,8 +1,8 @@
 enemie@[]enemies(0);
 class enemie
 {
-bool fireable, moveable, moveable2;
-int emsound, defsound, hurtsound, tilesound, wepsound;
+bool fireable, moveable, moveable2, spotted;
+int emsound, defsound, hurtsound, stepsound, tilesound, wepsound;
 int enemiecard;
 int enehealth;
 double emlevel;
@@ -41,6 +41,7 @@ enemietype=et;
 fireable=emf;
 moveable=emt;
 moveable2=emt2;
+spotted=false;
 string[] emsfx=find_files("sounds/"+soundpack+"/npc/enemies/"+enemietype+"/*taunt*");
 if(emsfx.length()!=0) emsound=enemiepool.play_extended_2d("sounds/"+soundpack+"/npc/enemies/"+enemietype+"/"+emsfx[random(0,emsfx.length()-1)],me.x,me.y,emx,emy,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }
@@ -51,32 +52,41 @@ for(uint i=0; i<enemies.length(); i++)
 {
 if(enemies[i].enemietimer.elapsed>=enemies[i].enemietime)
 {
-if(absolute(me.x-enemies[i].emx)<=enemies[i].enerange3 or absolute(me.y-enemies[i].emy)<=enemies[i].enerange4)
+if(absolute(me.x-enemies[i].emx)<=enemies[i].enerange3 and absolute(me.y-enemies[i].emy)<=enemies[i].enerange4)
+{
+enemies[i].spotted=true;
+}
+if(enemies[i].spotted)
 {
 string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(enemies[i].emx, enemies[i].emy)+"/*step*");
-if(enemies[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(enemies[i].emx, enemies[i].emy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,enemies[i].emx,enemies[i].emy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+if(enemies[i].moveable==true and enemies[i].stepsound==1 and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(enemies[i].emx, enemies[i].emy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,enemies[i].emx,enemies[i].emy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
 enemiepool.update_sound_2d(enemies[i].emsound,enemies[i].emx,enemies[i].emy);
 enemies[i].enemietimer.restart();
 if(enemies[i].emx<me.x and enemies[i].moveable==true and paused==0)
 {
 enemies[i].emx++;
+enemies[i].stepsound=1;
 }
 if(enemies[i].emx>me.x and enemies[i].moveable==true and paused==0)
 {
 enemies[i].emx--;
+enemies[i].stepsound=1;
 }
 if(enemies[i].emy<me.y and enemies[i].moveable2==true and paused==0)
 {
 enemies[i].emy++;
+enemies[i].stepsound=1;
 }
 if(enemies[i].emy>me.y and enemies[i].moveable2==true and paused==0)
 {
 enemies[i].emy--;
+enemies[i].stepsound=1;
 }
 }
 }
 if(absolute(me.x-enemies[i].emx)<=enemies[i].enerange and absolute(me.y-enemies[i].emy)<=enemies[i].enerange2 and enemies[i].firetimer.elapsed>=enemies[i].firetime and enemies[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
+enemies[i].stepsound=0;
 string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength-=enemies[i].damage*enemies[i].emlevel-shielddefence;
@@ -84,6 +94,7 @@ enemies[i].firetimer.restart();
 }
 else if(absolute(me.x-enemies[i].emx)<=enemies[i].enerange and absolute(me.y-enemies[i].emy)<=enemies[i].enerange2 and enemies[i].firetimer.elapsed>=enemies[i].firetime and enemies[i].fireable==true and shieldon==0 and paused==0)
 {
+enemies[i].stepsound=0;
 string[] hitsfx=find_files("sounds/"+soundpack+"/npc/enemies/"+enemies[i].enemietype+"/*hit*");
 if(hitsfx.length()!=0) enemies[i].wepsound=enemiepool.play_stationary_extended("sounds/"+soundpack+"/npc/enemies/"+enemies[i].enemietype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");

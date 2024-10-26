@@ -1,8 +1,8 @@
 robot@[]robots(0);
 class robot
 {
-bool fireable, moveable, moveable2;
-int robsound, defsound, hurtsound, tilesound, wepsound;
+bool fireable, moveable, moveable2, spotted;
+int robsound, defsound, hurtsound, stepsound, tilesound, wepsound;
 int robotcard;
 int robhealth;
 double roblevel;
@@ -41,6 +41,7 @@ robottype=rt;
 fireable=robf;
 moveable=robt;
 moveable2=robt2;
+spotted=false;
 string[] robsfx=find_files("sounds/"+soundpack+"/npc/robots/"+robottype+"/*taunt*");
 if(robsfx.length()!=0) robsound=robpool.play_extended_2d("sounds/"+soundpack+"/npc/robots/"+robottype+"/"+robsfx[random(0,robsfx.length()-1)],me.x,me.y,robx,roby,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }
@@ -51,32 +52,41 @@ for(uint i=0; i<robots.length(); i++)
 {
 if(robots[i].robottimer.elapsed>=robots[i].robottime)
 {
-if(absolute(me.x-robots[i].robx)<=robots[i].roborange3 or absolute(me.y-robots[i].roby)<=robots[i].roborange4)
+if(absolute(me.x-robots[i].robx)<=robots[i].roborange3 and absolute(me.y-robots[i].roby)<=robots[i].roborange4)
+{
+robots[i].spotted=true;
+}
+if(robots[i].spotted)
 {
 string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(robots[i].robx, robots[i].roby)+"/*step*");
-if(robots[i].moveable==true and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(robots[i].robx, robots[i].roby)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,robots[i].robx,robots[i].roby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+if(robots[i].moveable==true and robots[i].stepsound==1 and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(robots[i].robx, robots[i].roby)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,robots[i].robx,robots[i].roby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
 robpool.update_sound_2d(robots[i].robsound,robots[i].robx,robots[i].roby);
 robots[i].robottimer.restart();
 if(robots[i].robx<me.x and robots[i].moveable==true and paused==0)
 {
 robots[i].robx++;
+robots[i].stepsound=1;
 }
 if(robots[i].robx>me.x and robots[i].moveable==true and paused==0)
 {
 robots[i].robx--;
+robots[i].stepsound=1;
 }
 if(robots[i].roby<me.y and robots[i].moveable2==true and paused==0)
 {
 robots[i].roby++;
+robots[i].stepsound=1;
 }
 if(robots[i].roby>me.y and robots[i].moveable2==true and paused==0)
 {
 robots[i].roby--;
+robots[i].stepsound=1;
 }
 }
 }
 if(absolute(me.x-robots[i].robx)<=robots[i].roborange and absolute(me.y-robots[i].roby)<=robots[i].roborange2 and robots[i].firetimer.elapsed>=robots[i].firetime and robots[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
 {
+robots[i].stepsound=0;
 string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength-=robots[i].damage*robots[i].roblevel-shielddefence;
@@ -84,6 +94,7 @@ robots[i].firetimer.restart();
 }
 else if(absolute(me.x-robots[i].robx)<=robots[i].roborange and absolute(me.y-robots[i].roby)<=robots[i].roborange2 and robots[i].firetimer.elapsed>=robots[i].firetime and robots[i].fireable==true and shieldon==0 and paused==0)
 {
+robots[i].stepsound=0;
 string[] hitsfx=find_files("sounds/"+soundpack+"/npc/robots/"+robots[i].robottype+"/*hit*");
 if(hitsfx.length()!=0) robots[i].wepsound=robpool.play_stationary_extended("sounds/"+soundpack+"/npc/robots/"+robots[i].robottype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
