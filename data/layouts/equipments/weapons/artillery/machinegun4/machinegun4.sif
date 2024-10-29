@@ -1,7 +1,7 @@
 name=machinegun4
 damage=1
 mode=1
-horizontal range=1
+horizontal range=2
 vertical range=1
 speed=30
 repeat time=100

@@ -71,7 +71,7 @@ sign 108 10 Moving Hazard: A hazard that moves, making it more dangerous. sign t
 mhazard 110 120 10 10 0 0 0 0 50 water
 zone 125 135 10 15 moving_platform
 sign 123 10 Moving Platform: Carries the player and can move in various patterns. sign true false
-mplatform 125 135 10 10 0 0 0 50 hardwood 0 100 mplatform6 0 100 -20
+mplatform 125 135 10 10 0 0 0 50 hardwood 0 100 mplatform5 0 100 -20
 zone 140 150 10 15 music
 sign 138 10 Music: Plays background music when the player enters the area. sign true false
 music_source 140 150 10 10 music107 0 100
@@ -137,7 +137,7 @@ zone 35 45 30 35 vehicle
 sign 33 30 Vehicle: Players can enter and control for combat or transportation. sign true false
 zone 50 60 30 35 wall
 sign 48 30 Wall: Blocks movement and can potentially be destroyed. sign true false
-wall 50 60 30 30 1000 walldirt 0 100 true
+wall 50 60 30 35 1000 walldirt 0 100 true
 zone 65 75 30 35 zombie
 sign 63 30 Zombie: Undead entities with unique behaviors. Two examples are shown: one with predefined stats (left) and one with randomized stats that change on map reload (right). Both are stationary but can attack. sign true false
 zombie 65 30 0 0 0 0 2500 5 12 400 900 2 125 zb true false false

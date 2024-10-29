@@ -28,7 +28,7 @@ timer keytimer;
 audio_form f, f2, form, form2;
 dynamic_menu_pro m, m2, menu, menu2;
 kh k, k2, keyhook, keyhook2;
-savedata sd("data/saves/game.dat","s7NGuz4iSPGvdCy52bDekJezFp23WcBoeMdlY8Mk9d7Zj51dD8LiDqhYN6bveBODZS1Yt6m1pMOBdRi9e8DLmPBPRPLlW2xFA1rjNdJAugeNL7v6Fcnl1F7rp1hdjSCwYzw34cOtL");
+savedata sd("data/saves/game.dat", "s7NGuz4iSPGvdCy52bDekJezFp23WcBoeMdlY8Mk9d7Zj51dD8LiDqhYN6bveBODZS1Yt6m1pMOBdRi9e8DLmPBPRPLlW2xFA1rjNdJAugeNL7v6Fcnl1F7rp1hdjSCwYzw34cOtL");
 savedata st("data/saves/options.dat","mBlAGtFL8GUjFZDAaLkG6Zqv1KHKOimA3SGqT6wmdJWc5h6RdSB97916D9SIQfZMjdCZMSJmDByZHYuS2V22QCvHmSGMHIOSwIyHjD46zmjGcm3bgZRyImIAVLivGTgAHub0jpjORA2t3z1GJMcHu0VxMIbJrmSzXjU9wdgeZYdP8z7MVym8SBrGrb2X8r9ryXY03MhwzMgjdD6jo9q");
 slider s, s2, slide, slide2;
 sound dummy, dummy2, mus, mus2;
