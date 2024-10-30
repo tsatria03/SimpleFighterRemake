@@ -29,6 +29,7 @@ if(ammo<=0)
 {
 string[] emptysfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*empty*");
 if(emptysfx.length()!=0 and wepemptysound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+emptysfx[random(0,emptysfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+speak("No ammo.");
 }
 else
 {
