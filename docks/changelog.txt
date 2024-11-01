@@ -1,8 +1,9 @@
 new in 5.5
+Finally fixed falling off of map Boundaries! I have know idea how this bug became apparent in recent versions of the game, but it should hopefully be fixed once and for all.
 The volume and pitch sliders now anounce values in percentages, not actual numbers. The reverb sliders will remain largely unchanged, aside from a few tweaks here and their.
 Made it so objects that take the volume and pitch parameter use sliders to adjust them instead of the vertual input box asking the user to type in the values they want. This change also applies to the other game modes as well, not just the builder mode.
 Added volume and pitch support to staircases.
-Finally fixed all staircase issues! You should now be able to face up and down on them, toggle auto walking, and other tile changes shouldn't impact the staircase when you get off of it. You can also build platforms that are a foot off the ground and climb them as if it were a minny staircase upon stacking up multiple of them.
+Finally fixed most staircase issues! You should now be able to face up and down on them, toggle auto walking, and other tile changes shouldn't impact the staircase when you get off of it. You can also build platforms that are a foot off the ground and climb them as if it were a minny staircase upon stacking up multiple of them.
 Made it so animals, enemies, robots, and zombies don't play there footsteps when they are right on top of you.
 Npc types such as animals and enemies are now able to chase you around the map if they see you from a considerable distence.
 Added the ability to set horizontal and vertical seeing ranges for animals, enemies, robots, and zombies while building them in the builder menu.
