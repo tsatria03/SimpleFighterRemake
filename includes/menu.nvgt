@@ -1082,13 +1082,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1126,13 +1120,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres2==2)
 {
@@ -1172,13 +1160,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1236,13 +1218,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1280,13 +1256,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres2==2)
 {
@@ -1326,13 +1296,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1390,13 +1354,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1434,13 +1392,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres2==2)
 {
@@ -1480,13 +1432,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1544,13 +1490,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1588,13 +1528,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres2==2)
 {
@@ -1634,13 +1568,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1698,13 +1626,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1742,13 +1664,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres2==2)
 {
@@ -1788,13 +1704,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1885,13 +1795,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -1929,13 +1833,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -1975,13 +1873,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2030,13 +1922,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2074,13 +1960,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -2120,13 +2000,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2198,13 +2072,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2242,13 +2110,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -2288,13 +2150,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2343,13 +2199,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2387,13 +2237,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -2433,13 +2277,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2511,13 +2349,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2555,13 +2387,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -2601,13 +2427,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2656,13 +2476,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2700,13 +2514,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -2746,13 +2554,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2824,13 +2626,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2868,13 +2664,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -2914,13 +2704,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2969,13 +2753,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -3013,13 +2791,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -3059,13 +2831,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -3137,13 +2903,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -3181,13 +2941,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -3227,13 +2981,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -3282,13 +3030,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -3326,13 +3068,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 }
 if(mres3==2)
 {
@@ -3372,13 +3108,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;

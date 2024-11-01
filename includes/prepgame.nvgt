@@ -181,13 +181,7 @@ if(res!="")
 sorcetyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the sound volume of this ambience. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound ambience. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
@@ -226,13 +220,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music ambience. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music ambience. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
@@ -1592,13 +1580,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 string[] mplatform=find_directories("sounds/"+soundpack+"/objects/moving platforms/*");
 if(mplatform.length()==0)
 {
@@ -1614,14 +1596,11 @@ if(res!="")
 mplattyp=res;
 }
 }
+effectsmenu2();
 input.set_only_allowed_chars("1234567890-");
-string vol2=input.input("Enter the volume of this moving platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone2=input.input("Enter the pitch of this moving platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
 string vof=input.input("Enter the volume offset of this moving platform.");
-if(volume2=="" and pitch2=="" and volset=="")
+if(volset=="")
 return;
-volume2=string_to_number(vol2);
-pitch2=string_to_number(semitone2);
 volset=string_to_number(vof);
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
@@ -1908,13 +1887,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 string[] liftform=find_directories("sounds/"+soundpack+"/objects/lifts/*");
 if(liftform.length()==0)
 {
@@ -1930,13 +1903,7 @@ if(res!="")
 lifttyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol2=input.input("Enter the volume of this lift. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone2=input.input("Enter the pitch of this lift. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume2=="" and pitch2=="")
-return;
-volume2=string_to_number(vol2);
-pitch2=string_to_number(semitone2);
+effectsmenu2();
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
@@ -1975,13 +1942,7 @@ if(res!="")
 mustyp=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this music source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this music source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
@@ -2019,12 +1980,7 @@ tiletype=res;
 }
 }
 input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
@@ -2455,12 +2411,7 @@ sorcetyp=res;
 }
 }
 input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this sound source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this sound source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
@@ -2583,13 +2534,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this staircase. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this staircase. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
@@ -2713,14 +2658,11 @@ if(res!="")
 sorcetyp=res;
 }
 }
+effectsmenu();
 input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this timed source. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this timed source. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
 string sp=input.input("Enter the speed of this timed source.");
-if(volume=="" and pitch=="" and speedtime=="")
+if(speedtime=="")
 return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
 speedtime=string_to_number(sp);
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
@@ -2760,14 +2702,11 @@ if(res!="")
 mustyp=res;
 }
 }
+effectsmenu();
 input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this timed music. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this timed music. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
 string sp=input.input("Enter the speed of this timed music.");
-if(volume=="" and pitch=="" and speedtime=="")
+if(speedtime=="")
 return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
 speedtime=string_to_number(sp);
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
@@ -3179,13 +3118,7 @@ if(res!="")
 tiletype=res;
 }
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 string[] vplatform=find_directories("sounds/"+soundpack+"/objects/vanishing platforms/*");
 if(vplatform.length()==0)
 {
@@ -3201,14 +3134,11 @@ if(res!="")
 vplattyp=res;
 }
 }
+effectsmenu2();
 input.set_only_allowed_chars("1234567890-");
-string vol2=input.input("Enter the volume of this vanishing platform. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone2=input.input("Enter the pitch of this vanishing platform. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
 string sp=input.input("Enter the speed of this vanishing platform.");
-if(volume2=="" and pitch2=="" and speedtime=="")
+if(speedtime=="")
 return;
-volume2=string_to_number(vol2);
-pitch2=string_to_number(semitone2);
 speedtime=string_to_number(sp);
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
@@ -3249,13 +3179,7 @@ if(res!="")
 {
 walltype=res;
 }
-input.set_only_allowed_chars("1234567890-");
-string vol=input.input("Enter the volume of this wall. Press enter to use the default volume, or control backspace to clear the input to type your own volume.", "0");
-string semitone=input.input("Enter the pitch of this wall. Press enter to use the default pitch, or control backspace to clear the input to type your own pitch.", "100");
-if(volume=="" and pitch=="")
-return;
-volume=string_to_number(vol);
-pitch=string_to_number(semitone);
+effectsmenu();
 setupmenu();
 m.wrap_sound="none.ogg";
 m.click_sound="menu1.ogg";
@@ -3734,15 +3658,14 @@ resume_pools();
 return;
 }
 }
-void reverbmenu()
+void effectsmenu(bool anounce_percentage=true)
 {
+if(anounce_percentage==true) s.speak_percentages=true;
+else if(anounce_percentage==false) s.speak_percentages=false;
 create_slider();
-s.add_slider_item("dry_mix", 0.0, 1.0, 0.0, 0.1);
-s.add_slider_item("wet_mix", 0.0, 1.0, 0.0, 0.1);
-s.add_slider_item("room_size", 0.0, 1.0, 0.0, 0.1);
-s.add_slider_item("damping", 0.0, 1.0, 0.0, 0.1);
-s.add_slider_item("width", 0.0, 1.0, 0.0, 0.1);
-int sres = s.run_slider("Reverb Designer. Press tab or shift tab to cycle through the reverb parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 5.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
 if (sres==0)
 {
 resume_pools();
@@ -3750,11 +3673,50 @@ speak("Canceled");
 return;
 }
 resume_pools();
-revdry = s.get_item_value(0);
-revwet = s.get_item_value(1);
-revsize = s.get_item_value(2);
-revdamp = s.get_item_value(3);
-revwidth = s.get_item_value(4);
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+void effectsmenu2(bool anounce_percentage=true)
+{
+if(anounce_percentage==true) s.speak_percentages=true;
+else if(anounce_percentage==false) s.speak_percentages=false;
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume2=s.get_item_value(0);
+pitch2=s.get_item_value(1);
+}
+void reverbmenu(bool anounce_percentage=false)
+{
+if(anounce_percentage==true) s.speak_percentages=true;
+else if(anounce_percentage==false) s.speak_percentages=false;
+create_slider();
+s.add_slider_item("dry_mix", 0.0, 1.0, 0.0, 0.1);
+s.add_slider_item("wet_mix", 0.0, 1.0, 0.0, 0.1);
+s.add_slider_item("room_size", 0.0, 1.0, 0.0, 0.1);
+s.add_slider_item("damping", 0.0, 1.0, 0.0, 0.1);
+s.add_slider_item("width", 0.0, 1.0, 0.0, 0.1);
+int sres = s.run_slider("Reverb designer. Press tab or shift tab to cycle through the reverb parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+revdry=s.get_item_value(0);
+revwet=s.get_item_value(1);
+revsize=s.get_item_value(2);
+revdamp=s.get_item_value(3);
+revwidth=s.get_item_value(4);
 }
 void weaponsmenu()
 {

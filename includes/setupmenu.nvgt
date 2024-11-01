@@ -5,10 +5,8 @@ string[] mopen=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*open*");
 string[] mctrack=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*music*");
 string[] mrap=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*wrap*");
 string[] medge=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*edge*");
-void create_slider(bool anounce_percentage=false, bool provide_beeps=false)
+void create_slider(bool provide_beeps=false)
 {
-if(anounce_percentage==true) s.speak_percentages=true;
-else if(anounce_percentage==false) s.speak_percentages=false;
 if(provide_beeps==true) s.enable_beeps=true;
 else if(provide_beeps==false) s.enable_beeps=false;
 s.clear_all_items();
@@ -19,7 +17,6 @@ s.speak_position_information=false;
 }
 void setupmenu(bool music_added=false)
 {
-m.set_up_and_down_skip_amount(mskipnum);
 if(mreset==1) m.reset(true);
 else if(mreset==0) m.reset(false);
 if(music_added==true and mctrack.length()!=0) m.add_music("sounds/"+soundpack+"/menus/"+menutype+"/"+mctrack[random(0,mctrack.length()-1)]);
@@ -64,13 +61,15 @@ if(position_info==1) m.speak_position_information=true;
 else if(position_info==0) m.speak_position_information=false;
 if(side_scroll==1) m.enable_side_scrolling=true;
 else if(side_scroll==0) m.enable_side_scrolling=false;
-m.enable_enter=true;
-m.allow_escape=true;
 if(mclick.length()!=0) m.click_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mclick[random(0,mclick.length()-1)]);
 if(medge.length()!=0) m.edge_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+medge[random(0,medge.length()-1)]);
 if(menter.length()!=0) m.enter_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+menter[random(0,menter.length()-1)]);
 if(mopen.length()!=0) m.open_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mopen[random(0,mopen.length()-1)]);
 if(mrap.length()!=0) m.wrap_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mrap[random(0,mrap.length()-1)]);
+m.allow_escape=true;
+m.click_at_edge=false;
+m.enable_enter=true;
+m.set_up_and_down_skip_amount(mskipnum);
 }
 void setupmenu2(bool main=true)
 {
@@ -78,6 +77,7 @@ m.set_up_and_down_skip_amount(mskipnum);
 m.reset(false);
 if (main==true)
 m.add_music("");
+m.click_at_edge=false;
 m.enable_enter=true;
 m.enable_numbers=false;
 m.enable_up_and_down=false;
