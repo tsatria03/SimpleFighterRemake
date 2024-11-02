@@ -1,3 +1,5 @@
+new in 5.6
+Removed Duplicated turning logic from the code.
 new in 5.5
 Finally fixed falling off of map Boundaries! I have know idea how this bug became apparent in recent versions of the game, but it should hopefully be fixed once and for all.
 The volume and pitch sliders now anounce values in percentages, not actual numbers. The reverb sliders will remain largely unchanged, aside from a few tweaks here and their.
