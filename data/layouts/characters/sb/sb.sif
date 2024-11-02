@@ -1,6 +1,6 @@
 name=sb
 shield type=none
-attack=1000
+attack=50
 defence=50
 health=1000
 max health=1000

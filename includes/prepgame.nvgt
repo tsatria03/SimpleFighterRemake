@@ -3682,7 +3682,7 @@ if(anounce_percentage==true) s.speak_percentages=true;
 else if(anounce_percentage==false) s.speak_percentages=false;
 create_slider();
 s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 5.0);
 int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
 if (sres==0)
 {
