@@ -550,7 +550,7 @@ if(key_down(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHI
 {
 if(keyrowhold==1 and me.y!=maxy and moveable==true and doormove==false)
 {
-move_up();
+if(gmt(me.x,me.y)!=tiletype) move_up();
 movetimer.restart();
 }
 else if(keyrowhold==1 and moveable==false and sitting==true)
@@ -564,7 +564,7 @@ if(key_down(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RS
 {
 if(keyrowhold==1 and me.y!=0 and moveable==true and doormove==false)
 {
-move_down();
+if(gmt(me.x,me.y)!=tiletype) move_down();
 movetimer.restart();
 }
 else if(keyrowhold==1 and moveable==false and sitting==true)
@@ -602,7 +602,7 @@ if(key_pressed(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_R
 {
 if(keyrowhold==0 and me.y!=maxy and moveable==true and doormove==false)
 {
-step_up();
+if(gmt(me.x,me.y)!=tiletype) step_up();
 }
 else if(keyrowhold==0 and moveable==false and sitting==true)
 {
@@ -614,7 +614,7 @@ if(key_pressed(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY
 {
 if(keyrowhold==0 and me.y!=0 and moveable==true and doormove==false)
 {
-step_down();
+if(gmt(me.x,me.y)!=tiletype) step_down();
 }
 else if(keyrowhold==0 and moveable==false and sitting==true)
 {

@@ -96,7 +96,7 @@ me.y--;
 }
 }
 }
-if(key_down(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and keyrowhold==0 and moveable==true and doormove==false)
+if(key_pressed(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and keyrowhold==0 and moveable==true and doormove==false)
 {
 if(facing=="up"==false)
 {
