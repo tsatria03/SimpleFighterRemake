@@ -1,5 +1,6 @@
 name=sb
 shield type=none
+shield weight=1
 attack=50
 defence=50
 health=1000

@@ -82,7 +82,7 @@ string tilename="*hardland*, *land*.";
 string drinktype="boddle of water";
 string foodtype="apple";
 string healtype="health drug";
-string shieldtype="large shield";
+string shieldtype="none";
 timer airtimer, amsptimer, camtimer, effectstimer, emsptimer, falltimer, hprestoretimer, gametimer, itemtimer1, itemtimer2, itemtimer3, jumptimer, movetimer, objsptimer, prosptimer, robsptimer, runtimer, sprestoretimer, stuntimer, usetimer, walktimer, weapontimer, weapontimer2, zombsptimer;
 void buildmenu()
 {

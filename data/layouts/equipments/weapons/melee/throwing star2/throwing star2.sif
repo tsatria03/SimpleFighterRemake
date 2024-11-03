@@ -1,8 +1,8 @@
 name=throwing star2
-damage=1
+damage=100
 mode=0
-horizontal range=1
-vertical range=1
+horizontal range=15
+vertical range=13
 bullet speed=30
 repeat time=100
 spam time=100

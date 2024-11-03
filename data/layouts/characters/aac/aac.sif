@@ -1,5 +1,6 @@
 name=aac
 shield type=none
+shield weight=1
 attack=8
 defence=2
 health=200

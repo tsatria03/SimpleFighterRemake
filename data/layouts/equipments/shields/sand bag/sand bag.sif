@@ -1,8 +1,8 @@
 name=sand bag
-defence=0
-weight=1
-shield strength=1000
-max shield strength=1000
+defence=200
+weight=75
+shield strength=9000
+max shield strength=9000
 unlock level=1
 break sound=1
 draw sound=1

@@ -1,4 +1,6 @@
 new in 5.6
+Removed the old layouts folder from the data directory and replaced it with a much better folder that now has preconfigured stats for all characters and equipment used in the game. A huge thanks goes out to the blind insanity for the big contribution.
+Added the shield weight parameter to all character files. Just like the shield type parameter, the shield weight parameter controls the weight of the default shield that is chosen for all characters that take them.
 Fixed various bugs with platforms and staircases.
 You can now rock back and forth while sitting with auto walking turned off.
 Removed Duplicated turning logic from the fighter script.

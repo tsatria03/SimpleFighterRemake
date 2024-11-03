@@ -1,12 +1,12 @@
 name=large machete2
-damage=1
+damage=90
 mode=0
-horizontal range=1
-vertical range=1
+horizontal range=8
+vertical range=6
 bullet speed=30
 repeat time=100
-spam time=100
-weight=1
+spam time=150
+weight=40
 ammo=100
 loaded ammo=100
 max ammo=100

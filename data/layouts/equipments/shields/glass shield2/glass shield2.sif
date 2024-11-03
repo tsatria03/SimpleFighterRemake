@@ -1,8 +1,8 @@
 name=glass shield2
-defence=0
+defence=30
 weight=1
-shield strength=1000
-max shield strength=1000
+shield strength=800
+max shield strength=800
 unlock level=1
 break sound=1
 draw sound=1

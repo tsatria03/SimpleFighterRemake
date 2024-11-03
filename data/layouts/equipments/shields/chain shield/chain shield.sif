@@ -1,8 +1,8 @@
 name=chain shield
-defence=0
-weight=1
-shield strength=1000
-max shield strength=1000
+defence=50
+weight=25
+shield strength=1300
+max shield strength=1300
 unlock level=1
 break sound=1
 draw sound=1

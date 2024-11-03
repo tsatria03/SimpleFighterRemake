@@ -1,8 +1,8 @@
 name=studded boots
-damage=1
+damage=150
 mode=0
-horizontal range=1
-vertical range=1
+horizontal range=5
+vertical range=5
 bullet speed=30
 repeat time=100
 spam time=100

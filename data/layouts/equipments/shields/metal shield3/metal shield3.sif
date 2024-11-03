@@ -1,8 +1,8 @@
 name=metal shield3
-defence=0
-weight=1
-shield strength=1000
-max shield strength=1000
+defence=45
+weight=25
+shield strength=1100
+max shield strength=1100
 unlock level=1
 break sound=1
 draw sound=1

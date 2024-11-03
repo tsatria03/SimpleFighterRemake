@@ -326,6 +326,7 @@ int charindex=mres-1;
 @current_char=charas[charindex];
 chartype = current_char.name;
 shieldtype=current_char.shieldtype;
+shieldweight=current_char.shieldweight;
 attack=current_char.attack;
 defence=current_char.defence;
 points=current_char.points;
@@ -1154,10 +1155,7 @@ speak(shieldtype+";"+"equipped");
 }
 else
 {
-shieldtype="large shield";
-t.destroy_sound(prevslot);
-string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*draw*");
-if(drawsfx.length()!=0 and shielddrawsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,shieldvolume,shieldpitch);
+shieldtype="none";
 speak(shieldtype+";"+"equipped");
 }
 }

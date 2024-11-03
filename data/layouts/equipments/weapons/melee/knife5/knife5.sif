@@ -1,11 +1,11 @@
 name=knife5
-damage=1
+damage=42
 mode=0
-horizontal range=1
-vertical range=1
+horizontal range=5
+vertical range=4
 bullet speed=30
 repeat time=100
-spam time=100
+spam time=150
 weight=1
 ammo=100
 loaded ammo=100

@@ -159,11 +159,11 @@ movetime=walktime;
 }
 if(modspeed>=1)
 {
-airtime=250/modspeed+wepweight+shieldweight;
-camtime=250/modspeed+wepweight+shieldweight;
-falltime=250/modspeed-wepweight-shieldweight;
-runtime=500/modspeed+wepweight+shieldweight;
-walktime=1000/modspeed+wepweight+shieldweight;
+airtime=250/modspeed+shieldweight+wepweight;
+camtime=250/modspeed+shieldweight+wepweight;
+falltime=250/modspeed-shieldweight-wepweight;
+runtime=500/modspeed+shieldweight+wepweight;
+walktime=1000/modspeed+shieldweight+wepweight;
 }
 if(xp>=xprequiered)
 {
@@ -214,8 +214,8 @@ p.destroy_sound(shieldslot);
 string[] breaksfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*break*");
 if(breaksfx.length()!=0 and shieldbreaksound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+breaksfx[random(0,breaksfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 shieldstrength=maxshieldstrength;
-shieldweight=1;
 shieldon=0;
+shieldweight=1;
 shieldtype="none";
 }
 if(health<=0)

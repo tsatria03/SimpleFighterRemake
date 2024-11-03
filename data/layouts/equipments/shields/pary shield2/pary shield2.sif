@@ -1,8 +1,8 @@
 name=pary shield2
-defence=0
-weight=1
-shield strength=1000
-max shield strength=1000
+defence=50
+weight=30
+shield strength=1500
+max shield strength=1500
 unlock level=1
 break sound=1
 draw sound=1

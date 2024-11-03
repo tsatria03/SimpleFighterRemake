@@ -1,8 +1,8 @@
 name=yoyo
-damage=1
+damage=75
 mode=0
-horizontal range=1
-vertical range=1
+horizontal range=12
+vertical range=12
 bullet speed=30
 repeat time=100
 spam time=100

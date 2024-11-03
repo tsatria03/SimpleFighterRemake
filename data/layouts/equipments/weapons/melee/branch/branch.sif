@@ -1,12 +1,12 @@
 name=branch
-damage=1
+damage=30
 mode=0
-horizontal range=1
-vertical range=1
+horizontal range=10
+vertical range=7
 bullet speed=30
 repeat time=100
-spam time=100
-weight=1
+spam time=250
+weight=40
 ammo=100
 loaded ammo=100
 max ammo=100

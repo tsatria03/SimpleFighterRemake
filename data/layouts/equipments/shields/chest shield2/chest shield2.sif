@@ -1,6 +1,6 @@
 name=chest shield2
-defence=0
-weight=1
+defence=50
+weight=20
 shield strength=1000
 max shield strength=1000
 unlock level=1

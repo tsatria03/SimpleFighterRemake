@@ -1,6 +1,6 @@
 name=blade shield2
-defence=0
-weight=1
+defence=45
+weight=15
 shield strength=1000
 max shield strength=1000
 unlock level=1

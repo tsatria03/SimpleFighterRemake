@@ -1,11 +1,11 @@
 name=large fist2
-damage=1
+damage=77
 mode=0
-horizontal range=1
-vertical range=1
+horizontal range=7
+vertical range=7
 bullet speed=30
 repeat time=100
-spam time=100
+spam time=250
 weight=1
 ammo=100
 loaded ammo=100

@@ -1,8 +1,8 @@
 name=sword shield2
-defence=0
-weight=1
-shield strength=1000
-max shield strength=1000
+defence=40
+weight=15
+shield strength=2000
+max shield strength=2000
 unlock level=1
 break sound=1
 draw sound=1

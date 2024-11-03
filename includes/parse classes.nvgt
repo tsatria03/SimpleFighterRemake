@@ -48,6 +48,7 @@ class character
 {
 string name;
 string shieldtype;
+int shieldweight;
 double attack;
 double defence;
 double points;
@@ -74,10 +75,11 @@ int charrocksound;
 int charsitsound;
 int charstandsound;
 int charturnsound;
-character(const string&in name,const string&in shieldtype,double attack,double defence,double points,double health,double maxhealth,double lifecard,double level,double levmod,double xp,double xpmod,double xprequiered,int chardeathsound,int charfallsound,int charfallsound2,int charhealsound,int charhealsound2,int charhealsound3,int charhurtsound,int charinvsound,int charjumpsound,int charlevsound,int charlifesound,int charrocksound,int charsitsound,int charstandsound,int charturnsound)
+character(const string&in name,const string&in shieldtype,int shieldweight,double attack,double defence,double points,double health,double maxhealth,double lifecard,double level,double levmod,double xp,double xpmod,double xprequiered,int chardeathsound,int charfallsound,int charfallsound2,int charhealsound,int charhealsound2,int charhealsound3,int charhurtsound,int charinvsound,int charjumpsound,int charlevsound,int charlifesound,int charrocksound,int charsitsound,int charstandsound,int charturnsound)
 {
 this.name=name;
 this.shieldtype=shieldtype;
+this.shieldweight=shieldweight;
 this.attack=attack;
 this.defence=defence;
 this.points=points;
@@ -106,9 +108,9 @@ this.charstandsound=charstandsound;
 this.charturnsound=charturnsound;
 }
 }
-void add_character(const string&in name,const string&in shieldtype,double attack,double defence,double points,double health,double maxhealth,double lifecard,double level,double levmod,double xp,double xpmod,double xprequiered,int chardeathsound,int charfallsound,int charfallsound2,int charhealsound,int charhealsound2,int charhealsound3,int charhurtsound,int charinvsound,int charjumpsound,int charlevsound,int charlifesound,int charrocksound,int charsitsound,int charstandsound,int charturnsound)
+void add_character(const string&in name,const string&in shieldtype,int shieldweight,double attack,double defence,double points,double health,double maxhealth,double lifecard,double level,double levmod,double xp,double xpmod,double xprequiered,int chardeathsound,int charfallsound,int charfallsound2,int charhealsound,int charhealsound2,int charhealsound3,int charhurtsound,int charinvsound,int charjumpsound,int charlevsound,int charlifesound,int charrocksound,int charsitsound,int charstandsound,int charturnsound)
 {
-character ch1(name,shieldtype,attack,defence,points,health,maxhealth,lifecard,level,levmod,xp,xpmod,xprequiered,chardeathsound,charfallsound,charfallsound2,charhealsound,charhealsound2,charhealsound3,charhurtsound,charinvsound,charjumpsound,charlevsound,charlifesound,charrocksound,charsitsound,charstandsound,charturnsound);
+character ch1(name,shieldtype,shieldweight,attack,defence,points,health,maxhealth,lifecard,level,levmod,xp,xpmod,xprequiered,chardeathsound,charfallsound,charfallsound2,charhealsound,charhealsound2,charhealsound3,charhurtsound,charinvsound,charjumpsound,charlevsound,charlifesound,charrocksound,charsitsound,charstandsound,charturnsound);
 charas.insert_last(ch1);
 }
 void destroy_all_charas()

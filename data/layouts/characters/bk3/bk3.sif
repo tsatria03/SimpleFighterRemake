@@ -1,5 +1,6 @@
 name=bk3
 shield type=none
+shield weight=1
 attack=25
 defence=25
 health=500

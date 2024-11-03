@@ -1,5 +1,6 @@
 name=bk
 shield type=none
+shield weight=1
 attack=5
 defence=5
 health=100

@@ -1,11 +1,11 @@
 name=snowball
-damage=1
-mode=0
-horizontal range=1
-vertical range=1
+damage=15
+mode=1
+horizontal range=10
+vertical range=10
 bullet speed=30
-repeat time=100
-spam time=100
+repeat time=200
+spam time=200
 weight=1
 ammo=100
 loaded ammo=100

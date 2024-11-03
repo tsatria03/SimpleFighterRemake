@@ -1,5 +1,6 @@
 name=ch
 shield type=none
+shield weight=1
 attack=35
 defence=35
 health=1500
