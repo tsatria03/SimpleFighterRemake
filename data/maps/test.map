@@ -2,3 +2,5 @@ name test
 maxx 100
 maxy 100
 platform 0 100 0 marble2 0 100
+time_bomb 10 0 5000 5000 time_bomb
+staircase 10 10 1 10 wairhouse 0 100

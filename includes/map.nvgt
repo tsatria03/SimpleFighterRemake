@@ -74,6 +74,7 @@ destroy_all_signs();
 destroy_all_spikes();
 destroy_all_teleporters();
 destroy_all_text_squares();
+destroy_all_timebombs();
 destroy_all_timedmusics();
 destroy_all_timedsources();
 destroy_all_timedtexts();
@@ -366,6 +367,15 @@ string sourcetype=sd[5];
 double soundvol=stn(sd[6]);
 double soundpitch=stn(sd[7]);
 spawn_soundsource(mx, mx2, my, my2, sourcetype, soundvol, soundpitch);
+}
+else if(sd[0]=="time_bomb" && sd.length()==6)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+int dmg=stn(sd[3]);
+int sp=stn(sd[4]);
+string timbotype=sd[5];
+spawn_timebomb(x, y, dmg, sp, timbotype);
 }
 else if(sd[0]=="timed_music" && sd.length()==9)
 {

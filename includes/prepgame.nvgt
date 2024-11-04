@@ -50,6 +50,7 @@ string potype;
 string rotype;
 string signtyp;
 string sorcetyp;
+string timbotype;
 string tutype;
 string tutype2;
 string tutype3;
@@ -127,6 +128,7 @@ m.add_item_tts("spawnpoint", "st");
 m.add_item_tts("staircase", "sf");
 m.add_item_tts("teleporter", "tp");
 m.add_item_tts("text square", "txt");
+m.add_item_tts("time bomb", "tbm");
 m.add_item_tts("timed music", "tmc");
 m.add_item_tts("timed source", "trc");
 m.add_item_tts("timed text", "tmt");
@@ -2647,6 +2649,44 @@ mapdata=mapper.read();
 mapper.write("\r\n"+"text_square "+x+" "+y+" "+txt);
 mapper.close();
 spawn_text_square(x, y, txt);
+load_map(mapname);
+mpool.play_stationary("mapupdate.ogg",false);
+speak("Map updated.");
+}
+if(buildem=="tbm")
+{
+input.set_only_allowed_chars("1234567890-");
+string mx=input.input("Enter the x of this time bomb.");
+string my=input.input("Enter the y of this time bomb.");
+string dm=input.input("Enter the maximum damage of this time bomb.");
+string sp=input.input("Enter the speed of this time bomb.");
+if(x=="" and y=="" and damage=="" and speedtime=="")
+return;
+x=string_to_number(mx);
+y=string_to_number(my);
+damage=string_to_number(dm);
+speedtime=string_to_number(sp);
+string[] timebomb=find_directories("sounds/"+soundpack+"/objects/bombs/*");
+if(timebomb.length()==0)
+{
+dlg("Error. There are no time bombs available to view.");
+resume_pools();
+return;
+}
+else
+{
+string res=timbombsmenu();
+if(res!="")
+{
+timbotype=res;
+}
+}
+resume_pools();
+mapper.open("data/maps/"+mapname+".map","ab");
+mapdata=mapper.read();
+mapper.write("\r\n"+"time_bomb "+x+" "+y+" "+damage+" "+speedtime+" "+timbotype);
+mapper.close();
+spawn_timebomb(x, y, damage, speedtime, timbotype);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");

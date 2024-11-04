@@ -47,7 +47,7 @@ if(me.x==bombs[i].bombx and me.y==bombs[i].bomby and shieldon==1 and shieldstren
 {
 bombpool.destroy_sound(bombs[i].fallsound);
 string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
-if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=bombpool.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
+if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/*land*");
 if(hitsfx.length()!=0) bombs[i].landsound=bombpool.play_stationary_extended("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 shieldstrength-=bombs[i].damage-shielddefence;
@@ -265,6 +265,20 @@ if(hitsfx.length()!=0) bombs[i].landsound=bombpool.play_extended_2d("sounds/"+so
 string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/zombies/"+zombies[i14].zombietype+"/*hurt*");
 if(hurtsfx.length()!=0) zombies[i14].hurtsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/zombies/"+zombies[i14].zombietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,zombies[i14].zombx,zombies[i14].zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 zombies[i14].zombiehealth-=bombs[i].damage;
+bombs.remove_at(i);
+return;
+}
+}
+for(uint i15=0; i15<psdoors.length(); i15++)
+{
+if(psdoors[i15].startx==bombs[i].bombx and psdoors[i15].starty==bombs[i].bomby and psdoors[i15].destroyable==true)
+{
+bombpool.destroy_sound(bombs[i].fallsound);
+string[] hitsfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/*land*");
+if(hitsfx.length()!=0) bombs[i].landsound=bombpool.play_extended_2d("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,bombs[i].bombx,bombs[i].bomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/doors/dest/"+psdoors[i15].desttype+"/*hurt*");
+if(hurtsfx.length()!=0) psdoors[i15].hurtsound=doorpool.play_extended_2d("sounds/"+soundpack+"/objects/doors/dest/"+psdoors[i15].desttype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,psdoors[i15].startx,psdoors[i15].starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+psdoors[i15].psdoorhealth-=bombs[i].damage;
 bombs.remove_at(i);
 return;
 }

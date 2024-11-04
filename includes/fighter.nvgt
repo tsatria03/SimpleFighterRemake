@@ -62,6 +62,7 @@ robloop();
 robotzoneloop();
 spikeloop();
 telloop();
+timebombloop();
 timedmrcloop();
 timedsrcloop();
 timedtxtloop();

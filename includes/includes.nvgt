@@ -71,6 +71,7 @@
 #include"teleporter.nvgt"
 #include"text square.nvgt"
 #include"text_input.nvgt"
+#include"timebomb.nvgt"
 #include"timedmusic.nvgt"
 #include"timedsource.nvgt"
 #include"timedtext.nvgt"
