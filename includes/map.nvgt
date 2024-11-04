@@ -747,7 +747,7 @@ int sp=stn(sd[4]);
 string rotype=sd[5];
 spawn_robotzone(mx, mx2, y, sp, rotype);
 }
-else if(sd[0]=="teleporter" && sd.length()==9)
+else if(sd[0]=="teleporter" && sd.length()==10)
 {
 int sx=stn(sd[1]);
 int sy=stn(sd[2]);
@@ -757,7 +757,8 @@ int dir=stn(sd[5]);
 int sp=stn(sd[6]);
 string teltype=sd[7];
 bool mb=string_to_bool(sd[8]);
-spawn_teleporter(x, y, x2, y2, dir, sp, teltype, mb);
+bool ss=string_to_bool(sd[9]);
+spawn_teleporter(x, y, x2, y2, dir, sp, teltype, mb, ss);
 }
 else if(sd[0]=="vehicle" && sd.length()==7)
 {

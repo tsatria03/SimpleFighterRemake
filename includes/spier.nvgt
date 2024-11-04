@@ -268,13 +268,20 @@ materials+=(walls[i18].wall+": "+i+" feet. ");
 found_object=true;
 }
 }
-for(uint i19=0; i19<lifts.length(); i19++)
+for (uint i19 = 0; i19 < teleporters.length(); i19++)
 {
-if(spyage.x>=lifts[i19].minx && spyage.x<=lifts[i19].maxx && spyage.y==lifts[i19].lifty)
+if(spyage.x==teleporters[i19].telx && spyage.y==teleporters[i19].tely)
+{
+materials+="teleporter: "+i+" feet. ";
+}
+}
+for(uint i20=0; i20<lifts.length(); i20++)
+{
+if(spyage.x>=lifts[i20].minx && spyage.x<=lifts[i20].maxx && spyage.y==lifts[i20].lifty)
 {
 if(!on_lift || (direction == "up" || direction == "down"))
 {
-materials += (lifts[i19].maxx - lifts[i19].minx + 1) + " x " + " tile lift: " + i + " feet. ";
+materials += (lifts[i20].maxx - lifts[i20].minx + 1) + " x " + " tile lift: " + i + " feet. ";
 found_object = true;
 }
 }

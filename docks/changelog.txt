@@ -1,4 +1,9 @@
 new in 5.6
+Teleporters can now be spied with the spire.
+Added a prompt to the teleporter builder that asks weather you'd like the teleporter to be singgle use or not.
+Added lockable doors to the object info menu.
+Lockable doors are now destroyable just like regular doors.
+Fixed the bug of not being able to move up or down on the Y axes when a non staircase platform was detected on the map.
 Removed the old layouts folder from the data directory and replaced it with a much better folder that will now have preconfigured stats defined for all characters and equipment used in the game. A huge thanks goes out to the blind insanity for the big contribution.
 Added the shield weight parameter to all character files. Just like the shield type parameter, the shield weight parameter controls the weight of the default shield that is chosen for all characters that take them.
 Fixed various bugs with platforms and staircases.

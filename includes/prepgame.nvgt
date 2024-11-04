@@ -1,4 +1,4 @@
-bool atapex, ascending, building, dlt, dmd, dmt, falling, fb, itm, inp, jb, lp, lpg, mb, mb2;
+bool atapex, ascending, building, dlt, dmd, dmt, falling, fb, itm, inp, jb, lp, lpg, mb, mb2, sse;
 bool bouncing=true, charhit=true, cammable=true, camsz=false, drawable=true, droppable=true, fireable=true, healable=true, hidedocks=false, hidegames=false, hidemaps=false, hidesets=false, is_in_wall=false, jumpable=true, melee=true, mfc=false, moveable=true, quittable=true, scadder=false, spawnable=true, sittable=true, sitting=false, speedable=true, telable=true, turnable=true, useitems=false;
 double x, paxx, y, paxy, x2, pax2, y2, paxy2, minhp, direction, direction2, card, damage, height, firetime, launchtime, lv, ln, pitch, pitch2, speedtime, speedtime2, volume, volume2, volset, xn;
 double autovolume=0, automaxvolume=120, autopan=0, automaxpan=100, autopitch=100, automaxpitch=200;
@@ -2598,12 +2598,33 @@ if(mres16==2)
 {
 mb=false;
 }
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres17=m.run("Should this teleporter be single-use only?",true);
+if(mres17==0)
+{
+speak("canceled");
+return;
+}
+if(mres17==1)
+{
+sse=true;
+}
+if(mres17==2)
+{
+sse=false;
+}
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"teleporter "+x+" "+y+" "+x2+" "+y2+" "+direction+" "+speedtime+" "+teltype+" "+mb);
+mapper.write("\r\n"+"teleporter "+x+" "+y+" "+x2+" "+y2+" "+direction+" "+speedtime+" "+teltype+" "+mb+" "+sse);
 mapper.close();
-spawn_teleporter(x, y, x2, y2, direction, speedtime, teltype, mb);
+spawn_teleporter(x, y, x2, y2, direction, speedtime, teltype, mb, sse);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -3867,7 +3888,7 @@ string[] turtype=find_directories("sounds/"+soundpack+"/npc/turrets/*");
 string[] vehtype=find_directories("sounds/"+soundpack+"/objects/vehicles/*");
 string[] zombietype=find_directories("sounds/"+soundpack+"/npc/zombies/*");
 setupmenu();
-m.add_item_tts("total objects "+(animals.length()+bullets.length()+doors.length()+enemies.length()+projectiles.length()+robots.length()+spikes.length()+turrets.length()+vehicles.length()+walls.length()+zombies.length()));
+m.add_item_tts("total objects "+(animals.length()+bullets.length()+doors.length()+psdoors.length()+enemies.length()+projectiles.length()+robots.length()+spikes.length()+turrets.length()+vehicles.length()+walls.length()+zombies.length()));
 for(uint i=0; i<animals.length(); i++)
 {
 m.add_item_tts(animals[i].animaltype+";"+"at;"+animals[i].amx+";"+animals[i].amy+";"+"HP"+round(animals[i].animalhealth/animals[i].animalmaxhealth*100,2)+"percent"+";"+"level"+animals[i].amlevel);
@@ -3879,6 +3900,10 @@ m.add_item_tts("bullet at;"+bullets[i].bullx+";"+bullets[i].bully);
 for(uint i=0; i<doors.length(); i++)
 {
 m.add_item_tts("door at;"+doors[i].startx+";"+doors[i].starty+";"+"HP"+round(doors[i].doorhealth/doors[i].doormaxhealth*100,2)+"percent");
+}
+for(uint i=0; i<psdoors.length(); i++)
+{
+m.add_item_tts("locked door at;"+psdoors[i].startx+";"+psdoors[i].starty+";"+"HP"+round(psdoors[i].psdoorhealth/psdoors[i].psdoormaxhealth*100,2)+"percent");
 }
 for(uint i=0; i<enemies.length(); i++)
 {

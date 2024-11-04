@@ -564,7 +564,7 @@ if(key_down(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RS
 {
 if(keyrowhold==1 and me.y!=0 and moveable==true and doormove==false)
 {
-if(gmt(me.x,me.y)!=tiletype) move_down();
+move_down();
 movetimer.restart();
 }
 else if(keyrowhold==1 and moveable==false and sitting==true)
@@ -614,7 +614,7 @@ if(key_pressed(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY
 {
 if(keyrowhold==0 and me.y!=0 and moveable==true and doormove==false)
 {
-if(gmt(me.x,me.y)!=tiletype) step_down();
+step_down();
 }
 else if(keyrowhold==0 and moveable==false and sitting==true)
 {
@@ -1105,7 +1105,7 @@ if(gamemode==10 and building==false) speak("there are;"+zombies.length()+zotype+
 }
 else if(objinf==1)
 {
-if(animals.length()==0 and bullets.length()==0 and doors.length()==0 and enemies.length()==0 and projectiles.length()==0 and robots.length()==0 and spikes.length()==0  and turrets.length()==0 and vehicles.length()==0 and walls.length()==0 and zombies.length()==0)
+if(animals.length()==0 and bullets.length()==0 and doors.length()==0 and psdoors.length()==0 and enemies.length()==0 and projectiles.length()==0 and robots.length()==0 and spikes.length()==0  and turrets.length()==0 and vehicles.length()==0 and walls.length()==0 and zombies.length()==0)
 {
 speak("there are no objects on the field to view.");
 }

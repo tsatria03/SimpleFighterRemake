@@ -344,6 +344,22 @@ if(bullets[i].scaddering==false) bullets.remove_at(i);
 return;
 }
 }
+for(uint i15=0; i15<psdoors.length(); i15++)
+{
+if(psdoors[i15].startx==bullets[i].bullx and psdoors[i15].starty==bullets[i].bully and psdoors[i15].destroyable==true)
+{
+p.destroy_sound(bullets[i].bullsound);
+string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/*hit*");
+if(hitsfx.length()!=0 and wephitsound==1) bullets[i].wepsound=p.play_extended_2d("sounds/"+soundpack+"/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,bullets[i].bullx,bullets[i].bully,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
+string[] shellsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/*shell*");
+if(shellsfx.length()!=0 and wepshellsound==1) bullets[i].wepsound=p.play_extended_2d("sounds/"+soundpack+"/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/"+shellsfx[random(0,shellsfx.length()-1)],me.x,me.y,bullets[i].bullx,bullets[i].bully,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/doors/dest/"+psdoors[i15].desttype+"/*hurt*");
+if(hurtsfx.length()!=0) psdoors[i15].hurtsound=doorpool.play_extended_2d("sounds/"+soundpack+"/objects/doors/dest/"+psdoors[i15].desttype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,psdoors[i15].startx,psdoors[i15].starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+psdoors[i15].psdoorhealth-=bullets[i].damage;
+if(bullets[i].scaddering==false) bullets.remove_at(i);
+return;
+}
+}
 }
 }
 void spawn_bullet(int x,int y,int range,int range2,int damage,int speed,string direction,string bulltype,string bulltype2,bool bounce,bool hitplayer,bool scaddering)
