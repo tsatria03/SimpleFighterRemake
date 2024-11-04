@@ -2146,7 +2146,7 @@ load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
 }
-if(buildem=="rb")
+if(buildem=="rt")
 {
 input.set_only_allowed_chars("1234567890-");
 string mx=input.input("Enter the x of this robot.");

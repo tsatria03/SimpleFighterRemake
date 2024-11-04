@@ -1,4 +1,5 @@
 new in 5.7
+Fixed the bug of not being able to build robots correctly in the builder menu.
 Fixed the bug of robots and zombies walking on your tiles when they are supposed to walk on there own predefined footsteps.
 new in 5.6
 Teleporters can now be spied with the spire.
@@ -51,7 +52,7 @@ Optimized the slider class and made it cleaner to read.
 Lockable doors and passages can now be spied with the spire.
 You can now build lockable passages with a password in the builder menu. They will also be written to the map you're currently working on.
 You can now build lockable doors with a password in the builder menu. They will also be written to the map you're currently working on.
-Fixed all of the npc related zones to only trigger them if you are at the exact y axes at witch they were built.
+Fixed all of the npc related zones to only trigger them if you are at the exact y axes at which they were built.
 Fixed a bug with the slider class returning invalid entries when ran for the first time.
 Completely eliminated the need to type values for building a reverb effect in the builder menu. Instead of inputting the value in for how much you want the Parameter to be at, you can quickly asine the value by using the arrow keys on the keyboard and pressing tab to focus on the value you want to change. Thanks to the newly created slider class that will handel all of this with a breez. You can also press the home and end keys to directly jump to the minimum and maximum values of a Parameter you're curren'tly focused on.
 new in 5.1
@@ -331,7 +332,7 @@ Started working on parsing shields. They are not ready to be used as of right no
 Fixed writing map objects to a file not working propperly.
 Documentation versions can now be read by a file without having to modify the code directly. This file can be found under the docks folder of the game. The version.txt file will be altered any time I update the change log file.
 Platforms, staircases, and walls will now get written to the map file you're currently building in.
-Adjusted fall damage. If you fall from 8 tiles or more, your health will be deducted based on how high you fell. This will be multiplied by 21. For example, if you had 1000 health, and you fell 8 tiles, your health would be subtracted by 8, witch would normaly be 992, but if you times that by 21, you'll actually have 832 health, or 83.2 percent of your maximum health.
+Adjusted fall damage. If you fall from 8 tiles or more, your health will be deducted based on how high you fell. This will be multiplied by 21. For example, if you had 1000 health, and you fell 8 tiles, your health would be subtracted by 8, which would normaly be 992, but if you times that by 21, you'll actually have 832 health, or 83.2 percent of your maximum health.
 You can now jump up the staircase by pressing the spacebar. This is useful if you want to get up their faster without having to climb up one step at a time.
 Fixed staircases still playing the tile sounds while jumping on them.
 Made it so pressing left, right, up, or down arrow keys turn your character on the spot without having to press alt to do it.
@@ -349,7 +350,7 @@ Changed the jumping, running, and firing keys to match with the keys set in the 
 Recoded jumping and falling to work better with platforms, staircases, and walls.
 Recoded the intire map system.
 new in 2.7
-You can now download all of the sounds right from within the game! When you open it for the first time, it will ask you if you want to download them or not. I recommend pressing yes on that, otherwise the game will run without them, wich wouldn't be good. You may also have to extract the sounds yourself, as I don't have a way to automaticly extract it and put them where they belong.
+You can now download all of the sounds right from within the game! When you open it for the first time, it will ask you if you want to download them or not. I recommend pressing yes on that, otherwise the game will run without them, which wouldn't be good. You may also have to extract the sounds yourself, as I don't have a way to automaticly extract it and put them where they belong.
 Addressed an issue pertaining to question based menus playing music when they weren't supposed to.
 Cleaned up the menu code, again. Apparently I loved to cludder up things in their lol.
 Added a prompt to all buildable npcs that asks if you want any of them to folow you up on platforms or not. This is useful for making higher floors on the map, and you want them to stay down at the bottom.
