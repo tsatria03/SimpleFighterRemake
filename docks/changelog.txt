@@ -1,3 +1,5 @@
+new in 5.7
+Fixed the bug of robots and zombies walking on your tiles when they are supposed to walk on there own predefined footsteps.
 new in 5.6
 Teleporters can now be spied with the spire.
 Added a prompt to the teleporter builder that asks weather you'd like the teleporter to be singgle use or not.
