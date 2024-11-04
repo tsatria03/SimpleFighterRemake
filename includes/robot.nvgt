@@ -58,8 +58,8 @@ robots[i].spotted=true;
 }
 if(robots[i].spotted)
 {
-string[] robsteps=find_files("sounds/npc/robots/"+robots[i].robtype+"/*step*");
-if(robots[i].moveable==true and robots[i].stepsound==1 and paused==0 and robsteps.length()!=0) robots[i].tilesound=robpool.play_extended_2d("sounds/npc/robots/"+robots[i].robtype+"/"+robsteps[random(0,robsteps.length()-1)],me.x,me.y,robots[i].robx,robots[i].roby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+string[] robsteps=find_files("sounds/npc/robots/"+robots[i].robottype+"/*step*");
+if(robots[i].moveable==true and robots[i].stepsound==1 and paused==0 and robsteps.length()!=0) robots[i].tilesound=robpool.play_extended_2d("sounds/npc/robots/"+robots[i].robottype+"/"+robsteps[random(0,robsteps.length()-1)],me.x,me.y,robots[i].robx,robots[i].roby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
 robpool.update_sound_2d(robots[i].robsound,robots[i].robx,robots[i].roby);
 robots[i].robottimer.restart();
 if(robots[i].robx<me.x and robots[i].moveable==true and paused==0)

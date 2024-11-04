@@ -58,8 +58,8 @@ zombies[i].spotted=true;
 }
 if(zombies[i].spotted)
 {
-string[] zombsteps=find_files("sounds/npc/zombies/"+zombies[i].zombtype+"/*step*");
-if(zombies[i].moveable==true and zombies[i].stepsound==1 and paused==0 and zombsteps.length()!=0) zombies[i].tilesound=zombpool.play_extended_2d("sounds/npc/zombies/"+zombies[i].zombtype+"/"+zombsteps[random(0,zombsteps.length()-1)],me.x,me.y,zombies[i].zombx,zombies[i].zomby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+string[] zombsteps=find_files("sounds/npc/zombies/"+zombies[i].zombietype+"/*step*");
+if(zombies[i].moveable==true and zombies[i].stepsound==1 and paused==0 and zombsteps.length()!=0) zombies[i].tilesound=zombpool.play_extended_2d("sounds/npc/zombies/"+zombies[i].zombietype+"/"+zombsteps[random(0,zombsteps.length()-1)],me.x,me.y,zombies[i].zombx,zombies[i].zomby,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
 zombpool.update_sound_2d(zombies[i].zombsound,zombies[i].zombx,zombies[i].zomby);
 zombies[i].zombietimer.restart();
 if(zombies[i].zombx<me.x and zombies[i].moveable==true and paused==0)
