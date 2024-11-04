@@ -1,8 +1,5 @@
-Make teleporters multi use.
 Fix spying issues with staircases and vehicles.
 Add ranges to projectiles and turrets.
-Make it so you can jump while you are on lifts and moving platforms.
-Fix falling off of map boundaries. Temporary solution, Build blockages or walls at negative one and at the end of the maximum length of the map.
 Fix passages to let walls disappear and reappear as it opens and closes. I think I may have broken it while fixing a bug with walls not destroying themselves properly upon building multiple of them within a sertain area of the map.
 Make objects found in the objects menu trackable
 Add a sonar to platforms, walls, and staircases.
@@ -18,8 +15,11 @@ Implement a buffer system to track various system events in the other game modes
 Add acheavments and death messages.
 Add a runs counter.
 Implement a way to submit bug reports, feature requests, and other game feedback.
+*Done. Make teleporters multi use.
 *Done. Fix lockable doors and make them appear in the objects menu.
 *Done. Add horizontal and vertical atack ranges to npcs.
+*Done. Fix falling off of map boundaries. Temporary solution, Build blockages or walls at negative one and at the end of the maximum length of the map.
+*Done. Make it so you can jump while you are on lifts and moving platforms.
 *Done. Add lockable doors and passages with a password, pin, or key.
 *Done. Fix all sound sorces destroying themselves after landing on platforms upon reloading the map.
 *Done. Add interactible objects.
