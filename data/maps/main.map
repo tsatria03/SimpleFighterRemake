@@ -64,7 +64,7 @@ sign 78 10 Item Zone: Periodically spawns items within the defined area. sign tr
 item_zone 80 90 10 10 500 health apple
 zone 95 105 10 15 lift
 sign 93 10 Lift: Moves players vertically between different levels. sign true false
-lift 95 105 0 50 0 50 metal15 0 100 lift 0 100
+lift 95 105 30 50 0 50 metal15 0 100 lift 0 100
 zone 110 120 10 15 moving_hazard
 sign 108 10 Moving Hazard: A hazard that moves, making it more dangerous. sign true false
 mhazard 110 120 10 10 0 0 0 0 50 water
@@ -106,7 +106,7 @@ sign 78 20 Spike: Damages the player when touched. sign true false
 spike 80 90 20 20 1000 100 500 large_spike true
 zone 95 105 20 25 staircase
 sign 93 20 Staircase: Allows the player to move between different heights easily. sign true false
-staircase 95 105 20 25 stairs
+staircase 95 105 20 25 stairs 0 100
 zone 110 120 20 25 teleporter
 sign 108 20 Teleporter: Instantly moves the player from one location to another. sign true false
 zone 125 135 20 25 text_square

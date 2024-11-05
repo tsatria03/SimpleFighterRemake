@@ -190,7 +190,7 @@ void input_character(string char)
         entry.insert_at(cursor, char);
         cursor++;
     }
-string input(string ttl,string default_text="",bool uses_password=false,string mask_char="",int txtlength=0,bool inabort=false)
+string input(string ttl,string default_text="",bool uses_password=false,string mask_char="",int txtlength=0,bool inabort=true)
 {
 reset();
 title=ttl;
@@ -333,7 +333,7 @@ entry.remove_at(cursor-1);
 cursor--;
 }
 }
-if(key_pressed(KEY_ESCAPE) and abort==true) break;
+if(key_pressed(KEY_ESCAPE) and abort==true) fighter(true);
 }
 return "";
 }

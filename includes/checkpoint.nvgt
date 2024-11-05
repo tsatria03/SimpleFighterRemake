@@ -38,9 +38,9 @@ if(building==true) load_map(mapname);
 }
 else if(lifecard<=1)
 {
-p.destroy_sound(painslot);
 if(building==true) destroymap();
 if(building==false) destroygame();
+p.destroy_sound(painslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*death*");
 if(defsfx.length()!=0 and chardeathsound==1) dlgplay("sounds/"+soundpack+"/characters/"+chartype+"/"+defsfx[random(0,defsfx.length()-1)], true, true, 30);
 if(tilename!="hardland")

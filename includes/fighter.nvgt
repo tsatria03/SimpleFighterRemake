@@ -549,9 +549,9 @@ movetimer.restart();
 }
 if(key_down(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and movetimer.elapsed>=movetime)
 {
-if(keyrowhold==1 and me.y!=maxy and moveable==true and doormove==false)
+if(keyrowhold==1 and moveable==true and doormove==false)
 {
-if(gmt(me.x,me.y)!=tiletype) move_up();
+move_up();
 movetimer.restart();
 }
 else if(keyrowhold==1 and moveable==false and sitting==true)
@@ -563,7 +563,7 @@ movetimer.restart();
 }
 if(key_down(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and movetimer.elapsed>=movetime)
 {
-if(keyrowhold==1 and me.y!=0 and moveable==true and doormove==false)
+if(keyrowhold==1 and moveable==true and doormove==false)
 {
 move_down();
 movetimer.restart();
@@ -601,9 +601,9 @@ if(rocksfx.length()!=0 and charrocksound==1) p.play_stationary("sounds/"+soundpa
 }
 if(key_pressed(KEY_UP) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT))
 {
-if(keyrowhold==0 and me.y!=maxy and moveable==true and doormove==false)
+if(keyrowhold==0 and moveable==true and doormove==false)
 {
-if(gmt(me.x,me.y)!=tiletype) step_up();
+step_up();
 }
 else if(keyrowhold==0 and moveable==false and sitting==true)
 {
@@ -613,7 +613,7 @@ if(rocksfx.length()!=0 and charrocksound==1) p.play_stationary("sounds/"+soundpa
 }
 if(key_pressed(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT))
 {
-if(keyrowhold==0 and me.y!=0 and moveable==true and doormove==false)
+if(keyrowhold==0 and moveable==true and doormove==false)
 {
 step_down();
 }

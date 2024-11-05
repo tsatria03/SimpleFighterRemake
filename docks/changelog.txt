@@ -1,10 +1,11 @@
 new in 5.7
-Fixed some minor Calculations logic with the time bombs class.
+Fixed the bug of not being able to exit input boxes with the Escape key.
+Fixed some minor Calculation logic with the time bombs class.
 Time bombs can now damage anything in it's range. This includes lockable doors as well, just like regular bombs.
 Bombs can now damage lockable doors.
 You can now build time bombs in the builder menu. They will also be written to the map you're currently working on.
 Fixed the bug of not being able to build robots correctly in the builder menu.
-Fixed the bug of robots and zombies walking on your tiles when they were supposed to walk on there own predefined footsteps.
+Fixed the bug of robots and zombies walking on your tile when they were supposed to walk on there own predefined footsteps.
 new in 5.6
 Teleporters can now be spied with the spire.
 Added a prompt to the teleporter builder that asks weather you'd like the teleporter to be singgle use or not.
