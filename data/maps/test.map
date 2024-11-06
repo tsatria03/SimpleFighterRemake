@@ -2,3 +2,4 @@ name test
 maxx 100
 maxy 100
 platform 0 100 0 marble2 0 100
+forcefield 5 10 0 5 100 500 5000 electric2
