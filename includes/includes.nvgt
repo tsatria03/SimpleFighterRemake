@@ -24,6 +24,7 @@
 #include"extrafuncts.nvgt"
 #include"fadepool.nvgt"
 #include"fighter.nvgt"
+#include"forcefield.nvgt"
 #include"form.nvgt";
 #include"gameparse.nvgt"
 #include"gametime.nvgt"

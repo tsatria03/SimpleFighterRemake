@@ -275,13 +275,22 @@ if(spyage.x==teleporters[i19].telx && spyage.y==teleporters[i19].tely)
 materials+="teleporter: "+i+" feet. ";
 }
 }
-for(uint i20=0; i20<lifts.length(); i20++)
+for (uint i20 = 0; i20 < forcefields.length(); i20++)
 {
-if(spyage.x>=lifts[i20].minx && spyage.x<=lifts[i20].maxx && spyage.y==lifts[i20].lifty)
+if(spyage.x>=forcefields[i20].minx && spyage.x<=forcefields[i20].maxx && spyage.y>=forcefields[i20].miny && spyage.y<=forcefields[i20].maxy)
+{
+if(forcefields[i20].forcefielded==true) materials+=(forcefields[i20].maxx-forcefields[i20].minx+1)+" x "+(forcefields[i20].maxy-forcefields[i20].miny+1)+" tile "+forcefields[i20].forcetype+" activated forcefield: "+i+" feet. ";
+if(forcefields[i20].forcefielded==false) materials+=(forcefields[i20].maxx-forcefields[i20].minx+1)+" x "+(forcefields[i20].maxy-forcefields[i20].miny+1)+" tile "+forcefields[i20].forcetype+" deactivated forcefield: "+i+" feet. ";
+found_object=true;
+}
+}
+for(uint i21=0; i21<lifts.length(); i21++)
+{
+if(spyage.x>=lifts[i21].minx && spyage.x<=lifts[i21].maxx && spyage.y==lifts[i21].lifty)
 {
 if(!on_lift || (direction == "up" || direction == "down"))
 {
-materials += (lifts[i20].maxx - lifts[i20].minx + 1) + " x " + " tile lift: " + i + " feet. ";
+materials += (lifts[i21].maxx - lifts[i21].minx + 1) + " x " + " tile lift: " + i + " feet. ";
 found_object = true;
 }
 }

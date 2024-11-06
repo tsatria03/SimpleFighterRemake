@@ -1,7 +1,7 @@
 vanishing_platform@[]vanishing_platforms(0);
 class vanishing_platform
 {
-bool vanished=false;
+bool vanished;
 int vplatsound;
 double minx, maxx, miny, maxy;
 double tilevolume;
@@ -25,6 +25,11 @@ vptype=vtype;
 vplatvolume=vol2;
 vplatpitch=semitone2;
 vplattime=vtime;
+spawn_platform(minx, maxx, miny, maxy, tile, tilevolume, tilepitch);
+string[] vplatsfx=find_files("sounds/"+soundpack+"/objects/vanishing platforms/"+vptype+"/*loop*");
+if(vplatsfx.length()!=0) vplatsound=vanpool.play_extended_2d("sounds/"+soundpack+"/objects/vanishing platforms/"+vptype+"/"+vplatsfx[random(0,vplatsfx.length()-1)],me.x,me.y,minx,miny,0,0,0,0,true,0,0,vplatvolume,vplatpitch,false);
+vanpool.update_sound_2d(vplatsound,minx,miny);
+vanpool.update_sound_range_2d(vplatsound, 0, maxx-minx, 0, maxy-miny);
 }
 }
 void vplatloop()

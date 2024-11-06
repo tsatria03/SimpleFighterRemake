@@ -49,6 +49,7 @@ dlgloop();
 doorloop();
 eneloop();
 enemiezoneloop();
+forceloop();
 healthzoneloop();
 instruloop();
 liftloop();
@@ -521,7 +522,7 @@ speak("You are at speed"+modspeed);
 }
 if(key_down(KEY_LEFT) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and movetimer.elapsed>=movetime)
 {
-if(keyrowhold==1 and me.x!=0 and moveable==true and doormove==false)
+if(keyrowhold==1 and moveable==true and doormove==false)
 {
 move_left();
 movetimer.restart();
@@ -535,7 +536,7 @@ movetimer.restart();
 }
 if(key_down(KEY_RIGHT) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and movetimer.elapsed>=movetime)
 {
-if(keyrowhold==1 and me.x!=maxy and moveable==true and doormove==false)
+if(keyrowhold==1 and moveable==true and doormove==false)
 {
 move_right();
 movetimer.restart();
@@ -577,7 +578,7 @@ movetimer.restart();
 }
 if(key_pressed(KEY_LEFT) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT))
 {
-if(keyrowhold==0 and me.x!=0 and moveable==true and doormove==false)
+if(keyrowhold==0 and moveable==true and doormove==false)
 {
 step_left();
 }
@@ -589,7 +590,7 @@ if(rocksfx.length()!=0 and charrocksound==1) p.play_stationary("sounds/"+soundpa
 }
 if(key_pressed(KEY_RIGHT) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT))
 {
-if(keyrowhold==0 and me.x!=maxx and moveable==true and doormove==false)
+if(keyrowhold==0 and moveable==true and doormove==false)
 {
 step_right();
 }
