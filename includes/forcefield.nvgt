@@ -56,21 +56,17 @@ if(forcefields[i].forcefielded==true && forcefields[i].minx<=me.x && forcefields
 string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0 && shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/forcefields/"+forcefields[i].forcetype+"/*hit*");
-if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_extended_2d("sounds/"+soundpack+"/objects/forcefields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,0,0,0,0,0,0,false,0,0,painvolume,painpitch,false);
+if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_stationary_extended("sounds/"+soundpack+"/objects/forcefields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 shieldstrength-=forcefields[i].damage-shielddefence;
-forcepool.update_sound_2d(forcefields[i].wepsound, forcefields[i].minx, forcefields[i].miny);
-forcepool.update_sound_range_2d(forcefields[i].wepsound, 0, forcefields[i].maxx-forcefields[i].minx, 0, forcefields[i].maxy-forcefields[i].miny);
 forcefields[i].firetimer.restart();
 }
 else if(forcefields[i].forcefielded==true && forcefields[i].minx<=me.x && forcefields[i].maxx>=me.x && forcefields[i].miny<=me.y && forcefields[i].maxy>=me.y && forcefields[i].firetimer.elapsed>=forcefields[i].firetime && shieldon==0 && paused==0)
 {
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/forcefields/"+forcefields[i].forcetype+"/*hit*");
-if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_extended_2d("sounds/"+soundpack+"/objects/forcefields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,0,0,0,0,0,0,false,0,0,painvolume,painpitch,false);
+if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_stationary_extended("sounds/"+soundpack+"/objects/forcefields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 && charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=forcefields[i].damage-defence;
-forcepool.update_sound_2d(forcefields[i].wepsound, forcefields[i].minx, forcefields[i].miny);
-forcepool.update_sound_range_2d(forcefields[i].wepsound, 0, forcefields[i].maxx-forcefields[i].minx, 0, forcefields[i].maxy-forcefields[i].miny);
 forcefields[i].firetimer.restart();
 }
 }
