@@ -102,7 +102,7 @@ m.add_item_tts("dialog", "dlg");
 m.add_item_tts("door", "ds");
 m.add_item_tts("enemie", "em");
 m.add_item_tts("enemie zone", "ez");
-m.add_item_tts("forcefield", "fld");
+m.add_item_tts("force field", "fld");
 m.add_item_tts("hazard", "hd");
 m.add_item_tts("health zone", "hz");
 m.add_item_tts("instrument", "inst");
@@ -1417,13 +1417,13 @@ speak("Map updated.");
 if(buildem=="fld")
 {
 input.set_only_allowed_chars("1234567890-");
-string mx=input.input("Enter the minimum x of this forcefield.");
-string mx2=input.input("Enter the maximum x of this forcefield.");
-string my=input.input("Enter the minimum y of this forcefield.");
-string my2=input.input("Enter the maximum y of this forcefield.");
-string dm=input.input("Enter the maximum damage of this forcefield.");
-string ft=input.input("Enter the fire time of this forcefield.");
-string sp=input.input("Enter the activation time of this forcefield.");
+string mx=input.input("Enter the minimum x of this force field.");
+string mx2=input.input("Enter the maximum x of this force field.");
+string my=input.input("Enter the minimum y of this force field.");
+string my2=input.input("Enter the maximum y of this force field.");
+string dm=input.input("Enter the maximum damage of this force field.");
+string ft=input.input("Enter the fire time of this force field.");
+string sp=input.input("Enter the activation time of this force field.");
 if(x=="" and paxx=="" and y=="" and paxy=="" and damage=="" and firetime=="" and speedtime=="")
 return;
 x=string_to_number(mx);
@@ -1433,10 +1433,10 @@ paxy=string_to_number(my2);
 damage=string_to_number(dm);
 firetime=string_to_number(ft);
 speedtime=string_to_number(sp);
-string[] forcefield=find_directories("sounds/"+soundpack+"/objects/forcefields/*");
+string[] forcefield=find_directories("sounds/"+soundpack+"/objects/force fields/*");
 if(forcefield.length()==0)
 {
-dlg("Error. There are no forcefields available to view.");
+dlg("Error. There are no force fields available to view.");
 resume_pools();
 return;
 }
@@ -2712,7 +2712,7 @@ x=string_to_number(mx);
 y=string_to_number(my);
 damage=string_to_number(dm);
 speedtime=string_to_number(sp);
-string[] timebomb=find_directories("sounds/"+soundpack+"/objects/timebombs/*");
+string[] timebomb=find_directories("sounds/"+soundpack+"/objects/time bombs/*");
 if(timebomb.length()==0)
 {
 dlg("Error. There are no time bombs available to view.");
