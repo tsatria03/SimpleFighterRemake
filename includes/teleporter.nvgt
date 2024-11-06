@@ -1,27 +1,31 @@
 teleporter@[]teleporters(0);
 class teleporter
 {
-bool moveable, singleuse;
+bool moveable, moveable2, spotted, singleuse;
 int telsound, wepsound;
 int telx;
 int tely;
 int dtelx;
 int dtely;
-int teldir;
+int telerange;
+int telerange2;
 int teltime;
 string teltype;
 timer teltimer;
-teleporter(int tx,int ty,int dtx,int dty,int tdir,int ts,string tt,bool tm,bool ss)
+teleporter(int tx,int ty,int dtx,int dty,int trange,int trange2,int sp,string tt,bool tm,bool tm2,bool ss)
 {
 telx=tx;
 tely=ty;
 dtelx=dtx;
 dtely=dty;
-teldir=tdir;
-teltime=ts;
+telerange=trange;
+telerange2=trange2;
+teltime=sp;
 teltype=tt;
 moveable=tm;
+moveable2=tm2;
 singleuse=ss;
+spotted=false;
 string[] telsfx=find_files("sounds/"+soundpack+"/objects/teleporters/"+teltype+"/*loop*");
 if(telsfx.length()!=0) telsound=telpool.play_extended_2d("sounds/"+soundpack+"/objects/teleporters/"+teltype+"/"+telsfx[random(0,telsfx.length()-1)],me.x,me.y,telx,tely,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }
@@ -32,41 +36,31 @@ for(uint i=0; i<teleporters.length(); i++)
 {
 if(teleporters[i].teltimer.elapsed>=teleporters[i].teltime)
 {
+if(absolute(me.x-teleporters[i].telx)<=teleporters[i].telerange and absolute(me.y-teleporters[i].tely)<=teleporters[i].telerange2)
+{
+teleporters[i].spotted=true;
+}
+if(teleporters[i].spotted)
+{
 telpool.update_sound_2d(teleporters[i].telsound,teleporters[i].telx,teleporters[i].tely);
 teleporters[i].teltimer.restart();
-if (teleporters[i].telx<=maxx and teleporters[i].teltimer.elapsed>=teleporters[i].teltime and teleporters[i].teldir==1 and teleporters[i].moveable==true and paused==0)
-{
-teleporters[i].telx++;
-teleporters[i].teltimer.restart();
-}
-else if (teleporters[i].telx>=0 and teleporters[i].teltimer.elapsed>=teleporters[i].teltime and teleporters[i].teldir==0 and teleporters[i].moveable==true and paused==0)
-{
-teleporters[i].telx--;
-teleporters[i].teltimer.restart();
-}
-if (teleporters[i].teldir==1 and teleporters[i].telx>maxx and teleporters[i].moveable==true and paused==0)
-{
-teleporters[i].teldir=0;
-}
-else if (teleporters[i].teldir==0 and teleporters[i].telx<=0 and teleporters[i].moveable==true and paused==0)
-{
-teleporters[i].teldir=1;
-}
-if(teleporters[i].teldir==1 and teleporters[i].moveable==true and paused==0)
+if(teleporters[i].telx<me.x and teleporters[i].moveable==true and paused==0)
 {
 teleporters[i].telx++;
 }
-else if (teleporters[i].teldir==0 and teleporters[i].moveable==true and paused==0)
+if(teleporters[i].telx>me.x and teleporters[i].moveable==true and paused==0)
 {
 teleporters[i].telx--;
 }
-if(paused==1)
+if(teleporters[i].tely<me.y and teleporters[i].moveable2==true and paused==0)
 {
-telpool.pause_sound(teleporters[i].telsound);
+teleporters[i].tely++;
 }
-else
+if(teleporters[i].tely>me.y and teleporters[i].moveable2==true and paused==0)
 {
-telpool.resume_sound(teleporters[i].telsound);
+teleporters[i].tely--;
+}
+}
 }
 if(me.x==teleporters[i].telx and me.y==teleporters[i].tely and paused==0)
 {
@@ -80,10 +74,9 @@ return;
 }
 }
 }
-}
-void spawn_teleporter(int x,int y,int dx,int dy,int dir,int teltime,string teltype,bool moveable,bool singleuse)
+void spawn_teleporter(int x,int y,int dx,int dy,int telrange,int telrange2,int teltime,string teltype,bool moveable,bool moveable2,bool singleuse)
 {
-teleporter tp1(x,y,dx,dy,dir,teltime,teltype,moveable,singleuse);
+teleporter tp1(x,y,dx,dy,telrange,telrange2,teltime,teltype,moveable,moveable2,singleuse);
 teleporters.insert_last(tp1);
 }
 void destroy_all_teleporters()

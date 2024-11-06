@@ -6,18 +6,16 @@ int activesound,inactivesound,wepsound;
 double minx,maxx,miny,maxy;
 int activetime;
 int deactivetime;
-int firetime;
 int damage;
 string forcetype;
-timer activetimer, deactivetimer, firetimer;
-forcefield(double mx,double mx2,double my,double my2,int dmg,int ft,int sp,string ftype)
+timer activetimer, deactivetimer;
+forcefield(double mx,double mx2,double my,double my2,int dmg,int sp,string ftype)
 {
 minx=mx;
 maxx=mx2;
 miny=my;
 maxy=my2;
 damage=dmg;
-firetime=ft;
 activetime=sp;
 deactivetime=sp;
 forcetype=ftype;
@@ -51,29 +49,11 @@ forcepool.update_sound_2d(forcefields[i].inactivesound, forcefields[i].minx, for
 forcepool.update_sound_range_2d(forcefields[i].inactivesound, 0, forcefields[i].maxx-forcefields[i].minx, 0, forcefields[i].maxy-forcefields[i].miny);
 forcefields[i].deactivetimer.restart();
 }
-if(forcefields[i].forcefielded==true && forcefields[i].minx<=me.x && forcefields[i].maxx>=me.x && forcefields[i].miny<=me.y && forcefields[i].maxy>=me.y && forcefields[i].firetimer.elapsed>=forcefields[i].firetime && shieldon==1 && shieldstrength<=maxshieldstrength && paused==0)
+}
+}
+void spawn_forcefield(double x1,double x2,double y1,double y2,int dmg,int sp,string forcetype)
 {
-string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
-if(arqsfx.length()!=0 && shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
-string[] hitsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/*hit*");
-if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_stationary_extended("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,painvolume,painpitch,false);
-shieldstrength-=forcefields[i].damage-shielddefence;
-forcefields[i].firetimer.restart();
-}
-else if(forcefields[i].forcefielded==true && forcefields[i].minx<=me.x && forcefields[i].maxx>=me.x && forcefields[i].miny<=me.y && forcefields[i].maxy>=me.y && forcefields[i].firetimer.elapsed>=forcefields[i].firetime && shieldon==0 && paused==0)
-{
-string[] hitsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/*hit*");
-if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_stationary_extended("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,painvolume,painpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
-if(hurtsfx.length()!=0 && charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
-health-=forcefields[i].damage-defence;
-forcefields[i].firetimer.restart();
-}
-}
-}
-void spawn_forcefield(double x1,double x2,double y1,double y2,int dmg,int firetime,int activetime,string forcetype)
-{
-forcefield force1(x1,x2,y1,y2,dmg,firetime,activetime,forcetype);
+forcefield force1(x1,x2,y1,y2,dmg,sp,forcetype);
 forcefields.insert_last(force1);
 }
 void destroy_all_forcefields()

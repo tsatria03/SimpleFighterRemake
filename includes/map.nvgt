@@ -614,17 +614,16 @@ bool mb=string_to_bool(sd[16]);
 bool mb2=string_to_bool(sd[17]);
 spawn_enemie(x, y, enerange, enerange2, enerange3, enerange4, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2);
 }
-else if(sd[0]=="forcefield" && sd.length()==9)
+else if(sd[0]=="forcefield" && sd.length()==8)
 {
 double mx=stn(sd[1]);
 double mx2=stn(sd[2]);
 double my=stn(sd[3]);
 double my2=stn(sd[4]);
 int dmg=stn(sd[5]);
-int ft=stn(sd[6]);
-int sp=stn(sd[7]);
-string forcetype=sd[8];
-spawn_forcefield(mx, mx2, my, my2, dmg, ft, sp, forcetype);
+int sp=stn(sd[6]);
+string forcetype=sd[7];
+spawn_forcefield(mx, mx2, my, my2, dmg, sp, forcetype);
 }
 else if(sd[0]=="projectile" && sd.length()==13)
 {
@@ -770,18 +769,20 @@ int sp=stn(sd[4]);
 string rotype=sd[5];
 spawn_robotzone(mx, mx2, y, sp, rotype);
 }
-else if(sd[0]=="teleporter" && sd.length()==10)
+else if(sd[0]=="teleporter" && sd.length()==12)
 {
 int sx=stn(sd[1]);
 int sy=stn(sd[2]);
 int sx2=stn(sd[3]);
 int sy2=stn(sd[4]);
-int dir=stn(sd[5]);
-int sp=stn(sd[6]);
-string teltype=sd[7];
-bool mb=string_to_bool(sd[8]);
-bool ss=string_to_bool(sd[9]);
-spawn_teleporter(x, y, x2, y2, dir, sp, teltype, mb, ss);
+int telrange=stn(sd[5]);
+int telrange2=stn(sd[6]);
+int sp=stn(sd[7]);
+string teltype=sd[8];
+bool mb=string_to_bool(sd[9]);
+bool mb2=string_to_bool(sd[10]);
+bool ss=string_to_bool(sd[11]);
+spawn_teleporter(sx, sy, sx2, sy2, telrange, telrange2, sp, teltype, mb, mb2, ss);
 }
 else if(sd[0]=="vehicle" && sd.length()==7)
 {
@@ -907,6 +908,29 @@ for(uint i=0; i<signs.length(); i++)
 {
 string[] signsfx=find_files("sounds/"+soundpack+"/objects/signs/"+signs[i].signtype+"/*step*");
 if(signsfx.length()!=0 and signs[i].looping==false) signs[i].signsound=signpool.play_2d("sounds/"+soundpack+"/objects/signs/"+signs[i].signtype+"/"+signsfx[random(0,signsfx.length()-1)],me.x,me.y,signs[i].signx,signs[i].signy,false);
+}
+for(uint i=0; i<forcefields.length(); i++)
+{
+if(forcefields[i].forcefielded==true && forcefields[i].minx<=me.x && forcefields[i].maxx>=me.x && forcefields[i].miny<=me.y && forcefields[i].maxy>=me.y && shieldon==1 && shieldstrength<=maxshieldstrength && paused==0)
+{
+string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
+if(arqsfx.length()!=0 && shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
+string[] hitsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/*hit*");
+if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_stationary_extended("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+shieldstrength-=forcefields[i].damage-shielddefence;
+pbounce();
+return;
+}
+else if(forcefields[i].forcefielded==true && forcefields[i].minx<=me.x && forcefields[i].maxx>=me.x && forcefields[i].miny<=me.y && forcefields[i].maxy>=me.y && shieldon==0 && paused==0)
+{
+string[] hitsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/*hit*");
+if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_stationary_extended("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
+if(hurtsfx.length()!=0 && charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+health-=forcefields[i].damage-defence;
+pbounce();
+return;
+}
 }
 for(uint i=0; i<walls.length(); i++)
 {

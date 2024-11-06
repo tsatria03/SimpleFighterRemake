@@ -15,7 +15,7 @@ double weaponvolume=0, weaponmaxvolume=120, weaponpan=0, weaponmaxpan=100, weapo
 double attack=0, ammo=100, defence=0, health=100, kills=0, points=0, xp=0, xpmod=1, xprequiered=1, level=1, levmod=1, lifecard=1, loadedammo=100, shieldstrength=100, shielddefence=0, shieldlevel, maxammo=100, maxhealth=100, maxshieldstrength=100, maxx=100, maxy=100, weplevel=1;
 float revdry, revwet, revsize, revdamp, revwidth;
 int autoslot, camslot, fallslot, invslot, itemslot, painslot, prevslot, shieldloop, shieldslot, shieldremoveslot, shieldwearslot, tileslot, wallslot, weaponslot;
-int amrange, amrange2, amrange3, amrange4, emrange, emrange2, emrange3, emrange4, robrange, robrange2, robrange3, robrange4, zombrange, zombrange2, zombrange3, zombrange4, charmode, fallcounter, gamemode, jumping, gametime, musmode, movetime, platmode, sorcemode, ty1, ty2;
+int amrange, amrange2, amrange3, amrange4, emrange, emrange2, emrange3, emrange4, telrange, telrange2, robrange, robrange2, robrange3, robrange4, zombrange, zombrange2, zombrange3, zombrange4, charmode, fallcounter, gamemode, jumping, gametime, musmode, movetime, platmode, sorcemode, ty1, ty2;
 int chardeathsound=1, charfallsound=1, charfallsound2=1, charhurtsound=1, charhealsound=1, charhealsound2=1, charhealsound3=1, charinvsound=1, charjumpsound=1, charlevsound=1, charlifesound=1, charrocksound=1, charsitsound=1, charstandsound=1, charturnsound=1;
 int shieldbreaksound=1, shielddrawsound=1, shieldhitsound=1, shieldloopsound=1, shieldremovesound=1, shieldwearsound=1;
 int wepdrawsound=1, wepemptysound=1, wepfiresound=1, wephitsound=1, weploopsound=1, weprecsound=1, wepreloadsound=1, wepshellsound=1;
@@ -1422,16 +1422,14 @@ string mx2=input.input("Enter the maximum x of this force field.");
 string my=input.input("Enter the minimum y of this force field.");
 string my2=input.input("Enter the maximum y of this force field.");
 string dm=input.input("Enter the maximum damage of this force field.");
-string ft=input.input("Enter the fire time of this force field.");
-string sp=input.input("Enter the activation time of this force field.");
-if(x=="" and paxx=="" and y=="" and paxy=="" and damage=="" and firetime=="" and speedtime=="")
+string sp=input.input("Enter the speed of this force field.");
+if(x=="" and paxx=="" and y=="" and paxy=="" and damage=="" and speedtime=="")
 return;
 x=string_to_number(mx);
 paxx=string_to_number(mx2);
 y=string_to_number(my);
 paxy=string_to_number(my2);
 damage=string_to_number(dm);
-firetime=string_to_number(ft);
 speedtime=string_to_number(sp);
 string[] forcefield=find_directories("sounds/"+soundpack+"/objects/force fields/*");
 if(forcefield.length()==0)
@@ -1451,9 +1449,9 @@ forcetyp=res;
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"forcefield "+x+" "+paxx+" "+y+" "+paxy+" "+damage+" "+firetime+" "+speedtime+" "+forcetyp);
+mapper.write("\r\n"+"forcefield "+x+" "+paxx+" "+y+" "+paxy+" "+damage+" "+speedtime+" "+forcetyp);
 mapper.close();
-spawn_forcefield(x, paxx, y, paxy, damage, firetime, speedtime, forcetyp);
+spawn_forcefield(x, paxx, y, paxy, damage, speedtime, forcetyp);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
@@ -2600,15 +2598,17 @@ string sx=input.input("Enter the starting x of this teleporter.");
 string sy=input.input("Enter the starting y of this teleporter.");
 string nx=input.input("Enter the finishing x of this teleporter.");
 string ny=input.input("Enter the finishing y of this teleporter.");
-string dr=input.input("Enter the direction of this teleporter. 0 for left, and 1 for right.");
+string rng=input.input("Enter the horizontal seeing range of this teleporter.");
+string rng2=input.input("Enter the vertical seeing range of this teleporter.");
 string sp=input.input("Enter the speed of this teleporter.");
-if(x=="" and y=="" and x2=="" and y2=="" and direction=="" and speedtime=="")
+if(x=="" and y=="" and x2=="" and y2=="" and telrange=="" and telrange2=="" and speedtime=="")
 return;
 x=string_to_number(sx);
 y=string_to_number(sy);
 x2=string_to_number(nx);
 y2=string_to_number(ny);
-direction=string_to_number(dr);
+telrange=string_to_number(rng);
+telrange2=string_to_number(rng2);
 speedtime=string_to_number(sp);
 string[] teleporter=find_directories("sounds/"+soundpack+"/objects/teleporters/*");
 if(teleporter.length()==0)
@@ -2653,7 +2653,7 @@ m.enter_sound="menu2.ogg";
 m.open_sound="menu3.ogg";
 m.add_item_tts("yes");
 m.add_item_tts("no");
-int mres17=m.run("Should this teleporter be single-use only?",true);
+int mres17=m.run("Should the teleporter folow you up on other platforms?",true);
 if(mres17==0)
 {
 speak("canceled");
@@ -2661,18 +2661,39 @@ return;
 }
 if(mres17==1)
 {
-sse=true;
+mb2=true;
 }
 if(mres17==2)
+{
+mb2=false;
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres18=m.run("Should this teleporter be single-use only?",true);
+if(mres18==0)
+{
+speak("canceled");
+return;
+}
+if(mres18==1)
+{
+sse=true;
+}
+if(mres18==2)
 {
 sse=false;
 }
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"teleporter "+x+" "+y+" "+x2+" "+y2+" "+direction+" "+speedtime+" "+teltype+" "+mb+" "+sse);
+mapper.write("\r\n"+"teleporter "+x+" "+y+" "+x2+" "+y2+" "+telrange+" "+telrange2+" "+speedtime+" "+teltype+" "+mb+" "+mb2+" "+sse);
 mapper.close();
-spawn_teleporter(x, y, x2, y2, direction, speedtime, teltype, mb, sse);
+spawn_teleporter(x, y, x2, y2, telrange, telrange2, speedtime, teltype, mb, mb2, sse);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");

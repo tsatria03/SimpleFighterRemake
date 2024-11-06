@@ -145,3 +145,4 @@ zone 80 90 30 35 zombie_zone
 sign 78 30 Zombie Zone: Periodically spawns zombies within the defined area. sign true false
 zombie_zone 80 90 30 2500 random
 blockage 50 60 0 0 This is a jumpable blockage.
+teleporter 110 20 120 20 0 0 50 tp2 false false false

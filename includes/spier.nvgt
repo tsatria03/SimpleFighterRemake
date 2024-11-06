@@ -279,8 +279,8 @@ for (uint i20 = 0; i20 < forcefields.length(); i20++)
 {
 if(spyage.x>=forcefields[i20].minx && spyage.x<=forcefields[i20].maxx && spyage.y>=forcefields[i20].miny && spyage.y<=forcefields[i20].maxy)
 {
-if(forcefields[i20].forcefielded==true) materials+=(forcefields[i20].maxx-forcefields[i20].minx+1)+" x "+(forcefields[i20].maxy-forcefields[i20].miny+1)+" tile activated "+forcefields[i20].forcetype+" force field: "+i+" feet. ";
-if(forcefields[i20].forcefielded==false) materials+=(forcefields[i20].maxx-forcefields[i20].minx+1)+" x "+(forcefields[i20].maxy-forcefields[i20].miny+1)+" tile deactivated "+forcefields[i20].forcetype+" force field: "+i+" feet. ";
+if(forcefields[i20].forcefielded==true) materials+=(forcefields[i20].maxx-forcefields[i20].minx+1)+" x "+(forcefields[i20].maxy-forcefields[i20].miny+1)+" tile active "+forcefields[i20].forcetype+" force field: "+i+" feet. ";
+if(forcefields[i20].forcefielded==false) materials+=(forcefields[i20].maxx-forcefields[i20].minx+1)+" x "+(forcefields[i20].maxy-forcefields[i20].miny+1)+" tile inactive "+forcefields[i20].forcetype+" force field: "+i+" feet. ";
 found_object=true;
 }
 }
