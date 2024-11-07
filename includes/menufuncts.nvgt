@@ -1863,6 +1863,64 @@ if(deactsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/object
 }
 return 0;
 }
+string minesmenu()
+{
+string[] minetype=find_directories("sounds/"+soundpack+"/objects/mines/*");
+setupmenu();
+m.set_callback(@mines_callback,"");
+for (uint i=0; i<minetype.length(); i++)
+{
+m.add_item_tts(minetype[i],minetype[i],"",true);
+}
+int mres=m.run("mines menu", true);
+if(mres==0)
+{
+speak("canceled");
+}
+if(mres>0 and mres<=minetype.length())
+{
+minetyp=minetype[mres-1];
+}
+return m.get_item_name(mres);
+}
+int mines_callback(dynamic_menu_pro@ m, string data)
+{
+string minetype;
+if(m.menu_position>0)
+minetype=m.item_list[m.menu_position-1].name;
+if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elapsed>=keytime)
+{
+t.destroy_sound(prevslot);
+string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*hit*");
+if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
+keytimer.restart();
+}
+if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+{
+t.destroy_sound(prevslot);
+string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*hit*");
+if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
+}
+if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+{
+t.destroy_sound(prevslot);
+string[] namesfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*loop*");
+if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+namesfx[random(0,namesfx.length()-1)],false);
+}
+if(key_down(KEY_LCONTROL) and key_pressed(KEY_I) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_I) and m.menu_position>0)
+{
+t.destroy_sound(prevslot);
+string[] lightsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*light*");
+if(lightsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+lightsfx[random(0,lightsfx.length()-1)],false);
+}
+if(key_down(KEY_LCONTROL) and key_pressed(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_N) and m.menu_position>0)
+{
+t.destroy_sound(prevslot);
+string[] spawnsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*spawn*");
+if(spawnsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],false);
+}
+return 0;
+}
 string spikesmenu()
 {
 string[] spiketype=find_directories("sounds/"+soundpack+"/objects/spikes/*");

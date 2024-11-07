@@ -44,6 +44,7 @@ string forcetyp;
 string lifttyp;
 string looptyp;
 string mplattyp;
+string minetyp;
 string movtyp;
 string mustyp;
 string opentyp;
@@ -111,6 +112,7 @@ m.add_item_tts("item zone", "iz");
 m.add_item_tts("lift", "lf");
 m.add_item_tts("lockable door", "ld");
 m.add_item_tts("lockable passage", "lg");
+m.add_item_tts("mine", "mn");
 m.add_item_tts("moving hazard", "mhd");
 m.add_item_tts("moving platform", "mpl");
 m.add_item_tts("music ambience", "musamb");
@@ -1538,6 +1540,42 @@ mapdata=mapper.read();
 mapper.write("\r\n"+"health_zone "+x+" "+paxx+" "+y+" "+paxy+" "+damage+" "+speedtime);
 mapper.close();
 spawn_healthzone(x, paxx, y, paxy, damage, speedtime);
+load_map(mapname);
+mpool.play_stationary("mapupdate.ogg",false);
+speak("Map updated.");
+}
+if(buildem=="mn")
+{
+input.set_only_allowed_chars("1234567890-");
+string mx=input.input("Enter the x of this mine.");
+string my=input.input("Enter the y of this mine.");
+string dm=input.input("Enter the maximum damage of this mine.");
+if(x=="" and y=="" and damage=="")
+return;
+x=string_to_number(mx);
+y=string_to_number(my);
+damage=string_to_number(dm);
+string[] mine=find_directories("sounds/"+soundpack+"/objects/mines/*");
+if(mine.length()==0)
+{
+dlg("Error. There are no mines available to view.");
+resume_pools();
+return;
+}
+else
+{
+string res=minesmenu();
+if(res!="")
+{
+minetyp=res;
+}
+}
+resume_pools();
+mapper.open("data/maps/"+mapname+".map","ab");
+mapdata=mapper.read();
+mapper.write("\r\n"+"mine "+x+" "+y+" "+damage+" "+minetyp);
+mapper.close();
+spawn_mine(x, y, damage, minetyp);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");

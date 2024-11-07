@@ -85,7 +85,7 @@ for(uint i2=0; i2<calanders.length(); i2++)
 if(calanders[i2].calanderx==bombs[i].bombx and calanders[i2].calandery==bombs[i].bomby and calanders[i2].destroyable==true)
 {
 bombpool.destroy_sound(bombs[i].fallsound);
-bombpool.destroy_sound(calanders[i2].calandersound);
+calpool.destroy_sound(calanders[i2].calandersound);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/*land*");
 if(hitsfx.length()!=0) bombs[i].landsound=bombpool.play_extended_2d("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,bombs[i].bombx,bombs[i].bomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/calanders/"+calanders[i2].calandertype+"/*break*");
@@ -100,7 +100,7 @@ for(uint i3=0; i3<clocks.length(); i3++)
 if(clocks[i3].clockx==bombs[i].bombx and clocks[i3].clocky==bombs[i].bomby and clocks[i3].destroyable==true)
 {
 bombpool.destroy_sound(bombs[i].fallsound);
-bombpool.destroy_sound(clocks[i].clocksound);
+clockpool.destroy_sound(clocks[i].clocksound);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/*land*");
 if(hitsfx.length()!=0) bombs[i].landsound=bombpool.play_extended_2d("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,bombs[i].bombx,bombs[i].bomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/clocks/"+clocks[i3].clocktype+"/*break*");
@@ -185,7 +185,7 @@ for(uint i9=0; i9<signs.length(); i9++)
 if(signs[i9].signx==bombs[i].bombx and signs[i9].signy==bombs[i].bomby and signs[i9].destroyable==true)
 {
 bombpool.destroy_sound(bombs[i].fallsound);
-bombpool.destroy_sound(signs[i9].signsound);
+signpool.destroy_sound(signs[i9].signsound);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/*land*");
 if(hitsfx.length()!=0) bombs[i].landsound=bombpool.play_extended_2d("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,bombs[i].bombx,bombs[i].bomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/signs/"+signs[i9].signtype+"/*break*");
@@ -204,8 +204,8 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombty
 if(hitsfx.length()!=0) bombs[i].landsound=bombpool.play_extended_2d("sounds/"+soundpack+"/objects/bombs/"+bombs[i].bombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,bombs[i].bombx,bombs[i].bomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/spikes/"+spikes[i10].spiketype+"/*hurt*");
 if(hurtsfx.length()!=0) spikes[i10].hurtsound=p.play_extended_2d("sounds/"+soundpack+"/objects/spikes/"+spikes[i10].spiketype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,spikes[i10].minx,spikes[i10].miny,0,0,0,0,false,0,0,painvolume,painpitch,false);
-p.update_sound_2d(spikes[i10].hurtsound,spikes[i10].minx,spikes[i10].miny);
-p.update_sound_range_2d(spikes[i10].hurtsound, 0, spikes[i10].maxx-spikes[i10].minx, 0, spikes[i10].maxy-spikes[i10].miny);
+spikepool.update_sound_2d(spikes[i10].hurtsound,spikes[i10].minx,spikes[i10].miny);
+spikepool.update_sound_range_2d(spikes[i10].hurtsound, 0, spikes[i10].maxx-spikes[i10].minx, 0, spikes[i10].maxy-spikes[i10].miny);
 spikes[i10].spikehealth-=bombs[i].damage;
 bombs.remove_at(i);
 return;

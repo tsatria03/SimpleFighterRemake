@@ -2,3 +2,6 @@ name test
 maxx 100
 maxy 100
 platform 0 100 0 marble2 0 100
+mine 5 0 500 mine
+mine 10 0 500 mine2
+mine 15 0 500 mine3

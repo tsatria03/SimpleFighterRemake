@@ -43,6 +43,7 @@
 #include"map.nvgt"
 #include"menu.nvgt"
 #include"menufuncts.nvgt"
+#include"mine.nvgt"
 #include"moving_hazard.nvgt"
 #include"moving_platform.nvgt"
 #include"musicambience.nvgt"

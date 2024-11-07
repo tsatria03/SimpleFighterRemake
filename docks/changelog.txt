@@ -1,9 +1,13 @@
 new in 5.8
+Addressed lots of issues related to sounds not destroying or updating properly when they should.
+Mines can now damage anything in it's range, not just you.
+Mines can now be spied with the spire. When you use the spire on one of them, it will tell you weather it's active or not.
+You can now build mines in the builder menu. They will also be written to the map you're currently working on.
 Recoded the teleporter class to work Similarly to all other npcs in the game. I had enough of the old teleporter class somehow making itself majicly end up at the very beginning of a map every single time the user either reloaded the map, or restarted the game and came back to it.
 Changed the way force fields work. Instead of constently hurting you when you are in their range, it will now immediately send you hurling back in the opposite direction upon impact.
 new in 5.7
 Fixed various bugs with force fields and vanishing platforms.
-force fields can now be spied with the spire. When you use the spire on one of them, it will tell you weather it's activated or deactivated, along with it's asined length and width.
+force fields can now be spied with the spire. When you use the spire on one of them, it will tell you weather it's active or not, along with it's asined length and width.
 You can now build force fields in the builder menu. They will also be written to the map you're currently working on.
 Fixed the bug of not being able to exit input boxes with the Escape key.
 Fixed some minor Calculations logic with the time bombs class.

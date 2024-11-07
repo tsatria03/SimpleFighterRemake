@@ -284,13 +284,21 @@ if(forcefields[i20].forcefielded==false) materials+=(forcefields[i20].maxx-force
 found_object=true;
 }
 }
-for(uint i21=0; i21<lifts.length(); i21++)
+for (uint i21 = 0; i21 < mines.length(); i21++)
 {
-if(spyage.x>=lifts[i21].minx && spyage.x<=lifts[i21].maxx && spyage.y==lifts[i21].lifty)
+if(spyage.x==mines[i21].minex && spyage.y==mines[i21].miney)
+{
+if(mines[i21].triggered==true) materials+="active mine: "+i+" feet. ";
+if(mines[i21].triggered==false) materials+="inactive mine: "+i+" feet. ";
+}
+}
+for(uint i22=0; i22<lifts.length(); i22++)
+{
+if(spyage.x>=lifts[i22].minx && spyage.x<=lifts[i22].maxx && spyage.y==lifts[i22].lifty)
 {
 if(!on_lift || (direction == "up" || direction == "down"))
 {
-materials += (lifts[i21].maxx - lifts[i21].minx + 1) + " x " + " tile lift: " + i + " feet. ";
+materials += (lifts[i22].maxx - lifts[i22].minx + 1) + " x " + " tile lift: " + i + " feet. ";
 found_object = true;
 }
 }

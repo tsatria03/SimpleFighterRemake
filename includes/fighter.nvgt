@@ -53,6 +53,7 @@ forceloop();
 healthzoneloop();
 instruloop();
 liftloop();
+mineloop();
 objloop();
 objzoneloop();
 psdoorloop();

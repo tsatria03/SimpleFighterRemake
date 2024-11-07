@@ -60,6 +60,7 @@ destroy_all_hazards();
 destroy_all_healthzones();
 destroy_all_instruments();
 destroy_all_lifts();
+destroy_all_mines();
 destroy_all_moving_hazards();
 destroy_all_moving_platforms();
 destroy_all_objs();
@@ -447,6 +448,14 @@ string lifttype=sd[10];
 double liftvol=stn(sd[11]);
 double liftpitch=stn(sd[12]);
 spawn_lift(mx, mx2, my, my2, dir, sp, tiletype, tilevol, tilepitch, lifttype, liftvol, liftpitch);
+}
+else if(sd[0]=="mine" && sd.length()==5)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+int dmg=stn(sd[3]);
+string minetype=sd[4];
+spawn_mine(x, y, dmg, minetype);
 }
 else if(sd[0]=="mhazard" && sd.length()==11)
 {
