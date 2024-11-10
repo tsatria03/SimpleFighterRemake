@@ -58,7 +58,6 @@ destroy_all_enemiezones();
 destroy_all_forcefields();
 destroy_all_hazards();
 destroy_all_healthzones();
-destroy_all_instruments();
 destroy_all_lifts();
 destroy_all_mines();
 destroy_all_moving_hazards();
@@ -520,15 +519,6 @@ dlgtyp=dlgtype;
 bool dlm=string_to_bool(sd[sd.length()-1]);
 spawn_dialog(mx, mx2, my, my2, txt, dlgtype, dlm);
 }
-else if(sd[0]=="instrument" && sd.length()==6)
-{
-double mx=stn(sd[1]);
-double mx2=stn(sd[2]);
-double my=stn(sd[3]);
-double my2=stn(sd[4]);
-bool insthp=string_to_bool(sd[5]);
-spawn_instrument(mx, mx2, my, my2, insthp);
-}
 else if(sd[0]=="item" && sd.length()==7)
 {
 int x=stn(sd[1]);
@@ -913,7 +903,6 @@ eneloop();
 enemiezoneloop();
 forceloop();
 healthzoneloop();
-instruloop();
 liftloop();
 mineloop();
 objloop();

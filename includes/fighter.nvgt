@@ -51,7 +51,6 @@ eneloop();
 enemiezoneloop();
 forceloop();
 healthzoneloop();
-instruloop();
 liftloop();
 mineloop();
 objloop();

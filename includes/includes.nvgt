@@ -26,7 +26,6 @@
 #include"gametime.nvgt"
 #include"hazard.nvgt"
 #include"healthzone.nvgt"
-#include"instrument_handler.nvgt"
 #include"inventory.nvgt"
 #include"item.nvgt"
 #include"itemzone.nvgt"

@@ -1,4 +1,4 @@
-bool atapex, ascending, building, dlt, dmd, dmt, falling, fb, itm, inp, jb, lp, lpg, mb, mb2, sse;
+bool atapex, ascending, building, dlt, dmd, dmt, falling, fb, itm, jb, lp, lpg, mb, mb2, sse;
 bool bouncing=true, charhit=true, cammable=true, camsz=false, drawable=true, droppable=true, fireable=true, healable=true, hidedocks=false, hidegames=false, hidemaps=false, hidesets=false, is_in_wall=false, jumpable=true, melee=true, mfc=false, moveable=true, quittable=true, scadder=false, spawnable=true, sittable=true, sitting=false, speedable=true, telable=true, turnable=true, useitems=false;
 double x, paxx, y, paxy, x2, pax2, y2, paxy2, minhp, direction, direction2, card, damage, height, firetime, launchtime, lv, ln, pitch, pitch2, speedtime, speedtime2, volume, volume2, volset, xn;
 double autovolume=0, automaxvolume=120, autopan=0, automaxpan=100, autopitch=100, automaxpitch=200;
@@ -106,7 +106,6 @@ m.add_item_tts("enemie zone", "ez");
 m.add_item_tts("force field", "fld");
 m.add_item_tts("hazard", "hd");
 m.add_item_tts("health zone", "hz");
-m.add_item_tts("instrument", "inst");
 m.add_item_tts("item", "obj");
 m.add_item_tts("item zone", "iz");
 m.add_item_tts("lift", "lf");
@@ -1728,50 +1727,6 @@ mapdata=mapper.read();
 mapper.write("\r\n"+"checkpoint "+x+" "+y+" "+speedtime+" "+checktyp);
 mapper.close();
 spawn_checkpoint(x, y, speedtime, checktyp);
-load_map(mapname);
-mpool.play_stationary("mapupdate.ogg",false);
-speak("Map updated.");
-}
-if(buildem=="inst")
-{
-input.set_only_allowed_chars("1234567890-");
-string mx=input.input("Enter the minimum x of this instrument.");
-string mx2=input.input("Enter the maximum x of this instrument.");
-string my=input.input("Enter the minimum y of this instrument.");
-string my2=input.input("Enter the maximum y of this instrument.");
-if(x=="" and paxx=="" and y=="" and paxy=="")
-return;
-x=string_to_number(mx);
-paxx=string_to_number(mx2);
-y=string_to_number(my);
-paxy=string_to_number(my2);
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres=m.run("Would you like spoken instructions upon pressing Enter?",true);
-if(mres==0)
-{
-speak("canceled");
-return;
-}
-if(mres==1)
-{
-inp=true;
-}
-if(mres==2)
-{
-inp=false;
-}
-resume_pools();
-mapper.open("data/maps/"+mapname+".map","ab");
-mapdata=mapper.read();
-mapper.write("\r\n"+"instrument "+x+" "+paxx+" "+y+" "+paxy+" "+inp);
-mapper.close();
-spawn_instrument(x, paxx, y, paxy, inp);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");
