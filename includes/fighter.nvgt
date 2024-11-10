@@ -315,7 +315,6 @@ if(alt_is_down())
 {
 if(key_pressed(KEY_SLASH) and building==true)
 {
-pause_pools();
 input.set_only_allowed_chars("1234567890- ");
 string gd=input.input("Enter the coordinates you'd like to go to.");
 if(gd=="")
@@ -921,90 +920,6 @@ if(key_pressed(KEY_R) and melee==false and loadedammo<=0)
 reload_weapon();
 }
 if(key_pressed(KEY_U))
-{
-speak("You're currently playing "+mapname+" map.");
-}
-if(key_pressed(KEY_Y))
-{
-speak("You've been playing for a total of;"+timeelapsed.m()+"minutes,"+timeelapsed.s()+"seconds");
-}
-if(key_pressed(KEY_H))
-{
-if(shieldon==1)
-{
-speak("Your shield must be unequipped to view the player's health status.");
-}
-else if(shieldon==0)
-{
-if(healthspeech==1 and lifecard>=2)
-{
-speak(health+"health,"+lifecard+"lives");
-}
-if(healthspeech==2 and lifecard>=2)
-{
-speak(health+"of"+maxhealth+"health,"+lifecard+"lives");
-}
-if(healthspeech==3 and lifecard>=2)
-{
-speak(round(health/maxhealth*100,2)+"percent health remaining,"+lifecard+"lives");
-}
-if(healthspeech==4 and lifecard>=2)
-{
-speak(round(health/maxhealth*100,2)+"percent,"+health+"of"+maxhealth+"health,"+lifecard+"lives");
-}
-if(healthspeech==1 and lifecard<=1)
-{
-speak(health+"health,"+lifecard+"life");
-}
-if(healthspeech==2 and lifecard<=1)
-{
-speak(health+"of"+maxhealth+"health,"+lifecard+"life");
-}
-if(healthspeech==3 and lifecard<=1)
-{
-speak(round(health/maxhealth*100,2)+"percent health remaining,"+lifecard+"life");
-}
-if(healthspeech==4 and lifecard<=1)
-{
-speak(round(health/maxhealth*100,2)+"percent,"+health+"of"+maxhealth+"health,"+lifecard+"life");
-}
-}
-}
-if(key_pressed(KEY_M))
-{
-if(shieldon==0)
-{
-speak("Your shield must be equipped to view it's status.");
-}
-else if(shieldon==1)
-{
-speak("shield strength,"+round(shieldstrength/maxshieldstrength*100,2)+"percent");
-}
-}
-if(key_pressed(KEY_Z))
-{
-if(melee==false and weapontype=="archery")
-{
-speak(loadedammo+" out of "+maxammo+" ammo loaded, and "+ammo+" ammo in reserve");
-}
-if(melee==false and weapontype=="artillery")
-{
-speak(loadedammo+" out of "+maxammo+" ammo loaded, and "+ammo+" ammo in reserve");
-}
-if(melee==false and weapontype=="explosive")
-{
-speak(loadedammo+" out of "+maxammo+" ammo loaded, and "+ammo+" ammo in reserve");
-}
-if(melee==true and weapontype=="melee")
-{
-speak("This weapon does not take any ammo.");
-}
-}
-if(key_pressed(KEY_R) and melee==false and loadedammo<=0)
-{
-reload_weapon();
-}
-if(key_pressed(KEY_U) and building==true)
 {
 speak("You're currently playing "+mapname+" map.");
 }

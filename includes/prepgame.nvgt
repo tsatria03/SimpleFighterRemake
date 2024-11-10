@@ -2211,7 +2211,7 @@ string mx2=input.input("Enter the maximum x of this reverb.");
 string my=input.input("Enter the minimum y of this reverb.");
 string my2=input.input("Enter the maximum y of this reverb.");
 input.set_only_allowed_chars("none");
-string rd=input.input("Enter the id of this reverb. Press enter to use a random reverb id, or control backspace to clear the input to type your own reverb id.", generate_token(random(5,10)));
+string rd=input.input("Enter the id of this reverb. Press enter to use a random reverb id, or control backspace to clear the input to type your own reverb id.", generate_custom_token(random(5, 10), "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"));
 if(x=="" and paxx=="" and y=="" and paxy=="" and reverid=="")
 return;
 x=string_to_number(mx);

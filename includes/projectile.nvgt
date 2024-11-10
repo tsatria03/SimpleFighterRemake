@@ -125,27 +125,15 @@ robots[i3].robothealth-=projectiles[i].damage;
 projectiles[i].firetimer.restart();
 }
 }
-for(uint i4=0; i4<turrets.length(); i4++)
+for(uint i4=0; i4<zombies.length(); i4++)
 {
-if(turrets[i4].turx==projectiles[i].prox and turrets[i4].tury==projectiles[i].proy and projectiles[i].firetimer.elapsed>=projectiles[i].firetime and projectiles[i].fireable==true)
-{
-string[] hitsfx=find_files("sounds/"+soundpack+"/npc/projectiles/"+projectiles[i].projtype+"/*hit*");
-if(hitsfx.length()!=0 and hitsound==1) projectiles[i].wepsound=projpool.play_extended_2d("sounds/"+soundpack+"/npc/projectiles/"+projectiles[i].projtype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,projectiles[i].prox,projectiles[i].proy,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/turrets/"+turrets[i4].turtype+"/*hurt*");
-if(hurtsfx.length()!=0) turrets[i4].hurtsound=turpool.play_extended_2d("sounds/"+soundpack+"/npc/turrets/"+turrets[i4].turtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,turrets[i4].turx,turrets[i4].tury,0,0,0,0,false,0,0,painvolume,painpitch,false);
-turrets[i4].turhealth-=projectiles[i].damage;
-projectiles[i].firetimer.restart();
-}
-}
-for(uint i5=0; i5<zombies.length(); i5++)
-{
-if(zombies[i5].zombx==projectiles[i].prox and zombies[i5].zomby==projectiles[i].proy and projectiles[i].firetimer.elapsed>=projectiles[i].firetime and projectiles[i].fireable==true)
+if(zombies[i4].zombx==projectiles[i].prox and zombies[i4].zomby==projectiles[i].proy and projectiles[i].firetimer.elapsed>=projectiles[i].firetime and projectiles[i].fireable==true)
 {
 string[] hitsfx=find_files("sounds/"+soundpack+"/npc/projectiles/"+projectiles[i].projtype+"/*hit*");
 if(hitsfx.length()!=0 and hitsound==1) projectiles[i].wepsound=projpool.play_extended_2d("sounds/"+soundpack+"/npc/projectiles/"+projectiles[i].projtype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,projectiles[i].prox,projectiles[i].proy,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/zombies/"+zombies[i5].zombietype+"/*hurt*");
-if(hurtsfx.length()!=0) zombies[i5].hurtsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/zombies/"+zombies[i5].zombietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,zombies[i5].zombx,zombies[i5].zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
-zombies[i5].zombiehealth-=projectiles[i].damage;
+string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/zombies/"+zombies[i4].zombietype+"/*hurt*");
+if(hurtsfx.length()!=0) zombies[i4].hurtsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/zombies/"+zombies[i4].zombietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,zombies[i4].zombx,zombies[i4].zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
+zombies[i4].zombiehealth-=projectiles[i].damage;
 projectiles[i].firetimer.restart();
 }
 }

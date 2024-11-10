@@ -1,4 +1,5 @@
 new in 5.8
+Cleaned up some duplicated code in the fighter script. I also removed most of the npc includes found in the includes folder, and made them into one single npc classes script for easier navigation.
 Addressed lots of issues related to sounds not destroying or updating properly when they should.
 Mines can now damage anything in it's range, not just you.
 Mines can now be spied with the spire. When you use the spire on one of them, it will tell you weather it's active or not.

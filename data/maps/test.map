@@ -2,6 +2,15 @@ name test
 maxx 100
 maxy 100
 platform 0 100 0 marble2 0 100
-mine 5 0 500 mine
-mine 10 0 500 mine2
-mine 15 0 500 mine3
+mine 5 0 10000 mine
+mine 10 0 10000 mine2
+mine 15 0 10000 mine3
+wall 5 5 0 5 10000 walldebris 0 100 true
+wall 10 10 0 5 10000 walldebris 0 100 true
+wall 15 15 0 5 10000 walldebris 0 100 true
+wall 20 20 0 5 10000 walldebris 0 100 true
+mine 20 0 10000 mine
+wall 25 25 0 5 10000 walldebris 0 100 true
+wall 30 30 0 5 10000 walldebris 0 100 true
+mine 25 0 10000 mine2
+mine 30 0 10000 mine3

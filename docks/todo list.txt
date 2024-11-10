@@ -1,3 +1,4 @@
+Fix spying issues when building staircases and vehicles.
 Make forcefields.
 Make bosses.
 Make crushers.
