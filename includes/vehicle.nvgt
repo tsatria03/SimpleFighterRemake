@@ -53,6 +53,7 @@ cammable=false;
 jumpable=false;
 moveable=false;
 speedable=false;
+spiable=false;
 sittable=false;
 turnable=false;
 telable=false;
@@ -71,6 +72,7 @@ cammable=true;
 jumpable=true;
 moveable=true;
 speedable=true;
+spiable=true;
 sittable=true;
 turnable=true;
 telable=true;
@@ -92,7 +94,9 @@ if(key_released(KEY_SPACE) and vehicles[i].moveable==true and paused==0)
 {
 vehpool.destroy_sound(vehicles[i].beepsound);
 }
-if(key_pressed(KEY_LEFT) and vehicles[i].vehdir!=0 and vehicles[i].moveable==true and paused==0)
+if(spiable==false)
+{
+if(key_pressed(KEY_LEFT) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and vehicles[i].vehdir!=0 and vehicles[i].moveable==true and paused==0)
 {
 facing="left";
 speak(facing);
@@ -100,7 +104,7 @@ string[] turnsfx=find_files("sounds/"+soundpack+"/objects/vehicles/"+vehicles[i]
 if(turnsfx.length()!=0) vehicles[i].turnsound=vehpool.play_stationary_extended("sounds/"+soundpack+"/objects/vehicles/"+vehicles[i].vehtype+"/"+turnsfx[random(0,turnsfx.length()-1)],false,0,0,carvolume,carpitch,false);
 vehicles[i].vehdir=0;
 }
-if(key_pressed(KEY_RIGHT) and vehicles[i].vehdir!=1 and vehicles[i].moveable==true and paused==0)
+if(key_pressed(KEY_RIGHT) and vehicles[i].vehdir!=1 and vehicles[i].moveable==true  and paused==0)
 {
 facing="right";
 speak(facing);
@@ -108,19 +112,20 @@ string[] turnsfx=find_files("sounds/"+soundpack+"/objects/vehicles/"+vehicles[i]
 if(turnsfx.length()!=0) vehicles[i].turnsound=vehpool.play_stationary_extended("sounds/"+soundpack+"/objects/vehicles/"+vehicles[i].vehtype+"/"+turnsfx[random(0,turnsfx.length()-1)],false,0,0,carvolume,carpitch,false);
 vehicles[i].vehdir=1;
 }
-if(key_pressed(KEY_UP) and vehicles[i].vehspeed!=10 and vehicles[i].moveable==true)
+if(key_pressed(KEY_UP) and vehicles[i].vehspeed!=10 and vehicles[i].moveable==true and paused==0)
 {
 string[] speedsfx=find_files("sounds/"+soundpack+"/objects/vehicles/"+vehicles[i].vehtype+"/*speed*");
 if(speedsfx.length()!=0) vehicles[i].speedsound=vehpool.play_stationary_extended("sounds/"+soundpack+"/objects/vehicles/"+vehicles[i].vehtype+"/"+speedsfx[random(0,speedsfx.length()-1)],false,0,0,carvolume,carpitch,false);
 speak(vehicles[i].vehspeed+1);
 vehicles[i].vehspeed+=1;
 }
-if(key_pressed(KEY_DOWN) and vehicles[i].vehspeed!=1 and vehicles[i].moveable==true)
+if(key_pressed(KEY_DOWN) and vehicles[i].vehspeed!=1 and vehicles[i].moveable==true and paused==0)
 {
 string[] speedsfx=find_files("sounds/"+soundpack+"/objects/vehicles/"+vehicles[i].vehtype+"/*speed*");
 if(speedsfx.length()!=0) vehicles[i].speedsound=vehpool.play_stationary_extended("sounds/"+soundpack+"/objects/vehicles/"+vehicles[i].vehtype+"/"+speedsfx[random(0,speedsfx.length()-1)],false,0,0,carvolume,carpitch,false);
 speak(vehicles[i].vehspeed-1);
 vehicles[i].vehspeed-=1;
+}
 }
 if(paused==1)
 {
@@ -154,6 +159,7 @@ cammable=true;
 jumpable=true;
 moveable=true;
 speedable=true;
+spiable=true;
 sittable=true;
 turnable=true;
 telable=true;
@@ -182,6 +188,7 @@ cammable=true;
 jumpable=true;
 moveable=true;
 speedable=true;
+spiable=true;
 sittable=true;
 turnable=true;
 telable=true;

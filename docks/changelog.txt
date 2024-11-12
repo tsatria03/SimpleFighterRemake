@@ -1,4 +1,5 @@
 new in 5.8
+Finally fixed not being able to use the spire while a vehicle was spawned! This bug was anoying as all hell, and I got tired of it being this big of an issue for so long.
 Completely eliminated the instrument handler from this game. You can no longer build them in your maps from now on.
 Cleaned up some duplicated code found in the fighter script. I also removed most of the npc includes found in the includes folder, and made them into one single npc classes script for easier navigation.
 Addressed lots of issues related to sounds not destroying or updating properly when they should.

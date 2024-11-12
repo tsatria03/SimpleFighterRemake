@@ -408,19 +408,19 @@ speak("No item in focus.");
 }
 if(shift_is_down())
 {
-if(key_pressed(KEY_LEFT))
+if(key_pressed(KEY_LEFT) and spiable==true)
 {
 spy("left", spydist);
 }
-if(key_pressed(KEY_RIGHT))
+if(key_pressed(KEY_RIGHT) and spiable==true)
 {
 spy("right", spydist);
 }
-if(key_pressed(KEY_DOWN))
+if(key_pressed(KEY_DOWN) and spiable==true)
 {
 spy("down", spydist);
 }
-if(key_pressed(KEY_UP))
+if(key_pressed(KEY_UP) and spiable==true)
 {
 spy("up", spydist);
 }
