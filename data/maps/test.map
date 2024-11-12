@@ -14,3 +14,4 @@ wall 25 25 0 5 10000 walldebris 0 100 true
 wall 30 30 0 5 10000 walldebris 0 100 true
 mine 25 0 10000 mine2
 mine 30 0 10000 mine3
+wall 40 40 1 40 40 walldirt 0 100 false

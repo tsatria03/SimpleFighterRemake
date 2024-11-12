@@ -1841,13 +1841,13 @@ if(walls[i].minx<=me.x and walls[i].maxx>=me.x and walls[i].miny<=me.y and walls
 wallvolume=walls[i].volume;
 wallpitch=walls[i].pitch;
 string[] wallers=find_files("sounds/"+soundpack+"/objects/walls/"+walls[i].wall+"/*wall*");
-if(wallers.length()!=0) wallslot=p.play_extended_2d("sounds/"+soundpack+"/objects/walls/"+walls[i].wall+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,me.x,me.y,0,0,0,0,false,0,0,wallvolume,wallpitch);
+if(wallers.length()!=0 and jumping==0) wallslot=p.play_extended_2d("sounds/"+soundpack+"/objects/walls/"+walls[i].wall+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,me.x,me.y,0,0,0,0,false,0,0,wallvolume,wallpitch);
 pbounce();
 return;
 }
 }
 string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/*step*");
-if(tilers.length()!=0) tileslot=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
+if(tilers.length()!=0 and jumping==0) tileslot=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
 }
 void playfall()
 {

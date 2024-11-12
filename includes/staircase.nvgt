@@ -3,6 +3,7 @@ staircase@[] staircases(0);
 class staircase
 {
 bool abletojump;
+bool spiable;
 int staircsound;
 double minx, maxx, miny, maxy;
 double stairsvolume;
@@ -35,7 +36,7 @@ else
 onstaircase=false;
 staircases[i].abletojump=true;
 }
-if(key_down(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and keyrowhold==1 and movetimer.elapsed>=movetime and moveable==true and doormove==false)
+/*if(key_down(KEY_DOWN) and key_up(KEY_G) and key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT) and keyrowhold==1 and movetimer.elapsed>=movetime and moveable==true and doormove==false)
 {
 if(facing=="down"==false)
 {
@@ -114,7 +115,7 @@ if(tilers.length()!=0 and jumping==0) staircases[i].staircsound=p.play_stationar
 me.y++;
 }
 }
-}
+}*/
 }
 }
 void spawn_staircase(double x1,double x2,double y1,double y2,string plattile,double stairsvol,double stairspitch)
