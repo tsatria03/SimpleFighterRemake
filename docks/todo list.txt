@@ -1,5 +1,3 @@
-Fix spying issues when building staircases and vehicles.
-Make forcefields.
 Make bosses.
 Make crushers.
 Make floor breakers.
@@ -9,7 +7,6 @@ Make security jets.
 Make helecopters.
 Make containers.
 Make switches.
-Fix spying issues with staircases and vehicles.
 Add ranges to projectiles and turrets.
 Fix passages to let walls disappear and reappear as it opens and closes. I think I may have broken it while fixing a bug with walls not destroying themselves properly upon building multiple of them within a sertain area of the map.
 Make objects found in the objects menu trackable
@@ -20,12 +17,14 @@ Add flying vehicles such as aircrafts.
 Add falling and jumpping lojic to animals, enemies, robots, and zombies.
 Add a server side scoreboard system to all of the game modes.
 Add a map uploader and downloader.
-Restrict certain weapons and Shields behind levels.
+Restrict certain weapons and Shields behind levels. I've already had the foundation for that, but haven't had the time to fully implement it yet.
 Implement a way to restrict all npcs to a certain part of the map, such as near walls, or other tiles.
 Implement a buffer system to track various system events in the other game modes.
 Add acheavments and death messages.
 Add a runs counter.
 Implement a way to submit bug reports, feature requests, and other game feedback.
+*Done. Fix spying issues when building staircases and vehicles.
+*Done. Make forcefields.
 *Done. Make teleporters multi use.
 *Done. Fix lockable doors and make them appear in the objects menu.
 *Done. Add horizontal and vertical atack ranges to npcs.
