@@ -469,132 +469,132 @@ continue;
 }
 }
 if (enable_numbers == true) {
-if (key_up(KEY_RSHIFT) and key_pressed(KEY_1) and get_item_count() >= 1) {
+if (key_up(KEY_RSHIFT) and key_repeating(KEY_1) and get_item_count() >= 1) {
 menu_position = 1;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_2) and get_item_count() >= 2) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_2) and get_item_count() >= 2) {
 menu_position = 2;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_3) and get_item_count() >= 3) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_3) and get_item_count() >= 3) {
 menu_position = 3;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_4) and get_item_count() >= 4) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_4) and get_item_count() >= 4) {
 menu_position = 4;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_5) and get_item_count() >= 5) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_5) and get_item_count() >= 5) {
 menu_position = 5;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_6) and get_item_count() >= 6) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_6) and get_item_count() >= 6) {
 menu_position = 6;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_7) and get_item_count() >= 7) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_7) and get_item_count() >= 7) {
 menu_position = 7;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_8) and get_item_count() >= 8) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_8) and get_item_count() >= 8) {
 menu_position = 8;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_9) and get_item_count() >= 9) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_9) and get_item_count() >= 9) {
 menu_position = 9;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_0) and get_item_count() >= 10) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_0) and get_item_count() >= 10) {
 menu_position = 10;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_MINUS) and get_item_count() >= 11) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_MINUS) and get_item_count() >= 11) {
 menu_position = 11;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_EQUALS) and get_item_count() >= 12) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_EQUALS) and get_item_count() >= 12) {
 menu_position = 12;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_up(KEY_RSHIFT) and key_pressed(KEY_BACK) and get_item_count() >= 13) {
+} else if (key_up(KEY_RSHIFT) and key_repeating(KEY_BACK) and get_item_count() >= 13) {
 menu_position = 13;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_1) and get_item_count() >= 14) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_1) and get_item_count() >= 14) {
 menu_position = 14;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_2) and get_item_count() >= 15) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_2) and get_item_count() >= 15) {
 menu_position = 15;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_3) and get_item_count() >= 16) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_3) and get_item_count() >= 16) {
 menu_position = 16;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_4) and get_item_count() >= 17) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_4) and get_item_count() >= 17) {
 menu_position = 17;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_5) and get_item_count() >= 18) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_5) and get_item_count() >= 18) {
 menu_position = 18;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_6) and get_item_count() >= 19) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_6) and get_item_count() >= 19) {
 menu_position = 19;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_7) and get_item_count() >= 20) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_7) and get_item_count() >= 20) {
 menu_position = 20;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_8) and get_item_count() >= 21) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_8) and get_item_count() >= 21) {
 menu_position = 21;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_9) and get_item_count() >= 22) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_9) and get_item_count() >= 22) {
 menu_position = 22;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_0) and get_item_count() >= 23) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_0) and get_item_count() >= 23) {
 menu_position = 23;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_MINUS) and get_item_count() >= 24) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_MINUS) and get_item_count() >= 24) {
 menu_position = 24;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_EQUALS) and get_item_count() >= 25) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_EQUALS) and get_item_count() >= 25) {
 menu_position = 25;
 play_click_sound();
 speak_item = true;
 continue;
-} else if (key_down(KEY_RSHIFT) and key_pressed(KEY_BACK) and get_item_count() >= 26) {
+} else if (key_down(KEY_RSHIFT) and key_repeating(KEY_BACK) and get_item_count() >= 26) {
 menu_position = 26;
 play_click_sound();
 speak_item = true;
@@ -622,7 +622,7 @@ running = false;
 return 0;
 }
 }
-if (key_down(volkeydown) and voltimer.elapsed >= voltime and menumusvolume > -70) {
+if (key_down(volkeydown) and voltimer.elapsed >= voltime and menumusvolume > -50) {
 menumusvolume -= 2;
 music.set_volume(menumusvolume);
 writepreffs();
@@ -738,14 +738,14 @@ if(enable_left_and_right == true and key_repeating(KEY_LEFT)) {
                 continue;
             }
 if(enable_home_and_end == true) {
-if(key_pressed(KEY_HOME)) {
+if(key_repeating(KEY_HOME)) {
 initial = false;
 menu_position = 1;
 play_click_sound();
 speak_item = true;
 continue;
 }
-if(key_pressed(KEY_END)) {
+if(key_repeating(KEY_END)) {
 initial = false;
 menu_position = item_count;
 play_click_sound();

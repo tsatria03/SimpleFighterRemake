@@ -1,3 +1,11 @@
+Make ranged item taker doors and passages.
+Make ranged item giver doors and passages.
+Make ranged key locked doors and passages.
+Make ranged lockable doors and passages.
+Make ranged doors and passages.
+Make item taker doors and passages.
+Make item giver doors and passages.
+Make key locked doors and passages.
 Make bosses.
 Make crushers.
 Make floor breakers.
