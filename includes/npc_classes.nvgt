@@ -58,8 +58,8 @@ animals[i].spotted=true;
 }
 if(animals[i].spotted)
 {
-string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(animals[i].amx, animals[i].amy)+"/*step*");
-if(animals[i].moveable==true and animals[i].stepsound==1 and paused==0 and tilers.length()!=0) tilesound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(animals[i].amx, animals[i].amy)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,animals[i].amx,animals[i].amy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+string[] amsteps=find_files("sounds/"+soundpack+"/npc/animals/"+animals[i].animaltype+"/*step*");
+if(animals[i].moveable==true and animals[i].stepsound==1 and paused==0 and amsteps.length()!=0) animals[i].tilesound=animalpool.play_extended_2d("sounds/"+soundpack+"/npc/animals/"+animals[i].animaltype+"/"+amsteps[random(0,amsteps.length()-1)],me.x,me.y,animals[i].amx,animals[i].amy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
 animalpool.update_sound_2d(animals[i].amsound,animals[i].amx,animals[i].amy);
 animals[i].animaltimer.restart();
 if(animals[i].amx<me.x and animals[i].moveable==true and paused==0)
@@ -119,7 +119,6 @@ string[] defsfx=find_files("sounds/"+soundpack+"/npc/animals/"+animals[i].animal
 if(defsfx.length()!=0) animals[i].defsound=animalpool.play_extended_2d("sounds/"+soundpack+"/npc/animals/"+animals[i].animaltype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,animals[i].amx,animals[i].amy,0,0,0,0,false,0,0,painvolume,painpitch,false);
 if(xpmod>=1) xp+=animals[i].amxp*animals[i].amlevel*xpmod;
 kills+=1;
-spawn_bodyfall(animals[i].amx, animals[i].amy, random(500,1000));
 animals.remove_at(i);
 return;
 }

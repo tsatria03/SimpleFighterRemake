@@ -74,6 +74,10 @@ if (data[0]=="experience required")
 {
 xprequiered=parse_double(data[1]);
 }
+if(data[0]=="cam sound")
+{
+charcamsound=parse_int(data[1]);
+}
 if(data[0]=="death sound")
 {
 chardeathsound=parse_int(data[1]);
@@ -135,7 +139,7 @@ if(data[0]=="turn sound")
 charturnsound=parse_int(data[1]);
 }
 }
-add_character(name, shieldtype, shieldweight, attack, defence, points, health, maxhealth, lifecard, level, levmod, xp, xpmod, xprequiered, chardeathsound, charfallsound, charfallsound2, charhealsound, charhealsound2, charhealsound3, charhurtsound, charinvsound, charjumpsound, charlevsound, charlifesound, charrocksound, charsitsound, charstandsound, charturnsound);
+add_character(name, shieldtype, shieldweight, attack, defence, points, health, maxhealth, lifecard, level, levmod, xp, xpmod, xprequiered, charcamsound, chardeathsound, charfallsound, charfallsound2, charhealsound, charhealsound2, charhealsound3, charhurtsound, charinvsound, charjumpsound, charlevsound, charlifesound, charrocksound, charsitsound, charstandsound, charturnsound);
 }
 }
 void arcparse(const string&in path)

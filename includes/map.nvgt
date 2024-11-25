@@ -1787,8 +1787,9 @@ return;
 }
 if(gct(cam.x, cam.y)=="" || gct(cam.x, cam.y)=="air")
 {
-if(mfc==true) camslot=campool.play_stationary_extended("cameraair.ogg",false,0,0,cameravolume,100,false);
-if(mfc==false) camslot=campool.play_extended_2d("cameraair.ogg",me.x,me.y,cam.x,cam.y,0,0,0,0,false,0,0,cameravolume,100,false);
+string[] camsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*cameraair*");
+if(camsfx.length()!=0 and charsitsound==1 and mfc==true) camslot=campool.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+camsfx[random(0,camsfx.length()-1)],false,0,0,cameravolume,100,false);
+if(camsfx.length()!=0 and charsitsound==1 and mfc==false) camslot=campool.play_extended_2d("sounds/"+soundpack+"/characters/"+chartype+"/"+camsfx[random(0,camsfx.length()-1)],me.x,me.y,cam.x,cam.y,0,0,0,0,false,0,0,cameravolume,100,false);
 }
 else
 {

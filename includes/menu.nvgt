@@ -492,7 +492,9 @@ string[] soundpacks=find_directories("sounds/*");
 setupmenu();
 for(uint i=0; i<soundpacks.length(); i++)
 {
-m.add_item_tts(soundpacks[i],soundpacks[i]);
+uint64 size = get_directory_size("sounds/" + soundpacks[i]);
+string readable_size = measure_file_size(size);
+m.add_item_tts(soundpacks[i]+", size: "+readable_size,soundpacks[i]);
 }
 int mres=m.run("Choose the sound pack you would like to use throughout the intire game.", true);
 if(mres==0)

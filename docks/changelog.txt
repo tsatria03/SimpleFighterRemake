@@ -1,3 +1,7 @@
+new in 5.9
+Made it so the total size of sound packs are announced when hovering over them in the sound packs menu.
+You can now define a custom air sound for the camera for all characters.
+You can now define custom footsteps to all animals. They will no longer walk on your tile.
 new in 5.8
 Fixed various staircase issues. This includes platforms Playing repetitively while jumping on them, lack of detecting other tiles being placed while they were present, and the spire behaving incorrectly while looking up or down with it when it was spawned on the map.
 Finally fixed not being able to use the spire while a vehicle was spawned! This bug was anoying as all hell, and I got tired of it being this big of an issue for so long.

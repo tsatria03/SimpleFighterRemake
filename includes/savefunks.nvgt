@@ -94,6 +94,7 @@ levmod=current_char.levmod;
 xp=current_char.xp;
 xpmod=current_char.xpmod;
 xprequiered=current_char.xprequiered;
+charcamsound=current_char.charcamsound;
 chardeathsound=current_char.chardeathsound;
 charfallsound=current_char.charfallsound;
 charfallsound2=current_char.charfallsound2;
