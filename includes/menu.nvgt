@@ -1084,7 +1084,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1122,7 +1134,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres2==2)
 {
@@ -1162,7 +1186,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1220,7 +1256,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1258,7 +1306,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres2==2)
 {
@@ -1298,7 +1358,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1356,7 +1428,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1394,7 +1478,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres2==2)
 {
@@ -1434,7 +1530,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1492,7 +1600,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1530,7 +1650,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres2==2)
 {
@@ -1570,7 +1702,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1628,7 +1772,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres==2)
@@ -1666,7 +1822,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres2==2)
 {
@@ -1706,7 +1874,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1797,7 +1977,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -1835,7 +2027,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -1875,7 +2079,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -1924,7 +2140,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -1962,7 +2190,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -2002,7 +2242,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2074,7 +2326,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2112,7 +2376,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -2152,7 +2428,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2201,7 +2489,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2239,7 +2539,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -2279,7 +2591,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2351,7 +2675,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2389,7 +2725,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -2429,7 +2777,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2478,7 +2838,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2516,7 +2888,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -2556,7 +2940,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2628,7 +3024,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2666,7 +3074,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -2706,7 +3126,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2755,7 +3187,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2793,7 +3237,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -2833,7 +3289,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -2905,7 +3373,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -2943,7 +3423,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -2983,7 +3475,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;
@@ -3032,7 +3536,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
 }
 if(mres2==2)
@@ -3070,7 +3586,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 }
 if(mres3==2)
 {
@@ -3110,7 +3638,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
 if(building==false) resetgame();
 building=false;

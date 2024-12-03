@@ -5,8 +5,10 @@ string[] mopen=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*open*");
 string[] mctrack=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*music*");
 string[] mrap=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*wrap*");
 string[] medge=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*edge*");
-void create_slider(bool provide_beeps=false)
+void create_slider(bool anounce_percentage=false, bool provide_beeps=false)
 {
+if(anounce_percentage==true) s.speak_percentages=true;
+else if(anounce_percentage==false) s.speak_percentages=false;
 if(provide_beeps==true) s.enable_beeps=true;
 else if(provide_beeps==false) s.enable_beeps=false;
 s.clear_all_items();

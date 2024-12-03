@@ -1842,7 +1842,7 @@ if(walls[i].minx<=me.x and walls[i].maxx>=me.x and walls[i].miny<=me.y and walls
 wallvolume=walls[i].volume;
 wallpitch=walls[i].pitch;
 string[] wallers=find_files("sounds/"+soundpack+"/objects/walls/"+walls[i].wall+"/*wall*");
-if(wallers.length()!=0 and jumping==0) wallslot=p.play_extended_2d("sounds/"+soundpack+"/objects/walls/"+walls[i].wall+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,me.x,me.y,0,0,0,0,false,0,0,wallvolume,wallpitch);
+if(wallers.length()!=0) wallslot=p.play_extended_2d("sounds/"+soundpack+"/objects/walls/"+walls[i].wall+"/"+wallers[random(0,wallers.length()-1)],me.x,me.y,me.x,me.y,0,0,0,0,false,0,0,wallvolume,wallpitch);
 pbounce();
 return;
 }

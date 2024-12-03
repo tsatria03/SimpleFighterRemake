@@ -930,7 +930,7 @@ if(key_pressed(KEY_H))
 {
 if(shieldon==1)
 {
-speak("Your shield must be unequipped to view the player's health status.");
+speak("Your shield must be removed to view the player's health status.");
 }
 else if(shieldon==0)
 {
@@ -972,7 +972,7 @@ if(key_pressed(KEY_M))
 {
 if(shieldon==0)
 {
-speak("Your shield must be equipped to view it's status.");
+speak("Your shield must be worn to view it's status.");
 }
 else if(shieldon==1)
 {
@@ -1066,7 +1066,7 @@ if(key_pressed(KEY_BACKSLASH) and healable==true)
 {
 if(shieldon==1)
 {
-speak("Your shield must be unequipped to restore the player's health.");
+speak("Your shield must be removed to restore the player's health.");
 }
 else if(shieldon==0 and hprestoration==0 and health>=maxhealth)
 {
@@ -1090,7 +1090,7 @@ if(key_pressed(KEY_RBRACKET) and healable==true)
 {
 if(shieldon==0)
 {
-speak("Your shield must be equipped to restore it's strength.");
+speak("Your shield must be worn to restore it's strength.");
 }
 else if(shieldon==1 and shieldstrength>=maxshieldstrength)
 {
@@ -1117,7 +1117,7 @@ if(key_pressed(KEY_B))
 {
 if(shieldtype=="none")
 {
-speak("You must draw a shield before equipping it.");
+speak("You must draw a shield before wearing it.");
 }
 else if(shieldon==0)
 {

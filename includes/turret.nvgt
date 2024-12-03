@@ -51,11 +51,11 @@ if(turrets[i].launchtimer.elapsed>=turrets[i].launchtime)
 {
 string[] launchsfx=find_files("sounds/"+soundpack+"/npc/turrets/"+turrets[i].turtype+"/*launch*");
 if(launchsfx.length()!=0) turrets[i].firesound=turpool.play_extended_2d("sounds/"+soundpack+"/npc/turrets/"+turrets[i].turtype+"/"+launchsfx[random(0,launchsfx.length()-1)],me.x,me.y,turrets[i].turx,turrets[i].tury,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
-if(turrets[i].turtype2=="animal") spawn_animal(turrets[i].turx-1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
-if(turrets[i].turtype2=="enemie") spawn_enemie(turrets[i].turx-1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
-if(turrets[i].turtype2=="projectile") spawn_projectile(turrets[i].turx+1, turrets[i].tury, 1, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(50, 500), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true);
-if(turrets[i].turtype2=="robot") spawn_robot(turrets[i].turx-1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
-if(turrets[i].turtype2=="zombie") spawn_zombie(turrets[i].turx-1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
+if(turrets[i].turtype2=="animal") spawn_animal(turrets[i].turx, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
+if(turrets[i].turtype2=="enemie") spawn_enemie(turrets[i].turx, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
+if(turrets[i].turtype2=="projectile") spawn_projectile(turrets[i].turx, turrets[i].tury, 1, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(50, 500), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true);
+if(turrets[i].turtype2=="robot") spawn_robot(turrets[i].turx, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
+if(turrets[i].turtype2=="zombie") spawn_zombie(turrets[i].turx, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
 turpool.update_sound_2d(turrets[i].firesound,turrets[i].turx,turrets[i].tury);
 turrets[i].launchtimer.restart();
 }

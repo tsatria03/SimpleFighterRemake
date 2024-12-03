@@ -186,8 +186,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
 resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"sound_ambience "+x+" "+paxx+" "+y+" "+paxy+" "+sorcetyp+" "+volume+" "+pitch);
@@ -225,8 +236,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
 resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"music_ambience "+x+" "+paxx+" "+y+" "+paxy+" "+mustyp+" "+volume+" "+pitch);
@@ -1663,7 +1685,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 string[] mplatform=find_directories("sounds/"+soundpack+"/objects/moving platforms/*");
 if(mplatform.length()==0)
 {
@@ -1679,7 +1713,19 @@ if(res!="")
 mplattyp=res;
 }
 }
-effectsmenu2();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres2= s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres2==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume2=s.get_item_value(0);
+pitch2=s.get_item_value(1);
 input.set_only_allowed_chars("1234567890-");
 string vof=input.input("Enter the volume offset of this moving platform.");
 if(volset=="")
@@ -1926,7 +1972,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 string[] liftform=find_directories("sounds/"+soundpack+"/objects/lifts/*");
 if(liftform.length()==0)
 {
@@ -1942,8 +2000,19 @@ if(res!="")
 lifttyp=res;
 }
 }
-effectsmenu2();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres2= s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres2==0)
+{
 resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume2=s.get_item_value(0);
+pitch2=s.get_item_value(1);
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"lift "+x+" "+paxx+" "+y+" "+paxy+" "+direction+" "+speedtime+" "+tiletype+" "+volume+" "+pitch+" "+lifttyp+" "+volume2+" "+pitch2);
@@ -1981,8 +2050,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
 resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"music_source "+x+" "+paxx+" "+y+" "+paxy+" "+mustyp+" "+volume+" "+pitch);
@@ -2019,8 +2099,19 @@ tiletype=res;
 }
 }
 input.set_only_allowed_chars("1234567890-");
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
 resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"platform "+x+" "+paxx+" "+y+" "+tiletype+" "+volume+" "+pitch);
@@ -2174,8 +2265,25 @@ paxx=string_to_number(mx2);
 y=string_to_number(my);
 paxy=string_to_number(my2);
 reverid=rd;
-reverbmenu();
+create_slider();
+s.add_slider_item("dry_mix", 0.0, 1.0, 0.0, 0.1);
+s.add_slider_item("wet_mix", 0.0, 1.0, 0.0, 0.1);
+s.add_slider_item("room_size", 0.0, 1.0, 0.0, 0.1);
+s.add_slider_item("damping", 0.0, 1.0, 0.0, 0.1);
+s.add_slider_item("width", 0.0, 1.0, 0.0, 0.1);
+int sres = s.run_slider("Reverb designer. Press tab or shift tab to cycle through the reverb parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
 resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+revdry=s.get_item_value(0);
+revwet=s.get_item_value(1);
+revsize=s.get_item_value(2);
+revdamp=s.get_item_value(3);
+revwidth=s.get_item_value(4);
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"reverb "+x+" "+paxx+" "+y+" "+paxy+" "+reverid+" "+revdry+" "+revwet+" "+revsize+" "+revdamp+" "+revwidth);
@@ -2450,8 +2558,19 @@ sorcetyp=res;
 }
 }
 input.set_only_allowed_chars("1234567890-");
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
 resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"sound_source "+x+" "+paxx+" "+y+" "+paxy+" "+sorcetyp+" "+volume+" "+pitch);
@@ -2573,8 +2692,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
 resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
 mapper.write("\r\n"+"staircase "+x+" "+paxx+" "+y+" "+paxy+" "+tiletype+" "+volume+" "+pitch);
@@ -2779,7 +2909,19 @@ if(res!="")
 sorcetyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 input.set_only_allowed_chars("1234567890-");
 string sp=input.input("Enter the speed of this timed source.");
 if(speedtime=="")
@@ -2823,7 +2965,19 @@ if(res!="")
 mustyp=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 input.set_only_allowed_chars("1234567890-");
 string sp=input.input("Enter the speed of this timed music.");
 if(speedtime=="")
@@ -3239,7 +3393,19 @@ if(res!="")
 tiletype=res;
 }
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 string[] vplatform=find_directories("sounds/"+soundpack+"/objects/vanishing platforms/*");
 if(vplatform.length()==0)
 {
@@ -3255,7 +3421,19 @@ if(res!="")
 vplattyp=res;
 }
 }
-effectsmenu2();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres2= s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres2==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume2=s.get_item_value(0);
+pitch2=s.get_item_value(1);
 input.set_only_allowed_chars("1234567890-");
 string sp=input.input("Enter the speed of this vanishing platform.");
 if(speedtime=="")
@@ -3300,7 +3478,19 @@ if(res!="")
 {
 walltype=res;
 }
-effectsmenu();
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
 setupmenu();
 m.wrap_sound="none.ogg";
 m.click_sound="menu1.ogg";
@@ -3779,66 +3969,6 @@ if(itsm=="back")
 resume_pools();
 return;
 }
-}
-void effectsmenu(bool anounce_percentage=true)
-{
-if(anounce_percentage==true) s.speak_percentages=true;
-else if(anounce_percentage==false) s.speak_percentages=false;
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 5.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-void effectsmenu2(bool anounce_percentage=true)
-{
-if(anounce_percentage==true) s.speak_percentages=true;
-else if(anounce_percentage==false) s.speak_percentages=false;
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 5.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume2=s.get_item_value(0);
-pitch2=s.get_item_value(1);
-}
-void reverbmenu(bool anounce_percentage=false)
-{
-if(anounce_percentage==true) s.speak_percentages=true;
-else if(anounce_percentage==false) s.speak_percentages=false;
-create_slider();
-s.add_slider_item("dry_mix", 0.0, 1.0, 0.0, 0.1);
-s.add_slider_item("wet_mix", 0.0, 1.0, 0.0, 0.1);
-s.add_slider_item("room_size", 0.0, 1.0, 0.0, 0.1);
-s.add_slider_item("damping", 0.0, 1.0, 0.0, 0.1);
-s.add_slider_item("width", 0.0, 1.0, 0.0, 0.1);
-int sres = s.run_slider("Reverb designer. Press tab or shift tab to cycle through the reverb parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-revdry=s.get_item_value(0);
-revwet=s.get_item_value(1);
-revsize=s.get_item_value(2);
-revdamp=s.get_item_value(3);
-revwidth=s.get_item_value(4);
 }
 void weaponsmenu()
 {
