@@ -23,7 +23,7 @@ void signcheck()
 {
 for(uint i=0; i<signs.length(); i++)
 {
-if(me.x==signs[i].signx and me.y==signs[i].signy and key_pressed(KEY_RETURN))
+if(me.x==signs[i].signx and me.y==signs[i].signy and key_repeating(KEY_RETURN))
 {
 string[] pressfx=find_files("sounds/"+soundpack+"/objects/signs/"+signs[i].signtype+"/*pres*");
 if(pressfx.length()!=0) signs[i].pressound=signpool.play_stationary("sounds/"+soundpack+"/objects/signs/"+signs[i].signtype+"/"+pressfx[random(0,pressfx.length()-1)],false);

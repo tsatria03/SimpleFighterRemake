@@ -22,7 +22,7 @@ void calandercheck()
 {
 for(uint i=0; i<calanders.length(); i++)
 {
-if(me.x==calanders[i].calanderx and me.y==calanders[i].calandery and key_pressed(KEY_RETURN))
+if(me.x==calanders[i].calanderx and me.y==calanders[i].calandery and key_repeating(KEY_RETURN))
 {
 string[] pressfx=find_files("sounds/"+soundpack+"/objects/calanders/"+calanders[i].calandertype+"/*pres*");
 if(pressfx.length()!=0) calanders[i].pressound=calpool.play_stationary("sounds/"+soundpack+"/objects/calanders/"+calanders[i].calandertype+"/"+pressfx[random(0,pressfx.length()-1)],false);

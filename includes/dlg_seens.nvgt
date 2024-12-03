@@ -1,13 +1,14 @@
-void dlg(string message, string soundpath="error.ogg", bool dlgcoppy=true, int timeout=-1)
+void dlg(string message, string dlgsound="error.ogg", bool dlgcoppy=true, int timeout=-1)
 {
 timer timeouter;
-temp.play_stationary(soundpath, false);
+temp.play_stationary(dlgsound, false);
 speak(message);
 while(true)
 {
+wait(5);
 if (timeout>-1 and timeouter.elapsed>=timeout)
 return;
-if (key_pressed(KEY_C) and dlgcoppy==true)
+if (key_repeating(KEY_C) and dlgcoppy==true)
 {
 temp.destroy_all();
 string[] copysfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtyp+"/*copy*");
@@ -15,16 +16,15 @@ if(copysfx.length()!=0) temp.play_stationary("sounds/"+soundpack+"/objects/dialo
 speak("Copied");
 clipboard_copy_text(message);
 }
-if (key_pressed(KEY_LEFT) or key_pressed(KEY_RIGHT) or key_pressed(KEY_UP) or key_pressed(KEY_DOWN))
+if (key_repeating(KEY_LEFT) or key_repeating(KEY_RIGHT) or key_repeating(KEY_UP) or key_repeating(KEY_DOWN))
 {
 speak(message);
 }
-if (key_pressed(KEY_RETURN) or key_down(KEY_SLASH))
+if(key_repeating(KEY_RETURN) or key_down(KEY_SLASH) or key_down(KEY_ESCAPE))
 {
 temp.destroy_all();
 break;
 }
-wait(5);
 }
 }
 void dlg2(string messages)
@@ -53,7 +53,7 @@ dlgaudio.play();
 while(dlgaudio.playing)
 {
 wait(5);
-if(key_pressed(KEY_RETURN) and skippable==true or key_down(KEY_A) and skippable==true)
+if(key_repeating(KEY_RETURN) and skippable==true or key_down(KEY_A) and skippable==true)
 {
 if (fadeable==true)
 {

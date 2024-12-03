@@ -233,7 +233,7 @@ for(uint i=0; i<melelist.length(); i++)
 {
 meleparse(melelist[i]);
 }
-weapontype2="combo";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -292,7 +292,7 @@ for(uint i=0; i<melelist.length(); i++)
 {
 meleparse(melelist[i]);
 }
-weapontype2="combo2";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -351,7 +351,7 @@ for(uint i=0; i<melelist.length(); i++)
 {
 meleparse(melelist[i]);
 }
-weapontype2="combo3";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -410,7 +410,7 @@ for(uint i=0; i<melelist.length(); i++)
 {
 meleparse(melelist[i]);
 }
-weapontype2="combo4";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -469,7 +469,7 @@ for(uint i=0; i<melelist.length(); i++)
 {
 meleparse(melelist[i]);
 }
-weapontype2="combo5";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -528,7 +528,7 @@ for(uint i=0; i<melelist.length(); i++)
 {
 meleparse(melelist[i]);
 }
-weapontype2="combo6";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -587,7 +587,7 @@ for(uint i=0; i<melelist.length(); i++)
 {
 meleparse(melelist[i]);
 }
-weapontype2="combo7";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -646,7 +646,7 @@ for(uint i=0; i<melelist.length(); i++)
 {
 meleparse(melelist[i]);
 }
-weapontype2="combo8";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);

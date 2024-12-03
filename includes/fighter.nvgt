@@ -382,7 +382,7 @@ cycle_inv(0);
 else
 cycle_inv(1);
 }
-if(key_pressed(KEY_RETURN) and shift_is_down() and usetimer.elapsed>=usetime)
+if(key_repeating(KEY_RETURN) and shift_is_down() and usetimer.elapsed>=usetime)
 {
 usetimer.restart();
 if (inv.get_keys().length()>0 and invpos<inv.get_size())
@@ -390,7 +390,7 @@ useitem(inv.get_keys()[invpos]);
 else
 speak("No item in focus.");
 }
-if(key_pressed(KEY_LBRACKET) and shift_is_down() and usetimer.elapsed>=usetime)
+if(key_repeating(KEY_LBRACKET) and shift_is_down() and usetimer.elapsed>=usetime)
 {
 if(inv.get_keys().length()>0 and invpos<inv.get_size())
 {
@@ -453,7 +453,7 @@ if(!hazard_found)
 speak(tiletype+", "+cam.x+", "+cam.y);
 }
 }
-if(key_pressed(KEY_M))
+if(key_repeating(KEY_M))
 {
 if(mfc==false)
 {
@@ -468,7 +468,7 @@ if(switchsound==1) p.play_stationary("toggleoff.ogg",false);
 speak("Mfwc disabled.");
 }
 }
-if(key_pressed(KEY_T))
+if(key_repeating(KEY_T))
 {
 playcam();
 }
@@ -659,7 +659,7 @@ modspeed=5;
 speak("moving speed reset");
 }
 }
-if(key_pressed(KEY_X))
+if(key_repeating(KEY_X))
 {
 if(spokenswitch==1)
 {
@@ -694,7 +694,7 @@ speedable=true;
 }
 }
 }
-if(key_pressed(KEY_T))
+if(key_repeating(KEY_T))
 {
 if(sittable==true and sitting==false)
 {
@@ -721,7 +721,7 @@ else
 speak("Current location"+","+"unknown area.");
 }
 }
-if(key_pressed(KEY_J) and telable==true)
+if(key_repeating(KEY_J) and telable==true)
 {
 if(spokentel==1)
 {
@@ -735,7 +735,7 @@ me.x=random(0,maxx);
 if(telsound==1) p.play_stationary("tel1.ogg",false);
 }
 }
-if(key_pressed(KEY_K) and telable==true)
+if(key_repeating(KEY_K) and telable==true)
 {
 if(spokentel==1)
 {
@@ -749,7 +749,7 @@ me.y=random(1,maxy);
 if(telsound==1) p.play_stationary("tel2.ogg",false);
 }
 }
-if(key_pressed(KEY_L) and telable==true)
+if(key_repeating(KEY_L) and telable==true)
 {
 if(spokentel==1)
 {
@@ -1037,7 +1037,7 @@ if(key_pressed(KEY_N) and building==false)
 {
 speak("You have killed a total of"+kills+"enemies.");
 }
-if(key_pressed(KEY_P))
+if(key_repeating(KEY_P))
 {
 if(pausem==0)
 {
@@ -1062,7 +1062,7 @@ if(key_pressed(KEY_V))
 pause_pools();
 pointsmenu();
 }
-if(key_pressed(KEY_BACKSLASH) and healable==true)
+if(key_repeating(KEY_BACKSLASH) and healable==true)
 {
 if(shieldon==1)
 {
@@ -1086,7 +1086,7 @@ if(healstartsfx.length()!=0 and charhealsound2==1) p.play_stationary("sounds/"+s
 hprestoration=1;
 }
 }
-if(key_pressed(KEY_RBRACKET) and healable==true)
+if(key_repeating(KEY_RBRACKET) and healable==true)
 {
 if(shieldon==0)
 {
@@ -1113,7 +1113,7 @@ sprestoration=1;
 }
 }
 }
-if(key_pressed(KEY_B))
+if(key_repeating(KEY_B))
 {
 if(shieldtype=="none")
 {

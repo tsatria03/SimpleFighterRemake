@@ -48,8 +48,6 @@ getver();
 set_sound_storage("*");
 set_sound_decryption_key("yLnhpXN6@VL=DP&o*7O#Uz)tNHR?!tJUaQ4RP9MO%=ZjL9B",true);
 show_game_window("Simple fighter, version "+version);
-create_buffer("alerts");
-create_buffer("misc");
 string[] charlist=find_directories("data/layouts/characters/*");
 for(uint i=0; i<charlist.length(); i++)
 {

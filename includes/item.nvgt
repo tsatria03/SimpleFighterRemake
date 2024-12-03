@@ -52,7 +52,7 @@ speak(objs[i].objtype2);
 objs.remove_at(i);
 return;
 }
-if(me.x==objs[i].itx and me.y==objs[i].ity and objs[i].automatic==false and key_pressed(KEY_RETURN))
+if(me.x==objs[i].itx and me.y==objs[i].ity and objs[i].automatic==false and key_repeating(KEY_RETURN))
 {
 //itempool.destroy_sound(objs[i].hurtsound);
 //itempool.destroy_sound(objs[i].objsound);

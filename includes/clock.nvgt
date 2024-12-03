@@ -22,7 +22,7 @@ void clockcheck()
 {
 for(uint i=0; i<clocks.length(); i++)
 {
-if(me.x==clocks[i].clockx and me.y==clocks[i].clocky and key_pressed(KEY_RETURN))
+if(me.x==clocks[i].clockx and me.y==clocks[i].clocky and key_repeating(KEY_RETURN))
 {
 string[] pressfx=find_files("sounds/"+soundpack+"/objects/clocks/"+clocks[i].clocktype+"/*pres*");
 if(pressfx.length()!=0) clocks[i].pressound=clockpool.play_stationary("sounds/"+soundpack+"/objects/clocks/"+clocks[i].clocktype+"/"+pressfx[random(0,pressfx.length()-1)],false);
