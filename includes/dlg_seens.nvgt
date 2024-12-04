@@ -1,4 +1,32 @@
-void dlg(string message, string dlgsound="error.ogg", bool dlgcoppy=true, int timeout=-1)
+void dlg(string message, bool dlgcoppy=true, int timeout=-1)
+{
+timer timeouter;
+speak(message);
+while(true)
+{
+wait(5);
+if (timeout>-1 and timeouter.elapsed>=timeout)
+return;
+if (key_repeating(KEY_C) and dlgcoppy==true)
+{
+temp.destroy_all();
+string[] copysfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtyp+"/*copy*");
+if(copysfx.length()!=0) temp.play_stationary("sounds/"+soundpack+"/objects/dialogs/"+dlgtyp+"/"+copysfx[random(0,copysfx.length()-1)],false);
+speak("Copied");
+clipboard_copy_text(message);
+}
+if (key_repeating(KEY_LEFT) or key_repeating(KEY_RIGHT) or key_repeating(KEY_UP) or key_repeating(KEY_DOWN))
+{
+speak(message);
+}
+if(key_repeating(KEY_RETURN) or key_down(KEY_SLASH) or key_down(KEY_ESCAPE))
+{
+temp.destroy_all();
+break;
+}
+}
+}
+void dlg_snd(string message, string dlgsound="error.ogg", bool dlgcoppy=true, int timeout=-1)
 {
 timer timeouter;
 temp.play_stationary(dlgsound, false);
@@ -27,19 +55,19 @@ break;
 }
 }
 }
-void dlg2(string messages)
+void dlgmessage(string messages)
 {
 string[] opensfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtyp+"/*open*");
 if(opensfx.length()!=0) temp.play_stationary("sounds/"+soundpack+"/objects/dialogs/"+dlgtyp+"/"+opensfx[random(0,opensfx.length()-1)],false);
 string[] d=string_split(messages,"--",true);
-dlg(d[0],"");
+dlg(d[0]);
 if (d.length()>1)
 {
 for (uint i=1; i<d.length(); i++)
 {
 string[] scrollsfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtyp+"/*scroll*");
 if(scrollsfx.length()!=0) temp.play_stationary("sounds/"+soundpack+"/objects/dialogs/"+dlgtyp+"/"+scrollsfx[random(0,scrollsfx.length()-1)],false);
-dlg(d[i],"");
+dlg(d[i]);
 }
 }
 string[] closesfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtyp+"/*close*");

@@ -90,7 +90,7 @@ void gop(int x, int y)
 {
 if(x<0 or x>maxx or y<0 or y>maxy)
 {
-dlg("error! You can't move out of map boundries! Please try again!");
+dlg_snd("Error! You can't move out of map boundries! Please try again!");
 }
 else
 {
@@ -111,7 +111,7 @@ mapname=string_replace(mapname,".map","",true);
 string filename="data/maps/"+mapname+".map";
 if(!file_exists(filename))
 {
-dlg("Error. This map is invalid. Please check the map name in the file and try again.");
+dlg_snd("Error. This map is invalid. Please check the map name in the file and try again.");
 mapmenu();
 }
 mapper.open(filename,"rb");

@@ -310,6 +310,2888 @@ speak("canceled");
 settingsmenu();
 }
 }
+void mapmenu()
+{
+setupmenu(true);
+m.add_item_tts("load map", "mg");
+m.add_item_tts("new map", "nm");
+m.add_item_tts("back", "back");
+int mres=m.run("Map menu",true);
+string buildem=m.get_item_name(mres);
+if(mres==0)
+{
+mainmenu();
+}
+if(buildem=="mg")
+{
+m.fade_music();
+string[] maps=find_files("data/maps/*.map");
+if(maps.length()==0)
+{
+dlg_snd("Error. There are no maps available to view.");
+mapmenu();
+}
+else
+{
+setupmenu();
+for(uint i=0; i<maps.length(); i++)
+{
+m.add_item_tts(string_replace(maps[i],".map","",true)+", size: "+measure_file_size(file_get_size("data/maps/"+maps[i])));
+}
+int mres=m.run("Maps menu", true);
+if(mres==0)
+{
+mapmenu();
+}
+if (mres==0 and mres>=maps.length())
+{
+mapmenu();
+}
+if (mres>0 and mres<=maps.length())
+{
+mapname=maps[mres-1];
+mapname=string_replace(mapname, ".map", "", true);
+load_map(mapname);
+building=true;
+fighter(true);
+}
+}
+}
+if(buildem=="nm")
+{
+m.fade_music();
+input.set_only_allowed_chars("none");
+string name=input.input("Enter the name of this map.");
+input.set_only_allowed_chars("1234567890-");
+string mx=input.input("Enter the maximum length of this map.");
+string my=input.input("Enter the maximum height of this map.");
+if(mapname=="" and maxx=="" and maxy=="")
+return;
+mapname=name;
+maxx=string_to_number(mx);
+maxy=string_to_number(my);
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+mapmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+if(file_exists("data/maps/"+mapname+".map"))
+{
+dlg_snd("Error. A map with this name already exists. Please choose a different one.");
+mapmenu();
+}
+else
+{
+create_map(mapname, maxx, maxy, tiletype);
+load_map(mapname);
+building=true;
+fighter(true);
+}
+}
+if(buildem=="back")
+{
+mainmenu();
+}
+}
+void gamemenu()
+{
+setupmenu(true);
+m.add_item_tts("load game", "lg");
+m.add_item_tts("new game", "ng");
+m.add_item_tts("settings", "set");
+m.add_item_tts("back", "back");
+int mres=m.run("Game menu",true);
+string gamem=m.get_item_name(mres);
+if(mres==0)
+{
+mainmenu();
+}
+if(gamem=="lg")
+{
+if(file_exists("data/saves/game.dat"))
+{
+m.fade_music();
+if(building==false) readdata();
+building=false;
+fighter(false);
+}
+else
+{
+m.fade_music();
+dlg_snd("Error. The data assosiated with this game does not exist.");
+gamemenu();
+}
+}
+if(gamem=="ng")
+{
+if(file_exists("data/saves/game.dat"))
+{
+setupmenu(true);
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Are you sure you want to start over from the beginning? This will erase all of the progress you made on the current game.",true);
+if(mres==0)
+{
+speak("canceled");
+gamemenu();
+}
+if(mres==1)
+{
+modemenu();
+}
+if(mres==2)
+{
+gamemenu();
+}
+}
+else
+{
+modemenu();
+}
+}
+if(gamem=="set")
+{
+m.fade_music();
+gamepreffs();
+}
+if(gamem=="back")
+{
+mainmenu();
+}
+}
+void modemenu()
+{
+setupmenu(true);
+m.add_item_tts("normal", "nm");
+m.add_item_tts("custom", "cm");
+m.add_item_tts("back", "back");
+int mres=m.run("Choose a mode you would like to play on",true);
+string modem=m.get_item_name(mres);
+if(mres==0)
+{
+gamemenu();
+}
+if(modem=="nm")
+{
+normalmenu();
+}
+if(modem=="cm")
+{
+custommenu();
+}
+if(modem=="back")
+{
+gamemenu();
+}
+}
+void normalmenu()
+{
+setupmenu(true);
+m.add_item_tts("kill animals", "km");
+m.add_item_tts("kill enemies", "kn");
+m.add_item_tts("kill projectiles", "kp");
+m.add_item_tts("kill robots", "kb");
+m.add_item_tts("kill zombies", "kz");
+m.add_item_tts("back", "back");
+int mres=m.run("normal menu",true);
+string normem=m.get_item_name(mres);
+if(mres==0)
+{
+modemenu();
+}
+if(normem=="km")
+{
+m.fade_music();
+string[] animal=find_directories("sounds/"+soundpack+"/npc/animals/*");
+if(animal.length()==0)
+{
+dlg_snd("Error. There are no animals detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=1;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres2==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+if(normem=="kn")
+{
+m.fade_music();
+string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
+if(enemy.length()==0)
+{
+dlg_snd("Error. There are no enemies detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=2;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres2==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+if(normem=="kp")
+{
+m.fade_music();
+string[] projectile=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
+if(projectile.length()==0)
+{
+dlg_snd("Error. There are no projectiles detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=3;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres2==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+if(normem=="kb")
+{
+m.fade_music();
+string[] robot=find_directories("sounds/"+soundpack+"/npc/robots/*");
+if(robot.length()==0)
+{
+dlg_snd("Error. There are no robots detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=4;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres2==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+if(normem=="kz")
+{
+m.fade_music();
+string[] zombie=find_directories("sounds/"+soundpack+"/npc/zombies/*");
+if(zombie.length()==0)
+{
+dlg_snd("Error. There are no zombies detected in the game!");
+normalmenu();
+}
+else
+{
+gamemode=5;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+normalmenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres2==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres2==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+normalmenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres2==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres3==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+normalmenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres3==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+if(normem=="back")
+{
+modemenu();
+}
+}
+void custommenu()
+{
+setupmenu(true);
+m.add_item_tts("kill animals", "km");
+m.add_item_tts("kill enemies", "kn");
+m.add_item_tts("kill projectiles", "kp");
+m.add_item_tts("kill robots", "kb");
+m.add_item_tts("kill zombies", "kz");
+m.add_item_tts("back", "back");
+int mres=m.run("custom menu",true);
+string cusmem=m.get_item_name(mres);
+if(mres==0)
+{
+modemenu();
+}
+if(cusmem=="km")
+{
+m.fade_music();
+string[] animal=find_directories("sounds/"+soundpack+"/npc/animals/*");
+if(animal.length()==0)
+{
+dlg_snd("Error. There are no animals available to view.");
+custommenu();
+}
+else
+{
+string[] animaltype=find_directories("sounds/"+soundpack+"/npc/animals/*");
+setupmenu();
+for(uint i=0; i<animaltype.length(); i++)
+{
+m.add_item_tts(animaltype[i],animaltype[i]);
+}
+int mres=m.run("Animals menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=animaltype.length())
+{
+gamemode=6;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+if (mres>0 and mres<=animaltype.length())
+{
+amtype=animaltype[mres-1];
+gamemode=6;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+}
+if(cusmem=="kn")
+{
+m.fade_music();
+string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
+if(enemy.length()==0)
+{
+dlg_snd("Error. There are no enemies available to view.");
+custommenu();
+}
+else
+{
+string[] enemytype=find_directories("sounds/"+soundpack+"/npc/enemies/*");
+setupmenu();
+for(uint i=0; i<enemytype.length(); i++)
+{
+m.add_item_tts(enemytype[i],enemytype[i]);
+}
+int mres=m.run("enemies menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=enemytype.length())
+{
+gamemode=7;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+if (mres>0 and mres<=enemytype.length())
+{
+emtype=enemytype[mres-1];
+gamemode=7;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+}
+if(cusmem=="kp")
+{
+m.fade_music();
+string[] projectile=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
+if(projectile.length()==0)
+{
+dlg_snd("Error. There are no projectiles available to view.");
+custommenu();
+}
+else
+{
+string[] projtype=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
+setupmenu();
+for(uint i=0; i<projtype.length(); i++)
+{
+m.add_item_tts(projtype[i],projtype[i]);
+}
+int mres=m.run("projectiles menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=projtype.length())
+{
+gamemode=8;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+if (mres>0 and mres<=projtype.length())
+{
+potype=projtype[mres-1];
+gamemode=8;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+}
+if(cusmem=="kb")
+{
+m.fade_music();
+string[] robot=find_directories("sounds/"+soundpack+"/npc/robots/*");
+if(robot.length()==0)
+{
+dlg_snd("Error. There are no robots available to view.");
+custommenu();
+}
+else
+{
+string[] robottype=find_directories("sounds/"+soundpack+"/npc/robots/*");
+setupmenu();
+for(uint i=0; i<robottype.length(); i++)
+{
+m.add_item_tts(robottype[i],robottype[i]);
+}
+int mres=m.run("robots menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=robottype.length())
+{
+gamemode=9;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+if (mres>0 and mres<=robottype.length())
+{
+rotype=robottype[mres-1];
+gamemode=9;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+}
+if(cusmem=="kz")
+{
+m.fade_music();
+string[] zombie=find_directories("sounds/"+soundpack+"/npc/zombies/*");
+if(zombie.length()==0)
+{
+dlg_snd("Error. There are no zombies available to view.");
+custommenu();
+}
+else
+{
+string[] zombietype=find_directories("sounds/"+soundpack+"/npc/zombies/*");
+setupmenu();
+for(uint i=0; i<zombietype.length(); i++)
+{
+m.add_item_tts(zombietype[i],zombietype[i]);
+}
+int mres=m.run("zombies menu", true);
+if(mres==0)
+{
+custommenu();
+}
+if (mres==0 and mres>=zombietype.length())
+{
+gamemode=10;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+if (mres>0 and mres<=zombietype.length())
+{
+zotype=zombietype[mres-1];
+gamemode=10;
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
+if(mres2==0)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+if(mres2==1)
+{
+platmode=1;
+string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
+if(platform.length()==0)
+{
+dlg_snd("Error. There are no platforms available to view.");
+custommenu();
+}
+else
+{
+string res=platsmenu();
+if(res!="")
+{
+tiletype=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
+}
+if(mres2==2)
+{
+platmode=0;
+if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres3=m.run("Would you like to choose music to use in the game mode?",true);
+if(mres3==0)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+if(mres3==1)
+{
+musmode=1;
+string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
+if(music.length()==0)
+{
+dlg_snd("Error. There are no musics available to view.");
+custommenu();
+}
+else
+{
+string res=musicsmenu();
+if(res!="")
+{
+mustyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+}
+if(mres3==2)
+{
+musmode=0;
+if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+}
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
+if(mres4==0)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==1)
+{
+sorcemode=1;
+string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
+if(sorce.length()==0)
+{
+dlg_snd("Error. There are no sound sources available to view.");
+custommenu();
+}
+else
+{
+string res=sorcesmenu();
+if(res!="")
+{
+sorcetyp=res;
+}
+}
+create_slider();
+s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
+s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
+int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
+if (sres==0)
+{
+resume_pools();
+speak("Canceled");
+return;
+}
+resume_pools();
+volume=s.get_item_value(0);
+pitch=s.get_item_value(1);
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+if(mres4==2)
+{
+sorcemode=0;
+if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
+if(building==false) resetgame();
+building=false;
+fighter(false);
+}
+}
+}
+}
+if(cusmem=="back")
+{
+modemenu();
+}
+}
+void gamepreffs()
+{
+setupmenu();
+m.add_item_tts("reset game", "rg");
+m.add_item_tts("save game", "sg");
+m.add_item_tts("back", "back");
+int mres=m.run("Game options",true);
+string gamepm=m.get_item_name(mres);
+if(mres==0)
+{
+gamemenu();
+}
+if(gamepm=="rg")
+{
+setupmenu();
+m.wrap_sound="none.ogg";
+m.click_sound="menu1.ogg";
+m.enter_sound="menu2.ogg";
+m.open_sound="menu3.ogg";
+m.add_item_tts("yes");
+m.add_item_tts("no");
+int mres=m.run("Are you sure you want to reset all of your game's data?",true);
+if(mres==0)
+{
+speak("canceled");
+gamepreffs();
+}
+if(mres==1)
+{
+if(file_exists("data/saves/game.dat")) file_delete("data/saves/game.dat");
+speak("game reset");
+resetgame();
+gamepreffs();
+}
+if(mres==2)
+{
+gamepreffs();
+}
+}
+if(gamepm=="sg")
+{
+speak("game saved");
+writedata();
+gamepreffs();
+}
+if(gamepm=="back")
+{
+gamemenu();
+}
+}
 void settingsmenu()
 {
 setupmenu();
@@ -418,7 +3300,7 @@ string skmount=input.input("Enter the maximum up and down skip amount you'd like
 if(mskipnum=="")
 return;
 mskipnum=string_to_number(skmount);
-speak("Up and down skip amount set.");
+dlg("Up and down skip amount set.");
 settingsmenu();
 }
 if(ssm=="slt")
@@ -426,7 +3308,7 @@ if(ssm=="slt")
 string[] chars=find_directories("data/layouts/characters/*");
 if(chars.length()==0)
 {
-dlg("Error. There are no characters available to view.");
+dlg_snd("Error. There are no characters available to view.");
 settingsmenu();
 }
 else
@@ -449,7 +3331,7 @@ if(ssm=="slk")
 string[] themetype=find_directories("sounds/"+soundpack+"/typing themes/*");
 if(themetype.length()==0)
 {
-dlg("Error. There are no keyboard themes available to view.");
+dlg_snd("Error. There are no keyboard themes available to view.");
 settingsmenu();
 }
 else
@@ -466,7 +3348,7 @@ if(ssm=="slm")
 string[] menu=find_directories("sounds/"+soundpack+"/menus/*");
 if(menu.length()==0)
 {
-dlg("Error. There are no menus available to view.");
+dlg_snd("Error. There are no menus available to view.");
 settingsmenu();
 }
 else
@@ -483,7 +3365,7 @@ if(ssm=="spk")
 string[] soundpacktyp=find_directories("sounds/*");
 if(soundpacktyp.length()==0)
 {
-dlg("Error. There are no sound packs available to view.");
+dlg_snd("Error. There are no sound packs available to view.");
 settingsmenu();
 }
 else
@@ -514,7 +3396,7 @@ chartype="";
 keyboardtheme="";
 menutype="";
 soundpack=soundpacks[mres-1];
-speak("Sound pack set.");
+dlg("Sound pack set.");
 settingsmenu();
 }
 }
@@ -538,7 +3420,7 @@ if(mres>0 and mres<=devices.length())
 {
 soundcard=devices[mres-1];
 sound_output_device = mres;
-speak("Sound device set to "+soundcard);
+dlg("Sound device set to "+soundcard);
 settingsmenu();
 }
 }
@@ -547,12 +3429,12 @@ if(ssm=="sjn")
 if(autojump==0)
 {
 autojump=1;
-speak("auto jumpping in maps enabled");
+dlg("auto jumpping in maps enabled");
 }
 else
 {
 autojump=0;
-speak("auto jumpping in maps disabled");
+dlg("auto jumpping in maps disabled");
 }
 settingsmenu();
 }
@@ -561,12 +3443,12 @@ if(ssm=="sgn")
 if(autosave==0)
 {
 autosave=1;
-speak("game auto saving enabled");
+dlg("game auto saving enabled");
 }
 else
 {
 autosave=0;
-speak("game auto saving disabled");
+dlg("game auto saving disabled");
 }
 settingsmenu();
 }
@@ -575,12 +3457,12 @@ if(ssm=="dcb")
 if(dockmode==0)
 {
 dockmode=1;
-speak("form based documentation enabled");
+dlg("form based documentation enabled");
 }
 else
 {
 dockmode=0;
-speak("form based documentation disabled");
+dlg("form based documentation disabled");
 }
 settingsmenu();
 }
@@ -589,12 +3471,12 @@ if(ssm=="fdv")
 if(fademode==0)
 {
 fademode=1;
-speak("global volume fading enabled");
+dlg("global volume fading enabled");
 }
 else
 {
 fademode=0;
-speak("global volume fading disabled");
+dlg("global volume fading disabled");
 }
 settingsmenu();
 }
@@ -603,12 +3485,12 @@ if(ssm=="psm")
 if(pausem==0)
 {
 pausem=1;
-speak("pause menu enabled for all game modes");
+dlg("pause menu enabled for all game modes");
 }
 else
 {
 pausem=0;
-speak("pause menu disabled for all game modes");
+dlg("pause menu disabled for all game modes");
 }
 settingsmenu();
 }
@@ -617,12 +3499,12 @@ if(ssm=="shd")
 if(spacehold==0)
 {
 spacehold=1;
-speak("space hold in menus enabled");
+dlg("space hold in menus enabled");
 }
 else
 {
 spacehold=0;
-speak("space hold in menus disabled");
+dlg("space hold in menus disabled");
 }
 settingsmenu();
 }
@@ -632,13 +3514,13 @@ if(hrtf==true)
 {
 hrtf=false;
 sound_global_hrtf=false;
-speak("global hrtf disabled");
+dlg("global hrtf disabled");
 }
 else
 {
 hrtf=true;
 sound_global_hrtf=true;
-speak("global hrtf enabled");
+dlg("global hrtf enabled");
 }
 settingsmenu();
 }
@@ -648,13 +3530,13 @@ if(mreset==0)
 {
 mreset=1;
 m.reset(true);
-speak("menus resetting enabled");
+dlg("menus resetting enabled");
 }
 else
 {
 mreset=0;
 m.reset(false);
-speak("menus resetting disabled");
+dlg("menus resetting disabled");
 }
 settingsmenu();
 }
@@ -664,13 +3546,13 @@ if(up_down==0)
 {
 up_down=1;
 m.enable_up_and_down=true;
-speak("up and down enabled");
+dlg("up and down enabled");
 }
 else
 {
 up_down=0;
 m.enable_up_and_down=false;
-speak("up and down disabled");
+dlg("up and down disabled");
 }
 settingsmenu();
 }
@@ -680,13 +3562,13 @@ if(left_right==0)
 {
 left_right=1;
 m.enable_left_and_right=true;
-speak("left and right enabled");
+dlg("left and right enabled");
 }
 else
 {
 left_right=0;
 m.enable_left_and_right=false;
-speak("left and right disabled");
+dlg("left and right disabled");
 }
 settingsmenu();
 }
@@ -696,13 +3578,13 @@ if(home_end==0)
 {
 home_end=1;
 m.enable_home_and_end=true;
-speak("home and end enabled");
+dlg("home and end enabled");
 }
 else
 {
 home_end=0;
 m.enable_home_and_end=false;
-speak("home and end disabled");
+dlg("home and end disabled");
 }
 settingsmenu();
 }
@@ -712,13 +3594,13 @@ if(wrap==0)
 {
 wrap=1;
 m.wrap=true;
-speak("wrapping enabled");
+dlg("wrapping enabled");
 }
 else
 {
 wrap=0;
 m.wrap=false;
-speak("wrapping disabled");
+dlg("wrapping disabled");
 }
 settingsmenu();
 }
@@ -728,13 +3610,13 @@ if(repeat_items==0)
 {
 repeat_items=1;
 m.repeat_items_at_edges=true;
-speak("repeating items enabled");
+dlg("repeating items enabled");
 }
 else
 {
 repeat_items=0;
 m.repeat_items_at_edges=false;
-speak("repeating items disabled");
+dlg("repeating items disabled");
 }
 settingsmenu();
 }
@@ -744,13 +3626,13 @@ if(numbers==0)
 {
 numbers=1;
 m.enable_numbers=true;
-speak("number scrolling enabled");
+dlg("number scrolling enabled");
 }
 else
 {
 numbers=0;
 m.enable_numbers=false;
-speak("number scrolling disabled");
+dlg("number scrolling disabled");
 }
 settingsmenu();
 }
@@ -760,13 +3642,13 @@ if(first_letter==0)
 {
 first_letter=1;
 m.enable_first_letter_navigation=true;
-speak("first letter scrolling enabled");
+dlg("first letter scrolling enabled");
 }
 else
 {
 first_letter=0;
 m.enable_first_letter_navigation=false;
-speak("first letter scrolling disabled");
+dlg("first letter scrolling disabled");
 }
 settingsmenu();
 }
@@ -776,13 +3658,13 @@ if(position_info==0)
 {
 position_info=1;
 m.speak_position_information=true;
-speak("position info enabled");
+dlg("position info enabled");
 }
 else
 {
 position_info=0;
 m.speak_position_information=false;
-speak("position info disabled");
+dlg("position info disabled");
 }
 settingsmenu();
 }
@@ -792,13 +3674,13 @@ if(side_scroll==0)
 {
 side_scroll=1;
 m.enable_side_scrolling=true;
-speak("side scrolling enabled");
+dlg("side scrolling enabled");
 }
 else
 {
 side_scroll=0;
 m.enable_side_scrolling=false;
-speak("side scrolling disabled");
+dlg("side scrolling disabled");
 }
 settingsmenu();
 }
@@ -820,7 +3702,7 @@ settingsmenu();
 if(mres==1)
 {
 if(file_exists("data/saves/options.dat")) file_delete("data/saves/options.dat");
-speak("settings reset");
+dlg("settings reset");
 resetpreffs();
 settingsmenu();
 }
@@ -831,2894 +3713,12 @@ settingsmenu();
 }
 if(ssm=="preffs")
 {
-speak("settings saved");
+dlg("settings saved");
 writepreffs();
 settingsmenu();
 }
 if(ssm=="back")
 {
 mainmenu();
-}
-}
-void mapmenu()
-{
-setupmenu(true);
-m.add_item_tts("load map", "mg");
-m.add_item_tts("new map", "nm");
-m.add_item_tts("back", "back");
-int mres=m.run("Map menu",true);
-string buildem=m.get_item_name(mres);
-if(mres==0)
-{
-mainmenu();
-}
-if(buildem=="mg")
-{
-m.fade_music();
-string[] maps=find_files("data/maps/*.map");
-if(maps.length()==0)
-{
-dlg("Error. There are no maps available to view.");
-mapmenu();
-}
-else
-{
-setupmenu();
-for(uint i=0; i<maps.length(); i++)
-{
-m.add_item_tts(string_replace(maps[i],".map","",true)+", size: "+measure_file_size(file_get_size("data/maps/"+maps[i])));
-}
-int mres=m.run("Maps menu", true);
-if(mres==0)
-{
-mapmenu();
-}
-if (mres==0 and mres>=maps.length())
-{
-mapmenu();
-}
-if (mres>0 and mres<=maps.length())
-{
-mapname=maps[mres-1];
-mapname=string_replace(mapname, ".map", "", true);
-load_map(mapname);
-building=true;
-fighter(true);
-}
-}
-}
-if(buildem=="nm")
-{
-m.fade_music();
-input.set_only_allowed_chars("none");
-string name=input.input("Enter the name of this map.");
-input.set_only_allowed_chars("1234567890-");
-string mx=input.input("Enter the maximum length of this map.");
-string my=input.input("Enter the maximum height of this map.");
-if(mapname=="" and maxx=="" and maxy=="")
-return;
-mapname=name;
-maxx=string_to_number(mx);
-maxy=string_to_number(my);
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-mapmenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-if(file_exists("data/maps/"+mapname+".map"))
-{
-dlg("Error. A map with this name already exists. Please choose a different one.");
-mapmenu();
-}
-else
-{
-create_map(mapname, maxx, maxy, tiletype);
-load_map(mapname);
-building=true;
-fighter(true);
-}
-}
-if(buildem=="back")
-{
-mainmenu();
-}
-}
-void gamemenu()
-{
-setupmenu(true);
-m.add_item_tts("load game", "lg");
-m.add_item_tts("new game", "ng");
-m.add_item_tts("settings", "set");
-m.add_item_tts("back", "back");
-int mres=m.run("Game menu",true);
-string gamem=m.get_item_name(mres);
-if(mres==0)
-{
-mainmenu();
-}
-if(gamem=="lg")
-{
-if(file_exists("data/saves/game.dat"))
-{
-m.fade_music();
-if(building==false) readdata();
-building=false;
-fighter(false);
-}
-else
-{
-m.fade_music();
-dlg("Error. The data assosiated with this game does not exist.");
-gamemenu();
-}
-}
-if(gamem=="ng")
-{
-if(file_exists("data/saves/game.dat"))
-{
-setupmenu(true);
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres=m.run("Are you sure you want to start over from the beginning? This will erase all of the progress you made on the current game.",true);
-if(mres==0)
-{
-speak("canceled");
-gamemenu();
-}
-if(mres==1)
-{
-modemenu();
-}
-if(mres==2)
-{
-gamemenu();
-}
-}
-else
-{
-modemenu();
-}
-}
-if(gamem=="set")
-{
-m.fade_music();
-gamepreffs();
-}
-if(gamem=="back")
-{
-mainmenu();
-}
-}
-void modemenu()
-{
-setupmenu(true);
-m.add_item_tts("normal", "nm");
-m.add_item_tts("custom", "cm");
-m.add_item_tts("back", "back");
-int mres=m.run("Choose a mode you would like to play on",true);
-string modem=m.get_item_name(mres);
-if(mres==0)
-{
-gamemenu();
-}
-if(modem=="nm")
-{
-normalmenu();
-}
-if(modem=="cm")
-{
-custommenu();
-}
-if(modem=="back")
-{
-gamemenu();
-}
-}
-void normalmenu()
-{
-setupmenu(true);
-m.add_item_tts("kill animals", "km");
-m.add_item_tts("kill enemies", "kn");
-m.add_item_tts("kill projectiles", "kp");
-m.add_item_tts("kill robots", "kb");
-m.add_item_tts("kill zombies", "kz");
-m.add_item_tts("back", "back");
-int mres=m.run("normal menu",true);
-string normem=m.get_item_name(mres);
-if(mres==0)
-{
-modemenu();
-}
-if(normem=="km")
-{
-m.fade_music();
-string[] animal=find_directories("sounds/"+soundpack+"/npc/animals/*");
-if(animal.length()==0)
-{
-dlg("Error. There are no animals detected in the game!");
-normalmenu();
-}
-else
-{
-gamemode=1;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-normalmenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres2==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres2==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-normalmenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres2==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres3==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-normalmenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-if(normem=="kn")
-{
-m.fade_music();
-string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
-if(enemy.length()==0)
-{
-dlg("Error. There are no enemies detected in the game!");
-normalmenu();
-}
-else
-{
-gamemode=2;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-normalmenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres2==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres2==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-normalmenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres2==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres3==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-normalmenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-if(normem=="kp")
-{
-m.fade_music();
-string[] projectile=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
-if(projectile.length()==0)
-{
-dlg("Error. There are no projectiles detected in the game!");
-normalmenu();
-}
-else
-{
-gamemode=3;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-normalmenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres2==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres2==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-normalmenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres2==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres3==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-normalmenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-if(normem=="kb")
-{
-m.fade_music();
-string[] robot=find_directories("sounds/"+soundpack+"/npc/robots/*");
-if(robot.length()==0)
-{
-dlg("Error. There are no robots detected in the game!");
-normalmenu();
-}
-else
-{
-gamemode=4;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-normalmenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres2==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres2==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-normalmenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres2==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres3==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-normalmenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-if(normem=="kz")
-{
-m.fade_music();
-string[] zombie=find_directories("sounds/"+soundpack+"/npc/zombies/*");
-if(zombie.length()==0)
-{
-dlg("Error. There are no zombies detected in the game!");
-normalmenu();
-}
-else
-{
-gamemode=5;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-normalmenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres2==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres2==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-normalmenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres2==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres3==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-normalmenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres3==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-if(normem=="back")
-{
-modemenu();
-}
-}
-void custommenu()
-{
-setupmenu(true);
-m.add_item_tts("kill animals", "km");
-m.add_item_tts("kill enemies", "kn");
-m.add_item_tts("kill projectiles", "kp");
-m.add_item_tts("kill robots", "kb");
-m.add_item_tts("kill zombies", "kz");
-m.add_item_tts("back", "back");
-int mres=m.run("custom menu",true);
-string cusmem=m.get_item_name(mres);
-if(mres==0)
-{
-modemenu();
-}
-if(cusmem=="km")
-{
-m.fade_music();
-string[] animal=find_directories("sounds/"+soundpack+"/npc/animals/*");
-if(animal.length()==0)
-{
-dlg("Error. There are no animals available to view.");
-custommenu();
-}
-else
-{
-string[] animaltype=find_directories("sounds/"+soundpack+"/npc/animals/*");
-setupmenu();
-for(uint i=0; i<animaltype.length(); i++)
-{
-m.add_item_tts(animaltype[i],animaltype[i]);
-}
-int mres=m.run("Animals menu", true);
-if(mres==0)
-{
-custommenu();
-}
-if (mres==0 and mres>=animaltype.length())
-{
-gamemode=6;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-if (mres>0 and mres<=animaltype.length())
-{
-amtype=animaltype[mres-1];
-gamemode=6;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-}
-if(cusmem=="kn")
-{
-m.fade_music();
-string[] enemy=find_directories("sounds/"+soundpack+"/npc/enemies/*");
-if(enemy.length()==0)
-{
-dlg("Error. There are no enemies available to view.");
-custommenu();
-}
-else
-{
-string[] enemytype=find_directories("sounds/"+soundpack+"/npc/enemies/*");
-setupmenu();
-for(uint i=0; i<enemytype.length(); i++)
-{
-m.add_item_tts(enemytype[i],enemytype[i]);
-}
-int mres=m.run("enemies menu", true);
-if(mres==0)
-{
-custommenu();
-}
-if (mres==0 and mres>=enemytype.length())
-{
-gamemode=7;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-if (mres>0 and mres<=enemytype.length())
-{
-emtype=enemytype[mres-1];
-gamemode=7;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-}
-if(cusmem=="kp")
-{
-m.fade_music();
-string[] projectile=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
-if(projectile.length()==0)
-{
-dlg("Error. There are no projectiles available to view.");
-custommenu();
-}
-else
-{
-string[] projtype=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
-setupmenu();
-for(uint i=0; i<projtype.length(); i++)
-{
-m.add_item_tts(projtype[i],projtype[i]);
-}
-int mres=m.run("projectiles menu", true);
-if(mres==0)
-{
-custommenu();
-}
-if (mres==0 and mres>=projtype.length())
-{
-gamemode=8;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-if (mres>0 and mres<=projtype.length())
-{
-potype=projtype[mres-1];
-gamemode=8;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-}
-if(cusmem=="kb")
-{
-m.fade_music();
-string[] robot=find_directories("sounds/"+soundpack+"/npc/robots/*");
-if(robot.length()==0)
-{
-dlg("Error. There are no robots available to view.");
-custommenu();
-}
-else
-{
-string[] robottype=find_directories("sounds/"+soundpack+"/npc/robots/*");
-setupmenu();
-for(uint i=0; i<robottype.length(); i++)
-{
-m.add_item_tts(robottype[i],robottype[i]);
-}
-int mres=m.run("robots menu", true);
-if(mres==0)
-{
-custommenu();
-}
-if (mres==0 and mres>=robottype.length())
-{
-gamemode=9;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-if (mres>0 and mres<=robottype.length())
-{
-rotype=robottype[mres-1];
-gamemode=9;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-}
-if(cusmem=="kz")
-{
-m.fade_music();
-string[] zombie=find_directories("sounds/"+soundpack+"/npc/zombies/*");
-if(zombie.length()==0)
-{
-dlg("Error. There are no zombies available to view.");
-custommenu();
-}
-else
-{
-string[] zombietype=find_directories("sounds/"+soundpack+"/npc/zombies/*");
-setupmenu();
-for(uint i=0; i<zombietype.length(); i++)
-{
-m.add_item_tts(zombietype[i],zombietype[i]);
-}
-int mres=m.run("zombies menu", true);
-if(mres==0)
-{
-custommenu();
-}
-if (mres==0 and mres>=zombietype.length())
-{
-gamemode=10;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-if (mres>0 and mres<=zombietype.length())
-{
-zotype=zombietype[mres-1];
-gamemode=10;
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres2=m.run("Would you like to choose a platform to use in the game mode?",true);
-if(mres2==0)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-if(mres2==1)
-{
-platmode=1;
-string[] platform=find_directories("sounds/"+soundpack+"/objects/platforms/*");
-if(platform.length()==0)
-{
-dlg("Error. There are no platforms available to view.");
-custommenu();
-}
-else
-{
-string res=platsmenu();
-if(res!="")
-{
-tiletype=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_platform(0, maxx*10, 0, 0, tiletype, volume, pitch);
-}
-if(mres2==2)
-{
-platmode=0;
-if(building==false) spawn_platform(0, maxx*10, 0, 0, "concrete", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres3=m.run("Would you like to choose music to use in the game mode?",true);
-if(mres3==0)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-if(mres3==1)
-{
-musmode=1;
-string[] music=find_directories("sounds/"+soundpack+"/objects/musics/*");
-if(music.length()==0)
-{
-dlg("Error. There are no musics available to view.");
-custommenu();
-}
-else
-{
-string res=musicsmenu();
-if(res!="")
-{
-mustyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-}
-if(mres3==2)
-{
-musmode=0;
-if(building==false) spawn_musicsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-}
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres4=m.run("Would you like to choose a sound source to use in the game mode?",true);
-if(mres4==0)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==1)
-{
-sorcemode=1;
-string[] sorce=find_directories("sounds/"+soundpack+"/objects/sources/*");
-if(sorce.length()==0)
-{
-dlg("Error. There are no sound sources available to view.");
-custommenu();
-}
-else
-{
-string res=sorcesmenu();
-if(res!="")
-{
-sorcetyp=res;
-}
-}
-create_slider();
-s.add_slider_item("volume", -100.0, 0.0, 0.0, 1.0);
-s.add_slider_item("pitch", 0.0, 500.0, 100.0, 1.0);
-int sres = s.run_slider("Effects designer. Press tab or shift tab to cycle through the effect parameters. Press the arrow keys to increase or decrease the value you're currently focused on. Press the home or end key to directly jump to the minimum or maximum value of the parameter. Press the enter key when you're done shaping the effect to your liking.");
-if (sres==0)
-{
-resume_pools();
-speak("Canceled");
-return;
-}
-resume_pools();
-volume=s.get_item_value(0);
-pitch=s.get_item_value(1);
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, sorcetyp, volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-if(mres4==2)
-{
-sorcemode=0;
-if(building==false) spawn_soundsource(0, maxx*10, 0, maxy*10, "none", volume, pitch);
-if(building==false) resetgame();
-building=false;
-fighter(false);
-}
-}
-}
-}
-if(cusmem=="back")
-{
-modemenu();
-}
-}
-void gamepreffs()
-{
-setupmenu();
-m.add_item_tts("reset game", "rg");
-m.add_item_tts("save game", "sg");
-m.add_item_tts("back", "back");
-int mres=m.run("Game options",true);
-string gamepm=m.get_item_name(mres);
-if(mres==0)
-{
-gamemenu();
-}
-if(gamepm=="rg")
-{
-setupmenu();
-m.wrap_sound="none.ogg";
-m.click_sound="menu1.ogg";
-m.enter_sound="menu2.ogg";
-m.open_sound="menu3.ogg";
-m.add_item_tts("yes");
-m.add_item_tts("no");
-int mres=m.run("Are you sure you want to reset all of your game's data?",true);
-if(mres==0)
-{
-speak("canceled");
-gamepreffs();
-}
-if(mres==1)
-{
-if(file_exists("data/saves/game.dat")) file_delete("data/saves/game.dat");
-speak("game reset");
-resetgame();
-gamepreffs();
-}
-if(mres==2)
-{
-gamepreffs();
-}
-}
-if(gamepm=="sg")
-{
-speak("game saved");
-writedata();
-gamepreffs();
-}
-if(gamepm=="back")
-{
-gamemenu();
 }
 }
