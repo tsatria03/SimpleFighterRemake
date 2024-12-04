@@ -151,7 +151,7 @@ platform_id=-1;
 }
 void update_pspassage()
 {
-if(is_at_endpoint(me.x,me.y) && key_pressed(KEY_RETURN))
+if(is_at_endpoint(me.x,me.y) && key_repeating(KEY_RETURN))
 {
     if((is_open && closetimer.elapsed>=closetime) || (!is_open && opentimer.elapsed>=opentime))
     {

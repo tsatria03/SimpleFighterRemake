@@ -54,7 +54,7 @@ if(opensfx.length()!=0) psdoors[i].opensound=doorpool.play_stationary_extended("
 string[] movesfx=find_files("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/*move*");
 if(movesfx.length()!=0) psdoors[i].movesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
 }
-if(psdoors[i].startx==me.x and psdoors[i].starty==me.y and psdoors[i].automatic==false and key_pressed(KEY_RETURN))
+if(psdoors[i].startx==me.x and psdoors[i].starty==me.y and psdoors[i].automatic==false and key_repeating(KEY_RETURN))
 {
 input.set_only_allowed_chars("none");
 string pass = input.input("Enter the password to open this locked door.");

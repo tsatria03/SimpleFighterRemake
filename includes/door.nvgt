@@ -48,7 +48,7 @@ if(opensfx.length()!=0) doors[i].opensound=doorpool.play_stationary_extended("so
 string[] movesfx=find_files("sounds/"+soundpack+"/objects/doors/move/"+doors[i].movetype+"/*move*");
 if(movesfx.length()!=0) doors[i].movesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/move/"+doors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
 }
-if(doors[i].startx==me.x and doors[i].starty==me.y and doors[i].automatic==false and key_pressed(KEY_RETURN))
+if(doors[i].startx==me.x and doors[i].starty==me.y and doors[i].automatic==false and key_repeating(KEY_RETURN))
 {
 doormove=true;
 doors[i].is_moving=true;

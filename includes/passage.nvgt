@@ -134,12 +134,12 @@ platform_id=-1;
 }
 void update_passage()
 {
-if(is_open && is_at_endpoint (me.x,me.y) && key_pressed(KEY_RETURN) && opentimer.elapsed>=opentime)
+if(is_open && is_at_endpoint (me.x,me.y) && key_repeating(KEY_RETURN) && opentimer.elapsed>=opentime)
 {
 toggle_passage();
 opentimer.restart();
 }
-else if(!is_open && is_at_endpoint (me.x,me.y) && key_pressed(KEY_RETURN) && closetimer.elapsed>=closetime)
+else if(!is_open && is_at_endpoint (me.x,me.y) && key_repeating(KEY_RETURN) && closetimer.elapsed>=closetime)
 {
 toggle_passage();
 closetimer.restart();

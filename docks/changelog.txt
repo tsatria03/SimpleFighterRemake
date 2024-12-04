@@ -1,4 +1,6 @@
 new in 5.9
+You can now define custom spawn sounds for all enemies.
+Minor enhancements and bug fixes to various classes and functions in the game.
 Optimized all slider related functions in the builder part of the game.
 Made it so the total size of sound packs are announced when hovering over them in the sound packs menu.
 You can now define a custom air sound for the camera for all characters.

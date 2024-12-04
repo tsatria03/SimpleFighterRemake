@@ -22,12 +22,16 @@ for(uint i=0; i<dialogs.length(); i++)
 {
 if(dialogs[i].minx<=me.x and dialogs[i].maxx>=me.x and dialogs[i].miny<=me.y and dialogs[i].maxy>=me.y and dialogs[i].automatic==true)
 {
+pause_pools();
 dlg2(dialogs[i].text);
 dialogs[i].automatic=false;
+resume_pools();
 }
 if(dialogs[i].minx<=me.x and dialogs[i].maxx>=me.x and dialogs[i].miny<=me.y and dialogs[i].maxy>=me.y and dialogs[i].automatic==false and key_pressed(KEY_RETURN))
 {
+pause_pools();
 dlg2(dialogs[i].text);
+resume_pools();
 }
 }
 }

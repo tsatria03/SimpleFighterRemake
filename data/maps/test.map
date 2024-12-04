@@ -2,5 +2,4 @@ name test
 maxx 200
 maxy 200
 platform 0 200 0 metal 0 100
-item_zone 5 5 0 0 50 health antibiotic
-health_zone 3 3 0 0 -10 100
+dialog 5 5 0 0 hi--how--are--you--doing--today--tony? dlg7 false

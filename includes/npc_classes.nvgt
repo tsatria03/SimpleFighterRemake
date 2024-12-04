@@ -185,7 +185,7 @@ enemie@[]enemies(0);
 class enemie
 {
 bool fireable, moveable, moveable2, spotted;
-int emsound, defsound, hurtsound, stepsound, tilesound, wepsound;
+int emsound, defsound, hurtsound, spawnsound, stepsound, tilesound, wepsound;
 int enemiecard;
 int enehealth;
 double emlevel;
@@ -225,6 +225,8 @@ fireable=emf;
 moveable=emt;
 moveable2=emt2;
 spotted=false;
+string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/enemies/"+enemietype+"/*spawn*");
+if(spawnsfx.length()!=0) spawnsound=enemiepool.play_extended_2d("sounds/"+soundpack+"/npc/enemies/"+enemietype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,emx,emy,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] emsfx=find_files("sounds/"+soundpack+"/npc/enemies/"+enemietype+"/*taunt*");
 if(emsfx.length()!=0) emsound=enemiepool.play_extended_2d("sounds/"+soundpack+"/npc/enemies/"+enemietype+"/"+emsfx[random(0,emsfx.length()-1)],me.x,me.y,emx,emy,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }
