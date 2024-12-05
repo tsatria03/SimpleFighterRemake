@@ -73,8 +73,8 @@ string[] explodesfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].mi
 if(explodesfx.length()!=0) mines[i].explodesound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+explodesfx[random(0,explodesfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/*hit*");
 if(hitsfx.length()!=0) mines[i].wepsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/animals/"+animals[i1].animaltype+"/*hurt*");
-if(hurtsfx.length()!=0) animals[i1].hurtsound=animalpool.play_extended_2d("sounds/"+soundpack+"/npc/animals/"+animals[i1].animaltype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,animals[i1].amx,animals[i1].amy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animals[i1].animaltype+"/*hurt*");
+if(hurtsfx.length()!=0) animals[i1].hurtsound=animalpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/animals/"+animals[i1].animaltype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,animals[i1].amx,animals[i1].amy,0,0,0,0,false,0,0,painvolume,painpitch,false);
 animals[i1].animalhealth-=mines[i].damage;
 mines.remove_at(i);
 return;
@@ -139,8 +139,8 @@ string[] explodesfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].mi
 if(explodesfx.length()!=0) mines[i].explodesound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+explodesfx[random(0,explodesfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/*hit*");
 if(hitsfx.length()!=0) mines[i].wepsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/enemies/"+enemies[i5].enemietype+"/*hurt*");
-if(hurtsfx.length()!=0) enemies[i5].hurtsound=enemiepool.play_extended_2d("sounds/"+soundpack+"/npc/enemies/"+enemies[i5].enemietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,enemies[i5].emx,enemies[i5].emy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/enemies/"+enemies[i5].enemietype+"/*hurt*");
+if(hurtsfx.length()!=0) enemies[i5].hurtsound=enemiepool.play_extended_2d("sounds/"+soundpack+"/npc/normal/enemies/"+enemies[i5].enemietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,enemies[i5].emx,enemies[i5].emy,0,0,0,0,false,0,0,painvolume,painpitch,false);
 enemies[i5].enemiehealth-=mines[i].damage;
 mines.remove_at(i);
 return;
@@ -171,8 +171,8 @@ string[] explodesfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].mi
 if(explodesfx.length()!=0) mines[i].explodesound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+explodesfx[random(0,explodesfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/*hit*");
 if(hitsfx.length()!=0) mines[i].wepsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/projectiles/"+projectiles[i7].projtype+"/*hurt*");
-if(hurtsfx.length()!=0) projectiles[i7].hurtsound=projpool.play_extended_2d("sounds/"+soundpack+"/npc/projectiles/"+projectiles[i7].projtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,projectiles[i7].prox,projectiles[i7].proy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/projectiles/"+projectiles[i7].projtype+"/*hurt*");
+if(hurtsfx.length()!=0) projectiles[i7].hurtsound=projpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/projectiles/"+projectiles[i7].projtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,projectiles[i7].prox,projectiles[i7].proy,0,0,0,0,false,0,0,painvolume,painpitch,false);
 projectiles[i7].projhealth-=mines[i].damage;
 mines.remove_at(i);
 return;
@@ -187,8 +187,8 @@ string[] explodesfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].mi
 if(explodesfx.length()!=0) mines[i].explodesound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+explodesfx[random(0,explodesfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/*hit*");
 if(hitsfx.length()!=0) mines[i].wepsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/robots/"+robots[i8].robottype+"/*hurt*");
-if(hurtsfx.length()!=0) robots[i8].hurtsound=robpool.play_extended_2d("sounds/"+soundpack+"/npc/robots/"+robots[i8].robottype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,robots[i8].robx,robots[i8].roby,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robots[i8].robottype+"/*hurt*");
+if(hurtsfx.length()!=0) robots[i8].hurtsound=robpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/robots/"+robots[i8].robottype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,robots[i8].robx,robots[i8].roby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 robots[i8].robothealth-=mines[i].damage;
 mines.remove_at(i);
 return;
@@ -238,8 +238,8 @@ string[] explodesfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].mi
 if(explodesfx.length()!=0) mines[i].explodesound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+explodesfx[random(0,explodesfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/*hit*");
 if(hitsfx.length()!=0) mines[i].wepsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/turrets/"+turrets[i11].turtype+"/*hurt*");
-if(hurtsfx.length()!=0) turrets[i11].hurtsound=turpool.play_extended_2d("sounds/"+soundpack+"/npc/turrets/"+turrets[i11].turtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,turrets[i11].turx,turrets[i11].tury,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/turrets/"+turrets[i11].turtype+"/*hurt*");
+if(hurtsfx.length()!=0) turrets[i11].hurtsound=turpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/turrets/"+turrets[i11].turtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,turrets[i11].turx,turrets[i11].tury,0,0,0,0,false,0,0,painvolume,painpitch,false);
 turrets[i11].turhealth-=mines[i].damage;
 mines.remove_at(i);
 return;
@@ -288,8 +288,8 @@ string[] explodesfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].mi
 if(explodesfx.length()!=0) mines[i].explodesound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+explodesfx[random(0,explodesfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/*hit*");
 if(hitsfx.length()!=0) mines[i].wepsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+mines[i].minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,mines[i].minex,mines[i].miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
-string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/zombies/"+zombies[i14].zombietype+"/*hurt*");
-if(hurtsfx.length()!=0) zombies[i14].hurtsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/zombies/"+zombies[i14].zombietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,zombies[i14].zombx,zombies[i14].zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombies[i14].zombietype+"/*hurt*");
+if(hurtsfx.length()!=0) zombies[i14].hurtsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/zombies/"+zombies[i14].zombietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,zombies[i14].zombx,zombies[i14].zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 zombies[i14].zombiehealth-=mines[i].damage;
 mines.remove_at(i);
 return;

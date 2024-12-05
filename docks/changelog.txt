@@ -1,11 +1,11 @@
 new in 4.9
 Made it so if you have more than 1 life when a hazard is spawned, the hazard will send you flying back in the Opposite direction of where you last hit it. This will cause you to lose a life in the process. The hazard will only kill you if you have 1 life left upon stepping on it.
 Minor enhancements and bug fixes to various classes and functions in the game.
-Made it so the total size of sound packs are announced when hovering over them in the sound packs menu.
 Optimized all dlg related functions in the builder part of the game.
 You can now define custom spawn sounds for all enemies.
 Optimized all slider related functions in the builder part of the game.
 You can now define a custom air sound for the camera for all characters.
+Made it so the total size of sound packs are announced when hovering over them in the sound packs menu.
 You can now define custom footsteps to all animals. They will no longer walk on your tile.
 new in 4.8
 Fixed various staircase issues. This includes platforms Playing repetitively while jumping on them, lack of detecting other tiles being placed while they were present, and the spire behaving incorrectly while looking up or down with it when it was spawned on the map.

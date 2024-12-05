@@ -27,7 +27,7 @@
 #include"inventory.nvgt"
 #include"item.nvgt"
 #include"itemzone.nvgt"
-#include"keycode_classes.nvgt"
+#include"keyfuncts.nvgt"
 #include"lift.nvgt"
 #include"lockable_door.nvgt"
 #include"lockable_passage.nvgt"

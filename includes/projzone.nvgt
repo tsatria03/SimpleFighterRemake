@@ -21,7 +21,7 @@ for(uint i=0; i<projzones.length(); i++)
 {
 if(projzones[i].minx<=me.x and projzones[i].maxx>=me.x and projzones[i].proy==me.y and projzones[i].spawntimer.elapsed>=projzones[i].spawntime)
 {
-string[] projtype=find_directories("sounds/"+soundpack+"/npc/projectiles/*");
+string[] projtype=find_directories("sounds/"+soundpack+"/npc/normal/projectiles/*");
 string potype=projzones[i].projtype;
 if(potype=="random" && projtype.length()>0)
 {
