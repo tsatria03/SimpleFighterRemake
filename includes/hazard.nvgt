@@ -26,9 +26,9 @@ hazardpool.update_sound_2d(hazardsound,minx,miny);
 hazardpool.update_sound_range_2d(hazardsound,0,maxx-minx,0,maxy-miny);
 }
 bool is_on_hazard()
-    {
-        return (me.x >= minx && me.x <= maxx && me.y >= miny && me.y <= maxy);
-    }
+{
+return (me.x >= minx && me.x <= maxx && me.y >= miny && me.y <= maxy);
+}
 }
 void hazardcheck()
 {
@@ -36,16 +36,6 @@ for (uint i=0; i<hazards.length(); i++)
 {
 if(hazards[i].is_on_hazard())
 {
-if(lifecard>=2)
-{
-hazardpool.destroy_sound(hazards[i].hazardsound);
-string[] fallsfx=find_files("sounds/"+soundpack+"/objects/hazards/"+hazards[i].hazardtype+"/*fall*");
-if(fallsfx.length()!=0) hazards[i].fallsound=hazardpool.play_stationary_extended("sounds/"+soundpack+"/objects/hazards/"+hazards[i].hazardtype+"/"+fallsfx[random(0,fallsfx.length()-1)],false,0,0,painvolume,painpitch,false);
-string[] lifesfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*life*");
-if(lifesfx.length()!=0 and charlifesound==1) hazardpool.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+lifesfx[random(0,lifesfx.length()-1)],false);
-lifecard-=1;
-health=maxhealth;
-}
 if(lifecard<=1)
 {
 hazardpool.destroy_sound(hazards[i].hazardsound);

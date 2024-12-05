@@ -1,4 +1,5 @@
 new in 5.9
+Made it so if you have more than 1 life when a hazard is spawned, the hazard will send you flying back in the Opposite direction of where you last hit it. This will cause you to lose a life in the process. The hazard will only kill you if you have 1 life left upon stepping on it.
 Optimized all dlg related functions in the builder part of the game.
 You can now define custom spawn sounds for all enemies.
 Minor enhancements and bug fixes to various classes and functions in the game.
