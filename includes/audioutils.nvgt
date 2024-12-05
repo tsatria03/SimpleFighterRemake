@@ -1,5 +1,6 @@
 sound@ progress_sound;
-double clamp(double value, double min, double max){
+double clamp(double value, double min, double max)
+{
 value=value<min? min:value;
 value=value>max? max:value;
 return value;

@@ -17,10 +17,6 @@ bool int_to_bool(int i)
 {
 return i==1? true:false;
 }
-bool string_to_bool(string str)
-{
-return str.trim_whitespace().lower()=="true"? true:false;
-}
 int bool_to_int(bool b)
 {
 return b? 1:0;
@@ -28,6 +24,12 @@ return b? 1:0;
 int get_distance(int a, int b)
 {
 return absolute(a - b);
+}
+string string2file(string thing)
+{
+thing=string_replace(thing,"\\","/",true);
+thing=string_replace(thing,"/"," ",true);
+return thing;
 }
 string find_sound(string soundname)
 {
@@ -41,16 +43,6 @@ return path+snd[random(0,snd.length()-1)];
 else
 return "";
 }
-string join_string_array(string[] arr, uint start, uint end)
-{
-string result = "";
-for(uint i = start; i < end; i++)
-{
-if(i>start) result+=" ";
-result+=arr[i];
-}
-return result;
-}
 string string_join(const string[]& in arr, const string& in delimiter)
 {
 string result="";
@@ -59,6 +51,16 @@ for (uint i=0; i<arr.length(); i++)
 if(i>0)
 result += delimiter;
 result += arr[i];
+}
+return result;
+}
+string join_string_array(string[] arr, uint start, uint end)
+{
+string result = "";
+for(uint i = start; i < end; i++)
+{
+if(i>start) result+=" ";
+result+=arr[i];
 }
 return result;
 }
@@ -74,54 +76,6 @@ while (result.length()>0 && (result[result.length()-1]==" "||result[result.lengt
 result=string_trim_right(result,1);
 }
 return result;
-}
-string measure_file_size(int64 bytes)
-{
-if(bytes<1024)
-{
-return bytes+"bytes";
-}
-else if(bytes<1024*1024)
-{
-return round(double(bytes)/1024,2)+"KB";
-}
-else if(bytes<1024*1024*1024)
-{
-return round(double(bytes)/(1024*1024),2)+"MB";
-}
-else 
-{
-return round(double(bytes)/(1024*1024*1024),2)+"GB";
-}
-}
-string measure_time_units(int64 milliseconds)
-{
-int64 seconds = milliseconds / 1000;
-if(seconds < 1)
-{
-return milliseconds + " ms";
-}
-else if(seconds < 60)
-{
-int whole_seconds = int(seconds);
-int ms = int(milliseconds % 1000);
-return whole_seconds + " seconds, " + ms + " ms";
-}
-else if(seconds < 3600)
-{
-int minutes = int(seconds / 60);
-int remaining_seconds = int(seconds % 60);
-int ms = int(milliseconds % 1000);
-return minutes + " minutes, " + remaining_seconds + " seconds, " + ms + " ms";
-}
-else
-{
-int hours = int(seconds / 3600);
-int minutes = int((seconds % 3600) / 60);
-int remaining_seconds = int(seconds % 60);
-int ms = int(milliseconds % 1000);
-return hours + " hours, " + minutes + " minutes, " + remaining_seconds + " seconds, " + ms + " ms";
-}
 }
 string script_get_path()
 {
@@ -148,12 +102,6 @@ folder+=spl[i];
 if(i<spl.length()-1) folder+="\\";
 }
 return folder;
-}
-string string2file(string thing)
-{
-thing=string_replace(thing,"\\","/",true);
-thing=string_replace(thing,"/"," ",true);
-return thing;
 }
 string get_key_echo_description(int mode)
 {
