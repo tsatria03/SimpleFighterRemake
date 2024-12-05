@@ -1,55 +1,60 @@
-Make ranged item taker doors and passages.
-Make ranged item giver doors and passages.
-Make ranged key locked doors and passages.
-Make ranged lockable doors and passages.
-Make ranged doors and passages.
-Make item taker doors and passages.
-Make item giver doors and passages.
-Make key locked doors and passages.
-Make bosses.
-Make crushers.
-Make floor breakers.
-Make security carts.
-Make security cameras.
-Make security jets.
-Make helecopters.
-Make containers.
-Make switches.
-Add ranges to projectiles and turrets.
-Fix passages to let walls disappear and reappear as it opens and closes. I think I may have broken it while fixing a bug with walls not destroying themselves properly upon building multiple of them within a sertain area of the map.
-Make objects found in the objects menu trackable
-Add a sonar to platforms, walls, and staircases.
-Add boss enemies.
-Add throwable items.
-Add flying vehicles such as aircrafts.
-Add falling and jumpping lojic to animals, enemies, robots, and zombies.
-Add a server side scoreboard system to all of the game modes.
-Add a map uploader and downloader.
-Restrict certain weapons and Shields behind levels. I've already had the foundation for that, but haven't had the time to fully implement it yet.
-Implement a way to restrict all npcs to a certain part of the map, such as near walls, or other tiles.
-Implement a buffer system to track various system events in the other game modes.
-Add acheavments and death messages.
-Add a runs counter.
-Implement a way to submit bug reports, feature requests, and other game feedback.
-*Done. Fix spying issues when building staircases and vehicles.
-*Done. Make forcefields.
-*Done. Make teleporters multi use.
-*Done. Fix lockable doors and make them appear in the objects menu.
-*Done. Add horizontal and vertical atack ranges to npcs.
-*Done. Fix falling off of map boundaries. Temporary solution, Build blockages or walls at negative one and at the end of the maximum length of the map.
-*Done. Make it so you can jump while you are on lifts and moving platforms.
-*Done. Add lockable doors and passages with a password, pin, or key.
-*Done. Fix all sound sorces destroying themselves after landing on platforms upon reloading the map.
-*Done. Add interactible objects.
-*Done. Add moving platforms and moving hazards.
-*Done. Add weapon slots to the hole number row.
-*Done. Implement a way to set output devices in the settings menu.
-*Done. Change map parsing to use spaces instead of colens when writing maps to files.
-*Done. Add volume and pitch support to platforms and walls.
-*Done. Make walls destructable.
-*Done. Add the air tile and wall border to the platform and wall menus.
-*done. Make doors destructable.
-*Done. Fix file dooplecation for maps.
-*done. Add more things to track in the objects menu.
-*Done. Add more things to spy with the spire.
-*Done. Finish parsing and writing conveyor_belts, projectiles, teleporters, and vehicles to maps.
+***These are the things I need to add and or fix for future updates
+
+**1. Make sertain weapons not take bullets, such as rocket launchers, needel launchers, and other weapons that should launch projectiles.
+**2.  Make ranged item taker doors and passages.
+**3. Make ranged item giver doors and passages.
+**4. Make ranged key locked doors and passages.
+**5. Make ranged lockable doors and passages.
+**6. Make ranged doors and passages.
+**7. Make item taker doors and passages.
+**8. Make item giver doors and passages.
+**9. Make key locked doors and passages.
+**10. Make crushers.
+**11. Make floor breakers.
+**12. Make security carts.
+**13. Make security cameras.
+**14. Make security jets.
+**15. Make helecopters.
+**16. Make containers.
+**17. Make switches.
+**18. Add ranges to projectiles and turrets.
+**19. Fix passages to let walls disappear and reappear as it opens and closes. I think I may have broken it while fixing a bug with walls not destroying themselves properly upon building multiple of them within a sertain area of the map.
+**20. Make objects found in the objects menu trackable
+**21. Add a sonar to platforms, walls, and staircases.
+**22. Add boss enemies.
+**23. Add throwable items.
+**24. Add flying vehicles such as aircrafts.
+**25. Add falling and jumpping lojic to animals, enemies, robots, and zombies.
+**26. Add a server side scoreboard system to all of the game modes.
+**27. Add a map uploader and downloader.
+**28. Restrict certain weapons and Shields behind levels. I've already had the foundation for that, but haven't had the time to fully implement it yet.
+**29. Implement a way to restrict all npcs to a certain part of the map, such as near walls, or other tiles.
+**30. Implement a buffer system to track various system events in the other game modes.
+**31. Add acheavments and death messages.
+**32. Add a runs counter.
+**33. Implement a way to submit bug reports, feature requests, and other game feedback.
+
+***These are the things I've already finished adding and or fixing.
+
+*1. Fix spying issues when building staircases and vehicles.
+*2. Make forcefields.
+*3. Make teleporters multi use.
+*4. Fix lockable doors and make them appear in the objects menu.
+*5. Add horizontal and vertical atack ranges to npcs.
+*6. Fix falling off of map boundaries. Temporary solution, Build blockages or walls at negative one and at the end of the maximum length of the map.
+*7. Make it so you can jump while you are on lifts and moving platforms.
+*8. Add lockable doors and passages with a password, pin, or key.
+*9. Fix all sound sorces destroying themselves after landing on platforms upon reloading the map.
+*10. Add interactible objects.
+*11. Add moving platforms and moving hazards.
+*12. Add weapon slots to the hole number row.
+*13. Implement a way to set output devices in the settings menu.
+*14. Change map parsing to use spaces instead of colens when writing maps to files.
+*15. Add volume and pitch support to platforms and walls.
+*16. Make walls destructable.
+*17. Add the air tile and wall border to the platform and wall menus.
+*18. Make doors destructable.
+*19. Fix file dooplecation for maps.
+*20. Add more things to track in the objects menu.
+*21. Add more things to spy with the spire.
+*22. Finish parsing and writing conveyor_belts, projectiles, teleporters, and vehicles to maps.
