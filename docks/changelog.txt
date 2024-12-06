@@ -1,4 +1,5 @@
 new in 4.9
+Implemented a heart rate monidor into the game for all characters. The less health you have for that character, the faster it gets. It also resets itself back to your character's maximum health upon losing a life.
 Made it so if you have more than 1 life when a hazard is spawned, the hazard will send you flying back in the Opposite direction of where you last hit it. This will cause you to lose a life in the process. The hazard will only kill you if you have 1 life left upon stepping on it.
 Minor enhancements and bug fixes to various classes and functions in the game.
 Optimized all dlg related functions in the builder part of the game.

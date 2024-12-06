@@ -50,6 +50,7 @@ if(hitsfx.length()!=0) spikes[i].hitsound=spikepool.play_stationary_extended("so
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=spikes[i].damage-defence;
+hearttime-=spikes[i].damage-defence;
 }
 if(spikes[i].spikehealth<=0)
 {

@@ -147,6 +147,46 @@ spawn_zombie(random(0, maxx), 0, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, ra
 zombsptimer.restart();
 }
 }
+if(heartsound==1 and hearttimer.elapsed>=hearttime)
+{
+if(hearttype==1)
+{
+heartslot=p.play_stationary("heartbeat1.wav", false);
+hearttimer.restart();
+}
+}
+if(heartsound==1 and hearttimer.elapsed>=hearttime)
+{
+if(hearttype==2)
+{
+heartslot=p.play_stationary("heartbeat2.wav",false);
+hearttimer.restart();
+}
+}
+if(heartsound==1 and hearttimer.elapsed>=hearttime)
+{
+if(hearttype==3)
+{
+heartslot=p.play_stationary("heartbeat3.wav",false);
+hearttimer.restart();
+}
+}
+if(heartsound==1 and hearttimer.elapsed>=hearttime)
+{
+if(hearttype==4)
+{
+heartslot=p.play_stationary("hartmon4.ogg",false);
+hearttimer.restart();
+}
+}
+if(heartsound==1 and hearttimer.elapsed>=hearttime)
+{
+if(hearttype==5)
+{
+heartslot=p.play_stationary("hartmon5.ogg",false);
+hearttimer.restart();
+}
+}
 if (jumping==1)
 {
 movetime=airtime;
@@ -192,6 +232,7 @@ if(hprestoration==1)
 string[] healingsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*healing*");
 if(healingsfx.length()!=0 and charhealsound==1) autoslot=p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+healingsfx[random(0,healingsfx.length()-1)],false);
 health+=maxhealth/4;
+hearttime+=maxhealth/4;
 string[] healstopsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*healstop*");
 if(healstopsfx.length()!=0 and charhealsound3==1 and health>=maxhealth) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+healstopsfx[random(0,healstopsfx.length()-1)],false);
 hprestoretimer.restart();
@@ -228,6 +269,7 @@ string[] lifesfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*life*
 if(lifesfx.length()!=0 and charlifesound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+lifesfx[random(0,lifesfx.length()-1)],false);
 lifecard-=1;
 health=maxhealth;
+hearttime=maxhealth;
 }
 }
 if(animals.length()>=50 or enemies.length()>=50 or projectiles.length()>=50 or robots.length()>=50 or zombies.length()>=50)
@@ -257,10 +299,16 @@ me.y=maxy;
 if(health<=0)
 {
 health=0;
+hearttime=0;
 }
 if(health>=maxhealth)
 {
 health=maxhealth;
+hearttime=maxhealth;
+}
+if(hearttime<=400)
+{
+hearttime=400;
 }
 if(shieldstrength<=0)
 {
@@ -303,6 +351,7 @@ if(health>=maxhealth and hprestoration==1)
 hprestoration=0;
 p.destroy_sound(autoslot);
 health=maxhealth;
+hearttime=maxhealth;
 }
 if(shieldstrength>=maxshieldstrength and sprestoration==1)
 {

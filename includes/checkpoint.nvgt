@@ -33,7 +33,8 @@ string[]getsfx=find_files("sounds/"+soundpack+"/objects/checkpoints/"+last_check
 if(getsfx.length()!=0) checkpool.play_stationary_extended("sounds/"+soundpack+"/objects/checkpoints/"+last_checkpoint.checktype+"/"+getsfx[random(0,getsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
 me.x=last_checkpoint.checkx;
 me.y=last_checkpoint.checky;
-health = maxhealth;
+health=maxhealth;
+hearttime=maxhealth;
 if(building==true) load_map(mapname);
 }
 else if(lifecard<=1)

@@ -60,6 +60,7 @@ if(hitsfx.length()!=0) mines[i].wepsound=minepool.play_stationary_extended("soun
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=minepool.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=mines[i].damage-defence;
+hearttime-=mines[i].damage-defence;
 mines[i].triggered=false;
 mines.remove_at(i);
 return;

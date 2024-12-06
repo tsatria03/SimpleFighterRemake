@@ -102,6 +102,7 @@ if(shellsfx.length()!=0 and wepshellsound==1) bullets[i].wepsound=p.play_extende
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=bullets[i].damage-defence;
+hearttime-=bullets[i].damage-defence;
 bullets.remove_at(i);
 return;
 }

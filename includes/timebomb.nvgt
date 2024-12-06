@@ -62,6 +62,7 @@ if(hitsfx.length()!=0) timebombs[i].landsound=bombpool.play_stationary_extended(
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=bombpool.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=timebombs[i].damage-defence;
+hearttime-=timebombs[i].damage-defence;
 timebombs.remove_at(i);
 return;
 }

@@ -94,6 +94,7 @@ if(hitsfx.length()!=0) turrets[i].wepsound=turpool.play_stationary_extended("sou
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=turrets[i].damage*turrets[i].turlevel-defence;
+hearttime-=2*turrets[i].damage*turrets[i].turlevel-defence;
 turrets[i].firetimer.restart();
 }
 if(turrets[i].turhealth<=0)

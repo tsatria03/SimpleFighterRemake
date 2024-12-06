@@ -1058,6 +1058,7 @@ if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_stationary_extende
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 && charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=forcefields[i].damage-defence;
+hearttime-=forcefields[i].damage-defence;
 pbounce();
 return;
 }
@@ -1070,6 +1071,7 @@ string[] lifesfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*life*
 if(lifesfx.length()!=0 and charlifesound==1) hazardpool.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+lifesfx[random(0,lifesfx.length()-1)],false);
 lifecard-=1;
 health=maxhealth;
+hearttime=maxhealth;
 pbounce();
 return;
 }
@@ -1213,8 +1215,9 @@ if(fallcounter<=7) playland();
 else if(fallcounter>7)
 {
 playfall();
-if(fallcounter>=8 and shieldon==0) health-=fallcounter*21-defence;
 if(fallcounter>=8 and shieldon==1) shieldstrength-=fallcounter*21-shielddefence;
+if(fallcounter>=8 and shieldon==0) health-=fallcounter*21-defence;
+if(fallcounter>=8 and shieldon==0) hearttime-=fallcounter*21-defence;
 }
 falling=false;
 fallcounter=0;

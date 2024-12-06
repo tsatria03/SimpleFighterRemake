@@ -87,6 +87,7 @@ if(hitsfx.length()!=0) projectiles[i].wepsound=projpool.play_stationary_extended
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=projectiles[i].damage*projectiles[i].projlevel-defence;
+hearttime-=projectiles[i].damage*projectiles[i].projlevel-defence;
 projectiles[i].firetimer.restart();
 }
 for(uint i1=0; i1<animals.length(); i1++)

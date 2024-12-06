@@ -22,6 +22,7 @@ for(uint i=0; i<healthzones.length(); i++)
 if(healthzones[i].minx<=me.x and healthzones[i].maxx>=me.x and healthzones[i].miny<=me.y and healthzones[i].maxy>=me.y and healthzones[i].healtimer.elapsed>=healthzones[i].healtime)
 {
 health+=healthzones[i].healhp;
+hearttime+=healthzones[i].healhp;
 healthzones[i].healtimer.restart();
 }
 }

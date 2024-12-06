@@ -2,4 +2,3 @@ name test
 maxx 200
 maxy 200
 platform 0 200 0 marble2 0 100
-dialog 5 5 0 0 hi dlg false

@@ -100,6 +100,7 @@ if(hitsfx.length()!=0) animals[i].wepsound=animalpool.play_stationary_extended("
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=animals[i].damage*animals[i].amlevel-defence;
+hearttime-=animals[i].damage*animals[i].amlevel-defence;
 animals[i].firetimer.restart();
 }
 if(animals[i].animalhealth<=0)
@@ -285,6 +286,7 @@ if(hitsfx.length()!=0) enemies[i].wepsound=enemiepool.play_stationary_extended("
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=enemies[i].damage*enemies[i].emlevel-defence;
+hearttime-=enemies[i].damage*enemies[i].emlevel-defence;
 enemies[i].firetimer.restart();
 }
 if(enemies[i].enemiehealth<=0)
@@ -469,6 +471,7 @@ if(hitsfx.length()!=0) robots[i].wepsound=robpool.play_stationary_extended("soun
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=robots[i].damage*robots[i].roblevel-defence;
+hearttime-=robots[i].damage*robots[i].roblevel-defence;
 robots[i].firetimer.restart();
 }
 if(robots[i].robothealth<=0)
@@ -653,6 +656,7 @@ if(hitsfx.length()!=0) zombies[i].wepsound=zombpool.play_stationary_extended("so
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
 if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=zombies[i].damage*zombies[i].zomblevel-defence;
+hearttime-=zombies[i].damage*zombies[i].zomblevel-defence;
 zombies[i].firetimer.restart();
 }
 if(zombies[i].zombiehealth<=0)
