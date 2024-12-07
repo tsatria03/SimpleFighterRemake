@@ -2,7 +2,7 @@ animal@[]animals(0);
 class animal
 {
 bool fireable, moveable, moveable2, spotted;
-int amsound, defsound, hurtsound, stepsound, tilesound, wepsound;
+int amsound, defsound, hurtsound, spawnsound, stepsound, tilesound, wepsound;
 int animalcard;
 int anihealth;
 double amlevel;
@@ -42,6 +42,8 @@ fireable=amf;
 moveable=amt;
 moveable2=amt2;
 spotted=false;
+string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/*spawn*");
+if(spawnsfx.length()!=0) spawnsound=animalpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,amx,amy,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] amsfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/*taunt*");
 if(amsfx.length()!=0) amsound=animalpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/"+amsfx[random(0,amsfx.length()-1)],me.x,me.y,amx,amy,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }
@@ -377,7 +379,7 @@ robot@[]robots(0);
 class robot
 {
 bool fireable, moveable, moveable2, spotted;
-int robsound, defsound, hurtsound, stepsound, tilesound, wepsound;
+int robsound, defsound, hurtsound, stepsound, spawnsound, tilesound, wepsound;
 int robotcard;
 int robhealth;
 double roblevel;
@@ -417,6 +419,8 @@ fireable=robf;
 moveable=robt;
 moveable2=robt2;
 spotted=false;
+string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/*spawn*");
+if(spawnsfx.length()!=0) spawnsound=robpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,robx,roby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] robsfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/*taunt*");
 if(robsfx.length()!=0) robsound=robpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/"+robsfx[random(0,robsfx.length()-1)],me.x,me.y,robx,roby,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }
@@ -564,7 +568,7 @@ zombie@[]zombies(0);
 class zombie
 {
 bool fireable, moveable, moveable2, spotted;
-int zombsound, defsound, hurtsound, stepsound, tilesound, wepsound;
+int zombsound, defsound, hurtsound, stepsound, spawnsound, tilesound, wepsound;
 int zombiecard;
 int zombhealth;
 double zomblevel;
@@ -604,6 +608,8 @@ fireable=zombf;
 moveable=zombt;
 moveable2=zombt2;
 spotted=false;
+string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/*spawn*");
+if(spawnsfx.length()!=0) spawnsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,zombx,zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 string[] zombsfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/*taunt*");
 if(zombsfx.length()!=0) zombsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/"+zombsfx[random(0,zombsfx.length()-1)],me.x,me.y,zombx,zomby,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }

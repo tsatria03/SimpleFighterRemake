@@ -646,12 +646,27 @@ return menu_position;
 }
 }
 }
-if(key_pressed(KEY_TAB))
+if(key_repeating(KEY_TAB))
 {
-speak(intro);
+    if (is_intro_tts == true) {
+        if (speech_output > 0 && speech_output < 5) {
+            screen_reader_speak_interrupt(speech_output, intro);
+        } else if (force_sapi == false) {
+            tts.stop();
+            speak(intro);
+        } else {
+            internal_tts.speak_interrupt(intro);
+        }
+    } else {
+        if (internal_sound.load(fn(intro), @spool.pack_file)) {
+            internal_sound.play();
+        }
+    }
 }
-if(allow_escape == true) {
-if(key_pressed(KEY_ESCAPE)) {
+if(allow_escape == true)
+{
+if(key_pressed(KEY_ESCAPE))
+{
 string[] mclos=find_files("sounds/"+soundpack+"/menus/"+menutype+"/*close*");
 if(mclos.length()!=0) spool.play_stationary("sounds/"+soundpack+"/menus/"+menutype+"/"+mclos[random(0,mclos.length()-1)],false);
 running = false;

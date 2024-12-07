@@ -123,8 +123,11 @@ leadup4.ogg
 leadup5.ogg
 leadup6.ogg
 login.ogg
+mapdelete.ogg
+mapfinished.ogg
 mapjoin.ogg
 mapleave.ogg
+maploadend.ogg
 maploading.ogg
 maploading2.ogg
 maploadstart.ogg
@@ -132,7 +135,6 @@ maploadstart2.ogg
 maploadstop.ogg
 maploadstop2.ogg
 mapupdate.ogg
-map_finish.ogg
 mark1.ogg
 mark2.ogg
 medalbutton1.ogg
@@ -220,4 +222,4 @@ volume_up.ogg
 wallchange.ogg
 wlo.ogg
 wsp.ogg
-total files: 222
+total files: 224
