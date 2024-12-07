@@ -79,6 +79,8 @@ if(dockmode==1) dockmode=1;
 else if(dockmode==0) dockmode=0;
 if(fademode==1) fademode=1;
 else if(fademode==0) fademode=0;
+if(heartsound==1) heartsound=1;
+else if(heartsound==0) heartsound=0;
 if(pausem==1) pausem=1;
 else if(pausem==0) pausem=0;
 if(spacehold==1) spacehold=1;
@@ -116,9 +118,6 @@ if(medge.length()!=0) m.edge_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+m
 if(menter.length()!=0) m.enter_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+menter[random(0,menter.length()-1)]);
 if(mopen.length()!=0) m.open_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mopen[random(0,mopen.length()-1)]);
 if(mrap.length()!=0) m.wrap_sound=("sounds/"+soundpack+"/menus/"+menutype+"/"+mrap[random(0,mrap.length()-1)]);
-m.allow_escape=true;
-m.click_at_edge=false;
-m.enable_enter=true;
 m.set_up_and_down_skip_amount(mskipnum);
 }
 void setupmenu2(bool main=true)

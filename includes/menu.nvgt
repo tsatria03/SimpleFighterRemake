@@ -3228,6 +3228,10 @@ if(fademode==0)
 m.add_item_tts("enable global volume fading", "fdv");
 else
 m.add_item_tts("disable global volume fading", "fdv");
+if(heartsound==0)
+m.add_item_tts("enable heart monidor for all game modes", "hms");
+else
+m.add_item_tts("disable heart monidor for all game modes", "hms");
 if(pausem==0)
 m.add_item_tts("enable pause menu for all game modes", "psm");
 else
@@ -3477,6 +3481,20 @@ else
 {
 fademode=0;
 dlg("global volume fading disabled");
+}
+settingsmenu();
+}
+if(ssm=="hms")
+{
+if(heartsound==0)
+{
+heartsound=1;
+dlg("heart monidor enabled for all game modes");
+}
+else
+{
+heartsound=0;
+dlg("heart monidor disabled for all game modes");
 }
 settingsmenu();
 }

@@ -19,6 +19,86 @@ objtype2=ty2;
 automatic=itc;
 }
 }
+void auto_use_item()
+{
+if(itemhold==0 and itemtimer1.elapsed>=itemtime1 and itemtimer2.elapsed>=itemtime2 and itemtimer3.elapsed>=itemtime3)
+{
+if(itemcad==0)
+{
+speak("You must draw an item from a cadigory before using it.");
+}
+else if(itemcad==1 and useitems==true)
+{
+string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/*fire*");
+if(firesfx.length()!=0 and firesound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+itemtimer1.restart();
+string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/*hit*");
+if(hitsfx.length()!=0 and hitsound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+health+=maxhealth/4;
+hearttime+=maxhealth/4;
+}
+if(itemcad==2 and useitems==true)
+{
+string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/*fire*");
+if(firesfx.length()!=0 and firesound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+itemtimer2.restart();
+string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/*hit*");
+if(hitsfx.length()!=0 and hitsound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+health+=maxhealth/4;
+hearttime+=maxhealth/4;
+}
+if(itemcad==3 and useitems==true)
+{
+string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/*fire*");
+if(firesfx.length()!=0 and firesound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+itemtimer3.restart();
+string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/*hit*");
+if(hitsfx.length()!=0 and hitsound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+health+=maxhealth/4;
+hearttime+=maxhealth/4;
+}
+}
+}
+void manule_use_item()
+{
+if(itemhold==1)
+{
+if(itemcad==0)
+{
+speak("You must draw an item from a cadigory before using it.");
+}
+else if(itemcad==1 and useitems==true)
+{
+string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/*fire*");
+if(firesfx.length()!=0 and firesound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+wait(item1delay);
+string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/*hit*");
+if(hitsfx.length()!=0 and hitsound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+health+=maxhealth/4;
+hearttime+=maxhealth/4;
+}
+if(itemcad==2 and useitems==true)
+{
+string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/*fire*");
+if(firesfx.length()!=0 and firesound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+wait(item2delay);
+string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/*hit*");
+if(hitsfx.length()!=0 and hitsound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+health+=maxhealth/4;
+hearttime+=maxhealth/4;
+}
+if(itemcad==3 and useitems==true)
+{
+string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/*fire*");
+if(firesfx.length()!=0 and firesound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+wait(item3delay);
+string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/*hit*");
+if(hitsfx.length()!=0 and hitsound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
+health+=maxhealth/4;
+hearttime+=maxhealth/4;
+}
+}
+}
 void drop_item(string direction, string objtype, string objtype2)
 {
 if(direction=="left")

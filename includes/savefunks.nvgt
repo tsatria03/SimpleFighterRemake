@@ -149,6 +149,10 @@ if(st.d.exists("fademode"))
 {
 fademode=st.readn("fademode");
 }
+if(st.d.exists("heartsound"))
+{
+heartsound=st.readn("heartsound");
+}
 if(st.d.exists("pausem"))
 {
 pausem=st.readn("pausem");
@@ -240,6 +244,7 @@ st.add("autojump",autojump);
 st.add("autosave",autosave);
 st.add("dockmode",dockmode);
 st.add("fademode",fademode);
+st.add("heartsound",heartsound);
 st.add("pausem",pausem);
 st.add("spacehold",spacehold);
 st.add("hidedocks",hidedocks);

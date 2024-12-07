@@ -70,6 +70,7 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/healt
 if(hitsfx.length()!=0 and hitsound==1) itemslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/items/unsorted/health/"+healtype[i1]+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,itemvolume,itempitch,false);
 give(healtype[i1],-1);
 health+=maxhealth/4;
+hearttime+=maxhealth/4;
 speak("healed to"+round(health/maxhealth*100,2)+"percent health");
 return;
 }

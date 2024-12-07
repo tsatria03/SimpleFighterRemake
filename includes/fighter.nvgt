@@ -151,7 +151,7 @@ if(heartsound==1 and hearttimer.elapsed>=hearttime)
 {
 if(hearttype==1)
 {
-heartslot=p.play_stationary("heartbeat1.wav", false);
+if(heartsound==1) heartslot=p.play_stationary("heartbeat1.wav", false);
 hearttimer.restart();
 }
 }
@@ -159,7 +159,7 @@ if(heartsound==1 and hearttimer.elapsed>=hearttime)
 {
 if(hearttype==2)
 {
-heartslot=p.play_stationary("heartbeat2.wav",false);
+if(heartsound==1) heartslot=p.play_stationary("heartbeat2.wav",false);
 hearttimer.restart();
 }
 }
@@ -167,7 +167,7 @@ if(heartsound==1 and hearttimer.elapsed>=hearttime)
 {
 if(hearttype==3)
 {
-heartslot=p.play_stationary("heartbeat3.wav",false);
+if(heartsound==1) heartslot=p.play_stationary("heartbeat3.wav",false);
 hearttimer.restart();
 }
 }
@@ -175,7 +175,7 @@ if(heartsound==1 and hearttimer.elapsed>=hearttime)
 {
 if(hearttype==4)
 {
-heartslot=p.play_stationary("hartmon4.ogg",false);
+if(heartsound==1) heartslot=p.play_stationary("hartmon4.ogg",false);
 hearttimer.restart();
 }
 }
@@ -183,7 +183,7 @@ if(heartsound==1 and hearttimer.elapsed>=hearttime)
 {
 if(hearttype==5)
 {
-heartslot=p.play_stationary("hartmon5.ogg",false);
+if(heartsound==1) heartslot=p.play_stationary("hartmon5.ogg",false);
 hearttimer.restart();
 }
 }
@@ -306,9 +306,9 @@ if(health>=maxhealth)
 health=maxhealth;
 hearttime=maxhealth;
 }
-if(hearttime<=400)
+if(hearttime<=100)
 {
-hearttime=400;
+hearttime=100;
 }
 if(shieldstrength<=0)
 {
