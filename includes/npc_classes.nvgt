@@ -139,6 +139,7 @@ animalpool.destroy_sound(animals[i].amsound);
 }
 animals.resize(0);
 }
+
 animalzone@[]animalzones(0);
 class animalzone
 {
@@ -182,6 +183,7 @@ void destroy_all_animalzones()
 {
 animalzones.resize(0);
 }
+
 enemie@[]enemies(0);
 class enemie
 {
@@ -326,6 +328,7 @@ enemiepool.destroy_sound(enemies[i].emsound);
 }
 enemies.resize(0);
 }
+
 enemiezone@[]enemiezones(0);
 class enemiezone
 {
@@ -369,6 +372,7 @@ void destroy_all_enemiezones()
 {
 enemiezones.resize(0);
 }
+
 robot@[]robots(0);
 class robot
 {
@@ -511,6 +515,7 @@ robpool.destroy_sound(robots[i].robsound);
 }
 robots.resize(0);
 }
+
 robotzone@[]robotzones(0);
 class robotzone
 {
@@ -554,6 +559,7 @@ void destroy_all_robotzones()
 {
 robotzones.resize(0);
 }
+
 zombie@[]zombies(0);
 class zombie
 {
@@ -696,6 +702,7 @@ zombpool.destroy_sound(zombies[i].zombsound);
 }
 zombies.resize(0);
 }
+
 zombiezone@[]zombiezones(0);
 class zombiezone
 {

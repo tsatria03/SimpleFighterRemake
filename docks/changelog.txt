@@ -4,7 +4,7 @@ Implemented a heart rate monidor into the game for all characters. The less heal
 Made it so if you have more than 1 life when a hazard is spawned, the hazard will send you flying back in the Opposite direction of where you last hit it. This will cause you to lose a life in the process. The hazard will only kill you if you have 1 life left upon stepping on it.
 Minor enhancements and bug fixes to various classes and functions in the game.
 Optimized all dlg related functions in the builder part of the game.
-You can now define custom spawn sounds for all enemies.
+You can now define custom spawn sounds for all entities.
 Optimized all slider related functions in the builder part of the game.
 You can now define a custom air sound for the camera for all characters.
 Made it so the total size of sound packs are announced when hovering over them in the sound packs menu.

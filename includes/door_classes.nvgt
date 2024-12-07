@@ -1,0 +1,641 @@
+bool doormove;
+door@[]doors(0);
+class door
+{
+bool automatic, destroyable, is_moving=false;
+int startx, starty;
+int endx, endy;
+double doorhealth;
+double doormaxhealth;
+int closesound, defsound, destsound, doorsound, hurtsound, movesound, opensound;
+int speed;
+string closetype;
+string desttype;
+string looptype;
+string movetype;
+string opentype;
+timer doortimer;
+door(int sx,int sy,int ex,int ey,double hp,double maxhp,int sp,string lsound,string mvsound,string osound,string clsound,string dsound,bool dcl,bool dtb)
+{
+startx=sx;
+starty=sy;
+endx=ex;
+endy=ey;
+doorhealth=hp;
+doormaxhealth=maxhp;
+speed=sp;
+looptype=lsound;
+movetype=mvsound;
+opentype=osound;
+closetype=clsound;
+desttype=dsound;
+automatic=dcl;
+destroyable=dtb;
+string[] doorsfx=find_files("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/*loop*");
+if(doorsfx.length()!=0) doorsound=doorpool.play_extended_2d("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/"+doorsfx[random(0,doorsfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,true,0,0,doorvolume,doorpitch,false);
+}
+}
+void doorcheck()
+{
+for(uint i=0; i<doors.length(); i++)
+{
+if(doors[i].startx==me.x and doors[i].starty==me.y and doors[i].automatic==true)
+{
+doormove=true;
+doors[i].is_moving=true;
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+doors[i].opentype+"/*open*");
+if(opensfx.length()!=0) doors[i].opensound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/open/"+doors[i].opentype+"/"+opensfx[random(0,opensfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+string[] movesfx=find_files("sounds/"+soundpack+"/objects/doors/move/"+doors[i].movetype+"/*move*");
+if(movesfx.length()!=0) doors[i].movesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/move/"+doors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
+}
+if(doors[i].startx==me.x and doors[i].starty==me.y and doors[i].automatic==false and key_repeating(KEY_RETURN))
+{
+doormove=true;
+doors[i].is_moving=true;
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+doors[i].opentype+"/*open*");
+if(opensfx.length()!=0) doors[i].opensound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/open/"+doors[i].opentype+"/"+opensfx[random(0,opensfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+string[] movesfx=find_files("sounds/"+soundpack+"/objects/doors/move/"+doors[i].movetype+"/*move*");
+if(movesfx.length()!=0) doors[i].movesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/move/"+doors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
+}
+if(doors[i].doorhealth<=0)
+{
+doorpool.destroy_sound(doors[i].hurtsound);
+doorpool.destroy_sound(doors[i].doorsound);
+string[] defsfx=find_files("sounds/"+soundpack+"/objects/doors/dest/"+doors[i].desttype+"/*death*");
+if(defsfx.length()!=0) doors[i].defsound=doorpool.play_extended_2d("sounds/"+soundpack+"/objects/doors/dest/"+doors[i].desttype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,doors[i].startx,doors[i].starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+doors.remove_at(i);
+return;
+}
+}
+}
+void doorloop()
+{
+for(uint i=0; i<doors.length(); i++)
+{
+if(doors[i].doortimer.elapsed>=doors[i].speed and doors[i].is_moving)
+{
+doors[i].doortimer.restart();
+if(doors[i].speed==-1)
+{
+me.x=doors[i].endx;
+me.y=doors[i].endy;
+}
+if(me.x<doors[i].endx)
+{
+me.x++;
+}
+if(me.x>doors[i].endx)
+{
+me.x--;
+}
+if(me.y<doors[i].endy)
+{
+me.y++;
+}
+if(me.y>doors[i].endy)
+{
+me.y--;
+}
+if(me.x==doors[i].endx and me.y==doors[i].endy)
+{
+doorpool.destroy_sound(doors[i].movesound);
+string[] closesfx=find_files("sounds/"+soundpack+"/objects/doors/close/"+doors[i].closetype+"/*close*");
+if(closesfx.length()!=0) doors[i].closesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/close/"+doors[i].closetype+"/"+closesfx[random(0,closesfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+doormove=false;
+doors[i].is_moving=false;
+}
+}
+}
+}
+void spawn_door(int x,int y,int x2,int y2,double hp,double maxhp,int speed,string looptype,string movetype,string opentype,string closetype,string desttype,bool automatic,bool destroyable)
+{
+door dr1(x,y,x2,y2,hp,maxhp,speed,looptype,movetype,opentype,closetype,desttype,automatic,destroyable);
+doors.insert_last(dr1);
+}
+void destroy_all_doors()
+{
+for(uint i=0; i<doors.length(); i++)
+{
+doorpool.destroy_sound(doors[i].doorsound);
+doorpool.destroy_sound(doors[i].movesound);
+}
+doors.resize(0);
+doormove=false;
+}
+
+bool psdoormove;
+psdoor@[]psdoors(0);
+class psdoor
+{
+bool automatic, destroyable, is_moving;
+int closesound, defsound, destsound, psdoorsound, hurtsound, movesound, opensound;
+int startx, starty;
+int endx, endy;
+double psdoorhealth;
+double psdoormaxhealth;
+int speed;
+string drpass;
+string closetype;
+string desttype;
+string looptype;
+string movetype;
+string opentype;
+timer psdoortimer;
+psdoor(int sx,int sy,int ex,int ey,double hp,double maxhp,int sp,string pd,string lsound,string mvsound,string osound,string clsound,string dsound,bool dcl,bool dtb)
+{
+startx=sx;
+starty=sy;
+endx=ex;
+endy=ey;
+psdoorhealth=hp;
+psdoormaxhealth=maxhp;
+speed=sp;
+drpass=pd;
+looptype=lsound;
+movetype=mvsound;
+opentype=osound;
+closetype=clsound;
+desttype=dsound;
+automatic=dcl;
+destroyable=dtb;
+string[] psdoorsfx=find_files("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/*loop*");
+if(psdoorsfx.length()!=0) psdoorsound=doorpool.play_extended_2d("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/"+psdoorsfx[random(0,psdoorsfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,true,0,0,doorvolume,doorpitch,false);
+}
+bool check_password(string input)
+{
+return input == drpass;
+}
+}
+void psdoorcheck()
+{
+for(uint i=0; i<psdoors.length(); i++)
+{
+if(psdoors[i].startx==me.x and psdoors[i].starty==me.y and psdoors[i].automatic==true)
+{
+psdoormove=true;
+psdoors[i].is_moving=true;
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+psdoors[i].opentype+"/*open*");
+if(opensfx.length()!=0) psdoors[i].opensound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/open/"+psdoors[i].opentype+"/"+opensfx[random(0,opensfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+string[] movesfx=find_files("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/*move*");
+if(movesfx.length()!=0) psdoors[i].movesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
+}
+if(psdoors[i].startx==me.x and psdoors[i].starty==me.y and psdoors[i].automatic==false and key_repeating(KEY_RETURN))
+{
+input.set_only_allowed_chars("none");
+string pass = input.input("Enter the password to open this locked door.");
+if(psdoors[i].check_password(pass))
+{
+psdoormove=true;
+psdoors[i].is_moving=true;
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+psdoors[i].opentype+"/*open*");
+if(opensfx.length()!=0) psdoors[i].opensound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/open/"+psdoors[i].opentype+"/"+opensfx[random(0,opensfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+string[] movesfx=find_files("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/*move*");
+if(movesfx.length()!=0) psdoors[i].movesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/move/"+psdoors[i].movetype+"/"+movesfx[random(0,movesfx.length()-1)],true,0,0,doorvolume,doorpitch,false);
+}
+else
+{
+speak("Invalid password. Please try again.");
+}
+}
+if(psdoors[i].psdoorhealth<=0)
+{
+doorpool.destroy_sound(psdoors[i].hurtsound);
+doorpool.destroy_sound(psdoors[i].psdoorsound);
+string[] defsfx=find_files("sounds/"+soundpack+"/objects/doors/dest/"+psdoors[i].desttype+"/*death*");
+if(defsfx.length()!=0) psdoors[i].defsound=doorpool.play_extended_2d("sounds/"+soundpack+"/objects/doors/dest/"+psdoors[i].desttype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,psdoors[i].startx,psdoors[i].starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+psdoors.remove_at(i);
+return;
+}
+}
+}
+void psdoorloop()
+{
+for(uint i=0; i<psdoors.length(); i++)
+{
+if(psdoors[i].psdoortimer.elapsed>=psdoors[i].speed and psdoors[i].is_moving)
+{
+psdoors[i].psdoortimer.restart();
+if(psdoors[i].speed==-1)
+{
+me.x=psdoors[i].endx;
+me.y=psdoors[i].endy;
+}
+if(me.x<psdoors[i].endx)
+{
+me.x++;
+}
+if(me.x>psdoors[i].endx)
+{
+me.x--;
+}
+if(me.y<psdoors[i].endy)
+{
+me.y++;
+}
+if(me.y>psdoors[i].endy)
+{
+me.y--;
+}
+if(me.x==psdoors[i].endx and me.y==psdoors[i].endy)
+{
+doorpool.destroy_sound(psdoors[i].movesound);
+string[] closesfx=find_files("sounds/"+soundpack+"/objects/doors/close/"+psdoors[i].closetype+"/*close*");
+if(closesfx.length()!=0) psdoors[i].closesound=doorpool.play_stationary_extended("sounds/"+soundpack+"/objects/doors/close/"+psdoors[i].closetype+"/"+closesfx[random(0,closesfx.length()-1)],false,0,0,doorvolume,doorpitch,false);
+psdoormove=false;
+psdoors[i].is_moving=false;
+}
+}
+}
+}
+void spawn_psdoor(int x,int y,int x2,int y2,double hp,double maxhp,int speed,string pass,string looptype,string movetype,string opentype,string closetype,string desttype,bool automatic,bool destroyable)
+{
+psdoor pdr1(x,y,x2,y2,hp,maxhp,speed,pass,looptype,movetype,opentype,closetype,desttype,automatic,destroyable);
+psdoors.insert_last(pdr1);
+}
+void destroy_all_psdoors()
+{
+for(uint i=0; i<psdoors.length(); i++)
+{
+doorpool.destroy_sound(psdoors[i].psdoorsound);
+doorpool.destroy_sound(psdoors[i].movesound);
+}
+psdoors.resize(0);
+psdoormove=false;
+}
+
+passage@[]passages(0);
+class passage
+{
+bool is_open;
+bool is_sound_paused;
+int closesound,passagesound,opensound;
+int platform_id;
+int startx,starty;
+int direction;
+int passagelength;
+int opentime;
+int closetime;
+string tile;
+string closetype;
+string looptype;
+string opentype;
+timer closetimer,opentimer;
+passage(int sx,int sy,int dr,int psl,int ot,string ty,string lsound,string osound,string clsound,int ct)
+{
+startx=sx;
+starty=sy;
+direction=dr;
+passagelength=psl;
+opentime=ot;
+tile=ty;
+looptype=lsound;
+opentype=osound;
+closetype=clsound;
+closetime=ct;
+is_open=false;
+is_sound_paused=false;
+platform_id=-1;
+string[] passagesfx=find_files("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/*loop*");
+if(passagesfx.length()!=0) passagesound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/"+passagesfx[random(0,passagesfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,true,0,0,doorvolume,doorpitch,false);
+update_passage_sound();
+}
+bool is_endpoint(int x, int y)
+    {
+        int endx = startx + (direction == 1 ? passagelength : 0);
+        int endy = starty + (direction == 2 ? passagelength : 0);
+        return (x == startx && y == starty) || (x == endx && y == endy);
+    }
+    bool is_within_passage(int x, int y)
+    {
+        if (!is_open) return false;
+        return (direction == 1 && x > startx && x < startx + passagelength) || (direction == 2 && y > starty && y < starty + passagelength);
+    }
+    string get_endpoint_description(int x, int y)
+    {
+        if (!is_endpoint(x, y)) return "";   
+        string status = is_open ? "open" : "";
+        return status + " passage endpoint";
+    }
+void update_passage_sound()
+{
+int sound_start_x=startx+(direction==1?1:0);
+int sound_start_y=starty+(direction==2?1:0);
+int sound_end_x=startx+(direction==1?passagelength:0);
+int sound_end_y=starty+(direction==2?passagelength:0);
+if(passagesound!=-1 && !is_sound_paused)
+{
+passagepool.update_sound_2d(passagesound,sound_start_x,sound_start_y);
+passagepool.update_sound_range_2d(passagesound,0,sound_end_x-sound_start_x,0,sound_end_y-sound_start_y);
+}
+if(opensound!=-1)
+{
+passagepool.update_sound_2d(opensound,sound_start_x,sound_start_y);
+passagepool.update_sound_range_2d(opensound,0,sound_end_x-sound_start_x,0,sound_end_y-sound_start_y);
+}
+if(closesound!=-1)
+{
+passagepool.update_sound_2d(closesound,sound_start_x,sound_start_y);
+passagepool.update_sound_range_2d(closesound,0,sound_end_x-sound_start_x,0,sound_end_y-sound_start_y);
+}
+}
+void toggle_passage()
+{
+if(is_open)
+close_passage();
+else
+open_passage();
+}
+void open_passage()
+{
+if(!is_open)
+{
+is_open=true;
+opentimer.restart();
+if(passagesound!=-1 && !is_sound_paused)
+{
+passagepool.pause_sound(passagesound);
+is_sound_paused=true;
+}
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+opentype+"/*open*");
+if(opensfx.length()!=0) opensound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/open/"+opentype+"/"+opensfx[random(0,opensfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+update_passage_sound();
+int platform_start_x=startx;
+int platform_start_y=starty;
+int platform_end_x=startx;
+int platform_end_y=starty;
+if(direction==1)
+{
+platform_start_x+=1;
+platform_end_x+=passagelength;
+}
+else if(direction==2)
+{
+platform_start_y+=1;
+platform_end_y+=passagelength;
+}
+platform_id=spawn_platform(platform_start_x,platform_end_x,platform_start_y,platform_end_y,tile,0,100);
+        }
+        }
+void close_passage()
+{
+if(is_open)
+{
+is_open=false;
+closetimer.restart();
+if(passagesound!=-1 && is_sound_paused)
+{
+passagepool.resume_sound(passagesound);
+is_sound_paused=false;
+}
+string[] closesfx=find_files("sounds/"+soundpack+"/objects/doors/close/"+closetype+"/*close*");
+if(closesfx.length()!=0) closesound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/close/"+closetype+"/"+closesfx[random(0,closesfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+update_passage_sound();
+if(platform_id!=-1)
+{
+remove_platform(platform_id);
+platform_id=-1;
+}
+}
+}
+void update_passage()
+{
+if(is_open && is_at_endpoint (me.x,me.y) && key_repeating(KEY_RETURN) && opentimer.elapsed>=opentime)
+{
+toggle_passage();
+opentimer.restart();
+}
+else if(!is_open && is_at_endpoint (me.x,me.y) && key_repeating(KEY_RETURN) && closetimer.elapsed>=closetime)
+{
+toggle_passage();
+closetimer.restart();
+}
+update_passage_sound();
+}
+bool is_at_endpoint (int x,int y)
+{
+int endx=startx+(direction==1?passagelength+1:0);
+int endy=starty+(direction==2?passagelength+1:0);
+return(x==startx && y==starty)||(x==endx && y==endy);
+}
+};
+void checkpassages()
+{
+for(uint i=0; i<passages.length(); i++)
+{
+passages[i].update_passage();
+}
+}
+void spawn_passage(int x,int y,int dir,int plength,int opentime,string tile,string looptype,string opentype,string closetype,int closetime)
+{
+passage pg1(x,y,dir,plength,opentime,tile,looptype,opentype,closetype,closetime);
+passages.insert_last(pg1);
+}
+void destroy_all_passages()
+{
+for(uint i=0; i<passages.length(); i++)
+{
+passagepool.destroy_sound(passages[i].passagesound);
+passages[i].close_passage();
+}
+passages.resize(0);
+}
+
+pspassage@[]pspassages(0);
+class pspassage
+{
+bool is_open;
+bool is_sound_paused;
+int closesound,pspassagesound,opensound;
+int platform_id;
+int startx,starty;
+int direction;
+int pspassagelength;
+int opentime;
+int closetime;
+string tile;
+string closetype;
+string looptype;
+string opentype;
+string pspass;
+timer closetimer,opentimer;
+pspassage(int sx,int sy,int dr,int psl,int ot,string ty,string lsound,string osound,string clsound,string pd,int ct)
+{
+startx=sx;
+starty=sy;
+direction=dr;
+pspassagelength=psl;
+opentime=ot;
+tile=ty;
+looptype=lsound;
+opentype=osound;
+closetype=clsound;
+pspass=pd;
+closetime=ct;
+is_open=false;
+is_sound_paused=false;
+platform_id=-1;
+string[] pspassagesfx=find_files("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/*loop*");
+if(pspassagesfx.length()!=0) pspassagesound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/loop/"+looptype+"/"+pspassagesfx[random(0,pspassagesfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,true,0,0,doorvolume,doorpitch,false);
+update_pspassage_sound();
+}
+bool is_endpoint(int x, int y)
+{
+    int endx = startx + (direction == 1 ? pspassagelength : 0);
+    int endy = starty + (direction == 2 ? pspassagelength : 0);
+    return (x == startx && y == starty) || (x == endx && y == endy);
+}
+bool is_within_pspassage(int x, int y)
+{
+    if (!is_open) return false;
+    return (direction == 1 && x > startx && x < startx + pspassagelength) || (direction == 2 && y > starty && y < starty + pspassagelength);
+}
+string get_endpoint_description(int x, int y)
+{
+    if (!is_endpoint(x, y)) return "";   
+    string status = is_open ? "open" : "locked";
+    return status + " passage endpoint";
+}
+void update_pspassage_sound()
+{
+int sound_start_x=startx+(direction==1?1:0);
+int sound_start_y=starty+(direction==2?1:0);
+int sound_end_x=startx+(direction==1?pspassagelength:0);
+int sound_end_y=starty+(direction==2?pspassagelength:0);
+if(pspassagesound!=-1 && !is_sound_paused)
+{
+passagepool.update_sound_2d(pspassagesound,sound_start_x,sound_start_y);
+passagepool.update_sound_range_2d(pspassagesound,0,sound_end_x-sound_start_x,0,sound_end_y-sound_start_y);
+}
+if(opensound!=-1)
+{
+passagepool.update_sound_2d(opensound,sound_start_x,sound_start_y);
+passagepool.update_sound_range_2d(opensound,0,sound_end_x-sound_start_x,0,sound_end_y-sound_start_y);
+}
+if(closesound!=-1)
+{
+passagepool.update_sound_2d(closesound,sound_start_x,sound_start_y);
+passagepool.update_sound_range_2d(closesound,0,sound_end_x-sound_start_x,0,sound_end_y-sound_start_y);
+}
+}
+bool check_password(string input)
+{
+return input == pspass;
+}
+void toggle_pspassage(string pspassword="")
+{
+if(is_open)
+{
+    close_pspassage();
+}
+else
+{
+    if(check_password(pspassword))
+    {
+        open_pspassage();
+    }
+    else
+    {
+        speak("Invalid password. Please try again.");
+    }
+}
+}
+void open_pspassage()
+{
+if(!is_open)
+{
+is_open=true;
+opentimer.restart();
+if(pspassagesound!=-1 && !is_sound_paused)
+{
+passagepool.pause_sound(pspassagesound);
+is_sound_paused=true;
+}
+string[] opensfx=find_files("sounds/"+soundpack+"/objects/doors/open/"+opentype+"/*open*");
+if(opensfx.length()!=0) opensound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/open/"+opentype+"/"+opensfx[random(0,opensfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+update_pspassage_sound();
+int platform_start_x=startx;
+int platform_start_y=starty;
+int platform_end_x=startx;
+int platform_end_y=starty;
+if(direction==1)
+{
+platform_start_x+=1;
+platform_end_x+=pspassagelength;
+}
+else if(direction==2)
+{
+platform_start_y+=1;
+platform_end_y+=pspassagelength;
+}
+platform_id=spawn_platform(platform_start_x,platform_end_x,platform_start_y,platform_end_y,tile,0,100);
+        }
+        }
+void close_pspassage()
+{
+if(is_open)
+{
+is_open=false;
+closetimer.restart();
+if(pspassagesound!=-1 && is_sound_paused)
+{
+passagepool.resume_sound(pspassagesound);
+is_sound_paused=false;
+}
+string[] closesfx=find_files("sounds/"+soundpack+"/objects/doors/close/"+closetype+"/*close*");
+if(closesfx.length()!=0) closesound=passagepool.play_extended_2d("sounds/"+soundpack+"/objects/doors/close/"+closetype+"/"+closesfx[random(0,closesfx.length()-1)],me.x,me.y,startx,starty,0,0,0,0,false,0,0,doorvolume,doorpitch,false);
+update_pspassage_sound();
+if(platform_id!=-1)
+{
+remove_platform(platform_id);
+platform_id=-1;
+}
+}
+}
+void update_pspassage()
+{
+if(is_at_endpoint(me.x,me.y) && key_repeating(KEY_RETURN))
+{
+    if((is_open && closetimer.elapsed>=closetime) || (!is_open && opentimer.elapsed>=opentime))
+    {
+        if(!is_open)
+        {
+input.set_only_allowed_chars("none");
+string pass = input.input("Enter the password to open this locked passage.");
+            toggle_pspassage(pass);
+        }
+        else
+        {
+            toggle_pspassage();
+        }
+    }
+}
+update_pspassage_sound();
+}
+bool is_at_endpoint(int x,int y)
+{
+int endx=startx+(direction==1?pspassagelength+1:0);
+int endy=starty+(direction==2?pspassagelength+1:0);
+return(x==startx && y==starty)||(x==endx && y==endy);
+}
+};
+void checkpspassages()
+{
+for(uint i=0; i<pspassages.length(); i++)
+{
+pspassages[i].update_pspassage();
+}
+}
+void spawn_pspassage(int x,int y,int dir,int plength,int opentime,string tile,string looptype,string opentype,string closetype,string pspassword,int closetime)
+{
+pspassage pg1(x,y,dir,plength,opentime,tile,looptype,opentype,closetype,pspassword,closetime);
+pspassages.insert_last(pg1);
+}
+void destroy_all_pspassages()
+{
+for(uint i=0; i<pspassages.length(); i++)
+{
+passagepool.destroy_sound(pspassages[i].pspassagesound);
+pspassages[i].close_pspassage();
+}
+pspassages.resize(0);
+}

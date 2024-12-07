@@ -46,6 +46,7 @@ return true;
 }
 return false;
 }
+
 class kh
 {
 bool already_installed;
@@ -66,6 +67,7 @@ already_installed=false;
 }
 }
 }
+
 class key_hold
 {
 bool status;
