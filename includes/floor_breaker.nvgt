@@ -1,0 +1,30 @@
+floorbreaker@[]floorbreakers(0);
+class floorbreaker
+{
+int spawnsound;
+int breakerx;
+int breakery;
+string breakertype;
+floorbreaker(int fbx,int fby,string fbt)
+{
+breakerx=fbx;
+breakery=fby;
+breakertype=fbt;
+string[] spawnsfx=find_files("sounds/"+soundpack+"/objects/floor breakers/"+breakertype+"/*spawn*");
+if(spawnsfx.length()!=0) spawnsound=breakerpool.play_2d("sounds/"+soundpack+"/objects/floor breakers/"+breakertype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,breakerx,breakery,false);
+spawn_platform(breakerx, breakerx, breakery, breakery, "air", tilevolume, tilepitch);
+}
+}
+void spawn_floorbreaker(int x,int y,string breakertype)
+{
+floorbreaker fb1(x,y,breakertype);
+floorbreakers.insert_last(fb1);
+}
+void destroy_all_floorbreakers()
+{
+for(uint i=0; i<floorbreakers.length(); i++)
+{
+breakerpool.destroy_sound(floorbreakers[i].spawnsound);
+}
+floorbreakers.resize(0);
+}

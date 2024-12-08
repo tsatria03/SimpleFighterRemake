@@ -25,7 +25,7 @@
 **23. Add throwable items.
 **24. Add flying vehicles such as aircrafts.
 **25. Add falling and jumpping lojic to animals, enemies, robots, and zombies.
-**26. Add a server side scoreboard system to all of the game modes.
+**26. Add a local and server side scoreboard system to all of the game modes.
 **27. Add a map uploader and downloader.
 **28. Restrict certain weapons and Shields behind levels. I've already had the foundation for that, but haven't had the time to fully implement it yet.
 **29. Implement a way to restrict all npcs to a certain part of the map, such as near walls, or other tiles.

@@ -1,5 +1,6 @@
 new in 5.0
-All entidies except for projectiles and turrets now drop health items upon killing them.
+Replaced the text_input class with a much better virtual_dialogs class. This class also includes the ability to create virtual_input_boxes that uses the audio forms class as a backend. The game will now  utilize this class for most input prompts from now on, unless otherwise noted.
+All entities except for projectiles and turrets will now drop health items upon killing them.
 new in 4.9
 Added the option to toggle using the heart monidor for all of the game modes in the settings menu.
 Implemented a heart rate monidor into the game for all characters. The less health you have for that character, the faster it gets. It also resets itself back to your character's maximum health upon losing a life.

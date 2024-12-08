@@ -185,6 +185,7 @@ destroy_all_dialogs();
 destroy_all_doors();
 destroy_all_enemies();
 destroy_all_enemiezones();
+destroy_all_floorbreakers();
 destroy_all_forcefields();
 destroy_all_hazards();
 destroy_all_healthzones();
@@ -773,6 +774,13 @@ bool fb=string_to_bool(sd[15]);
 bool mb=string_to_bool(sd[16]);
 bool mb2=string_to_bool(sd[17]);
 spawn_enemie(x, y, enerange, enerange2, enerange3, enerange4, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2);
+}
+else if(sd[0]=="floor_breaker" && sd.length()==4)
+{
+int x=stn(sd[1]);
+int y=stn(sd[2]);
+string floorbtype=sd[3];
+spawn_floorbreaker(x, y, floorbtype);
 }
 else if(sd[0]=="forcefield" && sd.length()==8)
 {

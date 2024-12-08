@@ -103,15 +103,3 @@ if(i<spl.length()-1) folder+="\\";
 }
 return folder;
 }
-string get_key_echo_description(int mode)
-{
-if (mode==textflag_none)
-return "echo off";
-else if (mode==textflag_characters)
-return "echo characters";
-else if (mode==textflag_words)
-return "echo words";
-else if (mode==textflag_characters_words)
-return "echo both characters and words";
-return "";
-}
