@@ -1,3 +1,5 @@
+new in 5.0
+All entidies except for projectiles and turrets now drop health items upon killing them.
 new in 4.9
 Added the option to toggle using the heart monidor for all of the game modes in the settings menu.
 Implemented a heart rate monidor into the game for all characters. The less health you have for that character, the faster it gets. It also resets itself back to your character's maximum health upon losing a life.

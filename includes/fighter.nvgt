@@ -1082,9 +1082,9 @@ objinfo();
 }
 }
 }
-if(key_pressed(KEY_N) and building==false)
+if(key_pressed(KEY_N))
 {
-speak("You have killed a total of"+kills+"enemies.");
+speak("You have killed a total of"+kills+"entidies.");
 }
 if(key_repeating(KEY_P))
 {

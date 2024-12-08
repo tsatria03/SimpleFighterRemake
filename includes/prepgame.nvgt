@@ -4230,7 +4230,7 @@ m.add_item_tts("Your maximum y position is"+maxy+"tiles");
 m.add_item_tts("You're currently on level"+level+"with"+xp+"experience. Your next level requires"+(xprequiered-xp)+"experience.");
 m.add_item_tts("You have"+points+"points available to spend.");
 if(melee==false) m.add_item_tts("you have "+loadedammo+" out of "+maxammo+" ammo loaded, and "+ammo+" ammo in reserve.");
-m.add_item_tts("You have killed a total of"+kills+"enemies.");
+m.add_item_tts("You have killed a total of"+kills+"entidies.");
 m.add_item_tts("You've been playing for a total of;"+timeelapsed.m()+"minutes,"+timeelapsed.s()+"seconds");
 m.add_item_tts("back","back");
 int mres=m.run("Statistics menu. There are "+(m.get_item_count()-1)+" entries available to view.",true);

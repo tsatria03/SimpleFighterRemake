@@ -26,25 +26,25 @@ int keyboardchanges_callback(dynamic_menu_pro@ m, string data)
 string keyboardchanges;
 if(m.menu_position>0)
 keyboardchanges=m.item_list[m.menu_position-1].name;
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_T) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_T) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_T) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_T) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] typesfx=find_files("sounds/"+soundpack+"/typing themes/"+keyboardchanges+"/*type*");
 if(typesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/typing themes/"+keyboardchanges+"/"+typesfx[random(0,typesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_S) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_S) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_S) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_S) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] spacesfx=find_files("sounds/"+soundpack+"/typing themes/"+keyboardchanges+"/*space*");
 if(spacesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/typing themes/"+keyboardchanges+"/"+spacesfx[random(0,spacesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_R) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_R) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] entersfx=find_files("sounds/"+soundpack+"/typing themes/"+keyboardchanges+"/*return*");
 if(entersfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/typing themes/"+keyboardchanges+"/"+entersfx[random(0,entersfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_D) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_D) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_D) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_D) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] deletesfx=find_files("sounds/"+soundpack+"/typing themes/"+keyboardchanges+"/*delete*");
@@ -80,37 +80,37 @@ int menuchanges_callback(dynamic_menu_pro@ m, string data)
 string menuchanges;
 if(m.menu_position>0)
 menuchanges=m.item_list[m.menu_position-1].name;
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_C) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_C) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_C) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_C) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] mclick=find_files("sounds/"+soundpack+"/menus/"+menuchanges+"/*click*");
 if(mclick.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/menus/"+menuchanges+"/"+mclick[random(0,mclick.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] mclos=find_files("sounds/"+soundpack+"/menus/"+menuchanges+"/*close*");
 if(mclos.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/menus/"+menuchanges+"/"+mclos[random(0,mclos.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_D) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_D) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_D) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_D) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] medge=find_files("sounds/"+soundpack+"/menus/"+menuchanges+"/*edge*");
 if(medge.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/menus/"+menuchanges+"/"+medge[random(0,medge.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_N) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_N) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] menter=find_files("sounds/"+soundpack+"/menus/"+menuchanges+"/*enter*");
 if(menter.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/menus/"+menuchanges+"/"+menter[random(0,menter.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_O) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_O) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_O) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_O) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] mopen=find_files("sounds/"+soundpack+"/menus/"+menuchanges+"/*open*");
 if(mopen.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/menus/"+menuchanges+"/"+mopen[random(0,mopen.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_P) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_P) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_P) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_P) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] mrap=find_files("sounds/"+soundpack+"/menus/"+menuchanges+"/*wrap*");
@@ -149,7 +149,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(lifttyp);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(lifttyp);
 }
@@ -185,7 +185,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(mplattyp);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(mplattyp);
 }
@@ -229,13 +229,13 @@ string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/
 if(tilers.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/"+tilers[random(0,tilers.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/*step*");
 if(tilers.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/"+tilers[random(0,tilers.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 if(tilename!="hardland")
 {
@@ -245,7 +245,7 @@ if(tilers.length()!=0) tilename=tilers[random(0,tilers.length()-1)];
 if(tilers.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/"+tilename,false);
 }
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 if(tilename!="land")
 {
@@ -299,7 +299,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(walltype);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(walltype);
 }
@@ -381,31 +381,31 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chars+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/characters/"+chars+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chars+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/characters/"+chars+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_D) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_D) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_D) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_D) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/characters/"+chars+"/*death*");
 if(defsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/characters/"+chars+"/"+defsfx[random(0,defsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_J) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_J) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_J) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_J) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] jumpsfx=find_files("sounds/"+soundpack+"/characters/"+chars+"/*jump*");
 if(jumpsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/characters/"+chars+"/"+jumpsfx[random(0,jumpsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_N) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_N) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/characters/"+chars+"/*name*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/characters/"+chars+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_U) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_U) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_U) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_U) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] turnsfx=find_files("sounds/"+soundpack+"/characters/"+chars+"/*turn*");
@@ -450,19 +450,19 @@ string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/drinks
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/"+firesfx[random(0,firesfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/*fire*");
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/"+firesfx[random(0,firesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/*draw*");
 if(drawsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/"+drawsfx[random(0,drawsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/drinks/"+drinktype+"/*hit*");
@@ -507,19 +507,19 @@ string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/foods/
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/"+firesfx[random(0,firesfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/*fire*");
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/"+firesfx[random(0,firesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/*draw*");
 if(drawsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/"+drawsfx[random(0,drawsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/foods/"+foodtype+"/*hit*");
@@ -564,19 +564,19 @@ string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/healer
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/"+firesfx[random(0,firesfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] firesfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/*fire*");
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/"+firesfx[random(0,firesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/*draw*");
 if(drawsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/"+drawsfx[random(0,drawsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/items/sorted/healers/"+healtype+"/*hit*");
@@ -642,13 +642,13 @@ string[] getsfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/healt
 if(getsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/unsorted/health/"+healtype+"/"+getsfx[random(0,getsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] getsfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/health/"+healtype+"/*get*");
 if(getsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/unsorted/health/"+healtype+"/"+getsfx[random(0,getsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/health/"+healtype+"/*loop*");
@@ -715,13 +715,13 @@ string[] getsfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/other
 if(getsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/unsorted/other/"+misktype+"/"+getsfx[random(0,getsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] getsfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/other/"+misktype+"/*get*");
 if(getsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/items/unsorted/other/"+misktype+"/"+getsfx[random(0,getsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/equipments/items/unsorted/other/"+misktype+"/*loop*");
@@ -792,37 +792,37 @@ string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/archery/"+a
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/"+firesfx[random(0,firesfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/*fire*");
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/"+firesfx[random(0,firesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/*draw*");
 if(drawsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/"+drawsfx[random(0,drawsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/*hit*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/"+hitsfx[random(0,hitsfx.length()-1)],false); p.update_sound_start_values(weaponslot,weaponpan,weaponvolume,weaponpitch);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_E) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_E) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_E) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_E) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] emptysfx=find_files("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/*empty*");
 if(emptysfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/"+emptysfx[random(0,emptysfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_R) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_R) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] reloadsfx=find_files("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/*reload*");
 if(reloadsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/"+reloadsfx[random(0,reloadsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_U) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_U) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_U) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_U) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] unloadsfx=find_files("sounds/"+soundpack+"/equipments/weapons/archery/"+archers+"/*unload*");
@@ -893,37 +893,37 @@ string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/artillery/"
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/"+firesfx[random(0,firesfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/*fire*");
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/"+firesfx[random(0,firesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/*draw*");
 if(drawsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/"+drawsfx[random(0,drawsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/*hit*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/"+hitsfx[random(0,hitsfx.length()-1)],false); p.update_sound_start_values(weaponslot,weaponpan,weaponvolume,weaponpitch);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_E) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_E) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_E) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_E) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] emptysfx=find_files("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/*empty*");
 if(emptysfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/"+emptysfx[random(0,emptysfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_R) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_R) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] reloadsfx=find_files("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/*reload*");
 if(reloadsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/"+reloadsfx[random(0,reloadsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_U) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_U) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_U) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_U) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] unloadsfx=find_files("sounds/"+soundpack+"/equipments/weapons/artillery/"+fighters+"/*unload*");
@@ -994,37 +994,37 @@ string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/explosive/"
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/"+firesfx[random(0,firesfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/*fire*");
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/"+firesfx[random(0,firesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/*draw*");
 if(drawsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/"+drawsfx[random(0,drawsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/*hit*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/"+hitsfx[random(0,hitsfx.length()-1)],false); p.update_sound_start_values(weaponslot,weaponpan,weaponvolume,weaponpitch);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_E) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_E) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_E) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_E) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] emptysfx=find_files("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/*empty*");
 if(emptysfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/"+emptysfx[random(0,emptysfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_R) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_R) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] reloadsfx=find_files("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/*reload*");
 if(reloadsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/"+reloadsfx[random(0,reloadsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_U) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_U) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_U) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_U) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] unloadsfx=find_files("sounds/"+soundpack+"/equipments/weapons/explosive/"+killers+"/*unload*");
@@ -1095,19 +1095,19 @@ string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/melee/"+bra
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/melee/"+brawlers+"/"+firesfx[random(0,firesfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/melee/"+brawlers+"/*fire*");
 if(firesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/melee/"+brawlers+"/"+firesfx[random(0,firesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/weapons/melee/"+brawlers+"/*draw*");
 if(drawsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/equipments/weapons/melee/"+brawlers+"/"+drawsfx[random(0,drawsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/weapons/melee/"+brawlers+"/*hit*");
@@ -1174,31 +1174,31 @@ string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype
 if(arqsfx.length()!=0) prevslot=t.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
 if(arqsfx.length()!=0) prevslot=t.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] drawsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*draw*");
 if(drawsfx.length()!=0) prevslot=t.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,shieldvolume,shieldpitch);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] breaksfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*break*");
 if(breaksfx.length()!=0) prevslot=t.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+breaksfx[random(0,breaksfx.length()-1)],false,0,0,shieldvolume,shieldpitch);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_R) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_R) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_R) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] removesfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*remove*");
 if(removesfx.length()!=0) prevslot=t.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+removesfx[random(0,removesfx.length()-1)],false,0,0,shieldvolume,shieldpitch);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_W) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_W) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_W) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_W) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] wearsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*wear*");
@@ -1243,19 +1243,19 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animaltyp
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/*taunt*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/*death*");
@@ -1295,13 +1295,13 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombtype+"/*lan
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/bombs/"+bombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombtype+"/*land*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/bombs/"+bombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/bombs/"+bombtype+"/*fall*");
@@ -1341,13 +1341,13 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/objects/time bombs/"+timbombtyp
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/time bombs/"+timbombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/time bombs/"+timbombtype+"/*land*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/time bombs/"+timbombtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/time bombs/"+timbombtype+"/*tick*");
@@ -1387,13 +1387,13 @@ string[] getsfx=find_files("sounds/"+soundpack+"/objects/checkpoints/"+checktype
 if(getsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/checkpoints/"+checktype+"/"+getsfx[random(0,getsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/checkpoints/"+checktype+"/*loop*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/checkpoints/"+checktype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/checkpoints/"+checktype+"/*loop*");
@@ -1426,13 +1426,13 @@ int dests_callback(dynamic_menu_pro@ m, string data)
 string desttype;
 if(m.menu_position>0)
 desttype=m.item_list[m.menu_position-1].name;
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/doors/dest/"+desttype+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/doors/dest/"+desttype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/objects/doors/dest/"+desttype+"/*death*");
@@ -1477,19 +1477,19 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/enemies/"+enemytype
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/enemies/"+enemytype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/enemies/"+enemytype+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/enemies/"+enemytype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/npc/normal/enemies/"+enemytype+"/*taunt*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/enemies/"+enemytype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/enemies/"+enemytype+"/*death*");
@@ -1534,19 +1534,19 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/projectiles/"+projt
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/projectiles/"+projtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/projectiles/"+projtype+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/projectiles/"+projtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/npc/normal/projectiles/"+projtype+"/*loop*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/projectiles/"+projtype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/projectiles/"+projtype+"/*death*");
@@ -1591,19 +1591,19 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robottype+
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/*taunt*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/*death*");
@@ -1643,19 +1643,19 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/turrets/"+turtype+"
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/turrets/"+turtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/turrets/"+turtype+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/turrets/"+turtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/npc/normal/turrets/"+turtype+"/*loop*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/turrets/"+turtype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/turrets/"+turtype+"/*death*");
@@ -1700,19 +1700,19 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombietyp
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/*taunt*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/*death*");
@@ -1752,13 +1752,13 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/objects/hazards/"+hazardtype+"/
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/hazards/"+hazardtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/hazards/"+hazardtype+"/*fall*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/hazards/"+hazardtype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/hazards/"+hazardtype+"/*loop*");
@@ -1798,13 +1798,13 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/objects/teleporters/"+teletype+
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/teleporters/"+teletype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/teleporters/"+teletype+"/*hit*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/teleporters/"+teletype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/teleporters/"+teletype+"/*loop*");
@@ -1844,19 +1844,19 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcetyp
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/force fields/"+forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcetype+"/*hit*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/force fields/"+forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_N) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_N) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] actsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcetype+"/*on*");
 if(actsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/force fields/"+forcetype+"/"+actsfx[random(0,actsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_O) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_O) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_O) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_O) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] deactsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcetype+"/*off*");
@@ -1896,25 +1896,25 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*hit
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*hit*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*loop*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_I) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_I) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_I) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_I) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] lightsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*light*");
 if(lightsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+lightsfx[random(0,lightsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_N) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_N) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_N) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] spawnsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*spawn*");
@@ -1954,13 +1954,13 @@ string[] hitsfx=find_files("sounds/"+soundpack+"/objects/spikes/"+spiketype+"/*h
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/spikes/"+spiketype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/spikes/"+spiketype+"/*hit*");
 if(hitsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/spikes/"+spiketype+"/"+hitsfx[random(0,hitsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/spikes/"+spiketype+"/*loop*");
@@ -2006,7 +2006,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(looptype);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(looptype);
 }
@@ -2050,7 +2050,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(movetype);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(movetype);
 }
@@ -2094,7 +2094,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(opentype);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(opentype);
 }
@@ -2138,7 +2138,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(closetype);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(closetype);
 }
@@ -2176,19 +2176,19 @@ string[] scrollsfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtype+"/
 if(scrollsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/dialogs/"+dlgtype+"/"+scrollsfx[random(0,scrollsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] scrollsfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtype+"/*scroll*");
 if(scrollsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/dialogs/"+dlgtype+"/"+scrollsfx[random(0,scrollsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] opensfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtype+"/*open*");
 if(opensfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/dialogs/"+dlgtype+"/"+opensfx[random(0,opensfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] closesfx=find_files("sounds/"+soundpack+"/objects/dialogs/"+dlgtype+"/*close*");
@@ -2228,13 +2228,13 @@ string[] pressfxsfx=find_files("sounds/"+soundpack+"/objects/calanders/"+calande
 if(pressfxsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/calanders/"+calandertype+"/"+pressfxsfx[random(0,pressfxsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] pressfxsfx=find_files("sounds/"+soundpack+"/objects/calanders/"+calandertype+"/*pres*");
 if(pressfxsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/calanders/"+calandertype+"/"+pressfxsfx[random(0,pressfxsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] loopsfx=find_files("sounds/"+soundpack+"/objects/calanders/"+calandertype+"/*loop*");
@@ -2274,13 +2274,13 @@ string[] pressfxsfx=find_files("sounds/"+soundpack+"/objects/clocks/"+clocktype+
 if(pressfxsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/clocks/"+clocktype+"/"+pressfxsfx[random(0,pressfxsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] pressfxsfx=find_files("sounds/"+soundpack+"/objects/clocks/"+clocktype+"/*pres*");
 if(pressfxsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/clocks/"+clocktype+"/"+pressfxsfx[random(0,pressfxsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] loopsfx=find_files("sounds/"+soundpack+"/objects/clocks/"+clocktype+"/*loop*");
@@ -2320,13 +2320,13 @@ string[] pressfxsfx=find_files("sounds/"+soundpack+"/objects/signs/"+signtype+"/
 if(pressfxsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/signs/"+signtype+"/"+pressfxsfx[random(0,pressfxsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] pressfxsfx=find_files("sounds/"+soundpack+"/objects/signs/"+signtype+"/*pres*");
 if(pressfxsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/signs/"+signtype+"/"+pressfxsfx[random(0,pressfxsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] loopsfx=find_files("sounds/"+soundpack+"/objects/signs/"+signtype+"/*loop*");
@@ -2365,7 +2365,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(belttyp);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(belttyp);
 }
@@ -2402,7 +2402,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(sorcetyp);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(sorcetyp);
 }
@@ -2438,7 +2438,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(mustyp);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(mustyp);
 }
@@ -2475,7 +2475,7 @@ if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elaps
 speak(vplattyp);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 speak(vplattyp);
 }
@@ -2513,19 +2513,19 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/vehicles/"+vehtype+"/*
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/vehicles/"+vehtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 keytimer.restart();
 }
-if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+if(key_repeating(KEY_SPACE) and m.menu_position>0 and spacehold==0)
 {
 t.destroy_sound(prevslot);
 string[] hurtsfx=find_files("sounds/"+soundpack+"/objects/vehicles/"+vehtype+"/*hurt*");
 if(hurtsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/vehicles/"+vehtype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_L) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] namesfx=find_files("sounds/"+soundpack+"/objects/vehicles/"+vehtype+"/*motor*");
 if(namesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/vehicles/"+vehtype+"/"+namesfx[random(0,namesfx.length()-1)],false);
 }
-if(key_down(KEY_LCONTROL) and key_pressed(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_pressed(KEY_H) and m.menu_position>0)
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
 t.destroy_sound(prevslot);
 string[] defsfx=find_files("sounds/"+soundpack+"/objects/vehicles/"+vehtype+"/*death*");
