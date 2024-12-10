@@ -348,11 +348,13 @@ charhealsound2=current_char.charhealsound2;
 charhealsound3=current_char.charhealsound3;
 charinvsound=current_char.charinvsound;
 charjumpsound=current_char.charjumpsound;
+charjumpsound2=current_char.charjumpsound2;
 charlevsound=current_char.charlevsound;
 charlifesound=current_char.charlifesound;
 charrocksound=current_char.charrocksound;
 charsitsound=current_char.charsitsound;
 charstandsound=current_char.charstandsound;
+charswingsound=current_char.charswingsound;
 charturnsound=current_char.charturnsound;
 if(mres-1<chars.length())
 {
@@ -2935,11 +2937,11 @@ fighter(true);
 if(buildem=="nm")
 {
 m.fade_music();
-//input.set_only_allowed_chars("none");
-string name=virtual_input_box("","Enter the name of this map.");
-//input.set_only_allowed_chars("1234567890-");
-string mx=virtual_input_box("","Enter the maximum length of this map.");
-string my=virtual_input_box("","Enter the maximum height of this map.");
+input.set_only_allowed_chars("none");
+string name=input.input("Enter the name of this map.");
+input.set_only_allowed_chars("1234567890-");
+string mx=input.input("Enter the maximum length of this map.");
+string my=input.input("Enter the maximum height of this map.");
 if(mapname=="" and maxx=="" and maxy=="")
 return;
 mapname=name;
@@ -5874,8 +5876,8 @@ hidemenu();
 }
 if(ssm=="skipm")
 {
-//input.set_only_allowed_chars("1234567890-");
-string skmount=virtual_input_box("","Enter the maximum up and down skip amount you'd like to set.");
+input.set_only_allowed_chars("1234567890-");
+string skmount=input.input("Enter the maximum up and down skip amount you'd like to set.");
 if(mskipnum=="")
 return;
 mskipnum=string_to_number(skmount);

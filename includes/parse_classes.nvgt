@@ -148,6 +148,10 @@ if(data[0]=="jump sound")
 {
 charjumpsound=parse_int(data[1]);
 }
+if(data[0]=="jump sound2")
+{
+charjumpsound2=parse_int(data[1]);
+}
 if(data[0]=="lev sound")
 {
 charlevsound=parse_int(data[1]);
@@ -168,12 +172,16 @@ if(data[0]=="stand sound")
 {
 charstandsound=parse_int(data[1]);
 }
+if(data[0]=="swing sound")
+{
+charswingsound=parse_int(data[1]);
+}
 if(data[0]=="turn sound")
 {
 charturnsound=parse_int(data[1]);
 }
 }
-add_character(name, shieldtype, shieldweight, attack, defence, points, health, maxhealth, lifecard, level, levmod, xp, xpmod, xprequiered, charcamsound, chardeathsound, charfallsound, charfallsound2, charhealsound, charhealsound2, charhealsound3, charhurtsound, charinvsound, charjumpsound, charlevsound, charlifesound, charrocksound, charsitsound, charstandsound, charturnsound);
+add_character(name, shieldtype, shieldweight, attack, defence, points, health, maxhealth, lifecard, level, levmod, xp, xpmod, xprequiered, charcamsound, chardeathsound, charfallsound, charfallsound2, charhealsound, charhealsound2, charhealsound3, charhurtsound, charinvsound, charjumpsound, charjumpsound2, charlevsound, charlifesound, charrocksound, charsitsound, charstandsound, charswingsound, charturnsound);
 }
 }
 void arcparse(const string&in path)
@@ -1131,13 +1139,15 @@ int charhealsound2;
 int charhealsound3;
 int charinvsound;
 int charjumpsound;
+int charjumpsound2;
 int charlevsound;
 int charlifesound;
 int charrocksound;
 int charsitsound;
 int charstandsound;
+int charswingsound;
 int charturnsound;
-character(const string&in name,const string&in shieldtype,int shieldweight,double attack,double defence,double points,double health,double maxhealth,double lifecard,double level,double levmod,double xp,double xpmod,double xprequiered,int charcamsound,int chardeathsound,int charfallsound,int charfallsound2,int charhealsound,int charhealsound2,int charhealsound3,int charhurtsound,int charinvsound,int charjumpsound,int charlevsound,int charlifesound,int charrocksound,int charsitsound,int charstandsound,int charturnsound)
+character(const string&in name,const string&in shieldtype,int shieldweight,double attack,double defence,double points,double health,double maxhealth,double lifecard,double level,double levmod,double xp,double xpmod,double xprequiered,int charcamsound,int chardeathsound,int charfallsound,int charfallsound2,int charhealsound,int charhealsound2,int charhealsound3,int charhurtsound,int charinvsound,int charjumpsound,int charjumpsound2,int charlevsound,int charlifesound,int charrocksound,int charsitsound,int charstandsound,int charswingsound,int charturnsound)
 {
 this.name=name;
 this.shieldtype=shieldtype;
@@ -1163,17 +1173,19 @@ this.charhealsound2=charhealsound2;
 this.charhealsound3=charhealsound3;
 this.charinvsound=charinvsound;
 this.charjumpsound=charjumpsound;
+this.charjumpsound2=charjumpsound2;
 this.charlevsound=charlevsound;
 this.charlifesound=charlifesound;
 this.charrocksound=charrocksound;
 this.charsitsound=charsitsound;
 this.charstandsound=charstandsound;
+this.charswingsound=charswingsound;
 this.charturnsound=charturnsound;
 }
 }
-void add_character(const string&in name,const string&in shieldtype,int shieldweight,double attack,double defence,double points,double health,double maxhealth,double lifecard,double level,double levmod,double xp,double xpmod,double xprequiered,int charcamsound,int chardeathsound,int charfallsound,int charfallsound2,int charhealsound,int charhealsound2,int charhealsound3,int charhurtsound,int charinvsound,int charjumpsound,int charlevsound,int charlifesound,int charrocksound,int charsitsound,int charstandsound,int charturnsound)
+void add_character(const string&in name,const string&in shieldtype,int shieldweight,double attack,double defence,double points,double health,double maxhealth,double lifecard,double level,double levmod,double xp,double xpmod,double xprequiered,int charcamsound,int chardeathsound,int charfallsound,int charfallsound2,int charhealsound,int charhealsound2,int charhealsound3,int charhurtsound,int charinvsound,int charjumpsound,int charjumpsound2,int charlevsound,int charlifesound,int charrocksound,int charsitsound,int charstandsound,int charswingsound,int charturnsound)
 {
-character ch1(name,shieldtype,shieldweight,attack,defence,points,health,maxhealth,lifecard,level,levmod,xp,xpmod,xprequiered,charcamsound,chardeathsound,charfallsound,charfallsound2,charhealsound,charhealsound2,charhealsound3,charhurtsound,charinvsound,charjumpsound,charlevsound,charlifesound,charrocksound,charsitsound,charstandsound,charturnsound);
+character ch1(name,shieldtype,shieldweight,attack,defence,points,health,maxhealth,lifecard,level,levmod,xp,xpmod,xprequiered,charcamsound,chardeathsound,charfallsound,charfallsound2,charhealsound,charhealsound2,charhealsound3,charhurtsound,charinvsound,charjumpsound,charjumpsound2,charlevsound,charlifesound,charrocksound,charsitsound,charstandsound,charswingsound,charturnsound);
 charas.insert_last(ch1);
 }
 void destroy_all_charas()

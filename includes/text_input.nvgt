@@ -215,7 +215,7 @@ if (c != "" && c.length() == 1) {
     input_character(c);
     if (cursor > entry.length()) cursor = entry.length();
 }
-if(key_pressed(KEY_TAB))speak(title,true);
+if(key_repeating(KEY_TAB))speak(title,true);
 if(control_down())
 {
 if(key_pressed(KEY_V))
@@ -333,7 +333,7 @@ entry.remove_at(cursor-1);
 cursor--;
 }
 }
-if(key_pressed(KEY_ESCAPE) and abort==true) fighter(true);
+if(key_pressed(KEY_ESCAPE) and abort==true) fighter(building);
 }
 return "";
 }

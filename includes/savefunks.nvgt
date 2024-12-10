@@ -104,11 +104,13 @@ charhealsound2=current_char.charhealsound2;
 charhealsound3=current_char.charhealsound3;
 charinvsound=current_char.charinvsound;
 charjumpsound=current_char.charjumpsound;
+charjumpsound2=current_char.charjumpsound2;
 charlevsound=current_char.charlevsound;
 charlifesound=current_char.charlifesound;
 charrocksound=current_char.charrocksound;
 charsitsound=current_char.charsitsound;
 charstandsound=current_char.charstandsound;
+charswingsound=current_char.charswingsound;
 charturnsound=current_char.charturnsound;
 }
 if(st.d.exists("keyboardtheme"))

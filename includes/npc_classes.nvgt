@@ -1,7 +1,7 @@
 animal@[]animals(0);
 class animal
 {
-bool fireable, moveable, moveable2, spotted;
+bool dropitem, fireable, moveable, moveable2, spotted;
 int amsound, defsound, hurtsound, spawnsound, stepsound, tilesound, wepsound;
 int animalcard;
 int anihealth;
@@ -20,7 +20,7 @@ int animaltime;
 int firetime;
 string animaltype;
 timer animaltimer, firetimer;
-animal(int ax,int ay,int anrange,int anrange2,int anrange3,int anrange4,double hp,double maxhp,int ac,int dm,int ft,int sp,double amlv,double axp,string at,bool amf,bool amt,bool amt2)
+animal(int ax,int ay,int anrange,int anrange2,int anrange3,int anrange4,double hp,double maxhp,int ac,int dm,int ft,int sp,double amlv,double axp,string at,bool amf,bool amt,bool amt2,bool dpm)
 {
 this.anihealth=hp;
 amx=ax;
@@ -41,6 +41,7 @@ animaltype=at;
 fireable=amf;
 moveable=amt;
 moveable2=amt2;
+dropitem=dpm;
 spotted=false;
 string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/*spawn*");
 if(spawnsfx.length()!=0) spawnsound=animalpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/animals/"+animaltype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,amx,amy,0,0,0,0,false,0,0,painvolume,painpitch,false);
@@ -123,16 +124,16 @@ if(defsfx.length()!=0) animals[i].defsound=animalpool.play_extended_2d("sounds/"
 if(xpmod>=1) xp+=animals[i].amxp*animals[i].amlevel*xpmod;
 kills+=1;
 string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
-if(healtype.length()!=0) spawn_obj(animals[i].amx, animals[i].amy, 500, "health", healtype[random(0,healtype.length()-1)], true);
+if(healtype.length()!=0 and animals[i].dropitem==true) spawn_obj(animals[i].amx, animals[i].amy, 500, "health", healtype[random(0,healtype.length()-1)], true);
 animals.remove_at(i);
 return;
 }
 }
 }
 }
-void spawn_animal(int x,int y,int animrange,int animrange2,int animrange3,int animrange4,double hp,double maxhp,int ac,int dm,int firetime,int animaltime,double amlevel,double xp,string animaltype,bool fireable,bool moveable,bool moveable2)
+void spawn_animal(int x,int y,int animrange,int animrange2,int animrange3,int animrange4,double hp,double maxhp,int ac,int dm,int firetime,int animaltime,double amlevel,double xp,string animaltype,bool fireable,bool moveable,bool moveable2,bool dropitem)
 {
-animal an1(x,y,animrange,animrange2,animrange3,animrange4,hp,maxhp,ac,dm,firetime,animaltime,amlevel,xp,animaltype,fireable,moveable,moveable2);
+animal an1(x,y,animrange,animrange2,animrange3,animrange4,hp,maxhp,ac,dm,firetime,animaltime,amlevel,xp,animaltype,fireable,moveable,moveable2,dropitem);
 animals.insert_last(an1);
 }
 void destroy_all_animals()
@@ -173,7 +174,7 @@ if(amtype=="random" && animaltype.length()>0)
 {
 amtype=animaltype[random(0,animaltype.length()-1)];
 }
-spawn_animal(random(animalzones[i].minx, animalzones[i].maxx), animalzones[i].amy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, amtype, true, true, false);
+spawn_animal(random(animalzones[i].minx, animalzones[i].maxx), animalzones[i].amy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, amtype, true, true, random_bool(), random_bool());
 animalzones[i].spawntimer.restart();
 }
 }
@@ -191,7 +192,7 @@ animalzones.resize(0);
 enemie@[]enemies(0);
 class enemie
 {
-bool fireable, moveable, moveable2, spotted;
+bool dropitem, fireable, moveable, moveable2, spotted;
 int emsound, defsound, hurtsound, spawnsound, stepsound, tilesound, wepsound;
 int enemiecard;
 int enehealth;
@@ -210,7 +211,7 @@ int enemietime;
 int firetime;
 string enemietype;
 timer enemietimer, firetimer;
-enemie(int ex,int ey,int enrange,int enrange2,int enrange3,int enrange4,double hp,double maxhp,int ec,int dm,int ft,int sp,double emlv,double exp,string et,bool emf,bool emt,bool emt2)
+enemie(int ex,int ey,int enrange,int enrange2,int enrange3,int enrange4,double hp,double maxhp,int ec,int dm,int ft,int sp,double emlv,double exp,string et,bool emf,bool emt,bool emt2,bool dpm)
 {
 this.enehealth=hp;
 emx=ex;
@@ -231,6 +232,7 @@ enemietype=et;
 fireable=emf;
 moveable=emt;
 moveable2=emt2;
+dropitem=dpm;
 spotted=false;
 string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/normal/enemies/"+enemietype+"/*spawn*");
 if(spawnsfx.length()!=0) spawnsound=enemiepool.play_extended_2d("sounds/"+soundpack+"/npc/normal/enemies/"+enemietype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,emx,emy,0,0,0,0,false,0,0,painvolume,painpitch,false);
@@ -314,16 +316,16 @@ if(xpmod>=1) xp+=enemies[i].emxp*enemies[i].emlevel*xpmod;
 kills+=1;
 spawn_bodyfall(enemies[i].emx, enemies[i].emy, random(500,1000));
 string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
-if(healtype.length()!=0) spawn_obj(enemies[i].emx, enemies[i].emy, 500, "health", healtype[random(0,healtype.length()-1)], true);
+if(healtype.length()!=0 and enemies[i].dropitem==true) spawn_obj(enemies[i].emx, enemies[i].emy, 500, "health", healtype[random(0,healtype.length()-1)], true);
 enemies.remove_at(i);
 return;
 }
 }
 }
 }
-void spawn_enemie(int x,int y,int enemrange,int enemrange2,int enemrange3,int enemrange4,double hp,double maxhp,int ec,int dm,int firetime,int enemietime,double emlevel,double xp,string enemietype,bool fireable,bool moveable,bool moveable2)
+void spawn_enemie(int x,int y,int enemrange,int enemrange2,int enemrange3,int enemrange4,double hp,double maxhp,int ec,int dm,int firetime,int enemietime,double emlevel,double xp,string enemietype,bool fireable,bool moveable,bool moveable2,bool dropitem)
 {
-enemie en1(x,y,enemrange,enemrange2,enemrange3,enemrange4,hp,maxhp,ec,dm,firetime,enemietime,emlevel,xp,enemietype,fireable,moveable,moveable2);
+enemie en1(x,y,enemrange,enemrange2,enemrange3,enemrange4,hp,maxhp,ec,dm,firetime,enemietime,emlevel,xp,enemietype,fireable,moveable,moveable2,dropitem);
 enemies.insert_last(en1);
 }
 void destroy_all_enemies()
@@ -364,7 +366,7 @@ if(emtype=="random" && enemietype.length()>0)
 {
 emtype=enemietype[random(0,enemietype.length()-1)];
 }
-spawn_enemie(random(enemiezones[i].minx, enemiezones[i].maxx), enemiezones[i].emy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, emtype, true, true, false);
+spawn_enemie(random(enemiezones[i].minx, enemiezones[i].maxx), enemiezones[i].emy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, emtype, true, true, random_bool(), random_bool());
 enemiezones[i].spawntimer.restart();
 }
 }
@@ -604,7 +606,7 @@ projzones.resize(0);
 robot@[]robots(0);
 class robot
 {
-bool fireable, moveable, moveable2, spotted;
+bool dropitem, fireable, moveable, moveable2, spotted;
 int robsound, defsound, hurtsound, stepsound, spawnsound, tilesound, wepsound;
 int robotcard;
 int robhealth;
@@ -623,7 +625,7 @@ int robottime;
 int firetime;
 string robottype;
 timer robottimer, firetimer;
-robot(int rx,int ry,int rbrange,int rbrange2,int rbrange3,int rbrange4,double hp,double maxhp,int rc,int dm,int ft,int sp,double roblv,double rxp,string rt,bool robf,bool robt,bool robt2)
+robot(int rx,int ry,int rbrange,int rbrange2,int rbrange3,int rbrange4,double hp,double maxhp,int rc,int dm,int ft,int sp,double roblv,double rxp,string rt,bool robf,bool robt,bool robt2,bool dpm)
 {
 this.robhealth=hp;
 robx=rx;
@@ -644,6 +646,7 @@ robottype=rt;
 fireable=robf;
 moveable=robt;
 moveable2=robt2;
+dropitem=dpm;
 spotted=false;
 string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/*spawn*");
 if(spawnsfx.length()!=0) spawnsound=robpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/robots/"+robottype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,robx,roby,0,0,0,0,false,0,0,painvolume,painpitch,false);
@@ -726,16 +729,16 @@ if(defsfx.length()!=0) robots[i].defsound=robpool.play_extended_2d("sounds/"+sou
 if(xpmod>=1) xp+=robots[i].robxp*robots[i].roblevel*xpmod;
 kills+=1;
 string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
-if(healtype.length()!=0) spawn_obj(robots[i].robx, robots[i].roby, 500, "health", healtype[random(0,healtype.length()-1)], true);
+if(healtype.length()!=0 and robots[i].dropitem==true) spawn_obj(robots[i].robx, robots[i].roby, 500, "health", healtype[random(0,healtype.length()-1)], true);
 robots.remove_at(i);
 return;
 }
 }
 }
 }
-void spawn_robot(int x,int y,int robotrange,int robotrange2,int robotrange3,int robotrange4,double hp,double maxhp,int rc,int dm,int firetime,int robottime,double roblevel,double xp,string robottype,bool fireable,bool moveable,bool moveable2)
+void spawn_robot(int x,int y,int robotrange,int robotrange2,int robotrange3,int robotrange4,double hp,double maxhp,int rc,int dm,int firetime,int robottime,double roblevel,double xp,string robottype,bool fireable,bool moveable,bool moveable2,bool dropitem)
 {
-robot rb1(x,y,robotrange,robotrange2,robotrange3,robotrange4,hp,maxhp,rc,dm,firetime,robottime,roblevel,xp,robottype,fireable,moveable,moveable2);
+robot rb1(x,y,robotrange,robotrange2,robotrange3,robotrange4,hp,maxhp,rc,dm,firetime,robottime,roblevel,xp,robottype,fireable,moveable,moveable2,dropitem);
 robots.insert_last(rb1);
 }
 void destroy_all_robots()
@@ -776,7 +779,7 @@ if(rotype=="random" && robtype.length()>0)
 {
 rotype=robtype[random(0,robtype.length()-1)];
 }
-spawn_robot(random(robotzones[i].minx, robotzones[i].maxx), robotzones[i].roby, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, rotype, true, true, false);
+spawn_robot(random(robotzones[i].minx, robotzones[i].maxx), robotzones[i].roby, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, rotype, true, true, random_bool(), random_bool());
 robotzones[i].spawntimer.restart();
 }
 }
@@ -843,12 +846,17 @@ for(uint i=0; i<turrets.length(); i++)
 if(turrets[i].launchtimer.elapsed>=turrets[i].launchtime)
 {
 string[] launchsfx=find_files("sounds/"+soundpack+"/npc/normal/turrets/"+turrets[i].turtype+"/*launch*");
-if(launchsfx.length()!=0) turrets[i].firesound=turpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/turrets/"+turrets[i].turtype+"/"+launchsfx[random(0,launchsfx.length()-1)],me.x,me.y,turrets[i].turx,turrets[i].tury,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
-if(turrets[i].turtype2=="animal") spawn_animal(turrets[i].turx, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
-if(turrets[i].turtype2=="enemie") spawn_enemie(turrets[i].turx, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
-if(turrets[i].turtype2=="projectile") spawn_projectile(turrets[i].turx, turrets[i].tury, 1, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(50, 500), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true);
-if(turrets[i].turtype2=="robot") spawn_robot(turrets[i].turx, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
-if(turrets[i].turtype2=="zombie") spawn_zombie(turrets[i].turx, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, true);
+if(launchsfx.length()!=0 and facing=="left" or facing=="right") turrets[i].firesound=turpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/turrets/"+turrets[i].turtype+"/"+launchsfx[random(0,launchsfx.length()-1)],me.x,me.y,turrets[i].turx,turrets[i].tury,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
+if(turrets[i].turtype2=="animal" and facing=="left") spawn_animal(turrets[i].turx-1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, random_bool(), random_bool());
+if(turrets[i].turtype2=="animal" and facing=="right") spawn_animal(turrets[i].turx+1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, random_bool(), random_bool());
+if(turrets[i].turtype2=="enemie" and facing=="left") spawn_enemie(turrets[i].turx-1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, random_bool(), random_bool());
+if(turrets[i].turtype2=="enemie" and facing=="right") spawn_enemie(turrets[i].turx+1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, random_bool(), random_bool());
+if(turrets[i].turtype2=="projectile" and facing=="left") spawn_projectile(turrets[i].turx-1, turrets[i].tury, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(50, 500), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true);
+if(turrets[i].turtype2=="projectile" and facing=="right") spawn_projectile(turrets[i].turx+1, turrets[i].tury, 1, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(50, 500), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true);
+if(turrets[i].turtype2=="robot" and facing=="left") spawn_robot(turrets[i].turx-1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, random_bool(), random_bool());
+if(turrets[i].turtype2=="robot" and facing=="right") spawn_robot(turrets[i].turx+1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, random_bool(), random_bool());
+if(turrets[i].turtype2=="zombie" and facing=="left") spawn_zombie(turrets[i].turx-1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, random_bool(), random_bool());
+if(turrets[i].turtype2=="zombie" and facing=="right") spawn_zombie(turrets[i].turx+1, turrets[i].tury, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), turrets[i].turlevel, 1*level, turrets[i].turtype3, true, true, random_bool(), random_bool());
 turpool.update_sound_2d(turrets[i].firesound,turrets[i].turx,turrets[i].tury);
 turrets[i].launchtimer.restart();
 }
@@ -930,7 +938,7 @@ turrets.resize(0);
 zombie@[]zombies(0);
 class zombie
 {
-bool fireable, moveable, moveable2, spotted;
+bool dropitem, fireable, moveable, moveable2, spotted;
 int zombsound, defsound, hurtsound, stepsound, spawnsound, tilesound, wepsound;
 int zombiecard;
 int zombhealth;
@@ -949,7 +957,7 @@ int zombietime;
 int firetime;
 string zombietype;
 timer zombietimer, firetimer;
-zombie(int zx,int zy,int zbrange,int zbrange2,int zbrange3,int zbrange4,double hp,double maxhp,int zc,int dm,int ft,int sp,double zomblv,double zxp,string zt,bool zombf,bool zombt,bool zombt2)
+zombie(int zx,int zy,int zbrange,int zbrange2,int zbrange3,int zbrange4,double hp,double maxhp,int zc,int dm,int ft,int sp,double zomblv,double zxp,string zt,bool zombf,bool zombt,bool zombt2,bool dpm)
 {
 this.zombhealth=hp;
 zombx=zx;
@@ -970,6 +978,7 @@ zombietype=zt;
 fireable=zombf;
 moveable=zombt;
 moveable2=zombt2;
+dropitem=dpm;
 spotted=false;
 string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/*spawn*");
 if(spawnsfx.length()!=0) spawnsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/zombies/"+zombietype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,zombx,zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
@@ -1052,16 +1061,16 @@ if(defsfx.length()!=0) zombies[i].defsound=zombpool.play_extended_2d("sounds/"+s
 if(xpmod>=1) xp+=zombies[i].zombxp*zombies[i].zomblevel*xpmod;
 kills+=1;
 string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
-if(healtype.length()!=0) spawn_obj(zombies[i].zombx, zombies[i].zomby, 500, "health", healtype[random(0,healtype.length()-1)], true);
+if(healtype.length()!=0 and zombies[i].dropitem==true) spawn_obj(zombies[i].zombx, zombies[i].zomby, 500, "health", healtype[random(0,healtype.length()-1)], true);
 zombies.remove_at(i);
 return;
 }
 }
 }
 }
-void spawn_zombie(int x,int y,int zombierange,int zombierange2,int zombierange3,int zombierange4,double hp,double maxhp,int zc,int dm,int firetime,int zombietime,double zomblevel,double xp,string zombietype,bool fireable,bool moveable,bool moveable2)
+void spawn_zombie(int x,int y,int zombierange,int zombierange2,int zombierange3,int zombierange4,double hp,double maxhp,int zc,int dm,int firetime,int zombietime,double zomblevel,double xp,string zombietype,bool fireable,bool moveable,bool moveable2,bool dropitem)
 {
-zombie zb1(x,y,zombierange,zombierange2,zombierange3,zombierange4,hp,maxhp,zc,dm,firetime,zombietime,zomblevel,xp,zombietype,fireable,moveable,moveable2);
+zombie zb1(x,y,zombierange,zombierange2,zombierange3,zombierange4,hp,maxhp,zc,dm,firetime,zombietime,zomblevel,xp,zombietype,fireable,moveable,moveable2,dropitem);
 zombies.insert_last(zb1);
 }
 void destroy_all_zombies()
@@ -1102,7 +1111,7 @@ if(zotype=="random" && zombtype.length()>0)
 {
 zotype=zombtype[random(0,zombtype.length()-1)];
 }
-spawn_zombie(random(zombiezones[i].minx, zombiezones[i].maxx), zombiezones[i].zomby, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, zotype, true, true, false);
+spawn_zombie(random(zombiezones[i].minx, zombiezones[i].maxx), zombiezones[i].zomby, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), 1, 1*level, zotype, true, true, random_bool(), random_bool());
 zombiezones[i].spawntimer.restart();
 }
 }

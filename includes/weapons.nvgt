@@ -2102,8 +2102,8 @@ if(emptysfx.length()!=0) weaponslot=p.play_stationary_extended("sounds/"+soundpa
 }
 else
 {
-string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
-if(firesfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] firestopsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
+if(firestopsfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firestopsfx[random(0,firestopsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage*attack, wepspeed, facing, weapontype, weapontype2, bouncing, charhit, scadder);
 if(melee==false)
 {
@@ -2124,8 +2124,10 @@ if(emptysfx.length()!=0) weaponslot=p.play_stationary_extended("sounds/"+soundpa
 }
 else
 {
-string[] firesfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
-if(firesfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firesfx[random(0,firesfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] firestartsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*swing*");
+if(firestartsfx.length()!=0 and charswingsound==1 and weapontype=="melee") weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+firestartsfx[random(0,firestartsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] firestopsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
+if(firestopsfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firestopsfx[random(0,firestopsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage*attack, wepspeed, facing, weapontype, weapontype2, bouncing, charhit, scadder);
 if(melee==false)
 {

@@ -7,14 +7,19 @@ int minex;
 int miney;
 int damage;
 string minetype;
-mine(int mx,int my,int dmg,string mt)
+mine(int mx,int my,int dmg,string mt,bool tg)
 {
 minex=mx;
 miney=my;
 damage=dmg;
 minetype=mt;
+triggered=tg;
+string[] lightsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*light*");
+if(lightsfx.length()!=0 and triggered==true) lightsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+lightsfx[random(0,lightsfx.length()-1)],me.x,me.y,minex,miney,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] minesfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*loop*");
+if(minesfx.length()!=0 and triggered==true) minesound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+minesfx[random(0,minesfx.length()-1)],me.x,me.y,minex,miney,0,0,0,0,true,0,0,painvolume,painpitch,false);
 string[] spawnsfx=find_files("sounds/"+soundpack+"/objects/mines/"+minetype+"/*spawn*");
-if(spawnsfx.length()!=0) spawnsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,minex,miney,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
+if(spawnsfx.length()!=0 and triggered==false) spawnsound=minepool.play_extended_2d("sounds/"+soundpack+"/objects/mines/"+minetype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,minex,miney,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
 }
 }
 void mineloop()
@@ -314,9 +319,9 @@ return;
 }
 }
 }
-void spawn_mine(int x,int y,int damage,string minetype)
+void spawn_mine(int x,int y,int damage,string minetype,bool triggered)
 {
-mine mine1(x,y,damage,minetype);
+mine mine1(x,y,damage,minetype,triggered);
 mines.insert_last(mine1);
 }
 void destroy_all_mines()

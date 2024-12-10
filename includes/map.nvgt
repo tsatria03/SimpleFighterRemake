@@ -188,7 +188,7 @@ destroy_all_enemiezones();
 destroy_all_floorbreakers();
 destroy_all_forcefields();
 destroy_all_hazards();
-destroy_all_healthzones();
+destroy_all_healzones();
 destroy_all_lifts();
 destroy_all_mines();
 destroy_all_moving_hazards();
@@ -574,7 +574,7 @@ int texttime=stn(sd[5]);
 string txt=join_string_array(sd, 6, sd.length());
 spawn_timedtext(mx, mx2, my, my2, texttime, txt);
 }
-else if(sd[0]=="health_zone" && sd.length()==7)
+else if(sd[0]=="heal_zone" && sd.length()==7)
 {
 double mx=stn(sd[1]);
 double mx2=stn(sd[2]);
@@ -582,7 +582,7 @@ double my=stn(sd[3]);
 double my2=stn(sd[4]);
 int hp=stn(sd[5]);
 int ht=stn(sd[6]);
-spawn_healthzone(mx, mx2, my, my2, hp, ht);
+spawn_healzone(mx, mx2, my, my2, hp, ht);
 }
 else if(sd[0]=="hazard" && sd.length()==7)
 {
@@ -610,13 +610,14 @@ double liftvol=stn(sd[11]);
 double liftpitch=stn(sd[12]);
 spawn_lift(mx, mx2, my, my2, dir, sp, tiletype, tilevol, tilepitch, lifttype, liftvol, liftpitch);
 }
-else if(sd[0]=="mine" && sd.length()==5)
+else if(sd[0]=="mine" && sd.length()==6)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
 int dmg=stn(sd[3]);
 string minetype=sd[4];
-spawn_mine(x, y, dmg, minetype);
+bool tg=string_to_bool(sd[5]);
+spawn_mine(x, y, dmg, minetype, tg);
 }
 else if(sd[0]=="mhazard" && sd.length()==11)
 {
@@ -733,7 +734,7 @@ int desty=stn(sd[7]);
 string endtext=sd[8];
 spawn_travelpoint(mx, mx2, my, my2, destmap, destx, desty, endtext);
 }
-else if(sd[0]=="animal" && sd.length()==18)
+else if(sd[0]=="animal" && sd.length()==19)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
@@ -752,9 +753,10 @@ string amtype=sd[14];
 bool fb=string_to_bool(sd[15]);
 bool mb=string_to_bool(sd[16]);
 bool mb2=string_to_bool(sd[17]);
-spawn_animal(x, y, anirange, anirange2, anirange3, anirange4, hp, hp, card, dmg, ft, sp, lv, xp, amtype, fb, mb, mb2);
+bool dpm=string_to_bool(sd[18]);
+spawn_animal(x, y, anirange, anirange2, anirange3, anirange4, hp, hp, card, dmg, ft, sp, lv, xp, amtype, fb, mb, mb2, dpm);
 }
-else if(sd[0]=="enemie" && sd.length()==18)
+else if(sd[0]=="enemie" && sd.length()==19)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
@@ -773,7 +775,8 @@ string emtype=sd[14];
 bool fb=string_to_bool(sd[15]);
 bool mb=string_to_bool(sd[16]);
 bool mb2=string_to_bool(sd[17]);
-spawn_enemie(x, y, enerange, enerange2, enerange3, enerange4, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2);
+bool dpm=string_to_bool(sd[18]);
+spawn_enemie(x, y, enerange, enerange2, enerange3, enerange4, hp, hp, card, dmg, ft, sp, lv, xp, emtype, fb, mb, mb2, dpm);
 }
 else if(sd[0]=="floor_breaker" && sd.length()==4)
 {
@@ -809,7 +812,7 @@ bool fb=string_to_bool(sd[11]);
 bool mb=string_to_bool(sd[12]);
 spawn_projectile(x, y, dir, hp, hp, card, dmg, sp, lv, xp, potype, fb, mb);
 }
-else if(sd[0]=="robot" && sd.length()==18)
+else if(sd[0]=="robot" && sd.length()==19)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
@@ -828,7 +831,8 @@ string rotype=sd[14];
 bool fb=string_to_bool(sd[15]);
 bool mb=string_to_bool(sd[16]);
 bool mb2=string_to_bool(sd[17]);
-spawn_robot(x, y, roborange, roborange2, roborange3, roborange4, hp, hp, card, dmg, ft, sp, lv, xp, rotype, fb, mb, mb2);
+bool dpm=string_to_bool(sd[18]);
+spawn_robot(x, y, roborange, roborange2, roborange3, roborange4, hp, hp, card, dmg, ft, sp, lv, xp, rotype, fb, mb, mb2, dpm);
 }
 else if(sd[0]=="turret" && sd.length()==17)
 {
@@ -850,7 +854,7 @@ bool mb=string_to_bool(sd[15]);
 bool mb2=string_to_bool(sd[16]);
 spawn_turret(x, y, hp, hp, card, dmg, ft, lt, sp, lv, xp, tutype, tutype2, tutype3, fb, mb, mb2);
 }
-else if(sd[0]=="zombie" && sd.length()==18)
+else if(sd[0]=="zombie" && sd.length()==19)
 {
 int x=stn(sd[1]);
 int y=stn(sd[2]);
@@ -869,7 +873,8 @@ string zotype=sd[14];
 bool fb=string_to_bool(sd[15]);
 bool mb=string_to_bool(sd[16]);
 bool mb2=string_to_bool(sd[17]);
-spawn_zombie(x, y, zombirange, zombirange2, zombirange3, zombirange4, hp, hp, card, dmg, ft, sp, lv, xp, zotype, fb, mb, mb2);
+bool dpm=string_to_bool(sd[18]);
+spawn_zombie(x, y, zombirange, zombirange2, zombirange3, zombirange4, hp, hp, card, dmg, ft, sp, lv, xp, zotype, fb, mb, mb2, dpm);
 }
 else if(sd[0]=="animal_zone" && sd.length()==6)
 {
