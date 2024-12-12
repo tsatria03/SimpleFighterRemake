@@ -1,15 +1,16 @@
 new in 5.0
+Fixed all weapons to respect your actual attack stat, rather than multiplying there dammage based on how much attack you have.
 Renamed health zones to heal zones. The heal zone will also heal your shield strength as well, not just your character's health.
-Made it so animal, enemie, robot, and zombie zones don't always drop items after killing things inside them. They now have a 50percent probibility chanse of being dropped. This also effects turrets and all of the other game modes outside the map builder.
-Made it so animal, enemie, robot, and zombie zones don't always folow you up on platforms when moving toards you. They now have a 50percent probibility chanse of folowing you up on platforms. This also effects turrets and all of the other game modes outside the map builder.
-You can now define custom swinging sounds for using weapons for all characters. These sounds will only be played for weapons that are melee, and if they are set to manuely fire upon pressing the control key.
+Made it so animal, enemie, robot, and zombie zones don't always drop items after killing things inside them. They now have a 50percent chanse of being dropped. This also effects turrets and all of the other game modes outside the map builder.
+Made it so animal, enemie, robot, and zombie zones don't always folow you up on platforms when moving toards you. They now have a 50percent chanse of folowing you up on platforms. This also effects turrets and all of the other game modes outside the map builder.
+You can now define custom swinging sounds for using weapons for all characters. These sounds will only play for weapons that are melee, and if they are set to manuely fire upon pressing the control key.
 You can now define custom rising sounds for jumping on maps for all characters.
-Added prompts to the animal, enemie, robot, and zombie builders that asks weather you'd like them to drop health items after killing them in the builder menu.
-Added a prompt to control the active state of a mine when building it in the builder menu.
+Added prompts to the animal, enemie, robot, and zombie builders that asks weather you'd like them to drop an item after killing them in the builder menu.
+Added a prompt to the mine builder that let's you control the active state of it when building it in the builder menu.
 Turrets will now launch entities based on your current facing. If you are facing left for example, the turret will spawn an entitie to your left.
 You can now build floor breakers in the builder menu. They will also be written to the map you're currently working on.
 Replaced the text_input class with a much better virtual_dialogs class. This class also includes the ability to create virtual_input_boxes that uses the audio forms class as a backend. The game will now  utilize this class for most input prompts from now on, unless otherwise noted.
-All entities except for projectiles and turrets will now drop health items upon killing them.
+All entities except for projectiles and turrets will now drop an item upon killing them.
 new in 4.9
 Added the option to toggle using the heart monidor for all of the game modes in the settings menu.
 Implemented a heart rate monidor into the game for all characters. The less health you have for that character, the faster it gets. It also resets itself back to your character's maximum health upon losing a life.

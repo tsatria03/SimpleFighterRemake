@@ -2090,6 +2090,31 @@ string[] reloadsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapont
 if(reloadsfx.length()!=0 and wepreloadsound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+reloadsfx[random(0,reloadsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 }
 }
+void spawn_bltdir(int bltmode)
+{
+bullmode=bltmode;
+if(bltmode==0)
+{
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, facing, weapontype, weapontype2, bouncing, charhit, scadder);
+}
+if(bltmode==1)
+{
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, "left", weapontype, weapontype2, bouncing, charhit, scadder);
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, "right", weapontype, weapontype2, bouncing, charhit, scadder);
+}
+if(bltmode==2)
+{
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, "up", weapontype, weapontype2, bouncing, charhit, scadder);
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, "down", weapontype, weapontype2, bouncing, charhit, scadder);
+}
+if(bltmode==3)
+{
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, "left", weapontype, weapontype2, bouncing, charhit, scadder);
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, "right", weapontype, weapontype2, bouncing, charhit, scadder);
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, "up", weapontype, weapontype2, bouncing, charhit, scadder);
+spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage+attack, wepspeed, "down", weapontype, weapontype2, bouncing, charhit, scadder);
+}
+}
 void auto_fire_weapon()
 {
 if(weapontype2==""==false and wephold==1 and weapontimer.elapsed>=weapontime and fireable==true and useitems==false)
@@ -2104,7 +2129,7 @@ else
 {
 string[] firestopsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
 if(firestopsfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firestopsfx[random(0,firestopsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
-spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage*attack, wepspeed, facing, weapontype, weapontype2, bouncing, charhit, scadder);
+spawn_bltdir(bullmode);
 if(melee==false)
 {
 loadedammo-=1;
@@ -2128,7 +2153,7 @@ string[] firestartsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*
 if(firestartsfx.length()!=0 and charswingsound==1 and weapontype=="melee") weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+firestartsfx[random(0,firestartsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
 string[] firestopsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*fire*");
 if(firestopsfx.length()!=0 and wepfiresound==1) weaponslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+firestopsfx[random(0,firestopsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
-spawn_bullet(me.x, me.y, weprange, weprange2, wepdamage*attack, wepspeed, facing, weapontype, weapontype2, bouncing, charhit, scadder);
+spawn_bltdir(bullmode);
 if(melee==false)
 {
 loadedammo-=1;

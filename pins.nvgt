@@ -1,0 +1,44 @@
+#include"speech.nvgt"
+int pins;
+int tries=5;
+void main()
+{
+show_window("boling pins");
+while(true)
+{
+wait(5);
+pins=random(1,10);
+if(key_pressed(KEY_ESCAPE))
+{
+exit();
+}
+if(key_pressed(KEY_TAB))
+{
+speak("you have "+tries+" tries left");
+}
+if(key_pressed(KEY_RETURN))
+{
+if(pins == 1)
+{
+alert("alert", "You've managed to knock down only" + pins + "pins. Maybe try throwing the ball a bit harder next time, and you'll get more of them");
+tries-=1;
+}
+if(pins < 4)
+{
+alert("alert", "You got a spare! You've managed to knock down " + pins + " pins. Good job. Try to aim for a strike next time!");
+tries-=1;
+}
+if(pins==10)
+{
+alert("alert", "Wow, you got a strike! You knocked down " + pins + "pins! That's a good game right there!");
+alert("alert", "Congradulations! You've won the game! Grate job!");
+exit();
+}
+if(tries<=0)
+{
+alert("alert", "Sorry, you've ran out of tries. Better luck next time!");
+exit();
+}
+}
+}
+}
