@@ -36,6 +36,16 @@ for (uint i=0; i<hazards.length(); i++)
 {
 if(hazards[i].is_on_hazard())
 {
+if(hazards[i].is_on_hazard() and lifecard>=2)
+{
+string[] lifesfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*life*");
+if(lifesfx.length()!=0 and charlifesound==1) hazardpool.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+lifesfx[random(0,lifesfx.length()-1)],false);
+lifecard-=1;
+health=maxhealth;
+hearttime=maxhealth;
+pbounce(5);
+return;
+}
 if(lifecard<=1)
 {
 hazardpool.destroy_sound(hazards[i].hazardsound);

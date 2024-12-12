@@ -1,4 +1,5 @@
 new in 5.0
+Fixed an issue where force fields and hazards didn't impact the user if they were to directly teleport to it with the go command.
 Fixed all weapons to respect your actual attack stat, rather than multiplying there dammage based on how much attack you have.
 Renamed health zones to heal zones. The heal zone will also heal your shield strength as well, not just your character's health.
 Made it so animal, enemie, robot, and zombie zones don't always drop items after killing things inside them. They now have a 50percent chanse of being dropped. This also effects turrets and all of the other game modes outside the map builder.

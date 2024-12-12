@@ -1344,7 +1344,7 @@ if(arqsfx.length()!=0 && shieldhitsound==1) shieldslot=p.play_stationary_extende
 string[] hitsfx=find_files("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/*hit*");
 if(hitsfx.length()!=0) forcefields[i].wepsound=forcepool.play_stationary_extended("sounds/"+soundpack+"/objects/force fields/"+forcefields[i].forcetype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 shieldstrength-=forcefields[i].damage-shielddefence;
-pbounce();
+pbounce(5);
 return;
 }
 else if(forcefields[i].forcefielded==true && forcefields[i].minx<=me.x && forcefields[i].maxx>=me.x && forcefields[i].miny<=me.y && forcefields[i].maxy>=me.y && shieldon==0 && paused==0)
@@ -1355,7 +1355,7 @@ string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*
 if(hurtsfx.length()!=0 && charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
 health-=forcefields[i].damage-defence;
 hearttime-=forcefields[i].damage-defence;
-pbounce();
+pbounce(5);
 return;
 }
 }
@@ -1368,7 +1368,7 @@ if(lifesfx.length()!=0 and charlifesound==1) hazardpool.play_stationary("sounds/
 lifecard-=1;
 health=maxhealth;
 hearttime=maxhealth;
-pbounce();
+pbounce(5);
 return;
 }
 }
@@ -1443,16 +1443,16 @@ cam.y--;
 else if(camdir=="down")
 cam.y++;
 }
-void pbounce()
+void pbounce(int steps=1)
 {
 if(facing=="right")
-me.x--;
+me.x-=steps;
 else if(facing=="left")
-me.x++;
+me.x+=steps;
 else if(facing=="up")
-me.y--;
+me.y-=steps;
 else if(facing=="down")
-me.y++;
+me.y+=steps;
 }
 void checkforplatforms()
 {
