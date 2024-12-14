@@ -10,7 +10,7 @@
 **8. Make item giver doors and passages.
 **9. Make key locked doors and passages.
 **10. Make crushers.
-**11. Make floor breakers.
+**11 is done. Make floor breakers.
 **12. Make security carts.
 **13. Make security cameras.
 **14. Make security jets.
@@ -21,7 +21,7 @@
 **19. Fix passages to let walls disappear and reappear as it opens and closes. I think I may have broken it while fixing a bug with walls not destroying themselves properly upon building multiple of them within a sertain area of the map.
 **20. Make objects found in the objects menu trackable
 **21. Add a sonar to platforms, walls, and staircases.
-**22. Add boss enemies.
+**22 is almost done. Add boss enemies.
 **23. Add throwable items.
 **24. Add flying vehicles such as aircrafts.
 **25. Add falling and jumpping lojic to animals, enemies, robots, and zombies.

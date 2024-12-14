@@ -98,7 +98,7 @@ savedata sd("data/saves/game.dat", "s7NGuz4iSPGvdCy52bDekJezFp23WcBoeMdlY8Mk9d7Z
 savedata st("data/saves/options.dat","mBlAGtFL8GUjFZDAaLkG6Zqv1KHKOimA3SGqT6wmdJWc5h6RdSB97916D9SIQfZMjdCZMSJmDByZHYuS2V22QCvHmSGMHIOSwIyHjD46zmjGcm3bgZRyImIAVLivGTgAHub0jpjORA2t3z1GJMcHu0VxMIbJrmSzXjU9wdgeZYdP8z7MVym8SBrGrb2X8r9ryXY03MhwzMgjdD6jo9q");
 slider s, s2, slide, slide2;
 sound dummy, dummy2, mus, mus2;
-sound_pool animalpool, beltpool, bombpool, breakerpool, bulletpool, calpool, campool, clockpool, checkpool, doorpool, enemiepool, forcepool, hazardpool, itempool, liftpool, minepool, muspool, platpool, passagepool, projpool, robpool, signpool, sourcepool, spikepool, telpool, turpool, vehpool, vanpool, zombpool, p, p2, t, t2, mpool, mpool2, pool, pool2, spool, spool2, temp, temp2;
+sound_pool animalpool, beltpool, bombpool, bosspool, breakerpool, bulletpool, calpool, campool, clockpool, checkpool, doorpool, enemiepool, forcepool, hazardpool, healpool, itempool, liftpool, minepool, muspool, platpool, passagepool, projpool, robpool, rockpool, signpool, sourcepool, spikepool, telpool, turpool, vehpool, vanpool, zombpool, p, p2, t, t2, mpool, mpool2, pool, pool2, spool, spool2, temp, temp2;
 text_input v, v2, text, text2, input, input2;
 time_elapsed timeelapsed;
 vector cam, cam2, me, me2;
@@ -194,9 +194,10 @@ charhealsound3=current_char.charhealsound3;
 charinvsound=current_char.charinvsound;
 charjumpsound=current_char.charjumpsound;
 charjumpsound2=current_char.charjumpsound2;
+charlandsound=current_char.charlandsound;
 charlevsound=current_char.charlevsound;
 charlifesound=current_char.charlifesound;
-charrocksound=current_char.charrocksound;
+charshakesound=current_char.charshakesound;
 charsitsound=current_char.charsitsound;
 charstandsound=current_char.charstandsound;
 charswingsound=current_char.charswingsound;
@@ -308,7 +309,7 @@ mainmenu();
 }
 void fade_multi_pool(int fade_mode)
 {
-sound_pool@[] pools = {p, animalpool, bombpool, breakerpool, bulletpool, enemiepool, liftpool, passagepool, platpool, projpool, robpool, telpool, turpool, zombpool, campool, calpool, clockpool, checkpool, forcepool, hazardpool, beltpool, doorpool, minepool, muspool, signpool, sourcepool, spikepool, vanpool, vehpool};    
+sound_pool@[] pools = {p, animalpool, bombpool, bosspool, breakerpool, bulletpool, enemiepool, healpool, liftpool, passagepool, platpool, projpool, robpool, rockpool, telpool, turpool, zombpool, campool, calpool, clockpool, checkpool, forcepool, hazardpool, beltpool, doorpool, minepool, muspool, signpool, sourcepool, spikepool, vanpool, vehpool};    
 if(fade_mode==0)
 {
 fade_pitch_pool(pools);
@@ -391,6 +392,10 @@ animalpool.volume_step=2.5;
 bombpool.max_distance=0;
 bombpool.pan_step=2.5;
 bombpool.volume_step=2.5;
+@bosspool.mixer=mixer();
+bosspool.max_distance=0;
+bosspool.pan_step=2.5;
+bosspool.volume_step=2.5;
 @breakerpool.mixer=mixer();
 breakerpool.max_distance=0;
 breakerpool.pan_step=2.5;
@@ -403,6 +408,10 @@ bulletpool.volume_step=2.5;
 enemiepool.max_distance=0;
 enemiepool.pan_step=2.5;
 enemiepool.volume_step=2.5;
+@healpool.mixer=mixer();
+healpool.max_distance=0;
+healpool.pan_step=2.5;
+healpool.volume_step=2.5;
 @liftpool.mixer=mixer();
 liftpool.max_distance=0;
 liftpool.pan_step=2.5;
@@ -423,6 +432,10 @@ projpool.volume_step=2.5;
 robpool.max_distance=0;
 robpool.pan_step=2.5;
 robpool.volume_step=2.5;
+@rockpool.mixer=mixer();
+rockpool.max_distance=0;
+rockpool.pan_step=2.5;
+rockpool.volume_step=2.5;
 @telpool.mixer=mixer();
 telpool.max_distance=0;
 telpool.pan_step=2.5;
@@ -505,14 +518,17 @@ void update_sound_pools()
 p.update_listener_2d(me.x,me.y);
 animalpool.update_listener_2d(me.x,me.y);
 bombpool.update_listener_2d(me.x,me.y);
+bosspool.update_listener_2d(me.x,me.y);
 breakerpool.update_listener_2d(me.x,me.y);
 bulletpool.update_listener_2d(me.x,me.y);
 enemiepool.update_listener_2d(me.x,me.y);
+healpool.update_listener_2d(me.x,me.y);
 liftpool.update_listener_2d(me.x,me.y);
 passagepool.update_listener_2d(me.x,me.y);
 platpool.update_listener_2d(me.x,me.y);
 projpool.update_listener_2d(me.x,me.y);
 robpool.update_listener_2d(me.x,me.y);
+rockpool.update_listener_2d(me.x,me.y);
 telpool.update_listener_2d(me.x,me.y);
 turpool.update_listener_2d(me.x,me.y);
 zombpool.update_listener_2d(me.x,me.y);
@@ -535,7 +551,7 @@ vehpool.update_listener_2d(me.x,me.y);
 }
 void pause_pools()
 {
-sound_pool@[] pools = {animalpool, bombpool, breakerpool, bulletpool, enemiepool, liftpool, passagepool, platpool, projpool, robpool, telpool, turpool, zombpool, calpool, clockpool, checkpool, forcepool, hazardpool, beltpool, doorpool, minepool, muspool, signpool, sourcepool, spikepool, vanpool, vehpool};    
+sound_pool@[] pools = {animalpool, bombpool, bosspool, breakerpool, bulletpool, enemiepool, healpool, liftpool, passagepool, platpool, projpool, robpool, rockpool, telpool, turpool, zombpool, calpool, clockpool, checkpool, forcepool, hazardpool, beltpool, doorpool, minepool, muspool, signpool, sourcepool, spikepool, vanpool, vehpool};    
     for(uint h = 0; h < pools.length(); h++)
     {
         for(uint i = 0; i < pools[h].items.length(); i++)
@@ -550,7 +566,7 @@ sound_pool@[] pools = {animalpool, bombpool, breakerpool, bulletpool, enemiepool
 }
 void resume_pools()
 {
-sound_pool@[] pools = {animalpool, bombpool, breakerpool, bulletpool, enemiepool, liftpool, passagepool, platpool, projpool, robpool, telpool, turpool, zombpool, calpool, clockpool, checkpool, forcepool, hazardpool, beltpool, doorpool, minepool, muspool, signpool, sourcepool, spikepool, vanpool, vehpool};   
+sound_pool@[] pools = {animalpool, bombpool, bosspool, breakerpool, bulletpool, enemiepool, healpool, liftpool, passagepool, platpool, projpool, robpool, rockpool, telpool, turpool, zombpool, calpool, clockpool, checkpool, forcepool, hazardpool, beltpool, doorpool, minepool, muspool, signpool, sourcepool, spikepool, vanpool, vehpool};   
     for(uint h = 0; h < pools.length(); h++)
     {
         for(uint i = 0; i < pools[h].items.length(); i++)

@@ -1,11 +1,11 @@
-name=bk
+name=tg2
 shield type=none
 shield weight=1
-attack=5
-defence=5
-health=1000
-max health=1000
-lives=2
+attack=20
+defence=20
+health=2000
+max health=2000
+lives=3
 level=1
 level modifier=1
 experience=0

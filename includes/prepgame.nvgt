@@ -15,8 +15,8 @@ double weaponvolume=0, weaponmaxvolume=120, weaponpan=0, weaponmaxpan=100, weapo
 double attack=0, ammo=100, defence=0, health=100, kills=0, points=0, xp=0, xpmod=1, xprequiered=1, level=1, levmod=1, lifecard=1, loadedammo=100, shieldstrength=100, shielddefence=0, shieldlevel, maxammo=100, maxhealth=100, maxshieldstrength=100, maxx=100, maxy=100, weplevel=1;
 float revdry, revwet, revsize, revdamp, revwidth;
 int autoslot, camslot, fallslot, heartslot, invslot, itemslot, painslot, prevslot, shieldloop, shieldslot, shieldremoveslot, shieldwearslot, tileslot, wallslot, weaponslot;
-int amrange, amrange2, amrange3, amrange4, emrange, emrange2, emrange3, emrange4, telrange, telrange2, robrange, robrange2, robrange3, robrange4, zombrange, zombrange2, zombrange3, zombrange4, charmode, fallcounter, gamemode, jumping, gametime, musmode, movetime, platmode, sorcemode, ty1, ty2;
-int charcamsound=1, chardeathsound=1, charfallsound=1, charfallsound2=1, charhurtsound=1, charhealsound=1, charhealsound2=1, charhealsound3=1, charinvsound=1, charjumpsound=1, charjumpsound2=1, charlevsound=1, charlifesound=1, charrocksound=1, charsitsound=1, charstandsound=1, charswingsound=1, charturnsound=1;
+int amrange, amrange2, amrange3, amrange4, emrange, emrange2, emrange3, emrange4, robrange, robrange2, robrange3, robrange4, telrange, telrange2, zombrange, zombrange2, zombrange3, zombrange4, charmode, fallcounter, gamemode, jumping, gametime, healthmode, musmode, movetime, platmode, sorcemode, ty1, ty2;
+int charcamsound=1, chardeathsound=1, charfallsound=1, charfallsound2=1, charhurtsound=1, charhealsound=1, charhealsound2=1, charhealsound3=1, charinvsound=1, charjumpsound=1, charjumpsound2=1, charlandsound=1, charlevsound=1, charlifesound=1, charshakesound=1, charsitsound=1, charstandsound=1, charswingsound=1, charturnsound=1;
 int shieldbreaksound=1, shielddrawsound=1, shieldhitsound=1, shieldloopsound=1, shieldremovesound=1, shieldwearsound=1;
 int wepdrawsound=1, wepemptysound=1, wepfiresound=1, wephitsound=1, weploopsound=1, weprecsound=1, wepreloadsound=1, wepshellsound=1;
 int firesound=1, jumpsound=1, hitsound=1, rocksound=1, heartsound=1, sitsound=1, spydist=101, standsound=1, switchsound=1, togglesound=1, turnsound=1, telsound=1, tilesound=1, wallsound=1;
@@ -45,6 +45,7 @@ string dlgtyp;
 string emtype;
 string floortyp;
 string forcetyp;
+string healtyp;
 string lifttyp;
 string looptyp;
 string mplattyp;
@@ -85,7 +86,6 @@ string weapontype="melee";
 string weapontype2="fist";
 string camdir="left";
 string facing="left";
-string tilename="*hardland*, *land*.";
 string drinktype="boddle of water";
 string foodtype="apple";
 string healtype="health drug";
@@ -1626,22 +1626,39 @@ string mx=virtual_input_box("","Enter the minimum x of this heal zone.");
 string mx2=virtual_input_box("","Enter the maximum x of this heal zone.");
 string my=virtual_input_box("","Enter the minimum y of this heal zone.");
 string my2=virtual_input_box("","Enter the maximum y of this heal zone.");
+string hm=virtual_input_box("","Enter the healing mode of this heal zone. 0 for decreasing health, and 1 for increasing health.");
 string hp=virtual_input_box("","Enter the health of this heal zone.");
 string ht=virtual_input_box("","Enter the healing time of this heal zone.");
-if(x=="" and paxx=="" and y=="" and paxy=="" and damage=="" and speedtime=="")
+if(x=="" and paxx=="" and y=="" and paxy=="" and healthmode=="" and damage=="" and speedtime=="")
 return;
 x=string_to_number(mx);
 paxx=string_to_number(mx2);
 y=string_to_number(my);
 paxy=string_to_number(my2);
+healthmode=string_to_number(hm);
 damage=string_to_number(hp);
 speedtime=string_to_number(ht);
+string[] heals=find_directories("sounds/"+soundpack+"/objects/heal zones/*");
+if(heals.length()==0)
+{
+dlg_snd("Error. There are no heal zones available to view.");
+resume_pools();
+return;
+}
+else
+{
+string res=healsmenu();
+if(res!="")
+{
+healtyp=res;
+}
+}
 resume_pools();
 mapper.open("data/maps/"+mapname+".map","ab");
 mapdata=mapper.read();
-mapper.write("\r\n"+"heal_zone "+x+" "+paxx+" "+y+" "+paxy+" "+damage+" "+speedtime);
+mapper.write("\r\n"+"heal_zone "+x+" "+paxx+" "+y+" "+paxy+" "+healthmode+" "+damage+" "+speedtime+" "+healtyp);
 mapper.close();
-spawn_healzone(x, paxx, y, paxy, damage, speedtime);
+spawn_healzone(x, paxx, y, paxy, healthmode, damage, speedtime, healtype);
 load_map(mapname);
 mpool.play_stationary("mapupdate.ogg",false);
 speak("Map updated.");

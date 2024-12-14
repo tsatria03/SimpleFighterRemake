@@ -189,6 +189,220 @@ void destroy_all_animalzones()
 animalzones.resize(0);
 }
 
+boss@[]bosses(0);
+class boss
+{
+bool dropitem, fireable, moveable, moveable2, regenhp, spotted, telleble, telleble2;
+int bossesound, healsound, defsound, firesound, hurtsound, spawnsound, stepsound, tilesound, telsound, wepsound;
+int bosscard;
+int bossehealth;
+double bosslevel;
+double bossxp;
+double bosshealth;
+double bossmaxhealth;
+int bossx;
+int bossy;
+int boserange;
+int boserange2;
+int boserange3;
+int boserange4;
+int damage;
+int bosstime;
+int firetime;
+int healtime;
+int launchtime;
+int teltime;
+string bosstype;
+string bosstype2;
+string bosstype3;
+timer bosstimer, firetimer, launchtimer, teltimer;
+boss(int bx,int by,int bsrange,int bsrange2,int bsrange3,int bsrange4,double hp,double maxhp,int bc,int dm,int ft,int lt,int sp,int tlt,int hlt,double blv,double bxp,string bt,string bs,string bs2,bool bf,bool bm,bool bm2,bool tb,bool tb2,bool dpm,bool rgp)
+{
+this.bossehealth=hp;
+bossx=bx;
+bossy=by;
+boserange=bsrange;
+boserange2=bsrange2;
+boserange3=bsrange3;
+boserange4=bsrange4;
+bosshealth=hp;
+bossmaxhealth=maxhp;
+bosscard=bc;
+damage=dm;
+firetime=ft;
+launchtime=lt;
+bosstime=sp;
+teltime=tlt;
+healtime=hlt;
+bosslevel=blv;
+bossxp=bxp;
+bosstype=bt;
+bosstype2=bs;
+bosstype3=bs2;
+fireable=bf;
+moveable=bm;
+moveable2=bm2;
+telleble=tb;
+telleble2=tb2;
+dropitem=dpm;
+regenhp=rgp;
+spotted=false;
+string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosstype+"/*spawn*");
+if(spawnsfx.length()!=0) spawnsound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosstype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,bossx,bossy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+string[] bosesfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosstype+"/*loop*");
+if(bosesfx.length()!=0) bossesound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosstype+"/"+bosesfx[random(0,bosesfx.length()-1)],me.x,me.y,bossx,bossy,0,0,0,0,true,0,0,painvolume,painpitch,false);
+}
+void regenerate_bosshp(int amount)
+{
+string[] healsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosstype+"/*heal*");
+if(healsfx.length()!=0) healsound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosstype+"/"+healsfx[random(0,healsfx.length()-1)],me.x,me.y,bossx,bossy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+bosshealth+=amount;
+}
+void spawn_boss_obj(int objnum)
+{
+if(objnum==1)
+{
+if(bosstype2=="animal" and facing=="left") spawn_animal(bossx-1, bossy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), bosslevel, 1*level, bosstype3, true, true, random_bool(), random_bool());
+if(bosstype2=="animal" and facing=="right") spawn_animal(bossx+1, bossy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), bosslevel, 1*level, bosstype3, true, true, random_bool(), random_bool());
+}
+if(objnum==2)
+{
+if(bosstype2=="enemie" and facing=="left") spawn_enemie(bossx-1, bossy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), bosslevel, 1*level, bosstype3, true, true, random_bool(), random_bool());
+if(bosstype2=="enemie" and facing=="right") spawn_enemie(bossx+1, bossy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), bosslevel, 1*level, bosstype3, true, true, random_bool(), random_bool());
+}
+if(objnum==3)
+{
+if(bosstype2=="projectile" and facing=="left") spawn_projectile(bossx-1, bossy, 0, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(50, 500), bosslevel, 1*level, bosstype3, true, true);
+if(bosstype2=="projectile" and facing=="right") spawn_projectile(bossx+1, bossy, 1, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(50, 500), bosslevel, 1*level, bosstype3, true, true);
+}
+if(objnum==4)
+{
+if(bosstype2=="robot" and facing=="left") spawn_robot(bossx-1, bossy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), bosslevel, 1*level, bosstype3, true, true, random_bool(), random_bool());
+if(bosstype2=="robot" and facing=="right") spawn_robot(bossx+1, bossy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), bosslevel, 1*level, bosstype3, true, true, random_bool(), random_bool());
+}
+if(objnum==5)
+{
+if(bosstype2=="turret" and facing=="left") spawn_turret(bossx-1, bossy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), launchtime, random(100, 1000), bosslevel, 1*level, bosstype, bosstype2, bosstype3, true, true, random_bool());
+if(bosstype2=="turret" and facing=="right") spawn_turret(bossx+1, bossy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), launchtime, random(100, 1000), bosslevel, 1*level, bosstype, bosstype2, bosstype3, true, true, random_bool());
+}
+if(objnum==6)
+{
+if(bosstype2=="zombie" and facing=="left") spawn_zombie(bossx-1, bossy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), bosslevel, 1*level, bosstype3, true, true, random_bool(), random_bool());
+if(bosstype2=="zombie" and facing=="right") spawn_zombie(bossx+1, bossy, 0, 0, maxx, maxy, 1*xp+1, 1*xp+1, 1, 1*xp+1, random(100, 1000), random(100, 1000), bosslevel, 1*level, bosstype3, true, true, random_bool(), random_bool());
+}
+}
+void teleport_boss(int bx,int by)
+{
+string[] telsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosstype+"/*tel*");
+if(telsfx.length()!=0) telsound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosstype+"/"+telsfx[random(0,telsfx.length()-1)],me.x,me.y,bossx,bossy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+bossx=bx;
+bossy=by;
+}
+}
+void bossloop()
+{
+for(uint i=0; i<bosses.length(); i++)
+{
+if(bosses[i].launchtimer.elapsed>=bosses[i].launchtime)
+{
+string[] launchsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/*launch*");
+if(launchsfx.length()!=0 and facing=="left" or facing=="right") bosses[i].firesound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/"+launchsfx[random(0,launchsfx.length()-1)],me.x,me.y,bosses[i].bossx,bosses[i].bossy,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
+bosses[i].spawn_boss_obj(random(1,6));
+bosspool.update_sound_2d(bosses[i].firesound,bosses[i].bossx,bosses[i].bossy);
+bosses[i].launchtimer.restart();
+}
+if(bosses[i].bosstimer.elapsed>=bosses[i].bosstime)
+{
+if(absolute(me.x-bosses[i].bossx)<=bosses[i].boserange3 and absolute(me.y-bosses[i].bossy)<=bosses[i].boserange4)
+{
+bosses[i].spotted=true;
+}
+if(bosses[i].spotted)
+{
+string[] bossesteps=find_files("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/*step*");
+if(bosses[i].moveable==true and bosses[i].stepsound==1 and paused==0 and bossesteps.length()!=0) bosses[i].tilesound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/"+bossesteps[random(0,bossesteps.length()-1)],me.x,me.y,bosses[i].bossx,bosses[i].bossy,0,0,0,0,false,0,0,tilevolume,tilepitch,false);
+bosspool.update_sound_2d(bosses[i].bossesound,bosses[i].bossx,bosses[i].bossy);
+bosses[i].bosstimer.restart();
+if(bosses[i].bossx<me.x and bosses[i].moveable==true and paused==0)
+{
+bosses[i].bossx++;
+bosses[i].stepsound=1;
+}
+if(bosses[i].bossx>me.x and bosses[i].moveable==true and paused==0)
+{
+bosses[i].bossx--;
+bosses[i].stepsound=1;
+}
+if(bosses[i].bossy<me.y and bosses[i].moveable2==true and paused==0)
+{
+bosses[i].bossy++;
+bosses[i].stepsound=1;
+}
+if(bosses[i].bossy>me.y and bosses[i].moveable2==true and paused==0)
+{
+bosses[i].bossy--;
+bosses[i].stepsound=1;
+}
+}
+}
+if(absolute(me.x-bosses[i].bossx)<=bosses[i].boserange and absolute(me.y-bosses[i].bossy)<=bosses[i].boserange2 and bosses[i].firetimer.elapsed>=bosses[i].firetime and bosses[i].fireable==true and shieldon==1 and shieldstrength<=maxshieldstrength and paused==0)
+{
+bosses[i].stepsound=0;
+string[] arqsfx=find_files("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/*hit*");
+if(arqsfx.length()!=0 and shieldhitsound==1) shieldslot=p.play_stationary_extended("sounds/"+soundpack+"/equipments/shields/"+shieldtype+"/"+arqsfx[random(0,arqsfx.length()-1)],false,0,0,shieldvolume,shieldpitch,false);
+shieldstrength-=bosses[i].damage*bosses[i].bosslevel-shielddefence;
+bosses[i].firetimer.restart();
+}
+else if(absolute(me.x-bosses[i].bossx)<=bosses[i].boserange and absolute(me.y-bosses[i].bossy)<=bosses[i].boserange2 and bosses[i].firetimer.elapsed>=bosses[i].firetime and bosses[i].fireable==true and shieldon==0 and paused==0)
+{
+bosses[i].stepsound=0;
+string[] hitsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/*hit*");
+if(hitsfx.length()!=0) bosses[i].wepsound=bosspool.play_stationary_extended("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/"+hitsfx[random(0,hitsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*hurt*");
+if(hurtsfx.length()!=0 and charhurtsound==1) painslot=p.play_stationary_extended("sounds/"+soundpack+"/characters/"+chartype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],false,0,0,painvolume,painpitch,false);
+health-=bosses[i].damage*bosses[i].bosslevel-defence;
+hearttime-=bosses[i].damage*bosses[i].bosslevel-defence;
+bosses[i].firetimer.restart();
+}
+if(bosses[i].bosshealth<=0)
+{
+if(bosses[i].bosscard>=2 and paused==0)
+{
+string[] lifesfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/*life*");
+if(lifesfx.length()!=0) bosspool.play_2d("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/"+lifesfx[random(0,lifesfx.length()-1)],me.x,me.y,bosses[i].bossx,bosses[i].bossy,false);
+bosses[i].bosshealth=bosses[i].bossehealth;
+bosses[i].bosscard-=1;
+}
+else if(bosses[i].bosscard<=1 and paused==0)
+{
+bosspool.destroy_sound(bosses[i].hurtsound);
+bosspool.destroy_sound(bosses[i].bossesound);
+string[] defsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/*death*");
+if(defsfx.length()!=0) bosses[i].defsound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,bosses[i].bossx,bosses[i].bossy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+if(xpmod>=1) xp+=bosses[i].bossxp*bosses[i].bosslevel*xpmod;
+kills+=1;
+string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
+if(healtype.length()!=0 and bosses[i].dropitem==true) spawn_obj(bosses[i].bossx, bosses[i].bossy, 500, "health", healtype[random(0,healtype.length()-1)], true);
+bosses.remove_at(i);
+return;
+}
+}
+}
+}
+void spawn_boss(int x,int y,int bossrange,int bossrange2,int bossrange3,int bossrange4,double hp,double maxhp,int bc,int dm,int firetime,int launchtime,int bosstime,int teltime,int healtime,double bosslevel,double xp,string bosstype,string bosstype2,string bosstype3,bool fireable,bool moveable,bool moveable2,bool telleble,bool telleble2,bool dropitem,bool regenhp)
+{
+boss bs1(x,y,bossrange,bossrange2,bossrange3,bossrange4,hp,maxhp,bc,dm,firetime,launchtime,bosstime,teltime,healtime,bosslevel,xp,bosstype,bosstype2,bosstype3,fireable,moveable,moveable2,telleble,telleble2,dropitem,regenhp);
+bosses.insert_last(bs1);
+}
+void destroy_all_bosses()
+{
+for(uint i=0; i<bosses.length(); i++)
+{
+bosspool.destroy_sound(bosses[i].bossesound);
+}
+bosses.resize(0);
+}
+
 enemie@[]enemies(0);
 class enemie
 {

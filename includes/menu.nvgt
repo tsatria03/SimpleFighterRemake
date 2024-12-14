@@ -237,28 +237,15 @@ if(tilers.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/
 }
 if(key_down(KEY_LCONTROL) and key_repeating(KEY_H) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_H) and m.menu_position>0)
 {
-if(tilename!="hardland")
-{
 t.destroy_sound(prevslot);
-string [] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/*hardland*");
-if(tilers.length()!=0) tilename=tilers[random(0,tilers.length()-1)];
-if(tilers.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/"+tilename,false);
-}
+string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/*fall*");
+if(tilers.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/"+tilers[random(0,tilers.length()-1)],false);
 }
 if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
 {
-if(tilename!="land")
-{
 t.destroy_sound(prevslot);
-string [] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/*land*");
-for (uint i=0; i<tilers.length(); i++)
-{
-if(string_contains(tilers[i],"hard",1)>-1)
-tilers.remove_at(i);
-}
-if(tilers.length()!=0) tilename=tilers[random(0,tilers.length()-1)];
-if(tilers.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/"+tilename,false);
-}
+string[] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/*land*");
+if(tilers.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/platforms/"+tiletype+"/"+tilers[random(0,tilers.length()-1)],false);
 }
 return 0;
 }
@@ -349,9 +336,10 @@ charhealsound3=current_char.charhealsound3;
 charinvsound=current_char.charinvsound;
 charjumpsound=current_char.charjumpsound;
 charjumpsound2=current_char.charjumpsound2;
+charlandsound=current_char.charlandsound;
 charlevsound=current_char.charlevsound;
 charlifesound=current_char.charlifesound;
-charrocksound=current_char.charrocksound;
+charshakesound=current_char.charshakesound;
 charsitsound=current_char.charsitsound;
 charstandsound=current_char.charstandsound;
 charswingsound=current_char.charswingsound;
@@ -2373,6 +2361,52 @@ if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_
 t.destroy_sound(prevslot);
 string[] loopsfx=find_files("sounds/"+soundpack+"/objects/signs/"+signtype+"/*loop*");
 if(loopsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/signs/"+signtype+"/"+loopsfx[random(0,loopsfx.length()-1)],false);
+}
+return 0;
+}
+string healsmenu()
+{
+string[] healthtype=find_directories("sounds/"+soundpack+"/objects/heal zones/*");
+setupmenu();
+m.set_callback(@heals_callback,"");
+for (uint i=0; i<healthtype.length(); i++)
+{
+m.add_item_tts(healthtype[i],healthtype[i],"",true);
+}
+int mres=m.run("heal zones menu", true);
+if(mres==0)
+{
+speak("canceled");
+}
+if(mres>0 and mres<=healthtype.length())
+{
+healtyp=healthtype[mres-1];
+}
+return m.get_item_name(mres);
+}
+int heals_callback(dynamic_menu_pro@ m, string data)
+{
+string healthtype;
+if(m.menu_position>0)
+healthtype=m.item_list[m.menu_position-1].name;
+if(key_down(KEY_SPACE) and m.menu_position>0 and spacehold==1 and keytimer.elapsed>=keytime)
+{
+t.destroy_sound(prevslot);
+string[] healsfx=find_files("sounds/"+soundpack+"/objects/heal zones/"+healthtype+"/*heal*");
+if(healsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/heal zones/"+healthtype+"/"+healsfx[random(0,healsfx.length()-1)],false);
+keytimer.restart();
+}
+if(key_pressed(KEY_SPACE) and m.menu_position>0 and spacehold==0)
+{
+t.destroy_sound(prevslot);
+string[] healsfx=find_files("sounds/"+soundpack+"/objects/heal zones/"+healthtype+"/*pres*");
+if(healsfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/heal zones/"+healthtype+"/"+healsfx[random(0,healsfx.length()-1)],false);
+}
+if(key_down(KEY_LCONTROL) and key_repeating(KEY_L) and m.menu_position>0 or key_down(KEY_RCONTROL) and key_repeating(KEY_L) and m.menu_position>0)
+{
+t.destroy_sound(prevslot);
+string[] takesfx=find_files("sounds/"+soundpack+"/objects/heal zones/"+healthtype+"/*take*");
+if(takesfx.length()!=0) prevslot=t.play_stationary("sounds/"+soundpack+"/objects/heal zones/"+healthtype+"/"+takesfx[random(0,takesfx.length()-1)],false);
 }
 return 0;
 }

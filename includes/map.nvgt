@@ -574,15 +574,17 @@ int texttime=stn(sd[5]);
 string txt=join_string_array(sd, 6, sd.length());
 spawn_timedtext(mx, mx2, my, my2, texttime, txt);
 }
-else if(sd[0]=="heal_zone" && sd.length()==7)
+else if(sd[0]=="heal_zone" && sd.length()==9)
 {
 double mx=stn(sd[1]);
 double mx2=stn(sd[2]);
 double my=stn(sd[3]);
 double my2=stn(sd[4]);
-int hp=stn(sd[5]);
-int ht=stn(sd[6]);
-spawn_healzone(mx, mx2, my, my2, hp, ht);
+int hm=stn(sd[5]);
+int hp=stn(sd[6]);
+int ht=stn(sd[7]);
+string hlt=sd[8];
+spawn_healzone(mx, mx2, my, my2, hm, hp, ht,hlt);
 }
 else if(sd[0]=="hazard" && sd.length()==7)
 {
@@ -1330,6 +1332,22 @@ speak(current_text);
 pbounce();
 return;
 }
+for(uint i=0; i<healzones.length(); i++)
+{
+bool currently_in_zone =healzones[i].minx <= me.x && healzones[i].maxx >= me.x && healzones[i].miny <= me.y && healzones[i].maxy >= me.y;
+if (currently_in_zone && !healzones[i].in_zone)
+{
+string[] healsfx=find_files("sounds/"+soundpack+"/objects/heal zones/"+healzones[i].healtype+"/*heal*");
+if(healsfx.length()!=0 and healzones[i].healmode==1) healzones[i].healsound=healpool.play_stationary("sounds/"+soundpack+"/objects/heal zones/"+healzones[i].healtype+"/"+healsfx[random(0,healsfx.length()-1)],false);
+string[] takesfx=find_files("sounds/"+soundpack+"/objects/heal zones/"+healzones[i].healtype+"/*take*");
+if(takesfx.length()!=0 and healzones[i].healmode==0) healzones[i].takesound=healpool.play_stationary("sounds/"+soundpack+"/objects/heal zones/"+healzones[i].healtype+"/"+takesfx[random(0,takesfx.length()-1)],false);
+healzones[i].in_zone = true;
+}
+else if (!currently_in_zone && healzones[i].in_zone)
+{
+healzones[i].in_zone = false;
+}
+}
 for(uint i=0; i<signs.length(); i++)
 {
 string[] signsfx=find_files("sounds/"+soundpack+"/objects/signs/"+signs[i].signtype+"/*step*");
@@ -1400,12 +1418,8 @@ if(wallers.length()!=0) wallslot=p.play_extended_2d("sounds/"+soundpack+"/object
 return;
 }
 }
-if(tilename!="hardland")
-{
-string [] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/*hardland*");
-if(tilers.length()!=0) tilename=tilers[random(0,tilers.length()-1)];
-if(tilers.length()!=0) tileslot=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/"+tilename,false,0,0,tilevolume,tilepitch);
-}
+string [] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/*fall*");
+if(tilers.length()!=0) tileslot=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
 }
 void playland()
 {
@@ -1420,17 +1434,10 @@ if(wallers.length()!=0) wallslot=p.play_extended_2d("sounds/"+soundpack+"/object
 return;
 }
 }
-if(tilename!="land")
-{
+string[] landsfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*land*");
+if(landsfx.length()!=0 and charlandsound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+landsfx[random(0,landsfx.length()-1)],false);
 string [] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/*land*");
-for (uint i=0; i<tilers.length(); i++)
-{
-if(string_contains(tilers[i],"hard",1)>-1)
-tilers.remove_at(i);
-}
-if(tilers.length()!=0) tilename=tilers[random(0,tilers.length()-1)];
-if(tilers.length()!=0) tileslot=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/"+tilename,false,0,0,tilevolume,tilepitch);
-}
+if(tilers.length()!=0) tileslot=p.play_stationary_extended("sounds/"+soundpack+"/objects/platforms/"+gmt(me.x,me.y)+"/"+tilers[random(0,tilers.length()-1)],false,0,0,tilevolume,tilepitch);
 }
 void cbounce()
 {

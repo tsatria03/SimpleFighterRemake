@@ -1,5 +1,10 @@
 new in 5.0
-Fixed an issue where force fields and hazards didn't impact the user if they were to directly teleport to it with the go command.
+Resolved an issue where heal zones repeatedly played the healing or taking sound on every step the user took while they were inside the zone. The heal and take sounds will now only play once when entering or exiting the heal zone.
+Heal zones now play sounds based on wich mode they are set to.
+Renamed hardland for all platforms to fall.
+Finally implemented a boss class for the game. It's not quite ready to be released yet. Although, a huge amount of work has been put into making it somewhat useable for testing purposes. This building feature is almost ready to be released. Please stay tuned for that in the next version!
+You can now define custom landing sounds for landing on platforms for all characters.
+Fixed an issue where force fields and hazards didn't impact the user if they were to either be on it after death, or they teleported to it directly with the go command.
 Fixed all weapons to respect your actual attack stat, rather than multiplying there dammage based on how much attack you have.
 Renamed health zones to heal zones. The heal zone will also heal your shield strength as well, not just your character's health.
 Made it so animal, enemie, robot, and zombie zones don't always drop items after killing things inside them. They now have a 50percent chanse of being dropped. This also effects turrets and all of the other game modes outside the map builder.

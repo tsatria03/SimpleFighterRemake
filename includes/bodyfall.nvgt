@@ -20,14 +20,10 @@ for(uint i=0; i<bodyfalls.length(); i++)
 if(bodyfalls[i].falltimer.elapsed>=bodyfalls[i].falltime)
 {
 bodyfalls[i].falltimer.restart();
-if(tilename!="hardland")
-{
-string [] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(bodyfalls[i].fallx,bodyfalls[i].fally)+"/*hardland*");
-if(tilers.length()!=0) tilename=tilers[random(0,tilers.length()-1)];
-if(tilers.length()!=0) bodyfalls[i].fallsound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(bodyfalls[i].fallx,bodyfalls[i].fally)+"/"+tilename,me.x,me.y,bodyfalls[i].fallx,bodyfalls[i].fally,0,0,0,0,false,0,0,fallvolume,fallpitch,false);
+string [] tilers=find_files("sounds/"+soundpack+"/objects/platforms/"+gmt(bodyfalls[i].fallx,bodyfalls[i].fally)+"/*fall*");
+if(tilers.length()!=0) bodyfalls[i].fallsound=p.play_extended_2d("sounds/"+soundpack+"/objects/platforms/"+gmt(bodyfalls[i].fallx,bodyfalls[i].fally)+"/"+tilers[random(0,tilers.length()-1)],me.x,me.y,bodyfalls[i].fallx,bodyfalls[i].fally,0,0,0,0,false,0,0,tilevolume,tilepitch);
 bodyfalls.remove_at(i);
 return;
-}
 }
 }
 }
