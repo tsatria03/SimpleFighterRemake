@@ -1,8 +1,8 @@
 name=tg
 shield type=none
 shield weight=1
-attack=100
-defence=200
+attack=20
+defence=20
 health=2000
 max health=2000
 lives=3
