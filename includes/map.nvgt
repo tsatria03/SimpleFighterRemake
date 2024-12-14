@@ -1345,6 +1345,7 @@ healzones[i].in_zone = true;
 }
 else if (!currently_in_zone && healzones[i].in_zone)
 {
+healpool.destroy_all();
 healzones[i].in_zone = false;
 }
 }

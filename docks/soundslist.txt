@@ -38,7 +38,6 @@ bufferbeep.ogg
 bufferitemnext.ogg
 buffernext.ogg
 bufferposbeep.ogg
-bulletimpact.ogg
 bullitmiss1.ogg
 bullitmiss2.ogg
 bullitmiss3.ogg
@@ -47,8 +46,6 @@ buy1.ogg
 buy2.ogg
 buy3.ogg
 buy4.ogg
-cameraair.ogg
-cameraair2.ogg
 camerahazard.ogg
 cameratile.ogg
 camerawall.ogg
@@ -106,9 +103,6 @@ heartbeat1.wav
 heartbeat2.wav
 heartbeat3.wav
 hel.ogg
-insz.ogg
-insz2.ogg
-insz3.ogg
 item.ogg
 jm.ogg
 kick.ogg
@@ -170,7 +164,6 @@ misc6.ogg
 misc7.ogg
 misc8.ogg
 misc9.ogg
-mody.ogg
 molotov_cocktail_hit.ogg
 molotov_throw.ogg
 motd.ogg
@@ -180,16 +173,14 @@ motd_change.ogg
 objbeacon.ogg
 objecthit.ogg
 objectthrow.ogg
-outsz.ogg
-outsz2.ogg
-outsz3.ogg
 pause.ogg
 pendantoff.ogg
 pendanton.ogg
 pi2.ogg
 piko.ogg
 piko2.ogg
-progress.ogg
+progress1.ogg
+progress2.ogg
 promote.ogg
 punch1.ogg
 punch2.ogg
@@ -205,6 +196,7 @@ scan.ogg
 seanchange.ogg
 silence.ogg
 speakertest.ogg
+speed.ogg
 subclick.ogg
 switchoff.ogg
 switchon.ogg
@@ -222,4 +214,4 @@ volume_up.ogg
 wallchange.ogg
 wlo.ogg
 wsp.ogg
-total files: 224
+total files: 216

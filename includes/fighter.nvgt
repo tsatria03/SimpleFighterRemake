@@ -670,7 +670,7 @@ string[] rocksfx=find_files("sounds/"+soundpack+"/characters/"+chartype+"/*rock*
 if(rocksfx.length()!=0 and charshakesound==1) p.play_stationary("sounds/"+soundpack+"/characters/"+chartype+"/"+rocksfx[random(0,rocksfx.length()-1)],false);
 }
 }
-if(key_pressed(KEY_D) and modspeed!=20)
+if(key_repeating(KEY_D) and modspeed!=20)
 {
 if(keyrowhold==0)
 {
@@ -678,11 +678,13 @@ speak("You must enable auto walking in order to increase the moving speed.");
 }
 else if(speedable==true)
 {
+p.destroy_sound(speedslot);
+speedslot=p.play_stationary("speed.ogg",false);
 modspeed+=1;
 speak("speed"+modspeed);
 }
 }
-if(key_pressed(KEY_A) and modspeed!=1)
+if(key_repeating(KEY_A) and modspeed!=1)
 {
 if(keyrowhold==0)
 {
@@ -690,6 +692,8 @@ speak("You must enable auto walking in order to decrease the moving speed.");
 }
 else if(speedable==true)
 {
+p.destroy_sound(speedslot);
+speedslot=p.play_stationary("speed.ogg",false);
 modspeed-=1;
 speak("speed"+modspeed);
 }
