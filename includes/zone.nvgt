@@ -23,7 +23,7 @@ zdata=zones[i].text;
 }
 }
 if(zdata!="") return zdata;
-else return "Unknown Area";
+else return "";
 }
 string gmz()
 {
@@ -45,8 +45,7 @@ else
 {
 if (newzone!="")
 {
-if (zonestatus==1)
-speak("Unknown area.");
+if (zonestatus==1) speak("leving "+newzone);
 newzone="";
 }
 }

@@ -123,6 +123,7 @@ string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/animals/"+animals[i]
 if(defsfx.length()!=0) animals[i].defsound=animalpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/animals/"+animals[i].animaltype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,animals[i].amx,animals[i].amy,0,0,0,0,false,0,0,painvolume,painpitch,false);
 if(xpmod>=1) xp+=animals[i].amxp*animals[i].amlevel*xpmod;
 kills+=1;
+spawn_bodyfall(animals[i].amx, animals[i].amy, random(500,1000));
 string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
 if(healtype.length()!=0 and animals[i].dropitem==true) spawn_obj(animals[i].amx, animals[i].amy, 500, "health", healtype[random(0,healtype.length()-1)], true);
 animals.remove_at(i);
@@ -249,7 +250,7 @@ regenhp=rgp;
 spotted=false;
 string[] spawnsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosstype+"/*spawn*");
 if(spawnsfx.length()!=0) spawnsound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosstype+"/"+spawnsfx[random(0,spawnsfx.length()-1)],me.x,me.y,bossx,bossy,0,0,0,0,false,0,0,painvolume,painpitch,false);
-string[] bosesfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosstype+"/*loop*");
+string[] bosesfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosstype+"/*taunt*");
 if(bosesfx.length()!=0) bossesound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosstype+"/"+bosesfx[random(0,bosesfx.length()-1)],me.x,me.y,bossx,bossy,0,0,0,0,true,0,0,painvolume,painpitch,false);
 }
 void regenerate_bosshp(int amount)
@@ -381,6 +382,7 @@ string[] defsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"
 if(defsfx.length()!=0) bosses[i].defsound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosses[i].bosstype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,bosses[i].bossx,bosses[i].bossy,0,0,0,0,false,0,0,painvolume,painpitch,false);
 if(xpmod>=1) xp+=bosses[i].bossxp*bosses[i].bosslevel*xpmod;
 kills+=1;
+spawn_bodyfall(bosses[i].bossx, bosses[i].bossy, random(500,1000));
 string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
 if(healtype.length()!=0 and bosses[i].dropitem==true) spawn_obj(bosses[i].bossx, bosses[i].bossy, 500, "health", healtype[random(0,healtype.length()-1)], true);
 bosses.remove_at(i);
@@ -942,6 +944,7 @@ string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/robots/"+robots[i].r
 if(defsfx.length()!=0) robots[i].defsound=robpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/robots/"+robots[i].robottype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,robots[i].robx,robots[i].roby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 if(xpmod>=1) xp+=robots[i].robxp*robots[i].roblevel*xpmod;
 kills+=1;
+spawn_bodyfall(robots[i].robx, robots[i].roby, random(500,1000));
 string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
 if(healtype.length()!=0 and robots[i].dropitem==true) spawn_obj(robots[i].robx, robots[i].roby, 500, "health", healtype[random(0,healtype.length()-1)], true);
 robots.remove_at(i);
@@ -1274,6 +1277,7 @@ string[] defsfx=find_files("sounds/"+soundpack+"/npc/normal/zombies/"+zombies[i]
 if(defsfx.length()!=0) zombies[i].defsound=zombpool.play_extended_2d("sounds/"+soundpack+"/npc/normal/zombies/"+zombies[i].zombietype+"/"+defsfx[random(0,defsfx.length()-1)],me.x,me.y,zombies[i].zombx,zombies[i].zomby,0,0,0,0,false,0,0,painvolume,painpitch,false);
 if(xpmod>=1) xp+=zombies[i].zombxp*zombies[i].zomblevel*xpmod;
 kills+=1;
+spawn_bodyfall(zombies[i].zombx, zombies[i].zomby, random(500,1000));
 string[] healtype=find_directories("sounds/"+soundpack+"/equipments/items/unsorted/health/*");
 if(healtype.length()!=0 and zombies[i].dropitem==true) spawn_obj(zombies[i].zombx, zombies[i].zomby, 500, "health", healtype[random(0,healtype.length()-1)], true);
 zombies.remove_at(i);

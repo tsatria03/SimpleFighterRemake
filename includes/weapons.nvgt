@@ -129,6 +129,22 @@ if(bullets[i].scaddering==false) bullets.remove_at(i);
 return;
 }
 }
+for(uint b=0; b<bosses.length(); b++)
+{
+if(bosses[b].bossx==bullets[i].bullx and bosses[b].bossy==bullets[i].bully)
+{
+bulletpool.destroy_sound(bullets[i].bullsound);
+string[] hitsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/*hit*");
+if(hitsfx.length()!=0 and wephitsound==1) bullets[i].wepsound=bulletpool.play_extended_2d("sounds/"+soundpack+"/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/"+hitsfx[random(0,hitsfx.length()-1)],me.x,me.y,bullets[i].bullx,bullets[i].bully,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
+string[] shellsfx=find_files("sounds/"+soundpack+"/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/*shell*");
+if(shellsfx.length()!=0 and wepshellsound==1) bullets[i].wepsound=bulletpool.play_extended_2d("sounds/"+soundpack+"/equipments/weapons/"+bullets[i].bulltype+"/"+bullets[i].bulltype2+"/"+shellsfx[random(0,shellsfx.length()-1)],me.x,me.y,bullets[i].bullx,bullets[i].bully,0,0,0,0,false,0,0,weaponvolume,weaponpitch,false);
+string[] hurtsfx=find_files("sounds/"+soundpack+"/npc/boss/"+bosses[b].bosstype+"/*hurt*");
+if(hurtsfx.length()!=0) bosses[b].hurtsound=bosspool.play_extended_2d("sounds/"+soundpack+"/npc/boss/"+bosses[b].bosstype+"/"+hurtsfx[random(0,hurtsfx.length()-1)],me.x,me.y,bosses[b].bossx,bosses[b].bossy,0,0,0,0,false,0,0,painvolume,painpitch,false);
+bosses[b].bosshealth-=bullets[i].damage;
+if(bullets[i].scaddering==false) bullets.remove_at(i);
+return;
+}
+}
 for(uint i2=0; i2<calanders.length(); i2++)
 {
 if(calanders[i2].calanderx==bullets[i].bullx and calanders[i2].calandery==bullets[i].bully and calanders[i2].destroyable==true)

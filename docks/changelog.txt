@@ -1,4 +1,6 @@
 new in 5.0
+All entities except for projectiles and turrets will now play there body fall sound upon killing them.
+Made it so zones tell you when you are leaving them if you aren't in the bounds of one. It will no longer say unknown area unless you press the letter Q to get the current location.
 Resolved an issue where heal zones repeatedly played the healing or taking sound on every step the user took while they were inside the zone. The heal and take sounds will now only play once when entering or exiting the heal zone.
 Heal zones now play sounds based on wich mode they are set to.
 Renamed hardland for all platforms to fall.

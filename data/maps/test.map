@@ -2,4 +2,7 @@ name test
 maxx 200
 maxy 200
 platform 0 200 0 floor5 0 100
-heal_zone 5 10 0 0 1 1000 50 heal_zone
+heal_zone 5 10 0 5 1 250 500 heal_zone
+platform 5 10 0 Water 0 100
+sound_ambience 5 10 0 5 pond2 -5 100
+zone 5 10 0 5 healing spring
