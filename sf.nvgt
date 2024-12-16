@@ -64,7 +64,7 @@
 #include"includes/zone.nvgt"
 bool hrtf=true;
 bool y_is_elevation=true;
-int quest, mres;
+int progslot, quest, mres;
 int dockmode=1, echomode=1, fademode=1, keytime=200, spacehold=1;
 string chartype="default";
 string keyboardtheme="keyboard";
@@ -178,6 +178,7 @@ xp=current_char.xp;
 xpmod=current_char.xpmod;
 xprequiered=current_char.xprequiered;
 charcamsound=current_char.charcamsound;
+charcamsound2=current_char.charcamsound2;
 chardeathsound=current_char.chardeathsound;
 charfallsound=current_char.charfallsound;
 charfallsound2=current_char.charfallsound2;
@@ -188,6 +189,7 @@ charhealsound3=current_char.charhealsound3;
 charinvsound=current_char.charinvsound;
 charjumpsound=current_char.charjumpsound;
 charjumpsound2=current_char.charjumpsound2;
+charkillsound=current_char.charkillsound;
 charlandsound=current_char.charlandsound;
 charlevsound=current_char.charlevsound;
 charlifesound=current_char.charlifesound;
@@ -231,7 +233,7 @@ wepreloadsound=current_weapon.wepreloadsound;
 wepshellsound=current_weapon.wepshellsound;
 readdata();
 readpreffs();
-if(directory_exists("sounds") and !directory_empty("sounds")) mainmenu();
+if(directory_exists("data/sounds") and !directory_empty("data/sounds")) mainmenu();
 else downloadsounds();
 }
 void dockread(const string&in filename)
@@ -264,30 +266,30 @@ void downloadsounds()
 quest=question("Error", "There are no sounds detected in the game! Would you like to download them now?");
 if (quest==1)
 {
-if (file_exists("sounds.zip"))
+if (file_exists("data/sounds.zip"))
 {
 alert("file found", "This file already exists. The downloader will now skip to the extraction process.");
 }
 else
 {
-string result=dl_file("https://github.com/tsatria03/SimpleFighter/releases/download/v5.0.0/sounds.zip", "sounds.zip");
+string result=dl_file("https://github.com/tsatria03/SimpleFighter/releases/download/v5.0.0/sounds.zip", "data/sounds.zip");
 if (result != "finished")
 {
 alert("download error", "Download failed or was canceled.");
-if(file_exists("sounds.zip")) file_delete("sounds.zip");
+if(file_exists("data/sounds.zip")) file_delete("data/sounds.zip");
 mainmenu();
 }
 alert("finished", "Download completed successfully.");
 }
 alert("extracting", "Extracting files.");
-int progslot=temp.play_stationary_extended("pi2.ogg", true, 0, 0, 0, 100);
-if(!directory_exists("sounds")) directory_create("sounds");
-bool result=run("releases/windows/lib/unzip.exe", "-q -o sounds.zip -d sounds", true, true);
+progslot=temp.play_stationary_extended("pi2.ogg", true, 0, 0, 0, 100);
+if(!directory_exists("data/sounds")) directory_create("data/sounds");
+bool result=run("lib/unzip.exe", "-q -o data/sounds.zip -d data/sounds", true, true);
 if (result==true)
 {
 temp.destroy_sound(progslot);
 alert("extraction_complete", "Extraction finished successfully.");
-if(file_exists("sounds.zip")) file_delete("sounds.zip");
+if(file_exists("data/sounds.zip")) file_delete("data/sounds.zip");
 restart();
 }
 else

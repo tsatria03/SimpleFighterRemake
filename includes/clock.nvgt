@@ -110,8 +110,8 @@ clocky=cly;
 cktext=cltext;
 clocktype=cltype;
 destroyable=dbl;
-string[] clocksfx=find_files("sounds/"+soundpack+"/objects/clocks/"+clocktype+"/*loop*");
-if(clocksfx.length()!=0) clocksound=clockpool.play_2d("sounds/"+soundpack+"/objects/clocks/"+clocktype+"/"+clocksfx[random(0,clocksfx.length()-1)],me.x,me.y,clockx,clocky,true);
+string[] clocksfx=find_files("data/sounds/"+soundpack+"/objects/clocks/"+clocktype+"/*loop*");
+if(clocksfx.length()!=0) clocksound=clockpool.play_2d("data/sounds/"+soundpack+"/objects/clocks/"+clocktype+"/"+clocksfx[random(0,clocksfx.length()-1)],me.x,me.y,clockx,clocky,true);
 }
 }
 void clockcheck()
@@ -120,8 +120,8 @@ for(uint i=0; i<clocks.length(); i++)
 {
 if(me.x==clocks[i].clockx and me.y==clocks[i].clocky and key_repeating(KEY_RETURN))
 {
-string[] pressfx=find_files("sounds/"+soundpack+"/objects/clocks/"+clocks[i].clocktype+"/*pres*");
-if(pressfx.length()!=0) clocks[i].pressound=clockpool.play_stationary("sounds/"+soundpack+"/objects/clocks/"+clocks[i].clocktype+"/"+pressfx[random(0,pressfx.length()-1)],false);
+string[] pressfx=find_files("data/sounds/"+soundpack+"/objects/clocks/"+clocks[i].clocktype+"/*pres*");
+if(pressfx.length()!=0) clocks[i].pressound=clockpool.play_stationary("data/sounds/"+soundpack+"/objects/clocks/"+clocks[i].clocktype+"/"+pressfx[random(0,pressfx.length()-1)],false);
 speak(clocks[i].cktext+get_time(true, false));
 }
 }

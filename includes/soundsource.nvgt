@@ -15,8 +15,8 @@ maxy=my2;
 sourcetype=srt;
 volume=vol;
 pitch=semitone;
-string[] srcfilesfx=find_files("sounds/"+soundpack+"/objects/sources/"+sourcetype+"/*loop*");
-if(srcfilesfx.length()!=0) sorcesound=sourcepool.play_extended_2d("sounds/"+soundpack+"/objects/sources/"+sourcetype+"/"+srcfilesfx[random(0,srcfilesfx.length()-1)],me.x,me.y,minx,miny,0,0,0,0,true,0,0,volume,pitch,false);
+string[] srcfilesfx=find_files("data/sounds/"+soundpack+"/objects/sources/"+sourcetype+"/*loop*");
+if(srcfilesfx.length()!=0) sorcesound=sourcepool.play_extended_2d("data/sounds/"+soundpack+"/objects/sources/"+sourcetype+"/"+srcfilesfx[random(0,srcfilesfx.length()-1)],me.x,me.y,minx,miny,0,0,0,0,true,0,0,volume,pitch,false);
 sourcepool.update_sound_2d(sorcesound,minx,miny);
 sourcepool.update_sound_range_2d(sorcesound, 0,maxx-minx,0,maxy-miny);
 }
