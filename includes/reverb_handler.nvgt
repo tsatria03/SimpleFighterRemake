@@ -1,5 +1,5 @@
 reverb_effect@[]reverb_effects(0);
-sound_pool@[]pools;
+sound_pool@[] pools;
 class reverb_effect
 {
 double minx,maxx,miny,maxy;
