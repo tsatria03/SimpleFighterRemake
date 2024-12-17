@@ -37,7 +37,7 @@
 #include"includes/platform.nvgt"
 #include"includes/prepgame.nvgt"
 #include"includes/reverb_handler.nvgt"
-#include"includes/savefunks.nvgt"
+#include"includes/savedata.nvgt"
 #include"includes/setupmenu.nvgt"
 #include"includes/sign.nvgt"
 #include"includes/slider.nvgt"

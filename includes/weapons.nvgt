@@ -1913,7 +1913,7 @@ for(uint i=0; i<exolist.length(); i++)
 {
 exoparse(exolist[i]);
 }
-weapontype2="hand mine";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("data/sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("data/sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -1972,7 +1972,7 @@ for(uint i=0; i<exolist.length(); i++)
 {
 exoparse(exolist[i]);
 }
-weapontype2="large bomb";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("data/sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("data/sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);
@@ -2031,7 +2031,7 @@ for(uint i=0; i<exolist.length(); i++)
 {
 exoparse(exolist[i]);
 }
-weapontype2="large bomb2";
+weapontype2="";
 speak(weapontype2+" "+"equipped");
 string[] drawsfx=find_files("data/sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/*draw*");
 if(drawsfx.length()!=0 and wepdrawsound==1) weaponslot=p.play_stationary_extended("data/sounds/"+soundpack+"/equipments/weapons/"+weapontype+"/"+weapontype2+"/"+drawsfx[random(0,drawsfx.length()-1)],false,0,0,weaponvolume,weaponpitch,false);

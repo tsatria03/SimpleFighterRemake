@@ -677,8 +677,7 @@ speak("You must enable auto walking in order to increase the moving speed.");
 }
 else if(speedable==true)
 {
-p.destroy_sound(speedslot);
-speedslot=p.play_stationary("speed.ogg",false);
+p.play_stationary("speed.ogg",false);
 modspeed+=1;
 speak("speed"+modspeed);
 }
@@ -691,8 +690,7 @@ speak("You must enable auto walking in order to decrease the moving speed.");
 }
 else if(speedable==true)
 {
-p.destroy_sound(speedslot);
-speedslot=p.play_stationary("speed.ogg",false);
+p.play_stationary("speed.ogg",false);
 modspeed-=1;
 speak("speed"+modspeed);
 }

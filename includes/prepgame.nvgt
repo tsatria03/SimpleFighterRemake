@@ -14,7 +14,7 @@ double wallvolume=0, wallmaxvolume=120, wallpan=0, wallmaxpan=100, wallpitch=100
 double weaponvolume=0, weaponmaxvolume=120, weaponpan=0, weaponmaxpan=100, weaponpitch=100, weaponmaxpitch=200;
 double attack=0, ammo=100, defence=0, health=100, kills=0, points=0, xp=0, xpmod=1, xprequiered=1, level=1, levmod=1, lifecard=1, loadedammo=100, shieldstrength=100, shielddefence=0, shieldlevel, maxammo=100, maxhealth=100, maxshieldstrength=100, maxx=100, maxy=100, weplevel=1;
 float revdry, revwet, revsize, revdamp, revwidth;
-int autoslot, camslot, fallslot, heartslot, invslot, itemslot, painslot, prevslot, shieldloop, shieldslot, shieldremoveslot, shieldwearslot, speedslot, tileslot, wallslot, weaponslot;
+int autoslot, camslot, fallslot, heartslot, invslot, itemslot, painslot, prevslot, shieldloop, shieldslot, shieldremoveslot, shieldwearslot, tileslot, wallslot, weaponslot;
 int amrange, amrange2, amrange3, amrange4, emrange, emrange2, emrange3, emrange4, robrange, robrange2, robrange3, robrange4, telrange, telrange2, zombrange, zombrange2, zombrange3, zombrange4, charmode, fallcounter, gamemode, jumping, gametime, healthmode, musmode, movetime, platmode, sorcemode, ty1, ty2;
 int charcamsound=1, charcamsound2=1, chardeathsound=1, charfallsound=1, charfallsound2=1, charhurtsound=1, charhealsound=1, charhealsound2=1, charhealsound3=1, charinvsound=1, charjumpsound=1, charjumpsound2=1, charkillsound=1, charlandsound=1, charlevsound=1, charlifesound=1, charshakesound=1, charsitsound=1, charstandsound=1, charswingsound=1, charturnsound=1;
 int shieldbreaksound=1, shielddrawsound=1, shieldhitsound=1, shieldloopsound=1, shieldremovesound=1, shieldwearsound=1;
@@ -179,7 +179,7 @@ paxy=string_to_number(my2);
 string[] soundamb=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(soundamb.length()==0)
 {
-dlg_snd("Error. There are no sound ambiences available to view.");
+dlg_snd("Error. There are no sound ambiences available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -229,7 +229,7 @@ paxy=string_to_number(my2);
 string[] musicamb=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(musicamb.length()==0)
 {
-dlg_snd("Error. There are no music ambiences available to view.");
+dlg_snd("Error. There are no music ambiences available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -297,7 +297,7 @@ xn=string_to_number(exper);
 string[] animal=find_directories("data/sounds/"+soundpack+"/npc/normal/animals/*");
 if(animal.length()==0)
 {
-dlg_snd("Error. There are no animals available to view.");
+dlg_snd("Error. There are no animals available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -419,7 +419,7 @@ speedtime=string_to_number(sp);
 string[] animal=find_directories("data/sounds/"+soundpack+"/npc/normal/animals/*");
 if(animal.length()==0)
 {
-dlg_snd("Error. There are no animals available to view.");
+dlg_snd("Error. There are no animals available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -483,7 +483,7 @@ speedtime=string_to_number(sp);
 string[] bomb=find_directories("data/sounds/"+soundpack+"/objects/bombs/*");
 if(bomb.length()==0)
 {
-dlg_snd("Error. There are no bombs available to view.");
+dlg_snd("Error. There are no bombs available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -521,7 +521,7 @@ speedtime=string_to_number(sp);
 string[] bomb=find_directories("data/sounds/"+soundpack+"/objects/bombs/*");
 if(bomb.length()==0)
 {
-dlg_snd("Error. There are no bombs available to view.");
+dlg_snd("Error. There are no bombs available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -558,7 +558,7 @@ txt=text;
 string[] calander=find_directories("data/sounds/"+soundpack+"/objects/calanders/*");
 if(calander.length()==0)
 {
-dlg_snd("Error. There are no calanders available to view.");
+dlg_snd("Error. There are no calanders available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -616,7 +616,7 @@ txt=text;
 string[] clock=find_directories("data/sounds/"+soundpack+"/objects/clocks/*");
 if(clock.length()==0)
 {
-dlg_snd("Error. There are no clocks available to view.");
+dlg_snd("Error. There are no clocks available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -679,7 +679,7 @@ speedtime=string_to_number(sp);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -694,7 +694,7 @@ tiletype=res;
 string[] belt=find_directories("data/sounds/"+soundpack+"/objects/belts/*");
 if(belt.length()==0)
 {
-dlg_snd("Error. There are no belts available to view.");
+dlg_snd("Error. There are no belts available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -735,7 +735,7 @@ txt=text;
 string[] dialog=find_directories("data/sounds/"+soundpack+"/objects/dialogs/*");
 if(dialog.length()==0)
 {
-dlg_snd("Error. There are no dialogs available to view.");
+dlg_snd("Error. There are no dialogs available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -798,7 +798,7 @@ speedtime=string_to_number(sp);
 string[] dloop=find_directories("data/sounds/"+soundpack+"/objects/doors/loop/*");
 if(dloop.length()==0)
 {
-dlg_snd("Error. There are no door loops available to view.");
+dlg_snd("Error. There are no door loops available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -813,7 +813,7 @@ looptyp=res;
 string[] dmove=find_directories("data/sounds/"+soundpack+"/objects/doors/move/*");
 if(dmove.length()==0)
 {
-dlg_snd("Error. There are no door moves available to view.");
+dlg_snd("Error. There are no door moves available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -828,7 +828,7 @@ movtyp=res2;
 string[] dopen=find_directories("data/sounds/"+soundpack+"/objects/doors/open/*");
 if(dopen.length()==0)
 {
-dlg_snd("Error. There are no door opens available to view.");
+dlg_snd("Error. There are no door opens available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -843,7 +843,7 @@ opentyp=res3;
 string[] dclose=find_directories("data/sounds/"+soundpack+"/objects/doors/close/*");
 if(dclose.length()==0)
 {
-dlg_snd("Error. There are no door closes available to view.");
+dlg_snd("Error. There are no door closes available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -858,7 +858,7 @@ clostyp=res4;
 string[] desttype=find_directories("data/sounds/"+soundpack+"/objects/doors/dest/*");
 if(desttype.length()==0)
 {
-dlg_snd("Error. There are no door destructions available to view.");
+dlg_snd("Error. There are no door destructions available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -973,7 +973,7 @@ drpassword=ps;
 string[] dloop=find_directories("data/sounds/"+soundpack+"/objects/doors/loop/*");
 if(dloop.length()==0)
 {
-dlg_snd("Error. There are no door loops available to view.");
+dlg_snd("Error. There are no door loops available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -988,7 +988,7 @@ looptyp=res;
 string[] dmove=find_directories("data/sounds/"+soundpack+"/objects/doors/move/*");
 if(dmove.length()==0)
 {
-dlg_snd("Error. There are no door moves available to view.");
+dlg_snd("Error. There are no door moves available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1003,7 +1003,7 @@ movtyp=res2;
 string[] dopen=find_directories("data/sounds/"+soundpack+"/objects/doors/open/*");
 if(dopen.length()==0)
 {
-dlg_snd("Error. There are no door opens available to view.");
+dlg_snd("Error. There are no door opens available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1018,7 +1018,7 @@ opentyp=res3;
 string[] dclose=find_directories("data/sounds/"+soundpack+"/objects/doors/close/*");
 if(dclose.length()==0)
 {
-dlg_snd("Error. There are no door closes available to view.");
+dlg_snd("Error. There are no door closes available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1033,7 +1033,7 @@ clostyp=res4;
 string[] desttype=find_directories("data/sounds/"+soundpack+"/objects/doors/dest/*");
 if(desttype.length()==0)
 {
-dlg_snd("Error. There are no door destructions available to view.");
+dlg_snd("Error. There are no door destructions available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1143,7 +1143,7 @@ speedtime=string_to_number(sp);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1158,7 +1158,7 @@ tiletype=res;
 string[] dloop=find_directories("data/sounds/"+soundpack+"/objects/doors/loop/*");
 if(dloop.length()==0)
 {
-dlg_snd("Error. There are no door loops available to view.");
+dlg_snd("Error. There are no door loops available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1173,7 +1173,7 @@ looptyp=res;
 string[] dopen=find_directories("data/sounds/"+soundpack+"/objects/doors/open/*");
 if(dopen.length()==0)
 {
-dlg_snd("Error. There are no door opens available to view.");
+dlg_snd("Error. There are no door opens available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1188,7 +1188,7 @@ opentyp=res2;
 string[] dclose=find_directories("data/sounds/"+soundpack+"/objects/doors/close/*");
 if(dclose.length()==0)
 {
-dlg_snd("Error. There are no door closes available to view.");
+dlg_snd("Error. There are no door closes available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1232,7 +1232,7 @@ speedtime=string_to_number(sp);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1247,7 +1247,7 @@ tiletype=res;
 string[] dloop=find_directories("data/sounds/"+soundpack+"/objects/doors/loop/*");
 if(dloop.length()==0)
 {
-dlg_snd("Error. There are no door loops available to view.");
+dlg_snd("Error. There are no door loops available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1262,7 +1262,7 @@ looptyp=res;
 string[] dopen=find_directories("data/sounds/"+soundpack+"/objects/doors/open/*");
 if(dopen.length()==0)
 {
-dlg_snd("Error. There are no door opens available to view.");
+dlg_snd("Error. There are no door opens available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1277,7 +1277,7 @@ opentyp=res2;
 string[] dclose=find_directories("data/sounds/"+soundpack+"/objects/doors/close/*");
 if(dclose.length()==0)
 {
-dlg_snd("Error. There are no door closes available to view.");
+dlg_snd("Error. There are no door closes available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1340,7 +1340,7 @@ xn=string_to_number(exper);
 string[] enemie=find_directories("data/sounds/"+soundpack+"/npc/normal/enemies/*");
 if(enemie.length()==0)
 {
-dlg_snd("Error. There are no enemies available to view.");
+dlg_snd("Error. There are no enemies available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1462,7 +1462,7 @@ speedtime=string_to_number(sp);
 string[] enemie=find_directories("data/sounds/"+soundpack+"/npc/normal/enemies/*");
 if(enemie.length()==0)
 {
-dlg_snd("Error. There are no enemies available to view.");
+dlg_snd("Error. There are no enemies available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1496,7 +1496,7 @@ y=string_to_number(my);
 string[] floorbtype=find_directories("data/sounds/"+soundpack+"/objects/floor breakers/*");
 if(floorbtype.length()==0)
 {
-dlg_snd("Error. There are no floor breakers available to view.");
+dlg_snd("Error. There are no floor breakers available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1538,7 +1538,7 @@ speedtime=string_to_number(sp);
 string[] forcefield=find_directories("data/sounds/"+soundpack+"/objects/force fields/*");
 if(forcefield.length()==0)
 {
-dlg_snd("Error. There are no force fields available to view.");
+dlg_snd("Error. There are no force fields available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1576,7 +1576,7 @@ paxy=string_to_number(my2);
 string[] hazardtype=find_directories("data/sounds/"+soundpack+"/objects/hazards/*");
 if(hazardtype.length()==0)
 {
-dlg_snd("Error. There are no hazards available to view.");
+dlg_snd("Error. There are no hazards available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1641,7 +1641,7 @@ speedtime=string_to_number(ht);
 string[] heals=find_directories("data/sounds/"+soundpack+"/objects/heal zones/*");
 if(heals.length()==0)
 {
-dlg_snd("Error. There are no heal zones available to view.");
+dlg_snd("Error. There are no heal zones available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1677,7 +1677,7 @@ damage=string_to_number(dm);
 string[] mine=find_directories("data/sounds/"+soundpack+"/objects/mines/*");
 if(mine.length()==0)
 {
-dlg_snd("Error. There are no mines available to view.");
+dlg_snd("Error. There are no mines available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1746,7 +1746,7 @@ speedtime=string_to_number(sp);
 string[] hazardtype=find_directories("data/sounds/"+soundpack+"/objects/hazards/*");
 if(hazardtype.length()==0)
 {
-dlg_snd("Error. There are no hazards available to view.");
+dlg_snd("Error. There are no hazards available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1792,7 +1792,7 @@ speedtime=string_to_number(sp);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1820,7 +1820,7 @@ pitch=s.get_item_value(1);
 string[] mplatform=find_directories("data/sounds/"+soundpack+"/objects/moving platforms/*");
 if(mplatform.length()==0)
 {
-dlg_snd("Error. There are no moving platforms available to view.");
+dlg_snd("Error. There are no moving platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1874,7 +1874,7 @@ speedtime=string_to_number(sp);
 string[] checktype=find_directories("data/sounds/"+soundpack+"/objects/checkpoints/*");
 if(checktype.length()==0)
 {
-dlg_snd("Error. There are no checkpoints available to view.");
+dlg_snd("Error. There are no checkpoints available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1922,7 +1922,7 @@ if(itsm=="hp")
 string[] ithealth=find_directories("data/sounds/"+soundpack+"/equipments/items/unsorted/health/*");
 if(ithealth.length()==0)
 {
-dlg_snd("Error. There are no health items available to view.");
+dlg_snd("Error. There are no health items available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -1941,7 +1941,7 @@ if(itsm=="ot")
 string[] itother=find_directories("data/sounds/"+soundpack+"/equipments/items/unsorted/other/*");
 if(itother.length()==0)
 {
-dlg_snd("Error. There are no other items available to view.");
+dlg_snd("Error. There are no other items available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2016,7 +2016,7 @@ if(itsm=="hp")
 string[] ithealth=find_directories("data/sounds/"+soundpack+"/equipments/items/unsorted/health/*");
 if(ithealth.length()==0)
 {
-dlg_snd("Error. There are no health items available to view.");
+dlg_snd("Error. There are no health items available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2035,7 +2035,7 @@ if(itsm=="ot")
 string[] itother=find_directories("data/sounds/"+soundpack+"/equipments/items/unsorted/other/*");
 if(itother.length()==0)
 {
-dlg_snd("Error. There are no other items available to view.");
+dlg_snd("Error. There are no other items available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2079,7 +2079,7 @@ speedtime=string_to_number(sp);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2107,7 +2107,7 @@ pitch=s.get_item_value(1);
 string[] liftform=find_directories("data/sounds/"+soundpack+"/objects/lifts/*");
 if(liftform.length()==0)
 {
-dlg_snd("Error. There are no lifts available to view.");
+dlg_snd("Error. There are no lifts available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2157,7 +2157,7 @@ paxy=string_to_number(my2);
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no music sources available to view.");
+dlg_snd("Error. There are no music sources available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2205,7 +2205,7 @@ y=string_to_number(my);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2266,7 +2266,7 @@ xn=string_to_number(exper);
 string[] projectile=find_directories("data/sounds/"+soundpack+"/npc/normal/projectiles/*");
 if(projectile.length()==0)
 {
-dlg_snd("Error. There are no projectiles available to view.");
+dlg_snd("Error. There are no projectiles available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2346,7 +2346,7 @@ speedtime=string_to_number(sp);
 string[] projectile=find_directories("data/sounds/"+soundpack+"/npc/normal/projectiles/*");
 if(projectile.length()==0)
 {
-dlg_snd("Error. There are no projectiles available to view.");
+dlg_snd("Error. There are no projectiles available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2446,7 +2446,7 @@ xn=string_to_number(exper);
 string[] robot=find_directories("data/sounds/"+soundpack+"/npc/normal/robots/*");
 if(robot.length()==0)
 {
-dlg_snd("Error. There are no robots available to view.");
+dlg_snd("Error. There are no robots available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2568,7 +2568,7 @@ speedtime=string_to_number(sp);
 string[] robot=find_directories("data/sounds/"+soundpack+"/npc/normal/robots/*");
 if(robot.length()==0)
 {
-dlg_snd("Error. There are no robots available to view.");
+dlg_snd("Error. There are no robots available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2605,7 +2605,7 @@ txt=text;
 string[] signs=find_directories("data/sounds/"+soundpack+"/objects/signs/*");
 if(signs.length()==0)
 {
-dlg_snd("Error. There are no signs available to view.");
+dlg_snd("Error. There are no signs available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2685,7 +2685,7 @@ paxy=string_to_number(my2);
 string[] source=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(source.length()==0)
 {
-dlg_snd("Error. There are no sources available to view.");
+dlg_snd("Error. There are no sources available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2742,7 +2742,7 @@ speedtime=string_to_number(sp);
 string[] spike=find_directories("data/sounds/"+soundpack+"/objects/spikes/*");
 if(spike.length()==0)
 {
-dlg_snd("Error. There are no spikes available to view.");
+dlg_snd("Error. There are no spikes available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2820,7 +2820,7 @@ paxy=string_to_number(my2);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2876,7 +2876,7 @@ speedtime=string_to_number(sp);
 string[] teleporter=find_directories("data/sounds/"+soundpack+"/objects/teleporters/*");
 if(teleporter.length()==0)
 {
-dlg_snd("Error. There are no teleporters available to view.");
+dlg_snd("Error. There are no teleporters available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -2999,7 +2999,7 @@ speedtime=string_to_number(sp);
 string[] timebomb=find_directories("data/sounds/"+soundpack+"/objects/time bombs/*");
 if(timebomb.length()==0)
 {
-dlg_snd("Error. There are no time bombs available to view.");
+dlg_snd("Error. There are no time bombs available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3037,7 +3037,7 @@ paxy=string_to_number(my2);
 string[] source=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(source.length()==0)
 {
-dlg_snd("Error. There are no sources available to view.");
+dlg_snd("Error. There are no sources available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3093,7 +3093,7 @@ paxy=string_to_number(my2);
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3255,7 +3255,7 @@ xn=string_to_number(exper);
 string[] turret=find_directories("data/sounds/"+soundpack+"/npc/normal/turrets/*");
 if(turret.length()==0)
 {
-dlg_snd("Error. There are no turrets available to view.");
+dlg_snd("Error. There are no turrets available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3285,7 +3285,7 @@ if(buildem2=="an2")
 string[] animal=find_directories("data/sounds/"+soundpack+"/npc/normal/animals/*");
 if(animal.length()==0)
 {
-dlg_snd("Error. There are no animals available to view.");
+dlg_snd("Error. There are no animals available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3304,7 +3304,7 @@ if(buildem2=="em2")
 string[] enemie=find_directories("data/sounds/"+soundpack+"/npc/normal/enemies/*");
 if(enemie.length()==0)
 {
-dlg_snd("Error. There are no enemies available to view.");
+dlg_snd("Error. There are no enemies available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3323,7 +3323,7 @@ if(buildem2=="pj2")
 string[] projectile=find_directories("data/sounds/"+soundpack+"/npc/normal/projectiles/*");
 if(projectile.length()==0)
 {
-dlg_snd("Error. There are no projectiles available to view.");
+dlg_snd("Error. There are no projectiles available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3342,7 +3342,7 @@ if(buildem2=="rt2")
 string[] robot=find_directories("data/sounds/"+soundpack+"/npc/normal/robots/*");
 if(robot.length()==0)
 {
-dlg_snd("Error. There are no robots available to view.");
+dlg_snd("Error. There are no robots available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3361,7 +3361,7 @@ if(buildem2=="zb2")
 string[] zombie=find_directories("data/sounds/"+soundpack+"/npc/normal/zombies/*");
 if(zombie.length()==0)
 {
-dlg_snd("Error. There are no zombies available to view.");
+dlg_snd("Error. There are no zombies available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3464,7 +3464,7 @@ damage=string_to_number(dm);
 string[] vehicle=find_directories("data/sounds/"+soundpack+"/objects/vehicles/*");
 if(vehicle.length()==0)
 {
-dlg_snd("Error. There are no vehicles available to view.");
+dlg_snd("Error. There are no vehicles available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3521,7 +3521,7 @@ y=string_to_number(my);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3549,7 +3549,7 @@ pitch=s.get_item_value(1);
 string[] vplatform=find_directories("data/sounds/"+soundpack+"/objects/vanishing platforms/*");
 if(vplatform.length()==0)
 {
-dlg_snd("Error. There are no vanishing platforms available to view.");
+dlg_snd("Error. There are no vanishing platforms available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3607,7 +3607,7 @@ minhp=string_to_number(hp);
 string[] border=find_directories("data/sounds/"+soundpack+"/objects/walls/*");
 if(border.length()==0)
 {
-dlg_snd("Error. There are no walls available to view.");
+dlg_snd("Error. There are no walls available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3697,7 +3697,7 @@ xn=string_to_number(exper);
 string[] zombie=find_directories("data/sounds/"+soundpack+"/npc/normal/zombies/*");
 if(zombie.length()==0)
 {
-dlg_snd("Error. There are no zombies available to view.");
+dlg_snd("Error. There are no zombies available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -3819,7 +3819,7 @@ speedtime=string_to_number(sp);
 string[] zombie=find_directories("data/sounds/"+soundpack+"/npc/normal/zombies/*");
 if(zombie.length()==0)
 {
-dlg_snd("Error. There are no zombies available to view.");
+dlg_snd("Error. There are no zombies available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4104,7 +4104,7 @@ if(ptmem=="umat")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4127,7 +4127,7 @@ if(ptmem=="umd")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4150,7 +4150,7 @@ if(ptmem=="uma")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4173,7 +4173,7 @@ if(ptmem=="umh")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4196,7 +4196,7 @@ if(ptmem=="umlf")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4219,7 +4219,7 @@ if(ptmem=="umst")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4242,7 +4242,7 @@ if(ptmem=="umsd")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4265,7 +4265,7 @@ if(ptmem=="umra1")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4288,7 +4288,7 @@ if(ptmem=="umra2")
 {
 if(points<=0)
 {
-dlg_snd("Error, you don't have enough points to complete this action.");
+dlg_snd("Error, you don't have enough points to complete this action. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4388,7 +4388,7 @@ if(wpsm=="arro")
 string[] archers=find_directories("data/layouts/equipments/weapons/archery/*");
 if(archers.length()==0)
 {
-dlg_snd("Error. There are no archery weapons available to view.");
+dlg_snd("Error. There are no archery weapons available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4417,7 +4417,7 @@ if(wpsm=="shoot")
 string[] fighters=find_directories("data/layouts/equipments/weapons/artillery/*");
 if(fighters.length()==0)
 {
-dlg_snd("Error. There are no artillery weapons available to view.");
+dlg_snd("Error. There are no artillery weapons available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4446,7 +4446,7 @@ if(wpsm=="bomb")
 string[] killers=find_directories("data/layouts/equipments/weapons/explosive/*");
 if(killers.length()==0)
 {
-dlg_snd("Error. There are no explosive weapons available to view.");
+dlg_snd("Error. There are no explosive weapons available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4475,7 +4475,7 @@ if(wpsm=="swing")
 string[] brawlers=find_directories("data/layouts/equipments/weapons/melee/*");
 if(brawlers.length()==0)
 {
-dlg_snd("Error. There are no melee weapons available to view.");
+dlg_snd("Error. There are no melee weapons available to view. Press enter to continue.");
 resume_pools();
 return;
 }
@@ -4630,7 +4630,7 @@ if(melee==false) m.add_item_tts("you have "+loadedammo+" out of "+maxammo+" ammo
 m.add_item_tts("You have killed a total of"+kills+"entidies.");
 m.add_item_tts("You've been playing for a total of;"+timeelapsed.m()+"minutes,"+timeelapsed.s()+"seconds");
 m.add_item_tts("back","back");
-int mres=m.run("Statistics menu. There are "+(m.get_item_count()-1)+" entries available to view.",true);
+int mres=m.run("Statistics menu. There are "+(m.get_item_count()-1)+" entries available to view. Press enter to continue.",true);
 string stmem=m.get_item_name(mres);
 if(mres==0)
 {

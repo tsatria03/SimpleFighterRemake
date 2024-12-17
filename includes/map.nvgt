@@ -222,7 +222,7 @@ void gop(int x, int y)
 {
 if(x<0 or x>maxx or y<0 or y>maxy)
 {
-dlg_snd("Error! You can't move out of map boundries! Please try again!");
+dlg_snd("Error! You can't move out of map boundries! Please try again! Press enter to continue.");
 }
 else
 {
@@ -262,7 +262,7 @@ else if(locspeech==4 and me.y>=0 )
 speak("current location,"+me.x+",;"+me.y+","+"you're walking on;"+gmt(me.x,me.y)+","+"facing;"+facing);
 }
 }
-void load_map(string name, bool instant_update=true, bool speak_percentage=false, int loadtime=50, int loadbeeps=1, int loadsounds=1)
+void load_map(string name, bool instent_update=true, bool speak_percentage=false, int loadtime=50, int loadbeeps=1, int loadsounds=1)
 {
 mapname=name;
 clearmap();
@@ -274,7 +274,7 @@ mapname=string_replace(mapname,".map","",true);
 string filename="data/maps/"+mapname+".map";
 if(!file_exists(filename))
 {
-dlg_snd("Error. This map is invalid. Please check the map name in the file and try again.");
+dlg_snd("Error. This map is invalid. Please check the map name in the file and try again. Press enter to continue.");
 mapmenu();
 }
 mapper.open(filename,"rb");
@@ -303,7 +303,7 @@ last_beep_percent=current_percent;
 maploadtimer.restart();
 }
 }        
-if(!instant_update)
+if(!instent_update)
 {
 wait(5);
 }

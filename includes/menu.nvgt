@@ -16,7 +16,7 @@ settingsmenu();
 if(mres>0 and mres<=keyboardchanges.length())
 {
 keyboardtheme=keyboardchanges[mres-1];
-dlg("Keyboard theme set.");
+dlg("Keyboard theme set. Press enter to continue.");
 settingsmenu();
 }
 return m.get_item_name(mres);
@@ -70,7 +70,7 @@ settingsmenu();
 if(mres>0 and mres<=menuchanges.length())
 {
 menutype=menuchanges[mres-1];
-dlg("Menu sounds set.");
+dlg("Menu sounds set. Press enter to continue.");
 settingsmenu();
 }
 return m.get_item_name(mres);
@@ -349,7 +349,7 @@ charturnsound=current_char.charturnsound;
 if(mres-1<chars.length())
 {
 chartype=chars[mres-1];
-dlg("Character set.");
+dlg("Character set. Press enter to continue.");
 settingsmenu();
 }
 else
@@ -2941,7 +2941,7 @@ m.fade_music();
 string[] maps=find_files("data/maps/*.map");
 if(maps.length()==0)
 {
-dlg_snd("Error. There are no maps available to view.");
+dlg_snd("Error. There are no maps available to view. Press enter to continue.");
 mapmenu();
 }
 else
@@ -2986,7 +2986,7 @@ maxy=string_to_number(my);
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 mapmenu();
 }
 else
@@ -2999,7 +2999,7 @@ tiletype=res;
 }
 if(file_exists("data/maps/"+mapname+".map"))
 {
-dlg_snd("Error. A map with this name already exists. Please choose a different one.");
+dlg_snd("Error. A map with this name already exists. Please choose a different one. Press enter to continue.");
 mapmenu();
 }
 else
@@ -3040,7 +3040,7 @@ fighter(false);
 else
 {
 m.fade_music();
-dlg_snd("Error. The data assosiated with this game does not exist.");
+dlg_snd("Error. The data assosiated with this game does not exist. Press enter to continue.");
 gamemenu();
 }
 }
@@ -3131,7 +3131,7 @@ m.fade_music();
 string[] animal=find_directories("data/sounds/"+soundpack+"/npc/normal/animals/*");
 if(animal.length()==0)
 {
-dlg_snd("Error. There are no animals detected in the game!");
+dlg_snd("Error. There are no animals detected in the game! Press enter to continue.");
 normalmenu();
 }
 else
@@ -3156,7 +3156,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3206,7 +3206,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3258,7 +3258,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3303,7 +3303,7 @@ m.fade_music();
 string[] enemy=find_directories("data/sounds/"+soundpack+"/npc/normal/enemies/*");
 if(enemy.length()==0)
 {
-dlg_snd("Error. There are no enemies detected in the game!");
+dlg_snd("Error. There are no enemies detected in the game! Press enter to continue.");
 normalmenu();
 }
 else
@@ -3328,7 +3328,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3378,7 +3378,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3430,7 +3430,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3475,7 +3475,7 @@ m.fade_music();
 string[] projectile=find_directories("data/sounds/"+soundpack+"/npc/normal/projectiles/*");
 if(projectile.length()==0)
 {
-dlg_snd("Error. There are no projectiles detected in the game!");
+dlg_snd("Error. There are no projectiles detected in the game! Press enter to continue.");
 normalmenu();
 }
 else
@@ -3500,7 +3500,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3550,7 +3550,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3602,7 +3602,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3647,7 +3647,7 @@ m.fade_music();
 string[] robot=find_directories("data/sounds/"+soundpack+"/npc/normal/robots/*");
 if(robot.length()==0)
 {
-dlg_snd("Error. There are no robots detected in the game!");
+dlg_snd("Error. There are no robots detected in the game! Press enter to continue.");
 normalmenu();
 }
 else
@@ -3672,7 +3672,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3722,7 +3722,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3774,7 +3774,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3819,7 +3819,7 @@ m.fade_music();
 string[] zombie=find_directories("data/sounds/"+soundpack+"/npc/normal/zombies/*");
 if(zombie.length()==0)
 {
-dlg_snd("Error. There are no zombies detected in the game!");
+dlg_snd("Error. There are no zombies detected in the game! Press enter to continue.");
 normalmenu();
 }
 else
@@ -3844,7 +3844,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3894,7 +3894,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -3946,7 +3946,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 normalmenu();
 }
 else
@@ -4011,7 +4011,7 @@ m.fade_music();
 string[] animal=find_directories("data/sounds/"+soundpack+"/npc/normal/animals/*");
 if(animal.length()==0)
 {
-dlg_snd("Error. There are no animals available to view.");
+dlg_snd("Error. There are no animals available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4049,7 +4049,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4099,7 +4099,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4151,7 +4151,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4212,7 +4212,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4262,7 +4262,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4314,7 +4314,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4360,7 +4360,7 @@ m.fade_music();
 string[] enemy=find_directories("data/sounds/"+soundpack+"/npc/normal/enemies/*");
 if(enemy.length()==0)
 {
-dlg_snd("Error. There are no enemies available to view.");
+dlg_snd("Error. There are no enemies available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4398,7 +4398,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4448,7 +4448,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4500,7 +4500,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4561,7 +4561,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4611,7 +4611,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4663,7 +4663,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4709,7 +4709,7 @@ m.fade_music();
 string[] projectile=find_directories("data/sounds/"+soundpack+"/npc/normal/projectiles/*");
 if(projectile.length()==0)
 {
-dlg_snd("Error. There are no projectiles available to view.");
+dlg_snd("Error. There are no projectiles available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4747,7 +4747,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4797,7 +4797,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4849,7 +4849,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4910,7 +4910,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -4960,7 +4960,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5012,7 +5012,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5058,7 +5058,7 @@ m.fade_music();
 string[] robot=find_directories("data/sounds/"+soundpack+"/npc/normal/robots/*");
 if(robot.length()==0)
 {
-dlg_snd("Error. There are no robots available to view.");
+dlg_snd("Error. There are no robots available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5096,7 +5096,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5146,7 +5146,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5198,7 +5198,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5259,7 +5259,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5309,7 +5309,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5361,7 +5361,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5407,7 +5407,7 @@ m.fade_music();
 string[] zombie=find_directories("data/sounds/"+soundpack+"/npc/normal/zombies/*");
 if(zombie.length()==0)
 {
-dlg_snd("Error. There are no zombies available to view.");
+dlg_snd("Error. There are no zombies available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5445,7 +5445,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5495,7 +5495,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5547,7 +5547,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5608,7 +5608,7 @@ platmode=1;
 string[] platform=find_directories("data/sounds/"+soundpack+"/objects/platforms/*");
 if(platform.length()==0)
 {
-dlg_snd("Error. There are no platforms available to view.");
+dlg_snd("Error. There are no platforms available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5658,7 +5658,7 @@ musmode=1;
 string[] music=find_directories("data/sounds/"+soundpack+"/objects/musics/*");
 if(music.length()==0)
 {
-dlg_snd("Error. There are no musics available to view.");
+dlg_snd("Error. There are no musics available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5710,7 +5710,7 @@ sorcemode=1;
 string[] sorce=find_directories("data/sounds/"+soundpack+"/objects/sources/*");
 if(sorce.length()==0)
 {
-dlg_snd("Error. There are no sound sources available to view.");
+dlg_snd("Error. There are no sound sources available to view. Press enter to continue.");
 custommenu();
 }
 else
@@ -5917,7 +5917,7 @@ string skmount=input.input("Enter the maximum up and down skip amount you'd like
 if(mskipnum=="")
 return;
 mskipnum=string_to_number(skmount);
-dlg("Up and down skip amount set.");
+dlg("Up and down skip amount set. Press enter to continue.");
 settingsmenu();
 }
 if(ssm=="slt")
@@ -5925,7 +5925,7 @@ if(ssm=="slt")
 string[] chars=find_directories("data/layouts/characters/*");
 if(chars.length()==0)
 {
-dlg_snd("Error. There are no characters available to view.");
+dlg_snd("Error. There are no characters available to view. Press enter to continue.");
 settingsmenu();
 }
 else
@@ -5948,7 +5948,7 @@ if(ssm=="slk")
 string[] themetype=find_directories("data/sounds/"+soundpack+"/typing themes/*");
 if(themetype.length()==0)
 {
-dlg_snd("Error. There are no keyboard themes available to view.");
+dlg_snd("Error. There are no keyboard themes available to view. Press enter to continue.");
 settingsmenu();
 }
 else
@@ -5965,7 +5965,7 @@ if(ssm=="slm")
 string[] menu=find_directories("data/sounds/"+soundpack+"/menus/*");
 if(menu.length()==0)
 {
-dlg_snd("Error. There are no menus available to view.");
+dlg_snd("Error. There are no menus available to view. Press enter to continue.");
 settingsmenu();
 }
 else
@@ -5982,7 +5982,7 @@ if(ssm=="spk")
 string[] soundpacktyp=find_directories("data/sounds/*");
 if(soundpacktyp.length()==0)
 {
-dlg_snd("Error. There are no sound packs available to view.");
+dlg_snd("Error. There are no sound packs available to view. Press enter to continue.");
 settingsmenu();
 }
 else
@@ -6013,7 +6013,7 @@ chartype="";
 keyboardtheme="";
 menutype="";
 soundpack=soundpacks[mres-1];
-dlg("Sound pack set.");
+dlg("Sound pack set. Press enter to continue.");
 settingsmenu();
 }
 }
@@ -6037,7 +6037,7 @@ if(mres>0 and mres<=devices.length())
 {
 soundcard=devices[mres-1];
 sound_output_device = mres;
-dlg("Sound device set to "+soundcard);
+dlg("Sound device set to "+soundcard+". Press enter to continue.");
 settingsmenu();
 }
 }
@@ -6046,12 +6046,12 @@ if(ssm=="sjn")
 if(autojump==0)
 {
 autojump=1;
-dlg("auto jumpping in maps enabled");
+dlg("Auto jumpping in maps enabled. Press enter to continue.");
 }
 else
 {
 autojump=0;
-dlg("auto jumpping in maps disabled");
+dlg("Auto jumpping in maps disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6060,12 +6060,12 @@ if(ssm=="sgn")
 if(autosave==0)
 {
 autosave=1;
-dlg("game auto saving enabled");
+dlg("Game auto saving enabled.  Press enter to continue.");
 }
 else
 {
 autosave=0;
-dlg("game auto saving disabled");
+dlg("Game auto saving disabled.  Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6074,12 +6074,12 @@ if(ssm=="dcb")
 if(dockmode==0)
 {
 dockmode=1;
-dlg("form based documentation enabled");
+dlg("Form based documentation enabled. Press enter to continue.");
 }
 else
 {
 dockmode=0;
-dlg("form based documentation disabled");
+dlg("Form based documentation disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6088,12 +6088,12 @@ if(ssm=="fdv")
 if(fademode==0)
 {
 fademode=1;
-dlg("global volume fading enabled");
+dlg("Global volume fading enabled. Press enter to continue.");
 }
 else
 {
 fademode=0;
-dlg("global volume fading disabled");
+dlg("Global volume fading disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6102,12 +6102,12 @@ if(ssm=="hms")
 if(heartsound==0)
 {
 heartsound=1;
-dlg("heart monidor enabled for all game modes");
+dlg("Heart monidor enabled for all game modes. Press enter to continue.");
 }
 else
 {
 heartsound=0;
-dlg("heart monidor disabled for all game modes");
+dlg("Heart monidor disabled for all game modes. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6116,12 +6116,12 @@ if(ssm=="psm")
 if(pausem==0)
 {
 pausem=1;
-dlg("pause menu enabled for all game modes");
+dlg("Pause menu enabled for all game modes. Press enter to continue.");
 }
 else
 {
 pausem=0;
-dlg("pause menu disabled for all game modes");
+dlg("Pause menu disabled for all game modes. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6130,12 +6130,12 @@ if(ssm=="shd")
 if(spacehold==0)
 {
 spacehold=1;
-dlg("space hold in menus enabled");
+dlg("Space hold in all menus enabled. Press enter to continue.");
 }
 else
 {
 spacehold=0;
-dlg("space hold in menus disabled");
+dlg("Space hold in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6145,13 +6145,13 @@ if(hrtf==true)
 {
 hrtf=false;
 sound_global_hrtf=false;
-dlg("global hrtf disabled");
+dlg("Global hrtf disabled. Press enter to continue.");
 }
 else
 {
 hrtf=true;
 sound_global_hrtf=true;
-dlg("global hrtf enabled");
+dlg("Global hrtf enabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6161,13 +6161,13 @@ if(mreset==0)
 {
 mreset=1;
 m.reset(true);
-dlg("menus resetting enabled");
+dlg("Menus resetting enabled. Press enter to continue.");
 }
 else
 {
 mreset=0;
 m.reset(false);
-dlg("menus resetting disabled");
+dlg("Menus resetting disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6177,13 +6177,13 @@ if(up_down==0)
 {
 up_down=1;
 m.enable_up_and_down=true;
-dlg("up and down enabled");
+dlg("Up and down in all menus enabled. Press enter to continue.");
 }
 else
 {
 up_down=0;
 m.enable_up_and_down=false;
-dlg("up and down disabled");
+dlg("Up and down in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6193,13 +6193,13 @@ if(left_right==0)
 {
 left_right=1;
 m.enable_left_and_right=true;
-dlg("left and right enabled");
+dlg("Left and right in all menus enabled. Press enter to continue.");
 }
 else
 {
 left_right=0;
 m.enable_left_and_right=false;
-dlg("left and right disabled");
+dlg("Left and right in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6209,13 +6209,13 @@ if(home_end==0)
 {
 home_end=1;
 m.enable_home_and_end=true;
-dlg("home and end enabled");
+dlg("Home and end in all menus enabled. Press enter to continue.");
 }
 else
 {
 home_end=0;
 m.enable_home_and_end=false;
-dlg("home and end disabled");
+dlg("Home and end in all menus disabled.  Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6225,13 +6225,13 @@ if(wrap==0)
 {
 wrap=1;
 m.wrap=true;
-dlg("wrapping enabled");
+dlg("Wrapping in all menus enabled. Press enter to continue.");
 }
 else
 {
 wrap=0;
 m.wrap=false;
-dlg("wrapping disabled");
+dlg("Wrapping in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6241,13 +6241,13 @@ if(repeat_items==0)
 {
 repeat_items=1;
 m.repeat_items_at_edges=true;
-dlg("repeating items enabled");
+dlg("Repeating items in all menus enabled. Press enter to continue.");
 }
 else
 {
 repeat_items=0;
 m.repeat_items_at_edges=false;
-dlg("repeating items disabled");
+dlg("Repeating items in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6257,13 +6257,13 @@ if(numbers==0)
 {
 numbers=1;
 m.enable_numbers=true;
-dlg("number scrolling enabled");
+dlg("Number scrolling in all menus enabled. Press enter to continue.");
 }
 else
 {
 numbers=0;
 m.enable_numbers=false;
-dlg("number scrolling disabled");
+dlg("Number scrolling in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6273,13 +6273,13 @@ if(first_letter==0)
 {
 first_letter=1;
 m.enable_first_letter_navigation=true;
-dlg("first letter scrolling enabled");
+dlg("First letter scrolling in all menus enabled. Press enter to continue.");
 }
 else
 {
 first_letter=0;
 m.enable_first_letter_navigation=false;
-dlg("first letter scrolling disabled");
+dlg("First letter scrolling in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6289,13 +6289,13 @@ if(position_info==0)
 {
 position_info=1;
 m.speak_position_information=true;
-dlg("position info enabled");
+dlg("Position info in all menus enabled.  Press enter to continue.");
 }
 else
 {
 position_info=0;
 m.speak_position_information=false;
-dlg("position info disabled");
+dlg("Position info in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6305,13 +6305,13 @@ if(side_scroll==0)
 {
 side_scroll=1;
 m.enable_side_scrolling=true;
-dlg("side scrolling enabled");
+dlg("Side scrolling in all menus enabled. Press enter to continue.");
 }
 else
 {
 side_scroll=0;
 m.enable_side_scrolling=false;
-dlg("side scrolling disabled");
+dlg("Side scrolling in all menus disabled. Press enter to continue.");
 }
 settingsmenu();
 }
@@ -6333,7 +6333,7 @@ settingsmenu();
 if(mres==1)
 {
 if(file_exists("data/saves/options.dat")) file_delete("data/saves/options.dat");
-dlg("settings reset");
+dlg("Settings reset. Press enter to continue.");
 resetpreffs();
 settingsmenu();
 }
@@ -6344,7 +6344,7 @@ settingsmenu();
 }
 if(ssm=="preffs")
 {
-dlg("settings saved");
+dlg("Settings saved. Press enter to continue.");
 writepreffs();
 settingsmenu();
 }
