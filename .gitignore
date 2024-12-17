@@ -2,7 +2,6 @@
 *.wav
 New File.txt
 
+data/sounds/
 lib/
-libraries/
 releases/
-sounds/

@@ -2859,13 +2859,13 @@ if(hidedocks==false)
 {
 hidedocks=true;
 hidstatus="hidden";
-speak("documentation menu hidden");
+dlg("Documentation menu hidden. Press enter to continue.");
 }
 else
 {
 hidedocks=false;
 hidstatus="unhidden";
-speak("documentation menu unhidden");
+dlg("Documentation menu unhidden. Press enter to continue.");
 }
 hidemenu();
 }
@@ -2875,13 +2875,13 @@ if(hidegames==false)
 {
 hidegames=true;
 hidstatus2="hidden";
-speak("game menu hidden");
+dlg("Game menu hidden. Press enter to continue.");
 }
 else
 {
 hidegames=false;
 hidstatus2="unhidden";
-speak("game menu unhidden");
+dlg("Game menu unhidden. Press enter to continue.");
 }
 hidemenu();
 }
@@ -2891,13 +2891,13 @@ if(hidemaps==false)
 {
 hidemaps=true;
 hidstatus3="hidden";
-speak("map menu hidden");
+dlg("Map menu hidden. Press enter to continue.");
 }
 else
 {
 hidemaps=false;
 hidstatus3="unhidden";
-speak("map menu unhidden");
+dlg("Map menu unhidden. Press enter to continue.");
 }
 hidemenu();
 }
@@ -2907,13 +2907,13 @@ if(hidesets==false)
 {
 hidesets=true;
 hidstatus4="hidden";
-speak("settings menu hidden");
+dlg("Settings menu hidden. Press enter to continue.");
 }
 else
 {
 hidesets=false;
 hidstatus4="unhidden";
-speak("settings menu unhidden");
+dlg("Settings menu unhidden. Press enter to continue.");
 }
 hidemenu();
 }
