@@ -1,7 +1,7 @@
 name=default
 shield type=none
 shield weight=1
-attack=100
+attack=1300
 defence=100
 health=10000
 max health=10000
@@ -12,6 +12,7 @@ experience=0
 experience modifier=1
 experience required=1
 cam sound=1
+cam sound2=1
 death sound=1
 fall sound=1
 fall sound2=1
