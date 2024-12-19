@@ -1,7 +1,11 @@
 *.ogg
 *.wav
-New File.txt
+*.mp3
+*.m4a
+*.flac
+*.opus
 
 data/sounds/
+data/saves/
 lib/
 releases/
