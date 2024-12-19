@@ -4,8 +4,9 @@
 *.m4a
 *.flac
 *.opus
-
+*.dat
 data/sounds/
 data/saves/
+
 lib/
 releases/
